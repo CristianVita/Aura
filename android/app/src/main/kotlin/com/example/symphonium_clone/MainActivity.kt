@@ -30,10 +30,11 @@ class MainActivity : AudioServiceActivity() {
                 when (call.method) {
                     "scanAudio" -> requestAudioAccessAndScan(result)
                     "loadLibrary" -> loadLibrary(result)
-                    "loadSavedMusic" -> {
+                    "loadSavedMusic", "loadPlaybackMemory" -> {
+                        val fileName = if (call.method == "loadSavedMusic") "saved_music.json" else "playback_memory.json"
                         queryExecutor.execute {
                             try {
-                                val file = AtomicFile(File(filesDir, "saved_music.json"))
+                                val file = AtomicFile(File(filesDir, fileName))
                                 val saved = try {
                                     file.openRead().bufferedReader().use { it.readText() }
                                 } catch (_: java.io.FileNotFoundException) { null }
@@ -43,14 +44,15 @@ class MainActivity : AudioServiceActivity() {
                             }
                         }
                     }
-                    "saveSavedMusic" -> {
+                    "saveSavedMusic", "savePlaybackMemory" -> {
+                        val fileName = if (call.method == "saveSavedMusic") "saved_music.json" else "playback_memory.json"
                         val json = call.argument<String>("json")
                         if (json == null) {
                             result.error("invalid_data", "Missing saved music", null)
                         } else queryExecutor.execute {
                             try {
                                 check(JSONObject(json).getInt("version") == 1)
-                                val file = AtomicFile(File(filesDir, "saved_music.json"))
+                                val file = AtomicFile(File(filesDir, fileName))
                                 val output = file.startWrite()
                                 try {
                                     output.write(json.toByteArray(Charsets.UTF_8))

@@ -12,6 +12,9 @@ An independent Flutter music player for your own music library.
 - Playback queue with selection, removal and drag reordering.
 - Shuffle showing the actual playback order, and repeat off/all/one.
 - Persistent favorites and playlists, with creation, renaming, deletion and track selection.
+- Listening history with recent tracks and an option to clear it.
+- Restored queue, current track, position, shuffle order and repeat mode; reopening stays paused.
+- Optional minimum-duration and WhatsApp/Telegram folder filters.
 
 ## Development
 
@@ -35,13 +38,15 @@ Run the tests:
 flutter test
 ```
 
-Fourteen automated tests cover artwork loading, queue metadata, saved music persistence, concurrent edits, failed writes and playlist UI flows. Android behavior is also checked on a OnePlus 8T running Android 14.
+Twenty-six automated tests cover artwork, saved music, playback/session restoration, missing files, shuffle ordering, listening thresholds, library filters, concurrent writes and UI flows. Android behavior is also checked on a OnePlus 8T running Android 14.
 
 ## Platform status and remaining work
 
 Android is currently implemented and device-tested. Flutter project scaffolding exists for Windows, Linux, macOS, web and iOS; native library integrations and playback support for those platforms still need work. iOS is planned last.
 
-Listening history, server/cloud music sources and restoring the playback queue after restarting the app are not implemented yet.
+Server/cloud music sources and the other platforms remain future work. A dedicated Aura icon and further interface refinements are also planned.
+
+Playback position is checkpointed about every three seconds while playing, and on pause, seek, queue changes and app lifecycle transitions. Abrupt process termination may lose the last few seconds. History records after five seconds of actual playback, or after hearing a shorter track through, and keeps the latest 100 distinct tracks. Folder and duration filters affect browsing without deleting media or saved playlist references.
 
 ## Local data
 

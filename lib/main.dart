@@ -8,6 +8,9 @@ import 'package:just_audio_background/just_audio_background.dart';
 
 import 'audio_track.dart';
 import 'day_greeting.dart';
+import 'playback_memory.dart';
+import 'playback_memory_controller.dart';
+import 'playback_memory_ui.dart';
 import 'saved_music.dart';
 import 'saved_music_ui.dart';
 import 'playback_queue.dart';
@@ -114,6 +117,8 @@ class PlayerShell extends StatefulWidget {
 
 class _PlayerShellState extends State<PlayerShell> {
   final AudioPlayer _player = AudioPlayer();
+  final _memory = PlaybackMemoryStore(DevicePlaybackMemoryStorage());
+  late final PlaybackMemoryController _memoryController;
   late final StreamSubscription<SequenceState> _sequenceSubscription;
   int _selectedTab = 0;
   bool _isScanning = false;
@@ -121,23 +126,67 @@ class _PlayerShellState extends State<PlayerShell> {
   List<AudioTrack> _allTracks = const [];
   Set<String>? _selectedFolders;
   bool _isManagingSources = false;
-  List<AudioTrack> get _tracks => _selectedFolders == null
+  List<AudioTrack> get _folderTracks => _selectedFolders == null
       ? _allTracks
       : _allTracks
             .where((track) => _selectedFolders!.contains(track.folder))
             .toList(growable: false);
+  List<AudioTrack> get _tracks => _folderTracks
+      .where(_memory.data.filters.includes)
+      .toList(growable: false);
+  List<AudioTrack> get _recentTracks {
+    final byUri = {for (final track in _tracks) track.uri: track};
+    return _memory.data.history
+        .map((e) => byUri[e.uri])
+        .whereType<AudioTrack>()
+        .toList();
+  }
+
   _LibraryMode _libraryMode = _LibraryMode.songs;
   String? _groupFilter;
 
   @override
   void initState() {
     super.initState();
+    _memory.addListener(_memoryChanged);
+    _memoryController = PlaybackMemoryController(
+      player: _player,
+      store: _memory,
+      onError: () {
+        if (mounted) {
+          _showMessage(
+            'Nu am putut încărca sau salva istoricul și ultima redare.',
+          );
+        }
+      },
+    );
     _sequenceSubscription = _player.sequenceStateStream.listen((state) {
       if (!mounted) return;
       setState(() {});
     });
     _loadLibrary();
   }
+
+  void _memoryChanged() {
+    if (mounted) setState(() {});
+  }
+
+  Future<void> _openFilters() => Navigator.of(context).push<void>(
+    MaterialPageRoute(
+      builder: (_) =>
+          LibraryFiltersScreen(store: _memory, tracks: _folderTracks),
+    ),
+  );
+
+  Future<void> _openHistory() => Navigator.of(context).push<void>(
+    MaterialPageRoute(
+      builder: (_) => ListeningHistoryScreen(
+        store: _memory,
+        tracks: _tracks,
+        onPlay: _playQueue,
+      ),
+    ),
+  );
 
   Future<void> _loadLibrary() async {
     try {
@@ -155,6 +204,7 @@ class _PlayerShellState extends State<PlayerShell> {
             .map(AudioTrack.fromMap)
             .toList(growable: false);
       });
+      await _memoryController.initialize(_allTracks);
     } on MissingPluginException {
       // Other platforms will provide their own library storage adapter.
     } catch (_) {
@@ -210,7 +260,10 @@ class _PlayerShellState extends State<PlayerShell> {
 
   Future<void> _playQueue(List<AudioTrack> queue, int index) async {
     if (queue.isEmpty || index < 0 || index >= queue.length) return;
+    FocusManager.instance.primaryFocus?.unfocus();
+    _memoryController.beginQueueChange();
     try {
+      await _player.pause();
       await _player.setAudioSources(
         queue
             .map(
@@ -223,8 +276,11 @@ class _PlayerShellState extends State<PlayerShell> {
         initialIndex: index,
         initialPosition: Duration.zero,
       );
+      _memoryController.endQueueChange();
+      await _memoryController.flush();
       await _player.play();
     } catch (_) {
+      _memoryController.endQueueChange();
       if (!mounted) return;
       _showMessage('Nu am putut reda piesa. Încearcă să o scanezi din nou.');
     }
@@ -232,6 +288,7 @@ class _PlayerShellState extends State<PlayerShell> {
 
   Future<void> _openNowPlaying() async {
     if (_currentTrack == null) return;
+    FocusManager.instance.primaryFocus?.unfocus();
     await showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
@@ -242,6 +299,9 @@ class _PlayerShellState extends State<PlayerShell> {
 
   @override
   void dispose() {
+    _memoryController.dispose();
+    _memory.removeListener(_memoryChanged);
+    _memory.dispose();
     _sequenceSubscription.cancel();
     _player.dispose();
     super.dispose();
@@ -316,6 +376,9 @@ class _PlayerShellState extends State<PlayerShell> {
           onSearch: _openSearch,
           onBrowse: _openLibrary,
           trackCount: _tracks.length,
+          recentTracks: _recentTracks,
+          onPlay: _playQueue,
+          onHistory: _openHistory,
           isScanning: _isScanning,
         );
       case 1:
@@ -330,6 +393,8 @@ class _PlayerShellState extends State<PlayerShell> {
         }
         return _CollectionScreen(
           tracks: _tracks,
+          hasHiddenTracks: _folderTracks.isNotEmpty,
+          onFilters: _openFilters,
           isScanning: _isScanning,
           onAddSource: _scanAudio,
           onManageSources: _manageSourceFolders,
@@ -352,6 +417,9 @@ class _PlayerShellState extends State<PlayerShell> {
               ? 'Toate folderele · ${_tracks.length} piese'
               : '${_selectedFolders!.length} ${_selectedFolders!.length == 1 ? 'folder selectat' : 'foldere selectate'} · ${_tracks.length} ${_tracks.length == 1 ? 'piesă' : 'piese'}',
           onManageSources: _manageSourceFolders,
+          onFilters: _openFilters,
+          filtersReady: _memory.ready,
+          onHistory: _openHistory,
           onScan: _scanAudio,
           isScanning: _isScanning,
         );
@@ -415,6 +483,9 @@ class _HomeScreen extends StatelessWidget {
     required this.onSearch,
     required this.onBrowse,
     required this.trackCount,
+    required this.recentTracks,
+    required this.onPlay,
+    required this.onHistory,
     required this.isScanning,
     super.key,
   });
@@ -423,6 +494,9 @@ class _HomeScreen extends StatelessWidget {
   final VoidCallback onSearch;
   final ValueChanged<_LibraryMode> onBrowse;
   final int trackCount;
+  final List<AudioTrack> recentTracks;
+  final _TrackSelection onPlay;
+  final VoidCallback onHistory;
   final bool isScanning;
 
   @override
@@ -456,9 +530,33 @@ class _HomeScreen extends StatelessWidget {
               const SizedBox(height: 14),
               _BrowseGrid(onTap: onBrowse),
               const SizedBox(height: 30),
-              const _SectionTitle(title: 'Ascultate recent'),
+              Row(
+                children: [
+                  const Expanded(
+                    child: _SectionTitle(title: 'Ascultate recent'),
+                  ),
+                  TextButton(
+                    onPressed: onHistory,
+                    child: const Text('Vezi tot'),
+                  ),
+                ],
+              ),
               const SizedBox(height: 14),
-              const _EmptyListeningCard(),
+              if (recentTracks.isEmpty)
+                const _EmptyListeningCard()
+              else
+                for (
+                  var index = 0;
+                  index < recentTracks.length && index < 5;
+                  index++
+                )
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 6),
+                    child: _AudioTrackTile(
+                      track: recentTracks[index],
+                      onTap: () => onPlay(recentTracks, index),
+                    ),
+                  ),
             ],
           ),
         ),
@@ -766,6 +864,8 @@ class _CollectionScreen extends StatelessWidget {
     required this.onOpenGroup,
     required this.onBackToGroups,
     required this.onTrackSelected,
+    required this.hasHiddenTracks,
+    required this.onFilters,
     super.key,
   });
 
@@ -774,6 +874,8 @@ class _CollectionScreen extends StatelessWidget {
   final VoidCallback onAddSource;
   final VoidCallback onManageSources;
   final _LibraryMode mode;
+  final bool hasHiddenTracks;
+  final VoidCallback onFilters;
   final String? groupFilter;
   final ValueChanged<String> onOpenGroup;
   final VoidCallback onBackToGroups;
@@ -785,11 +887,20 @@ class _CollectionScreen extends StatelessWidget {
       return _SimplePage(
         eyebrow: 'COLECȚIA TA',
         title: 'Biblioteca',
-        message:
-            'Alege folderele cu muzică pentru a vedea piesele în bibliotecă.',
+        message: hasHiddenTracks
+            ? 'Nicio piesă nu corespunde filtrelor selectate.'
+            : 'Alege folderele cu muzică pentru a vedea piesele în bibliotecă.',
         icon: Icons.library_music_outlined,
-        actionLabel: isScanning ? 'Se scanează...' : 'Alege folderele',
-        onAction: isScanning ? null : onManageSources,
+        actionLabel: hasHiddenTracks
+            ? 'Modifică filtrele'
+            : isScanning
+            ? 'Se scanează...'
+            : 'Alege folderele',
+        onAction: hasHiddenTracks
+            ? onFilters
+            : isScanning
+            ? null
+            : onManageSources,
       );
     }
 
@@ -1531,11 +1642,17 @@ class _NowPlayingSheet extends StatelessWidget {
 class _SettingsScreen extends StatelessWidget {
   const _SettingsScreen({
     required this.sourceSummary,
+    required this.onFilters,
+    required this.filtersReady,
+    required this.onHistory,
     required this.onManageSources,
     required this.onScan,
     required this.isScanning,
   });
   final String sourceSummary;
+  final VoidCallback onFilters;
+  final bool filtersReady;
+  final VoidCallback onHistory;
   final VoidCallback onManageSources;
   final VoidCallback onScan;
   final bool isScanning;
@@ -1560,6 +1677,24 @@ class _SettingsScreen extends StatelessWidget {
           style: TextStyle(fontSize: 26, fontWeight: FontWeight.w700),
         ),
         const SizedBox(height: 28),
+        Card(
+          color: _surface,
+          child: ListTile(
+            leading: const Icon(Icons.filter_alt_outlined, color: _mint),
+            title: const Text('Filtre bibliotecă'),
+            subtitle: const Text('Durată minimă și foldere de mesagerie'),
+            onTap: filtersReady ? onFilters : null,
+          ),
+        ),
+        Card(
+          color: _surface,
+          child: ListTile(
+            leading: const Icon(Icons.history_rounded, color: _mint),
+            title: const Text('Istoric de ascultare'),
+            onTap: onHistory,
+          ),
+        ),
+        const SizedBox(height: 20),
         const Text(
           'Surse muzicale',
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),

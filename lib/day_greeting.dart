@@ -17,7 +17,7 @@ class _DayGreetingState extends State<DayGreeting> with WidgetsBindingObserver {
 
   String _currentGreeting() {
     final hour = DateTime.now().hour;
-    if (hour < 5) return 'Hello, Night Owl';
+    if (hour < 5) return 'Hello, Night Owl 🦉';
     if (hour >= 5 && hour < 12) return 'Bună dimineața';
     if (hour >= 12 && hour < 18) return 'Bună ziua';
     return 'Bună seara';

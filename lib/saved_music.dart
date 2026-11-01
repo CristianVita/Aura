@@ -1,3 +1,4 @@
+import 'audio_features.dart';
 import 'audio_library.dart';
 
 import 'dart:convert';
@@ -42,6 +43,7 @@ class SavedMusicData {
     this.minimumRating = 0,
     this.ratingOrder = RatingOrder.original,
     this.starSize = RatingStarSize.medium,
+    this.audioFeatures = const AudioFeatures(),
     this.playbackSpeed = 1,
     this.playbackVolume = 1,
   }) : favorites = Set.unmodifiable(favorites),
@@ -55,6 +57,7 @@ class SavedMusicData {
   final double minimumRating;
   final RatingOrder ratingOrder;
   final RatingStarSize starSize;
+  final AudioFeatures audioFeatures;
   final double playbackSpeed;
   final double playbackVolume;
   double ratingOf(String uri) => ratings[uri] ?? 0;
@@ -66,6 +69,7 @@ class SavedMusicData {
     double? minimumRating,
     RatingOrder? ratingOrder,
     RatingStarSize? starSize,
+    AudioFeatures? audioFeatures,
     double? playbackSpeed,
     double? playbackVolume,
   }) => SavedMusicData(
@@ -75,6 +79,7 @@ class SavedMusicData {
     minimumRating: minimumRating ?? this.minimumRating,
     ratingOrder: ratingOrder ?? this.ratingOrder,
     starSize: starSize ?? this.starSize,
+    audioFeatures: audioFeatures ?? this.audioFeatures,
     playbackSpeed: playbackSpeed ?? this.playbackSpeed,
     playbackVolume: playbackVolume ?? this.playbackVolume,
   );
@@ -108,6 +113,7 @@ class SavedMusicData {
     'minimumRating': minimumRating,
     'ratingOrder': ratingOrder.name,
     'starSize': starSize.name,
+    'audioFeatures': audioFeatures.toJson(),
     'playbackSpeed': playbackSpeed,
     'playbackVolume': playbackVolume,
   });
@@ -159,6 +165,9 @@ class SavedMusicData {
       throw const FormatException('Invalid playback preferences');
     }
     return SavedMusicData(
+      audioFeatures: AudioFeatures.fromJson(
+        root['audioFeatures'] as Map<String, dynamic>? ?? {},
+      ),
       playbackSpeed: speed.toDouble(),
       playbackVolume: volume.toDouble(),
       favorites: favorites,
@@ -271,6 +280,11 @@ class SavedMusicStore extends ChangeNotifier {
         }
         return data.copy(playbackSpeed: speed, playbackVolume: volume);
       });
+
+  Future<void> setAudioFeatures(AudioFeatures features) => _update(
+    (data) =>
+        data.copy(audioFeatures: AudioFeatures.fromJson(features.toJson())),
+  );
 
   String _validName(String name) {
     final trimmed = name.trim();

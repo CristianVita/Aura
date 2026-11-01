@@ -253,6 +253,53 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
               ],
             ),
           ),
+          const SizedBox(height: 24),
+          _SettingsGroup(
+            title: 'Opțiuni audio',
+            children: [
+              _SettingsRow(
+                icon: Icons.compare_arrows_rounded,
+                title: 'Tranziții',
+                subtitle: 'Crossfade și fade la pornire/pauză',
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (_) => const _AudioFeatureSettings(
+                      page: _AudioFeaturePage.transitions,
+                    ),
+                  ),
+                ),
+              ),
+              _SettingsRow(
+                icon: Icons.equalizer_rounded,
+                title: 'Egalizator',
+                subtitle: _audioRuntime.isAndroid
+                    ? 'Benzi de frecvență și preseturi'
+                    : 'Disponibil pe Android',
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (_) => const _AudioFeatureSettings(
+                      page: _AudioFeaturePage.equalizer,
+                    ),
+                  ),
+                ),
+              ),
+              _SettingsRow(
+                icon: Icons.headphones_outlined,
+                title: 'Comenzi media',
+                subtitle: 'Notificare, ecran blocat și căști',
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (_) => const _AudioFeatureSettings(
+                      page: _AudioFeaturePage.commands,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
           const SizedBox(height: 20),
           TextButton(
             onPressed: enabled ? () => _change(speed: 1, volume: 1) : null,
@@ -301,6 +348,18 @@ class _PlaybackQuickSettings extends StatelessWidget {
               context,
               MaterialPageRoute<void>(
                 builder: (_) => PlaybackSettingsScreen(controls: controls),
+              ),
+            ),
+          ),
+        ),
+        IconButton(
+          tooltip: 'Egalizator',
+          icon: const Icon(Icons.equalizer_rounded),
+          onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute<void>(
+              builder: (_) => const _AudioFeatureSettings(
+                page: _AudioFeaturePage.equalizer,
               ),
             ),
           ),

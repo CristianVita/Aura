@@ -43,11 +43,11 @@ Run the tests:
 flutter test
 ```
 
-Forty-six automated tests cover artwork, saved music, rating gestures and legacy-data migration, playback/session restoration, missing files, shuffle ordering, listening thresholds, library filters, concurrent writes, Windows scanning/storage, the Navidrome protocol and UI flows. Android behavior is also checked on a OnePlus 8T running Android 14.
+Sixty automated tests cover artwork, saved music, rating gestures and legacy-data migration, playback/session restoration, missing files, shuffle ordering, listening thresholds, library filters, concurrent writes, Windows scanning/storage, the Navidrome protocol, audio preferences, sleep-timer deadlines and UI flows. Android behavior is also checked on a OnePlus 8T running Android 14.
 
 Rate a track using the five stars below its details in the full player, or long-press a collection/search track to open its information. Long-press a track in favorites or a playlist to open the rating dialog. The clear button removes the rating. Collection rating filters and sorting are saved locally; unrated tracks appear last when sorting by rating. These preferences do not change an existing playback queue, playlist order or audio-file tags. Ratings currently belong to each device and are not synchronized.
 
-Choose **Setări → Dimensiunea stelelor → Mici / Medii / Mari** to change their size. Drag horizontally across the stars for 0.5-star steps; the preview changes while dragging and the final value is saved on release. Tapping a star still selects its whole-star value. Existing integer ratings remain valid.
+Choose **Setări → Interfață → Dimensiunea stelelor → Mici / Medii / Mari** to change their size. Drag horizontally across the stars for 0.5-star steps; the preview changes while dragging and the final value is saved on release. Tapping a star still selects its whole-star value. Existing integer ratings remain valid.
 
 Choose **Adaugă o sursă → Server Navidrome → Adaugă server Navidrome**. Enter the HTTPS server base URL (including a reverse-proxy subfolder, when applicable), username and password. Refresh or disconnect from the same source screen. Server tracks also appear in the collection and search. Refreshing a nonempty server collection updates its remote metadata; offline playback/downloads are not implemented.
 
@@ -61,11 +61,15 @@ flutter build windows --release
 
 Distribute the entire `build/windows/x64/runner/Release` folder, including its DLLs and `data` folder. The target PC also needs the Microsoft Visual C++ runtime. This is an unsigned development build.
 
-Windows integration tests check a secure-storage write/read/delete roundtrip and generate a quiet WAV tone to verify native play/pause, seek, next-track, shuffle and repeat controls:
+Native integration tests check a synthetic secure-storage roundtrip and generate a quiet WAV tone to verify play/pause, seek, next-track, shuffle, repeat, crossfade overlap/handoff, timer pause and configurable media commands. Android also checks the equalizer. Windows invocation:
 
 ```sh
 flutter test integration_test/windows_playback_test.dart -d windows
 ```
+
+Android integration entrypoints build with the separate application ID `com.example.symphonium_clone.integration`. Verify the APK ID before device tests; Flutter automatically uninstalls the test package afterward. Never target the user's live Aura application ID. See [AGENTS.md](AGENTS.md).
+
+Playback settings include persistent speed/volume, sleep timer, crossfade (off by default), play/pause fades, Android equalizer presets/bands, and Android headset/notification controls. Windows supports crossfade and fades, while equalization remains Android-only. The current second-decoder crossfade hands back to the authoritative queue and is not advertised as sample-accurate; remote-server/network behavior needs real-server testing. See [the reference audit](docs/reference-audit.md) for validation and the next-feature roadmap.
 
 Regenerate the code-drawn Aura icon with `./tool/generate_brand_assets.ps1` on Windows.
 

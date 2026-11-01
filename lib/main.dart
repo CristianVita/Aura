@@ -3,10 +3,11 @@ import 'audio_library.dart';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:just_audio_background/just_audio_background.dart';
+
+import 'audio_runtime.dart';
+import 'audio_features.dart';
 
 import 'audio_track.dart';
 import 'audio_sources.dart';
@@ -26,6 +27,7 @@ import 'track_artwork.dart';
 part 'search_screen.dart';
 part 'settings_screen.dart';
 part 'playback_settings_ui.dart';
+part 'audio_features_ui.dart';
 
 const _background = Color(0xFF0B1014);
 const _surface = Color(0xFF141D22);
@@ -58,19 +60,14 @@ typedef _TrackSelection = Future<void> Function(
   int index,
 );
 
+late final AuraAudioRuntime _audioRuntime;
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  if (kIsWeb ||
-      defaultTargetPlatform == TargetPlatform.android ||
-      defaultTargetPlatform == TargetPlatform.iOS ||
-      defaultTargetPlatform == TargetPlatform.macOS) {
-    await JustAudioBackground.init(
-      androidNotificationChannelId: 'com.example.symphonium_clone.playback',
-      androidNotificationChannelName: 'Redare audio',
-      androidNotificationOngoing: true,
-      androidNotificationIcon: 'drawable/ic_stat_audio',
-    );
-  }
+  final store = SavedMusicStore(DeviceSavedMusicStorage());
+  await store.load();
+  _audioRuntime = AuraAudioRuntime(store);
+  await _audioRuntime.initializeService();
   runApp(const SoundLibraryApp());
 }
 
@@ -81,13 +78,7 @@ class SoundLibraryApp extends StatefulWidget {
 }
 
 class _SoundLibraryAppState extends State<SoundLibraryApp> {
-  final _savedMusic = SavedMusicStore(DeviceSavedMusicStorage());
-  @override
-  void initState() {
-    super.initState();
-    unawaited(_savedMusic.load());
-  }
-
+  final _savedMusic = _audioRuntime.store;
   @override
   void dispose() {
     _savedMusic.dispose();
@@ -124,7 +115,7 @@ class PlayerShell extends StatefulWidget {
 }
 
 class _PlayerShellState extends State<PlayerShell> {
-  final AudioPlayer _player = AudioPlayer();
+  final AudioPlayer _player = _audioRuntime.player;
   PlaybackSettingsController? _playbackSettings;
   final _memory = PlaybackMemoryStore(DevicePlaybackMemoryStorage());
   late final PlaybackMemoryController _memoryController;
@@ -196,6 +187,8 @@ class _PlayerShellState extends State<PlayerShell> {
         }
       },
     );
+    _audioRuntime.allowCrossfade = () =>
+        _playbackSettings?.sleep.waitingForTrack != true;
   }
 
   void _memoryChanged() {
@@ -463,7 +456,7 @@ class _PlayerShellState extends State<PlayerShell> {
       );
       _memoryController.endQueueChange();
       await _memoryController.flush();
-      await _player.play();
+      await _audioRuntime.play();
     } catch (_) {
       _memoryController.endQueueChange();
       if (!mounted) return;
@@ -490,7 +483,7 @@ class _PlayerShellState extends State<PlayerShell> {
     _memory.removeListener(_memoryChanged);
     _memory.dispose();
     _sequenceSubscription.cancel();
-    _player.dispose();
+    unawaited(_audioRuntime.dispose());
     super.dispose();
   }
 
@@ -1520,9 +1513,9 @@ Future<void> _togglePlayback(BuildContext context, AudioPlayer player) async {
             player.position >= duration);
     if (atEnd) {
       await player.seek(Duration.zero);
-      await player.play();
+      await _audioRuntime.play();
     } else if (player.playing) {
-      await player.pause();
+      await _audioRuntime.pause();
     } else {
       await player.play();
     }
@@ -1693,7 +1686,7 @@ class _MiniPlayer extends StatelessWidget {
                     IconButton(
                       tooltip: 'Piesa următoare',
                       onPressed: player.hasNext
-                          ? () => player.seekToNext()
+                          ? () => _audioRuntime.skip(true)
                           : null,
                       icon: const Icon(Icons.skip_next_rounded, color: _muted),
                     ),
@@ -1903,7 +1896,7 @@ class _NowPlayingSheet extends StatelessWidget {
                       IconButton(
                         tooltip: 'Piesa anterioară',
                         onPressed: player.hasPrevious
-                            ? () => player.seekToPrevious()
+                            ? () => _audioRuntime.skip(false)
                             : null,
                         icon: const Icon(Icons.skip_previous_rounded, size: 36),
                       ),

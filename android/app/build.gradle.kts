@@ -4,6 +4,11 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+// Integration tests are installed and automatically uninstalled by Flutter.
+// Never allow that lifecycle to target the user's normal Aura installation.
+val auraTarget = (project.findProperty("target") as? String).orEmpty().replace('\\', '/')
+val auraIntegrationBuild = auraTarget.contains("integration_test/")
+
 android {
     namespace = "com.example.symphonium_clone"
     compileSdk = flutter.compileSdkVersion
@@ -16,7 +21,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.symphonium_clone"
+        applicationId = if (auraIntegrationBuild) "com.example.symphonium_clone.integration" else "com.example.symphonium_clone"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion

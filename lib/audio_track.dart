@@ -1,5 +1,5 @@
 import 'package:just_audio/just_audio.dart';
-import 'package:just_audio_background/just_audio_background.dart';
+import 'package:audio_service/audio_service.dart';
 
 class AudioTrack {
   const AudioTrack({

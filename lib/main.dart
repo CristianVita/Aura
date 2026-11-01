@@ -1731,31 +1731,39 @@ class _NowPlayingSheet extends StatelessWidget {
                 );
               }
               return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Container(
-                    width: 38,
-                    height: 4,
-                    decoration: BoxDecoration(
-                      color: Colors.white24,
-                      borderRadius: BorderRadius.circular(4),
+                  Center(
+                    child: Container(
+                      width: 38,
+                      height: 4,
+                      decoration: BoxDecoration(
+                        color: Colors.white24,
+                        borderRadius: BorderRadius.circular(4),
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 28),
-                  TrackArtwork(
-                    uri: track.artworkUri.toString(),
-                    cacheKey: track.artworkKey,
-                    size: 220,
-                    radius: 28,
-                    fallbackIcon: Icons.graphic_eq_rounded,
+                  const SizedBox(height: 18),
+                  Center(
+                    child: TrackArtwork(
+                      uri: track.artworkUri.toString(),
+                      cacheKey: track.artworkKey,
+                      size: (MediaQuery.sizeOf(context).width - 48).clamp(
+                        180.0,
+                        380.0,
+                      ),
+                      radius: 12,
+                      fallbackIcon: Icons.graphic_eq_rounded,
+                    ),
                   ),
-                  const SizedBox(height: 26),
+                  const SizedBox(height: 20),
                   Row(
                     children: [
                       Expanded(
                         child: Text(
                           track.title,
-                          textAlign: TextAlign.center,
+                          textAlign: TextAlign.start,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
@@ -1792,7 +1800,6 @@ class _NowPlayingSheet extends StatelessWidget {
                     ),
                   ],
                   const SizedBox(height: 12),
-                  TrackRating(key: ValueKey(track.uri), uri: track.uri),
                   const SizedBox(height: 10),
                   StreamBuilder<Duration>(
                     stream: player.positionStream,
@@ -1855,6 +1862,8 @@ class _NowPlayingSheet extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height: 12),
+                  TrackRating(key: ValueKey(track.uri), uri: track.uri),
+                  const SizedBox(height: 14),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

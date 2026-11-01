@@ -157,10 +157,10 @@ void main() {
       );
       await tester.tap(find.text('Rate'));
       await tester.pumpAndSettle();
-      expect(find.byIcon(Icons.star_border_rounded), findsNWidgets(5));
+      expect(find.byIcon(Icons.star), findsNWidgets(5));
       await tester.tap(find.byTooltip('Acordă 4 stele'));
       await tester.pumpAndSettle();
-      expect(find.byIcon(Icons.star_rounded), findsNWidgets(4));
+      expect(find.byIcon(Icons.star), findsNWidgets(9));
       expect(store.data.ratingOf('a'), 4);
       storage.failNextWrite = true;
       await tester.tap(find.byTooltip('Acordă 5 stele'));
@@ -169,7 +169,7 @@ void main() {
       await tester.tap(find.byTooltip('Șterge ratingul'));
       await tester.pumpAndSettle();
       expect(store.data.ratingOf('a'), 0);
-      expect(find.byIcon(Icons.star_border_rounded), findsNWidgets(5));
+      expect(find.byIcon(Icons.star), findsNWidgets(5));
       expect(tester.takeException(), isNull);
       await tester.pumpWidget(const SizedBox());
       store.dispose();
@@ -295,7 +295,17 @@ void main() {
       await gesture.moveTo(Offset(box.left + box.width * .47, box.center.dy));
       await tester.pump();
       expect(find.text('Ratingul tău: 2,5 din 5'), findsOneWidget);
-      expect(find.byIcon(Icons.star_half_rounded), findsOneWidget);
+      expect(
+        tester
+            .widget<Align>(
+              find.descendant(
+                of: find.byKey(const ValueKey('rating-fill-3')),
+                matching: find.byType(Align),
+              ),
+            )
+            .widthFactor,
+        .5,
+      );
       await gesture.up();
       await tester.pumpAndSettle();
       expect(store.data.ratingOf('swipe'), 2.5);

@@ -5,6 +5,7 @@ import 'saved_music.dart';
 import 'track_artwork.dart';
 
 const _mint = Color(0xFF8BE0C0);
+const _ratingGold = Color(0xFFBCAF85);
 
 class TrackRating extends StatefulWidget {
   const TrackRating({super.key, required this.uri});
@@ -28,11 +29,11 @@ class _TrackRatingState extends State<TrackRating> {
     final rating = _preview ?? store.data.ratingOf(widget.uri);
     final enabled = store.ready && !_busy;
     final iconSize = switch (store.data.starSize) {
-      RatingStarSize.small => 20.0,
-      RatingStarSize.medium => 28.0,
-      RatingStarSize.large => 36.0,
+      RatingStarSize.small => 24.0,
+      RatingStarSize.medium => 32.0,
+      RatingStarSize.large => 40.0,
     };
-    final cellWidth = iconSize + 12;
+    final cellWidth = iconSize + 8;
     final width = cellWidth * 5;
     void preview(Offset position) {
       final x = Directionality.of(context) == TextDirection.rtl
@@ -95,15 +96,30 @@ class _TrackRatingState extends State<TrackRating> {
                                 ? 'Acordă 1 stea'
                                 : 'Acordă $star stele',
                             iconSize: iconSize,
-                            icon: Icon(
-                              rating >= star
-                                  ? Icons.star_rounded
-                                  : rating >= star - .5
-                                  ? Icons.star_half_rounded
-                                  : Icons.star_border_rounded,
-                              color: rating >= star - .5
-                                  ? _mint
-                                  : Colors.white38,
+                            icon: SizedBox(
+                              width: iconSize,
+                              height: iconSize,
+                              child: Stack(
+                                children: [
+                                  Icon(
+                                    Icons.star,
+                                    color: _ratingGold.withValues(alpha: .22),
+                                  ),
+                                  if (rating >= star - .5)
+                                    ClipRect(
+                                      key: ValueKey('rating-fill-$star'),
+                                      child: Align(
+                                        alignment:
+                                            AlignmentDirectional.centerStart,
+                                        widthFactor: rating >= star ? 1 : .5,
+                                        child: const Icon(
+                                          Icons.star,
+                                          color: _ratingGold,
+                                        ),
+                                      ),
+                                    ),
+                                ],
+                              ),
                             ),
                             onPressed: enabled
                                 ? () => _save(store, star)
@@ -138,7 +154,7 @@ class TrackRatingBadge extends StatelessWidget {
         : Text(
             '★ ${formatRating(rating)}',
             semanticsLabel: 'Rating: ${formatRating(rating)} din 5',
-            style: const TextStyle(color: _mint, fontSize: 12),
+            style: const TextStyle(color: _ratingGold, fontSize: 12),
           );
   }
 }

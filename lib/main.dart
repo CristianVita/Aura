@@ -7,6 +7,7 @@ import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 
 import 'audio_track.dart';
+import 'day_greeting.dart';
 import 'saved_music.dart';
 import 'saved_music_ui.dart';
 import 'playback_queue.dart';
@@ -434,8 +435,7 @@ class _HomeScreen extends StatelessWidget {
             children: [
               _TopBar(onSearch: onSearch),
               const SizedBox(height: 28),
-              Text(
-                'Bună seara',
+              DayGreeting(
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.w700,
                   letterSpacing: -0.5,

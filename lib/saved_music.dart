@@ -1,6 +1,7 @@
+import 'audio_library.dart';
+
 import 'dart:convert';
 
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 class MusicPlaylist {
@@ -65,9 +66,7 @@ abstract class SavedMusicStorage {
 }
 
 class DeviceSavedMusicStorage implements SavedMusicStorage {
-  static const _channel = MethodChannel(
-    'com.example.symphonium_clone/audio_library',
-  );
+  static const _channel = AudioLibrary();
   @override
   Future<String?> read() => _channel.invokeMethod<String>('loadSavedMusic');
   @override

@@ -22,11 +22,13 @@ class AudioTrack {
   final String folder;
   final int modifiedSeconds;
   String get artworkKey => '$uri:$modifiedSeconds';
-  Uri get artworkUri => Uri(
-    scheme: 'content',
-    host: 'com.example.symphonium_clone.artwork',
-    path: '/$id/$modifiedSeconds',
-  );
+  Uri get artworkUri => Uri.parse(uri).scheme == 'file'
+      ? Uri.parse(uri)
+      : Uri(
+          scheme: 'content',
+          host: 'com.example.symphonium_clone.artwork',
+          path: '/$id/$modifiedSeconds',
+        );
 
   MediaItem toMediaItem() => MediaItem(
     id: uri,

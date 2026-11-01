@@ -1,3 +1,5 @@
+import 'audio_library.dart';
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -21,9 +23,7 @@ const _background = Color(0xFF0B1014);
 const _surface = Color(0xFF141D22);
 const _mint = Color(0xFF8BE0C0);
 const _muted = Color(0xFFA4B3B8);
-const _audioLibraryChannel = MethodChannel(
-  'com.example.symphonium_clone/audio_library',
-);
+const _audioLibraryChannel = AudioLibrary();
 
 enum _LibraryMode { songs, albums, artists, playlists, favorites }
 
@@ -222,6 +222,129 @@ class _PlayerShellState extends State<PlayerShell> {
     if (_isScanning || _isLoadingLibrary || _isManagingSources) return;
     _isManagingSources = true;
     try {
+      await _manageSourceFoldersInner();
+    } catch (_) {
+      if (mounted) _showMessage('Nu am putut încărca sursele muzicale.');
+    } finally {
+      _isManagingSources = false;
+    }
+  }
+
+  Future<void> _manageSourceFoldersInner() async {
+    if (AudioLibrary.isWindows) {
+      final action = await showModalBottomSheet<String>(
+        context: context,
+        builder: (context) => SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: const Icon(Icons.create_new_folder_outlined),
+                title: const Text('Adaugă un folder de pe PC'),
+                onTap: () => Navigator.pop(context, 'add'),
+              ),
+              ListTile(
+                leading: const Icon(Icons.checklist_rounded),
+                title: const Text('Alege folderele vizibile'),
+                onTap: () => Navigator.pop(context, 'visible'),
+              ),
+              ListTile(
+                leading: const Icon(Icons.folder_off_outlined),
+                title: const Text('Elimină un folder din bibliotecă'),
+                subtitle: const Text('Fișierele rămân pe PC.'),
+                onTap: () => Navigator.pop(context, 'remove'),
+              ),
+            ],
+          ),
+        ),
+      );
+      if (action == null || !mounted) return;
+      if (action == 'remove') {
+        final roots =
+            await _audioLibraryChannel.invokeListMethod<String>(
+              'loadAudioRoots',
+            ) ??
+            [];
+        if (!mounted) return;
+        if (roots.isEmpty) {
+          _showMessage('Nu ai adăugat încă niciun folder.');
+          return;
+        }
+        final folder = await showDialog<String>(
+          context: context,
+          builder: (context) => SimpleDialog(
+            title: const Text('Elimină din bibliotecă'),
+            children: roots
+                .map(
+                  (root) => SimpleDialogOption(
+                    onPressed: () => Navigator.pop(context, root),
+                    child: Text(root),
+                  ),
+                )
+                .toList(),
+          ),
+        );
+        if (folder == null || !mounted) return;
+        setState(() => _isScanning = true);
+        try {
+          final rows = await _audioLibraryChannel.invokeListMethod<Object?>(
+            'removeAudioFolder',
+            {'folder': folder},
+          );
+          if (!mounted) return;
+          setState(
+            () => _allTracks = (rows ?? [])
+                .whereType<Map<Object?, Object?>>()
+                .map(AudioTrack.fromMap)
+                .toList(),
+          );
+          _showMessage(
+            'Folder eliminat din bibliotecă. Fișierele au rămas pe PC.',
+          );
+        } catch (_) {
+          if (mounted) {
+            _showMessage('Nu am putut elimina folderul din bibliotecă.');
+          }
+        } finally {
+          if (mounted) setState(() => _isScanning = false);
+        }
+        return;
+      }
+      if (action == 'add') {
+        setState(() => _isScanning = true);
+        try {
+          final rows = await _audioLibraryChannel.invokeListMethod<Object?>(
+            'chooseAudioFolder',
+          );
+          final selected = await _audioLibraryChannel.invokeListMethod<String>(
+            'loadSourceFolders',
+          );
+          if (rows == null || !mounted) return;
+          setState(() {
+            _allTracks = rows
+                .whereType<Map<Object?, Object?>>()
+                .map(AudioTrack.fromMap)
+                .toList();
+            _selectedFolders = selected?.toSet();
+            _selectedTab = 1;
+            _libraryMode = _LibraryMode.songs;
+            _groupFilter = null;
+          });
+          _showMessage('${_tracks.length} piese în bibliotecă.');
+        } catch (_) {
+          if (mounted) {
+            _showMessage(
+              'Nu am putut citi folderul. Verifică dacă este disponibil.',
+            );
+          }
+        } finally {
+          if (mounted) setState(() => _isScanning = false);
+        }
+        return;
+      }
+    }
+    _isManagingSources = true;
+    try {
       if (_allTracks.isEmpty) await _scanAudio();
       if (!mounted || _allTracks.isEmpty) return;
       final counts = <String, int>{};
@@ -345,7 +468,7 @@ class _PlayerShellState extends State<PlayerShell> {
       });
       _showMessage(
         _tracks.isEmpty
-            ? 'Nu am găsit fișiere muzicale pe telefon.'
+            ? 'Nu am găsit fișiere muzicale pe dispozitiv.'
             : '${_tracks.length} ${_tracks.length == 1 ? 'piesă' : 'piese'} în folderele selectate.',
       );
     } on PlatformException catch (error) {
@@ -428,6 +551,78 @@ class _PlayerShellState extends State<PlayerShell> {
 
   @override
   Widget build(BuildContext context) {
+    if (AudioLibrary.isWindows && MediaQuery.sizeOf(context).width >= 900) {
+      return Scaffold(
+        body: SafeArea(
+          child: Row(
+            children: [
+              NavigationRail(
+                extended: true,
+                backgroundColor: _surface,
+                leading: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 24),
+                  child: Text(
+                    'Aura',
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: _mint,
+                    ),
+                  ),
+                ),
+                selectedIndex: _selectedTab,
+                onDestinationSelected: (index) =>
+                    setState(() => _selectedTab = index),
+                destinations: const [
+                  NavigationRailDestination(
+                    icon: Icon(Icons.home_outlined),
+                    label: Text('Acasă'),
+                  ),
+                  NavigationRailDestination(
+                    icon: Icon(Icons.library_music_outlined),
+                    label: Text('Colecție'),
+                  ),
+                  NavigationRailDestination(
+                    icon: Icon(Icons.search_rounded),
+                    label: Text('Caută'),
+                  ),
+                  NavigationRailDestination(
+                    icon: Icon(Icons.tune_rounded),
+                    label: Text('Setări'),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: Center(
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(maxWidth: 1100),
+                          child: _isLoadingLibrary
+                              ? const Center(
+                                  child: CircularProgressIndicator(
+                                    color: _mint,
+                                  ),
+                                )
+                              : _page(),
+                        ),
+                      ),
+                    ),
+                    if (_currentTrack != null)
+                      _MiniPlayer(
+                        track: _currentTrack!,
+                        player: _player,
+                        onTap: _openNowPlaying,
+                      ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
     return Scaffold(
       body: SafeArea(
         child: _isLoadingLibrary
@@ -581,7 +776,10 @@ class _TopBar extends StatelessWidget {
             color: _mint.withValues(alpha: 0.12),
             borderRadius: BorderRadius.circular(14),
           ),
-          child: const Icon(Icons.graphic_eq_rounded, color: _mint, size: 25),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(14),
+            child: Image.asset('assets/branding/aura.png'),
+          ),
         ),
         const SizedBox(width: 12),
         const Column(
@@ -699,8 +897,10 @@ class _SourceCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 5),
-                    const Text(
-                      'Telefon, server sau cloud',
+                    Text(
+                      AudioLibrary.isWindows
+                          ? 'PC, server sau cloud'
+                          : 'Telefon, server sau cloud',
                       style: TextStyle(color: Color(0xFFC2D1D0), fontSize: 14),
                     ),
                     const SizedBox(height: 15),
@@ -1705,7 +1905,7 @@ class _SettingsScreen extends StatelessWidget {
           margin: EdgeInsets.zero,
           child: ListTile(
             leading: const Icon(Icons.folder_open_rounded, color: _mint),
-            title: const Text('Foldere de pe telefon'),
+            title: const Text('Foldere muzicale'),
             subtitle: Text(
               sourceSummary,
               style: const TextStyle(color: _muted),

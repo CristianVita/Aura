@@ -1,11 +1,11 @@
+import 'audio_library.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 /// Shares in-flight requests and keeps a bounded cache of small cover images.
 class _ArtworkCache {
-  static const _channel = MethodChannel(
-    'com.example.symphonium_clone/audio_library',
-  );
+  static const _channel = AudioLibrary();
   static final _requests = <String, Future<Uint8List?>>{};
 
   static Future<Uint8List?> load(String uri, String key) {

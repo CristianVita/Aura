@@ -44,7 +44,7 @@ class _SourceFoldersScreenState extends State<SourceFoldersScreen> {
           const Padding(
             padding: EdgeInsets.fromLTRB(20, 10, 20, 12),
             child: Text(
-              'Alege folderele cu muzică. Sunt afișate folderele în care telefonul a găsit fișiere audio.',
+              'Alege folderele cu muzică. Sunt afișate folderele în care dispozitivul a găsit fișiere audio.',
             ),
           ),
           SwitchListTile(

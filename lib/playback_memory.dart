@@ -1,7 +1,8 @@
+import 'audio_library.dart';
+
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
 import 'package:just_audio/just_audio.dart';
 
 import 'audio_track.dart';
@@ -223,9 +224,7 @@ abstract class PlaybackMemoryStorage {
 }
 
 class DevicePlaybackMemoryStorage implements PlaybackMemoryStorage {
-  static const _channel = MethodChannel(
-    'com.example.symphonium_clone/audio_library',
-  );
+  static const _channel = AudioLibrary();
   @override
   Future<String?> read() => _channel.invokeMethod<String>('loadPlaybackMemory');
   @override

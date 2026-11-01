@@ -6,6 +6,9 @@
 
 #include "generated_plugin_registrant.h"
 
+#include <just_audio_windows_plus/just_audio_windows_plus_plugin.h>
 
 void RegisterPlugins(flutter::PluginRegistry* registry) {
+  JustAudioWindowsPlusPluginRegisterWithRegistrar(
+      registry->GetRegistrarForPlugin("JustAudioWindowsPlusPlugin"));
 }

@@ -12,6 +12,7 @@ An independent Flutter music player for your own music library.
 - Playback queue with selection, removal and drag reordering.
 - Shuffle showing the actual playback order, and repeat off/all/one.
 - Persistent favorites and playlists, with creation, renaming, deletion and track selection.
+- Per-track 1–5 star ratings, with clearing, local persistence, a minimum-rating filter and ascending/descending rating sort in the collection.
 - Listening history with recent tracks and an option to clear it.
 - Restored queue, current track, position, shuffle order and repeat mode; reopening stays paused.
 - Optional minimum-duration and WhatsApp/Telegram folder filters.
@@ -41,7 +42,9 @@ Run the tests:
 flutter test
 ```
 
-Thirty-one automated tests cover artwork, saved music, playback/session restoration, missing files, shuffle ordering, listening thresholds, library filters, concurrent writes, Windows scanning/storage and UI flows. Android behavior is also checked on a OnePlus 8T running Android 14.
+Thirty-eight automated tests cover artwork, saved music, ratings and legacy-data migration, playback/session restoration, missing files, shuffle ordering, listening thresholds, library filters, concurrent writes, Windows scanning/storage and UI flows. Android behavior is also checked on a OnePlus 8T running Android 14.
+
+Rate a track using the five stars below its details in the full player, or long-press a collection/search track to open its information. Long-press a track in favorites or a playlist to open the rating dialog. The clear button removes the rating. Collection rating filters and sorting are saved locally; unrated tracks appear last when sorting by rating. These preferences do not change an existing playback queue, playlist order or audio-file tags. Ratings currently belong to each device and are not synchronized.
 
 For Windows development, install Visual Studio's **Desktop development with C++** workload, including C++ CMake tools and a Windows SDK. Build with:
 

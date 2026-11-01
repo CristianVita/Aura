@@ -6,6 +6,181 @@ import 'track_artwork.dart';
 
 const _mint = Color(0xFF8BE0C0);
 
+class TrackRating extends StatefulWidget {
+  const TrackRating({super.key, required this.uri});
+  final String uri;
+  @override
+  State<TrackRating> createState() => _TrackRatingState();
+}
+
+class _TrackRatingState extends State<TrackRating> {
+  bool _busy = false;
+  Future<void> _save(SavedMusicStore store, int rating) async {
+    setState(() => _busy = true);
+    await saveMusicAction(context, () => store.setRating(widget.uri, rating));
+    if (mounted) setState(() => _busy = false);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final store = SavedMusicScope.of(context);
+    final rating = store.data.ratingOf(widget.uri);
+    final enabled = store.ready && !_busy;
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          rating == 0 ? 'Fără rating' : 'Ratingul tău: $rating din 5',
+          style: const TextStyle(color: Colors.white60, fontSize: 12),
+        ),
+        Wrap(
+          alignment: WrapAlignment.center,
+          children: [
+            for (var star = 1; star <= 5; star++)
+              Semantics(
+                selected: star <= rating,
+                child: IconButton(
+                  tooltip: star == 1 ? 'Acordă 1 stea' : 'Acordă $star stele',
+                  icon: Icon(
+                    star <= rating
+                        ? Icons.star_rounded
+                        : Icons.star_border_rounded,
+                    color: star <= rating ? _mint : Colors.white38,
+                  ),
+                  onPressed: enabled ? () => _save(store, star) : null,
+                ),
+              ),
+            IconButton(
+              tooltip: 'Șterge ratingul',
+              icon: const Icon(Icons.clear_rounded, size: 18),
+              onPressed: enabled && rating != 0 ? () => _save(store, 0) : null,
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class TrackRatingBadge extends StatelessWidget {
+  const TrackRatingBadge({super.key, required this.uri});
+  final String uri;
+  @override
+  Widget build(BuildContext context) {
+    final rating = SavedMusicScope.of(context).data.ratingOf(uri);
+    return rating == 0
+        ? const SizedBox.shrink()
+        : Text(
+            '★ $rating',
+            semanticsLabel: 'Rating: $rating din 5',
+            style: const TextStyle(color: _mint, fontSize: 12),
+          );
+  }
+}
+
+Future<void> showTrackRating(BuildContext context, AudioTrack track) =>
+    showDialog<void>(
+      context: context,
+      builder: (_) => AlertDialog(
+        insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+        contentPadding: const EdgeInsets.all(16),
+        title: Text(track.title, maxLines: 2, overflow: TextOverflow.ellipsis),
+        content: TrackRating(key: ValueKey(track.uri), uri: track.uri),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Închide'),
+          ),
+        ],
+      ),
+    );
+
+class RatingViewControls extends StatelessWidget {
+  const RatingViewControls({super.key});
+  @override
+  Widget build(BuildContext context) {
+    final store = SavedMusicScope.of(context);
+    final data = store.data;
+    return Row(
+      children: [
+        Expanded(
+          child: PopupMenuButton<int>(
+            tooltip: 'Filtrează după rating',
+            enabled: store.ready,
+            initialValue: data.minimumRating,
+            onSelected: (value) => saveMusicAction(
+              context,
+              () => store.setRatingView(minimum: value),
+            ),
+            itemBuilder: (_) => [
+              for (var value = 0; value <= 5; value++)
+                CheckedPopupMenuItem(
+                  value: value,
+                  checked: data.minimumRating == value,
+                  child: Text(
+                    value == 0
+                        ? 'Toate ratingurile'
+                        : value == 5
+                        ? 'Doar 5 stele'
+                        : 'Cel puțin $value ${value == 1 ? 'stea' : 'stele'}',
+                  ),
+                ),
+            ],
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              child: Row(
+                children: [
+                  const Icon(Icons.star_rounded, color: _mint, size: 18),
+                  const SizedBox(width: 7),
+                  Flexible(
+                    child: Text(
+                      data.minimumRating == 0
+                          ? 'Toate ratingurile'
+                          : 'Rating ≥ ${data.minimumRating}',
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  const Icon(Icons.arrow_drop_down),
+                ],
+              ),
+            ),
+          ),
+        ),
+        PopupMenuButton<RatingOrder>(
+          tooltip: 'Sortează după rating',
+          enabled: store.ready,
+          initialValue: data.ratingOrder,
+          onSelected: (value) =>
+              saveMusicAction(context, () => store.setRatingView(order: value)),
+          icon: Icon(
+            Icons.sort_rounded,
+            color: data.ratingOrder == RatingOrder.original
+                ? Colors.white60
+                : _mint,
+          ),
+          itemBuilder: (_) => [
+            CheckedPopupMenuItem(
+              value: RatingOrder.original,
+              checked: data.ratingOrder == RatingOrder.original,
+              child: const Text('Ordine implicită'),
+            ),
+            CheckedPopupMenuItem(
+              value: RatingOrder.highest,
+              checked: data.ratingOrder == RatingOrder.highest,
+              child: const Text('Rating descrescător'),
+            ),
+            CheckedPopupMenuItem(
+              value: RatingOrder.lowest,
+              checked: data.ratingOrder == RatingOrder.lowest,
+              child: const Text('Rating crescător'),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
 String _trackCount(int count) => '$count ${count == 1 ? 'piesă' : 'piese'}';
 
 Future<bool> saveMusicAction(
@@ -503,6 +678,7 @@ class _SavedMusicScreenState extends State<SavedMusicScreen> {
                             overflow: TextOverflow.ellipsis,
                           ),
                           onTap: () => widget.onPlay(tracks, index),
+                          onLongPress: () => showTrackRating(context, track),
                           trailing: selected == null
                               ? SavedTrackActions(track: track)
                               : Row(

@@ -1104,9 +1104,10 @@ class _CollectionScreen extends StatelessWidget {
       );
     }
 
+    final ratedTracks = SavedMusicScope.of(context).data.ratedTracks(tracks);
     final filteredTracks = groupFilter == null
-        ? tracks
-        : tracks
+        ? ratedTracks
+        : ratedTracks
               .where((track) {
                 final value = mode == _LibraryMode.artists
                     ? track.artist
@@ -1117,7 +1118,7 @@ class _CollectionScreen extends StatelessWidget {
     final showGroups = mode != _LibraryMode.songs && groupFilter == null;
     final groups = <String, List<AudioTrack>>{};
     if (showGroups) {
-      for (final track in tracks) {
+      for (final track in ratedTracks) {
         final value = mode == _LibraryMode.artists ? track.artist : track.album;
         groups.putIfAbsent(value, () => []).add(track);
       }
@@ -1192,8 +1193,16 @@ class _CollectionScreen extends StatelessWidget {
             ),
           ),
         ),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 22),
+          child: RatingViewControls(),
+        ),
         Expanded(
-          child: showGroups
+          child: filteredTracks.isEmpty
+              ? const Center(
+                  child: Text('Nicio piesă nu corespunde ratingului selectat.'),
+                )
+              : showGroups
               ? ListView.separated(
                   padding: const EdgeInsets.fromLTRB(12, 0, 12, 18),
                   itemCount: groups.length,
@@ -1283,11 +1292,18 @@ class _AudioTrackTile extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: const TextStyle(fontWeight: FontWeight.w600),
         ),
-        subtitle: Text(
-          details.isEmpty ? 'Artist necunoscut' : details,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          style: const TextStyle(color: _muted, fontSize: 12),
+        subtitle: Row(
+          children: [
+            Expanded(
+              child: Text(
+                details.isEmpty ? 'Artist necunoscut' : details,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(color: _muted, fontSize: 12),
+              ),
+            ),
+            TrackRatingBadge(uri: track.uri),
+          ],
         ),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
@@ -1483,6 +1499,9 @@ Future<void> _showTrackDetails(BuildContext context, AudioTrack track) {
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 12),
+            Center(
+              child: TrackRating(key: ValueKey(track.uri), uri: track.uri),
+            ),
             for (final detail in [
               (
                 'Artist',
@@ -1720,7 +1739,9 @@ class _NowPlayingSheet extends StatelessWidget {
                       style: const TextStyle(color: _muted, fontSize: 13),
                     ),
                   ],
-                  const SizedBox(height: 22),
+                  const SizedBox(height: 12),
+                  TrackRating(key: ValueKey(track.uri), uri: track.uri),
+                  const SizedBox(height: 10),
                   StreamBuilder<Duration>(
                     stream: player.positionStream,
                     builder: (context, positionSnapshot) {

@@ -4,6 +4,10 @@ import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
 
+import 'audio_track.dart';
+
+enum RatingOrder { original, highest, lowest }
+
 class MusicPlaylist {
   MusicPlaylist({
     required this.id,
@@ -25,14 +29,61 @@ class SavedMusicData {
   SavedMusicData({
     Iterable<String> favorites = const [],
     Iterable<MusicPlaylist> playlists = const [],
+    Map<String, int> ratings = const {},
+    this.minimumRating = 0,
+    this.ratingOrder = RatingOrder.original,
   }) : favorites = Set.unmodifiable(favorites),
-       playlists = List.unmodifiable(playlists);
+       playlists = List.unmodifiable(playlists),
+       ratings = Map.unmodifiable(ratings);
   final Set<String> favorites;
   final List<MusicPlaylist> playlists;
+  final Map<String, int> ratings;
+  final int minimumRating;
+  final RatingOrder ratingOrder;
+  int ratingOf(String uri) => ratings[uri] ?? 0;
+
+  SavedMusicData copy({
+    Iterable<String>? favorites,
+    Iterable<MusicPlaylist>? playlists,
+    Map<String, int>? ratings,
+    int? minimumRating,
+    RatingOrder? ratingOrder,
+  }) => SavedMusicData(
+    favorites: favorites ?? this.favorites,
+    playlists: playlists ?? this.playlists,
+    ratings: ratings ?? this.ratings,
+    minimumRating: minimumRating ?? this.minimumRating,
+    ratingOrder: ratingOrder ?? this.ratingOrder,
+  );
+
+  /// Ratings change browsing only; an existing playback queue stays intact.
+  List<AudioTrack> ratedTracks(Iterable<AudioTrack> tracks) {
+    final result = tracks
+        .where((track) => ratingOf(track.uri) >= minimumRating)
+        .toList();
+    if (ratingOrder != RatingOrder.original) {
+      result.sort((a, b) {
+        final left = ratingOf(a.uri), right = ratingOf(b.uri);
+        if (left == 0 && right != 0) return 1;
+        if (right == 0 && left != 0) return -1;
+        final rating = ratingOrder == RatingOrder.highest
+            ? right.compareTo(left)
+            : left.compareTo(right);
+        if (rating != 0) return rating;
+        final title = a.title.toLowerCase().compareTo(b.title.toLowerCase());
+        return title != 0 ? title : a.uri.compareTo(b.uri);
+      });
+    }
+    return result;
+  }
+
   String encode() => jsonEncode({
     'version': 1,
     'favorites': favorites.toList(),
     'playlists': playlists.map((p) => p.toJson()).toList(),
+    'ratings': ratings,
+    'minimumRating': minimumRating,
+    'ratingOrder': ratingOrder.name,
   });
   factory SavedMusicData.decode(String value) {
     final root = jsonDecode(value) as Map<String, dynamic>;
@@ -56,7 +107,28 @@ class SavedMusicData {
     if (playlists.map((p) => p.id).toSet().length != playlists.length) {
       throw const FormatException('Duplicate playlist IDs');
     }
-    return SavedMusicData(favorites: favorites, playlists: playlists);
+    final ratings = (root['ratings'] as Map<String, dynamic>? ?? {}).map((
+      uri,
+      value,
+    ) {
+      if (uri.isEmpty || value is! int || value < 1 || value > 5) {
+        throw const FormatException('Invalid track rating');
+      }
+      return MapEntry(uri, value);
+    });
+    final minimum = root['minimumRating'] ?? 0;
+    if (minimum is! int || minimum < 0 || minimum > 5) {
+      throw const FormatException('Invalid rating filter');
+    }
+    return SavedMusicData(
+      favorites: favorites,
+      playlists: playlists,
+      ratings: ratings,
+      minimumRating: minimum,
+      ratingOrder: RatingOrder.values.byName(
+        root['ratingOrder'] as String? ?? 'original',
+      ),
+    );
   }
 }
 
@@ -120,8 +192,29 @@ class SavedMusicStore extends ChangeNotifier {
   Future<void> toggleFavorite(String uri) => _update((data) {
     final favorites = {...data.favorites};
     if (!favorites.remove(uri)) favorites.add(uri);
-    return SavedMusicData(favorites: favorites, playlists: data.playlists);
+    return data.copy(favorites: favorites);
   });
+
+  Future<void> setRating(String uri, int rating) => _update((data) {
+    if (uri.isEmpty || rating < 0 || rating > 5) {
+      throw ArgumentError('Invalid rating');
+    }
+    final ratings = {...data.ratings};
+    if (rating == 0) {
+      ratings.remove(uri);
+    } else {
+      ratings[uri] = rating;
+    }
+    return data.copy(ratings: ratings);
+  });
+
+  Future<void> setRatingView({int? minimum, RatingOrder? order}) =>
+      _update((data) {
+        if (minimum != null && (minimum < 0 || minimum > 5)) {
+          throw ArgumentError('Invalid rating filter');
+        }
+        return data.copy(minimumRating: minimum, ratingOrder: order);
+      });
 
   String _validName(String name) {
     final trimmed = name.trim();
@@ -138,8 +231,7 @@ class SavedMusicStore extends ChangeNotifier {
     final clean = _validName(name);
     final id = '${DateTime.now().microsecondsSinceEpoch}-${_counter++}';
     await _update(
-      (data) => SavedMusicData(
-        favorites: data.favorites,
+      (data) => data.copy(
         playlists: [
           ...data.playlists,
           MusicPlaylist(id: id, name: clean, tracks: tracks),
@@ -156,8 +248,7 @@ class SavedMusicStore extends ChangeNotifier {
     if (!data.playlists.any((p) => p.id == id)) {
       throw StateError('Playlist removed');
     }
-    return SavedMusicData(
-      favorites: data.favorites,
+    return data.copy(
       playlists: data.playlists.map((p) => p.id == id ? edit(p) : p),
     );
   });
@@ -170,10 +261,7 @@ class SavedMusicStore extends ChangeNotifier {
   Future<void> setTracks(String id, Iterable<String> uris) =>
       _editPlaylist(id, (p) => p.copy(tracks: uris));
   Future<void> deletePlaylist(String id) => _update(
-    (data) => SavedMusicData(
-      favorites: data.favorites,
-      playlists: data.playlists.where((p) => p.id != id),
-    ),
+    (data) => data.copy(playlists: data.playlists.where((p) => p.id != id)),
   );
 
   @override

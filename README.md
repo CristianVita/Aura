@@ -11,6 +11,7 @@ An independent Flutter music player for your own music library.
 - Embedded artwork and song information.
 - Playback queue with selection, removal and drag reordering.
 - Shuffle showing the actual playback order, and repeat off/all/one.
+- Persistent favorites and playlists, with creation, renaming, deletion and track selection.
 
 ## Development
 
@@ -34,13 +35,13 @@ Run the tests:
 flutter test
 ```
 
-Five automated tests cover artwork loading and queue metadata. Playback, queue editing, shuffle and repeat have also been verified on a OnePlus 8T running Android 14.
+Fourteen automated tests cover artwork loading, queue metadata, saved music persistence, concurrent edits, failed writes and playlist UI flows. Android behavior is also checked on a OnePlus 8T running Android 14.
 
 ## Platform status and remaining work
 
 Android is currently implemented and device-tested. Flutter project scaffolding exists for Windows, Linux, macOS, web and iOS; native library integrations and playback support for those platforms still need work. iOS is planned last.
 
-Playlists, listening history, server/cloud music sources and restoring the playback queue after restarting the app are not implemented yet.
+Listening history, server/cloud music sources and restoring the playback queue after restarting the app are not implemented yet.
 
 ## Local data
 

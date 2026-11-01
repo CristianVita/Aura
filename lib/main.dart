@@ -7,6 +7,8 @@ import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 
 import 'audio_track.dart';
+import 'saved_music.dart';
+import 'saved_music_ui.dart';
 import 'playback_queue.dart';
 import 'source_folders.dart';
 import 'track_artwork.dart';
@@ -19,7 +21,7 @@ const _audioLibraryChannel = MethodChannel(
   'com.example.symphonium_clone/audio_library',
 );
 
-enum _LibraryMode { songs, albums, artists, playlists }
+enum _LibraryMode { songs, albums, artists, playlists, favorites }
 
 extension on _LibraryMode {
   String get label => switch (this) {
@@ -27,6 +29,7 @@ extension on _LibraryMode {
     _LibraryMode.albums => 'Albume',
     _LibraryMode.artists => 'Artiști',
     _LibraryMode.playlists => 'Playlisturi',
+    _LibraryMode.favorites => 'Favorite',
   };
 
   IconData get icon => switch (this) {
@@ -34,6 +37,7 @@ extension on _LibraryMode {
     _LibraryMode.albums => Icons.album_rounded,
     _LibraryMode.artists => Icons.person_rounded,
     _LibraryMode.playlists => Icons.queue_music_rounded,
+    _LibraryMode.favorites => Icons.favorite_rounded,
   };
 }
 
@@ -58,24 +62,44 @@ Future<void> main() async {
   runApp(const SoundLibraryApp());
 }
 
-class SoundLibraryApp extends StatelessWidget {
+class SoundLibraryApp extends StatefulWidget {
   const SoundLibraryApp({super.key});
+  @override
+  State<SoundLibraryApp> createState() => _SoundLibraryAppState();
+}
+
+class _SoundLibraryAppState extends State<SoundLibraryApp> {
+  final _savedMusic = SavedMusicStore(DeviceSavedMusicStorage());
+  @override
+  void initState() {
+    super.initState();
+    unawaited(_savedMusic.load());
+  }
+
+  @override
+  void dispose() {
+    _savedMusic.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Aura',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        brightness: Brightness.dark,
-        scaffoldBackgroundColor: _background,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: _mint,
+    return SavedMusicScope(
+      store: _savedMusic,
+      child: MaterialApp(
+        title: 'Aura',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          useMaterial3: true,
           brightness: Brightness.dark,
-        ).copyWith(surface: _surface),
+          scaffoldBackgroundColor: _background,
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: _mint,
+            brightness: Brightness.dark,
+          ).copyWith(surface: _surface),
+        ),
+        home: const PlayerShell(),
       ),
-      home: const PlayerShell(),
     );
   }
 }
@@ -294,6 +318,15 @@ class _PlayerShellState extends State<PlayerShell> {
           isScanning: _isScanning,
         );
       case 1:
+        if (_libraryMode == _LibraryMode.playlists ||
+            _libraryMode == _LibraryMode.favorites) {
+          return SavedMusicScreen(
+            key: ValueKey(_libraryMode),
+            tracks: _tracks,
+            onPlay: _playQueue,
+            initialFavorites: _libraryMode == _LibraryMode.favorites,
+          );
+        }
         return _CollectionScreen(
           tracks: _tracks,
           isScanning: _isScanning,
@@ -642,6 +675,7 @@ class _BrowseGrid extends StatelessWidget {
       (_LibraryMode.artists),
       (_LibraryMode.songs),
       (_LibraryMode.playlists),
+      (_LibraryMode.favorites),
     ];
 
     return GridView.builder(
@@ -756,16 +790,6 @@ class _CollectionScreen extends StatelessWidget {
         icon: Icons.library_music_outlined,
         actionLabel: isScanning ? 'Se scanează...' : 'Alege folderele',
         onAction: isScanning ? null : onManageSources,
-      );
-    }
-
-    if (mode == _LibraryMode.playlists) {
-      return const _SimplePage(
-        eyebrow: 'COLECȚIA TA',
-        title: 'Playlisturi',
-        message:
-            'Crearea și organizarea playlisturilor vine într-un pas următor.',
-        icon: Icons.queue_music_rounded,
       );
     }
 
@@ -954,9 +978,12 @@ class _AudioTrackTile extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: const TextStyle(color: _muted, fontSize: 12),
         ),
-        trailing: Text(
-          duration,
-          style: const TextStyle(color: _muted, fontSize: 12),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(duration, style: const TextStyle(color: _muted, fontSize: 12)),
+            SavedTrackActions(track: track),
+          ],
         ),
       ),
     );
@@ -1355,6 +1382,7 @@ class _NowPlayingSheet extends StatelessWidget {
                           ),
                         ),
                       ),
+                      SavedTrackActions(track: track, showPlaylist: false),
                       IconButton(
                         tooltip: 'Informații piesă',
                         onPressed: () => _showTrackDetails(context, track),

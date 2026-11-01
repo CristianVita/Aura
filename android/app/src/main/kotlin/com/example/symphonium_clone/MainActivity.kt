@@ -30,6 +30,41 @@ class MainActivity : AudioServiceActivity() {
                 when (call.method) {
                     "scanAudio" -> requestAudioAccessAndScan(result)
                     "loadLibrary" -> loadLibrary(result)
+                    "loadSavedMusic" -> {
+                        queryExecutor.execute {
+                            try {
+                                val file = AtomicFile(File(filesDir, "saved_music.json"))
+                                val saved = try {
+                                    file.openRead().bufferedReader().use { it.readText() }
+                                } catch (_: java.io.FileNotFoundException) { null }
+                                runOnUiThread { result.success(saved) }
+                            } catch (error: Exception) {
+                                runOnUiThread { result.error("saved_music_load_failed", error.localizedMessage, null) }
+                            }
+                        }
+                    }
+                    "saveSavedMusic" -> {
+                        val json = call.argument<String>("json")
+                        if (json == null) {
+                            result.error("invalid_data", "Missing saved music", null)
+                        } else queryExecutor.execute {
+                            try {
+                                check(JSONObject(json).getInt("version") == 1)
+                                val file = AtomicFile(File(filesDir, "saved_music.json"))
+                                val output = file.startWrite()
+                                try {
+                                    output.write(json.toByteArray(Charsets.UTF_8))
+                                    file.finishWrite(output)
+                                } catch (error: Exception) {
+                                    file.failWrite(output)
+                                    throw error
+                                }
+                                runOnUiThread { result.success(null) }
+                            } catch (error: Exception) {
+                                runOnUiThread { result.error("saved_music_save_failed", error.localizedMessage, null) }
+                            }
+                        }
+                    }
                     "loadArtwork" -> {
                         val source = call.argument<String>("uri")
                         artworkExecutor.execute {

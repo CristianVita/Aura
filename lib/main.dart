@@ -18,11 +18,14 @@ import 'playback_memory_ui.dart';
 import 'saved_music.dart';
 import 'saved_music_ui.dart';
 import 'playback_queue.dart';
+import 'playback_settings_controller.dart';
+import 'sleep_timer.dart';
 import 'source_folders.dart';
 import 'track_artwork.dart';
 
 part 'search_screen.dart';
 part 'settings_screen.dart';
+part 'playback_settings_ui.dart';
 
 const _background = Color(0xFF0B1014);
 const _surface = Color(0xFF141D22);
@@ -122,6 +125,7 @@ class PlayerShell extends StatefulWidget {
 
 class _PlayerShellState extends State<PlayerShell> {
   final AudioPlayer _player = AudioPlayer();
+  PlaybackSettingsController? _playbackSettings;
   final _memory = PlaybackMemoryStore(DevicePlaybackMemoryStorage());
   late final PlaybackMemoryController _memoryController;
   late final StreamSubscription<SequenceState> _sequenceSubscription;
@@ -176,6 +180,22 @@ class _PlayerShellState extends State<PlayerShell> {
       setState(() {});
     });
     _loadLibrary();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _playbackSettings ??= PlaybackSettingsController(
+      player: _player,
+      store: SavedMusicScope.of(context),
+      onError: () {
+        if (mounted) {
+          _showMessage(
+            'Nu am putut aplica setările de redare sau temporizatorul.',
+          );
+        }
+      },
+    );
   }
 
   void _memoryChanged() {
@@ -458,12 +478,14 @@ class _PlayerShellState extends State<PlayerShell> {
       context: context,
       isScrollControlled: true,
       backgroundColor: _surface,
-      builder: (context) => _NowPlayingSheet(player: _player),
+      builder: (context) =>
+          _NowPlayingSheet(player: _player, controls: _playbackSettings!),
     );
   }
 
   @override
   void dispose() {
+    _playbackSettings?.dispose();
     _memoryController.dispose();
     _memory.removeListener(_memoryChanged);
     _memory.dispose();
@@ -608,6 +630,7 @@ class _PlayerShellState extends State<PlayerShell> {
         );
       default:
         return _SettingsScreen(
+          controls: _playbackSettings!,
           sourceSummary: _selectedFolders == null
               ? 'Toate folderele · ${_tracks.length} piese'
               : '${_selectedFolders!.length} ${_selectedFolders!.length == 1 ? 'folder selectat' : 'foldere selectate'} · ${_tracks.length} ${_tracks.length == 1 ? 'piesă' : 'piese'}',
@@ -1708,7 +1731,8 @@ class _MiniPlayer extends StatelessWidget {
 }
 
 class _NowPlayingSheet extends StatelessWidget {
-  const _NowPlayingSheet({required this.player});
+  const _NowPlayingSheet({required this.player, required this.controls});
+  final PlaybackSettingsController controls;
 
   final AudioPlayer player;
 
@@ -1920,6 +1944,7 @@ class _NowPlayingSheet extends StatelessWidget {
                   ),
                   const SizedBox(height: 18),
                   PlaybackOptions(player: player),
+                  _PlaybackQuickSettings(controls: controls),
                 ],
               );
             },

@@ -42,6 +42,8 @@ class SavedMusicData {
     this.minimumRating = 0,
     this.ratingOrder = RatingOrder.original,
     this.starSize = RatingStarSize.medium,
+    this.playbackSpeed = 1,
+    this.playbackVolume = 1,
   }) : favorites = Set.unmodifiable(favorites),
        playlists = List.unmodifiable(playlists),
        ratings = Map.unmodifiable(
@@ -53,6 +55,8 @@ class SavedMusicData {
   final double minimumRating;
   final RatingOrder ratingOrder;
   final RatingStarSize starSize;
+  final double playbackSpeed;
+  final double playbackVolume;
   double ratingOf(String uri) => ratings[uri] ?? 0;
 
   SavedMusicData copy({
@@ -62,6 +66,8 @@ class SavedMusicData {
     double? minimumRating,
     RatingOrder? ratingOrder,
     RatingStarSize? starSize,
+    double? playbackSpeed,
+    double? playbackVolume,
   }) => SavedMusicData(
     favorites: favorites ?? this.favorites,
     playlists: playlists ?? this.playlists,
@@ -69,6 +75,8 @@ class SavedMusicData {
     minimumRating: minimumRating ?? this.minimumRating,
     ratingOrder: ratingOrder ?? this.ratingOrder,
     starSize: starSize ?? this.starSize,
+    playbackSpeed: playbackSpeed ?? this.playbackSpeed,
+    playbackVolume: playbackVolume ?? this.playbackVolume,
   );
 
   /// Ratings change browsing only; an existing playback queue stays intact.
@@ -100,6 +108,8 @@ class SavedMusicData {
     'minimumRating': minimumRating,
     'ratingOrder': ratingOrder.name,
     'starSize': starSize.name,
+    'playbackSpeed': playbackSpeed,
+    'playbackVolume': playbackVolume,
   });
   factory SavedMusicData.decode(String value) {
     final root = jsonDecode(value) as Map<String, dynamic>;
@@ -136,7 +146,21 @@ class SavedMusicData {
     if (minimum is! num || !_validRating(minimum)) {
       throw const FormatException('Invalid rating filter');
     }
+    final speed = root['playbackSpeed'] ?? 1;
+    final volume = root['playbackVolume'] ?? 1;
+    if (speed is! num ||
+        !speed.isFinite ||
+        speed < .5 ||
+        speed > 2 ||
+        volume is! num ||
+        !volume.isFinite ||
+        volume < 0 ||
+        volume > 1) {
+      throw const FormatException('Invalid playback preferences');
+    }
     return SavedMusicData(
+      playbackSpeed: speed.toDouble(),
+      playbackVolume: volume.toDouble(),
       favorites: favorites,
       playlists: playlists,
       ratings: ratings,
@@ -237,6 +261,16 @@ class SavedMusicStore extends ChangeNotifier {
 
   Future<void> setStarSize(RatingStarSize size) =>
       _update((data) => data.copy(starSize: size));
+
+  Future<void> setPlaybackPreferences({double? speed, double? volume}) =>
+      _update((data) {
+        if ((speed != null && (!speed.isFinite || speed < .5 || speed > 2)) ||
+            (volume != null &&
+                (!volume.isFinite || volume < 0 || volume > 1))) {
+          throw ArgumentError('Invalid playback preferences');
+        }
+        return data.copy(playbackSpeed: speed, playbackVolume: volume);
+      });
 
   String _validName(String name) {
     final trimmed = name.trim();

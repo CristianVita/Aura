@@ -1,4 +1,10 @@
 import 'dart:io';
+
+import 'package:aura/playback_settings_controller.dart';
+import 'package:aura/saved_music.dart';
+
+import '../test/support/memory_saved_music_storage.dart';
+
 import 'dart:math';
 import 'dart:typed_data';
 
@@ -27,6 +33,8 @@ void main() {
     await Directory.systemTemp.create(recursive: true);
     final directory = await Directory.systemTemp.createTemp('aura-playback-');
     final player = AudioPlayer();
+    final store = SavedMusicStore(MemorySavedMusicStorage());
+    PlaybackSettingsController? controls;
     try {
       const sampleRate = 16000;
       const count = sampleRate * 3;
@@ -84,9 +92,30 @@ void main() {
       await player.setShuffleModeEnabled(true);
       expect(player.loopMode, LoopMode.all);
       expect(player.shuffleModeEnabled, isTrue);
+      await store.load();
+      await store.setPlaybackPreferences(volume: .03);
+      controls = PlaybackSettingsController(
+        player: player,
+        store: store,
+        onError: () => fail('Playback control error'),
+      );
+      await controls.change(speed: 1.25, volume: .03);
+      expect(player.speed, 1.25);
+      expect(player.volume, .03);
+      expect(store.data.playbackSpeed, 1.25);
+      controls.sleep.start(const Duration(milliseconds: 100));
+      final timerPlayback = player.play();
+      await tester.runAsync(
+        () async => Future<void>.delayed(const Duration(milliseconds: 1400)),
+      );
+      expect(player.playing, isFalse);
+      expect(controls.sleep.active, isFalse);
+      await timerPlayback;
       await player.stop();
       await playing;
     } finally {
+      controls?.dispose();
+      store.dispose();
       await player.dispose();
       await directory.delete(recursive: true);
     }

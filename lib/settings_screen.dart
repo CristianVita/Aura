@@ -3,6 +3,7 @@ part of 'main.dart';
 class _SettingsScreen extends StatelessWidget {
   const _SettingsScreen({
     required this.sourceSummary,
+    required this.controls,
     required this.onFilters,
     required this.filtersReady,
     required this.onHistory,
@@ -11,6 +12,7 @@ class _SettingsScreen extends StatelessWidget {
     required this.isScanning,
   });
   final String sourceSummary;
+  final PlaybackSettingsController controls;
   final VoidCallback onFilters, onHistory, onManageSources, onScan;
   final bool filtersReady, isScanning;
   @override
@@ -31,6 +33,16 @@ class _SettingsScreen extends StatelessWidget {
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute<void>(
                 builder: (_) => const _InterfaceSettings(),
+              ),
+            ),
+          ),
+          _SettingsRow(
+            icon: Icons.headphones_outlined,
+            title: 'Redare',
+            subtitle: 'Volum, viteză și temporizator',
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => PlaybackSettingsScreen(controls: controls),
               ),
             ),
           ),

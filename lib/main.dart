@@ -21,6 +21,9 @@ import 'playback_queue.dart';
 import 'source_folders.dart';
 import 'track_artwork.dart';
 
+part 'search_screen.dart';
+part 'settings_screen.dart';
+
 const _background = Color(0xFF0B1014);
 const _surface = Color(0xFF141D22);
 const _mint = Color(0xFF8BE0C0);
@@ -149,6 +152,8 @@ class _PlayerShellState extends State<PlayerShell> {
   }
 
   _LibraryMode _libraryMode = _LibraryMode.songs;
+  bool _libraryOverview = true;
+  final _searchQueries = <String>[];
   String? _groupFilter;
 
   @override
@@ -471,9 +476,15 @@ class _PlayerShellState extends State<PlayerShell> {
     setState(() {
       _selectedTab = 1;
       _libraryMode = mode;
+      _libraryOverview = false;
       _groupFilter = null;
     });
   }
+
+  void _selectTab(int index) => setState(() {
+    _selectedTab = index;
+    if (index == 1) _libraryOverview = true;
+  });
 
   void _openSearch() => setState(() => _selectedTab = 2);
 
@@ -551,12 +562,20 @@ class _PlayerShellState extends State<PlayerShell> {
           onSearch: _openSearch,
           onBrowse: _openLibrary,
           trackCount: _tracks.length,
+          tracks: _tracks,
           recentTracks: _recentTracks,
           onPlay: _playQueue,
           onHistory: _openHistory,
           isScanning: _isScanning,
         );
       case 1:
+        if (_libraryOverview) {
+          return _LibraryOverview(
+            trackCount: _tracks.length,
+            onBrowse: _openLibrary,
+            onSources: _manageSourceFolders,
+          );
+        }
         if (_libraryMode == _LibraryMode.playlists ||
             _libraryMode == _LibraryMode.favorites) {
           return SavedMusicScreen(
@@ -582,6 +601,7 @@ class _PlayerShellState extends State<PlayerShell> {
       case 2:
         return SearchScreen(
           tracks: _tracks,
+          recentQueries: _searchQueries,
           isScanning: _isScanning,
           onAddSource: _manageSourceFolders,
           onTrackSelected: _playQueue,
@@ -623,8 +643,7 @@ class _PlayerShellState extends State<PlayerShell> {
                   ),
                 ),
                 selectedIndex: _selectedTab,
-                onDestinationSelected: (index) =>
-                    setState(() => _selectedTab = index),
+                onDestinationSelected: _selectTab,
                 destinations: const [
                   NavigationRailDestination(
                     icon: Icon(Icons.home_outlined),
@@ -691,12 +710,12 @@ class _PlayerShellState extends State<PlayerShell> {
               onTap: _openNowPlaying,
             ),
           NavigationBar(
-            height: 72,
+            height: 56,
+            labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
             backgroundColor: _surface,
             indicatorColor: _mint.withValues(alpha: 0.16),
             selectedIndex: _selectedTab,
-            onDestinationSelected: (index) =>
-                setState(() => _selectedTab = index),
+            onDestinationSelected: _selectTab,
             destinations: const [
               NavigationDestination(
                 icon: Icon(Icons.home_outlined),
@@ -730,17 +749,18 @@ class _HomeScreen extends StatelessWidget {
     required this.onSearch,
     required this.onBrowse,
     required this.trackCount,
+    required this.tracks,
     required this.recentTracks,
     required this.onPlay,
     required this.onHistory,
     required this.isScanning,
-    super.key,
   });
 
   final VoidCallback onAddSource;
   final VoidCallback onSearch;
   final ValueChanged<_LibraryMode> onBrowse;
   final int trackCount;
+  final List<AudioTrack> tracks;
   final List<AudioTrack> recentTracks;
   final _TrackSelection onPlay;
   final VoidCallback onHistory;
@@ -748,6 +768,12 @@ class _HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final favorites = tracks
+        .where(
+          (track) =>
+              SavedMusicScope.of(context).data.favorites.contains(track.uri),
+        )
+        .toList();
     return CustomScrollView(
       slivers: [
         SliverPadding(
@@ -763,19 +789,47 @@ class _HomeScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 7),
-              const Text(
-                'Unde se află muzica ta?',
-                style: TextStyle(color: _muted, fontSize: 15),
+              Text(
+                trackCount == 0
+                    ? 'Unde se află muzica ta?'
+                    : '$trackCount de piese, în ritmul tău.',
+                style: const TextStyle(color: _muted, fontSize: 14),
               ),
               const SizedBox(height: 22),
-              _SourceCard(onTap: onAddSource, isScanning: isScanning),
-              const SizedBox(height: 30),
-              _SectionTitle(
-                title: 'Răsfoiește',
-                trailing: '$trackCount ${trackCount == 1 ? 'piesă' : 'piese'}',
-              ),
-              const SizedBox(height: 14),
-              _BrowseGrid(onTap: onBrowse),
+              if (trackCount == 0)
+                _SourceCard(onTap: onAddSource, isScanning: isScanning)
+              else
+                _HomeShortcuts(onBrowse: onBrowse),
+              if (favorites.isNotEmpty) ...[
+                const SizedBox(height: 24),
+                Row(
+                  children: [
+                    const Expanded(
+                      child: _SectionTitle(title: 'Piese favorite'),
+                    ),
+                    IconButton(
+                      tooltip: 'Toate favoritele',
+                      onPressed: () => onBrowse(_LibraryMode.favorites),
+                      icon: const Icon(Icons.chevron_right_rounded),
+                    ),
+                  ],
+                ),
+                for (var i = 0; i < favorites.length && i < 3; i++)
+                  _AudioTrackTile(
+                    track: favorites[i],
+                    onTap: () => onPlay(favorites, i),
+                  ),
+              ],
+              if (trackCount == 0) ...[
+                const SizedBox(height: 30),
+                _SectionTitle(
+                  title: 'Răsfoiește',
+                  trailing:
+                      '$trackCount ${trackCount == 1 ? 'piesă' : 'piese'}',
+                ),
+                const SizedBox(height: 14),
+                _BrowseGrid(onTap: onBrowse),
+              ],
               const SizedBox(height: 30),
               Row(
                 children: [
@@ -1014,67 +1068,132 @@ class _SectionTitle extends StatelessWidget {
 }
 
 class _BrowseGrid extends StatelessWidget {
-  const _BrowseGrid({required this.onTap});
-
+  const _BrowseGrid({required this.onTap, this.onSources});
   final ValueChanged<_LibraryMode> onTap;
-
+  final VoidCallback? onSources;
   @override
   Widget build(BuildContext context) {
-    const items = [
-      (_LibraryMode.albums),
-      (_LibraryMode.artists),
-      (_LibraryMode.songs),
-      (_LibraryMode.playlists),
-      (_LibraryMode.favorites),
+    final items = [
+      _LibraryMode.albums,
+      _LibraryMode.artists,
+      _LibraryMode.songs,
+      _LibraryMode.playlists,
+      _LibraryMode.favorites,
     ];
-
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: items.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10,
-        mainAxisExtent: 74,
+    return LayoutBuilder(
+      builder: (context, constraints) => GridView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: items.length + (onSources == null ? 0 : 1),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: constraints.maxWidth >= 650 ? 6 : 3,
+          mainAxisExtent: 112,
+          mainAxisSpacing: 8,
+          crossAxisSpacing: 8,
+        ),
+        itemBuilder: (context, index) {
+          final item = index < items.length ? items[index] : null;
+          return Material(
+            color: _surface,
+            borderRadius: BorderRadius.circular(8),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(8),
+              onTap: item == null ? onSources : () => onTap(item),
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      item?.icon ?? Icons.folder_open_outlined,
+                      color: _mint,
+                      size: 26,
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      item?.label ?? 'Surse',
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      style: const TextStyle(fontSize: 12),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
       ),
-      itemBuilder: (context, index) {
-        final item = items[index];
-        return Material(
-          color: _surface,
-          borderRadius: BorderRadius.circular(18),
-          child: InkWell(
-            onTap: () => onTap(item),
-            borderRadius: BorderRadius.circular(18),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14),
-              child: Row(
-                children: [
-                  Container(
-                    width: 38,
-                    height: 38,
-                    decoration: BoxDecoration(
-                      color: _mint.withValues(alpha: 0.11),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Icon(item.icon, color: _mint, size: 20),
+    );
+  }
+}
+
+class _LibraryOverview extends StatelessWidget {
+  const _LibraryOverview({
+    required this.trackCount,
+    required this.onBrowse,
+    required this.onSources,
+  });
+  final int trackCount;
+  final ValueChanged<_LibraryMode> onBrowse;
+  final VoidCallback onSources;
+  @override
+  Widget build(BuildContext context) => ListView(
+    padding: const EdgeInsets.fromLTRB(12, 18, 12, 24),
+    children: [
+      const Row(
+        children: [
+          Icon(Icons.library_music_outlined, size: 22),
+          SizedBox(width: 14),
+          Text('Bibliotecă', style: TextStyle(fontSize: 23)),
+        ],
+      ),
+      const SizedBox(height: 22),
+      _BrowseGrid(onTap: onBrowse, onSources: onSources),
+      const SizedBox(height: 18),
+      Text(
+        '$trackCount de piese în bibliotecă',
+        style: const TextStyle(color: _muted),
+      ),
+    ],
+  );
+}
+
+class _HomeShortcuts extends StatelessWidget {
+  const _HomeShortcuts({required this.onBrowse});
+  final ValueChanged<_LibraryMode> onBrowse;
+  @override
+  Widget build(BuildContext context) => Row(
+    children: [
+      for (final mode in [
+        _LibraryMode.songs,
+        _LibraryMode.albums,
+        _LibraryMode.favorites,
+      ])
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 3),
+            child: Material(
+              color: _mint.withValues(alpha: .15),
+              borderRadius: BorderRadius.circular(8),
+              child: InkWell(
+                onTap: () => onBrowse(mode),
+                borderRadius: BorderRadius.circular(8),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 17),
+                  child: Column(
+                    children: [
+                      Icon(mode.icon, color: _mint),
+                      const SizedBox(height: 9),
+                      Text(mode.label, style: const TextStyle(fontSize: 12)),
+                    ],
                   ),
-                  const SizedBox(width: 11),
-                  Expanded(
-                    child: Text(
-                      item.label,
-                      style: const TextStyle(fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  const Icon(Icons.chevron_right_rounded, color: _muted),
-                ],
+                ),
               ),
             ),
           ),
-        );
-      },
-    );
-  }
+        ),
+    ],
+  );
 }
 
 class _EmptyListeningCard extends StatelessWidget {
@@ -1118,7 +1237,6 @@ class _CollectionScreen extends StatelessWidget {
     required this.onTrackSelected,
     required this.hasHiddenTracks,
     required this.onFilters,
-    super.key,
   });
 
   final List<AudioTrack> tracks;
@@ -1369,122 +1487,6 @@ class _AudioTrackTile extends StatelessWidget {
   }
 }
 
-class SearchScreen extends StatefulWidget {
-  const SearchScreen({
-    required this.tracks,
-    required this.isScanning,
-    required this.onAddSource,
-    required this.onTrackSelected,
-    super.key,
-  });
-
-  final List<AudioTrack> tracks;
-  final bool isScanning;
-  final VoidCallback onAddSource;
-  final _TrackSelection onTrackSelected;
-
-  @override
-  State<SearchScreen> createState() => _SearchScreenState();
-}
-
-class _SearchScreenState extends State<SearchScreen> {
-  String _query = '';
-
-  @override
-  Widget build(BuildContext context) {
-    final query = _query.trim().toLowerCase();
-    final matches = widget.tracks
-        .where((track) {
-          if (query.isEmpty) return false;
-          return '${track.title} ${track.artist} ${track.album}'
-              .toLowerCase()
-              .contains(query);
-        })
-        .toList(growable: false);
-
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(22, 18, 22, 14),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'GĂSEȘTE RAPID',
-                style: TextStyle(
-                  color: _mint,
-                  fontSize: 10,
-                  fontWeight: FontWeight.w800,
-                  letterSpacing: 1.6,
-                ),
-              ),
-              const SizedBox(height: 6),
-              const Text(
-                'Caută în muzica ta',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
-              ),
-              const SizedBox(height: 16),
-              TextField(
-                onChanged: (value) => setState(() => _query = value),
-                textInputAction: TextInputAction.search,
-                decoration: InputDecoration(
-                  hintText: 'Piesă, artist sau album',
-                  prefixIcon: const Icon(Icons.search_rounded),
-                  filled: true,
-                  fillColor: _surface,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(18),
-                    borderSide: BorderSide.none,
-                  ),
-                  contentPadding: const EdgeInsets.symmetric(vertical: 14),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Expanded(
-          child: widget.tracks.isEmpty
-              ? _SimplePage(
-                  eyebrow: 'BIBLIOTECA ESTE GOALĂ',
-                  title: 'Adaugă muzica',
-                  message:
-                      'Alege folderele cu muzică pentru a căuta în colecție.',
-                  icon: Icons.library_music_outlined,
-                  actionLabel: widget.isScanning
-                      ? 'Se scanează...'
-                      : 'Alege folderele',
-                  onAction: widget.isScanning ? null : widget.onAddSource,
-                )
-              : query.isEmpty
-              ? const Center(
-                  child: Text(
-                    'Scrie un titlu, un artist sau un album.',
-                    style: TextStyle(color: _muted),
-                  ),
-                )
-              : matches.isEmpty
-              ? const Center(
-                  child: Text(
-                    'Nu am găsit rezultate.',
-                    style: TextStyle(color: _muted),
-                  ),
-                )
-              : ListView.separated(
-                  padding: const EdgeInsets.fromLTRB(12, 0, 12, 18),
-                  itemCount: matches.length,
-                  separatorBuilder: (context, index) =>
-                      const SizedBox(height: 2),
-                  itemBuilder: (context, index) => _AudioTrackTile(
-                    track: matches[index],
-                    onTap: () => widget.onTrackSelected(matches, index),
-                  ),
-                ),
-        ),
-      ],
-    );
-  }
-}
-
 Future<void> _togglePlayback(BuildContext context, AudioPlayer player) async {
   try {
     final duration = player.duration;
@@ -1600,97 +1602,104 @@ class _MiniPlayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: _surface,
-      child: InkWell(
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 9, 10, 7),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                children: [
-                  TrackArtwork(
-                    uri: track.artworkUri.toString(),
-                    cacheKey: track.artworkKey,
-                    size: 42,
-                    radius: 12,
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          track.title,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(fontWeight: FontWeight.w600),
-                        ),
-                        const SizedBox(height: 3),
-                        Text(
-                          track.artist.isEmpty
-                              ? 'Artist necunoscut'
-                              : track.artist,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(color: _muted, fontSize: 12),
-                        ),
-                      ],
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+      child: Material(
+        color: _mint.withValues(alpha: .12),
+        borderRadius: BorderRadius.circular(12),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(8, 3, 4, 0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  children: [
+                    TrackArtwork(
+                      uri: track.artworkUri.toString(),
+                      cacheKey: track.artworkKey,
+                      size: 42,
+                      radius: 6,
                     ),
-                  ),
-                  StreamBuilder<PlayerState>(
-                    stream: player.playerStateStream,
-                    builder: (context, snapshot) {
-                      final isPlaying =
-                          (snapshot.data?.playing ?? false) &&
-                          snapshot.data?.processingState !=
-                              ProcessingState.completed;
-                      return IconButton(
-                        tooltip: isPlaying ? 'Pauză' : 'Redă',
-                        onPressed: () => _togglePlayback(context, player),
-                        icon: Icon(
-                          isPlaying
-                              ? Icons.pause_rounded
-                              : Icons.play_arrow_rounded,
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            track.title,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(fontWeight: FontWeight.w600),
+                          ),
+                          const SizedBox(height: 3),
+                          Text(
+                            track.artist.isEmpty
+                                ? 'Artist necunoscut'
+                                : track.artist,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(color: _muted, fontSize: 12),
+                          ),
+                        ],
+                      ),
+                    ),
+                    StreamBuilder<PlayerState>(
+                      stream: player.playerStateStream,
+                      builder: (context, snapshot) {
+                        final isPlaying =
+                            (snapshot.data?.playing ?? false) &&
+                            snapshot.data?.processingState !=
+                                ProcessingState.completed;
+                        return IconButton(
+                          tooltip: isPlaying ? 'Pauză' : 'Redă',
+                          onPressed: () => _togglePlayback(context, player),
+                          icon: Icon(
+                            isPlaying
+                                ? Icons.pause_rounded
+                                : Icons.play_arrow_rounded,
+                            color: _mint,
+                            size: 30,
+                          ),
+                        );
+                      },
+                    ),
+                    SavedTrackActions(track: track, showPlaylist: false),
+                    IconButton(
+                      tooltip: 'Piesa următoare',
+                      onPressed: player.hasNext
+                          ? () => player.seekToNext()
+                          : null,
+                      icon: const Icon(Icons.skip_next_rounded, color: _muted),
+                    ),
+                  ],
+                ),
+                StreamBuilder<Duration>(
+                  stream: player.positionStream,
+                  builder: (context, positionSnapshot) {
+                    final position = positionSnapshot.data ?? Duration.zero;
+                    return StreamBuilder<Duration?>(
+                      stream: player.durationStream,
+                      builder: (context, durationSnapshot) {
+                        final total =
+                            durationSnapshot.data?.inMilliseconds ?? 0;
+                        final value = total <= 0
+                            ? 0.0
+                            : (position.inMilliseconds / total).clamp(0.0, 1.0);
+                        return LinearProgressIndicator(
+                          value: value,
+                          minHeight: 2,
+                          backgroundColor: Colors.white.withValues(alpha: 0.08),
                           color: _mint,
-                          size: 30,
-                        ),
-                      );
-                    },
-                  ),
-                  IconButton(
-                    tooltip: 'Piesa următoare',
-                    onPressed: player.hasNext
-                        ? () => player.seekToNext()
-                        : null,
-                    icon: const Icon(Icons.skip_next_rounded, color: _muted),
-                  ),
-                ],
-              ),
-              StreamBuilder<Duration>(
-                stream: player.positionStream,
-                builder: (context, positionSnapshot) {
-                  final position = positionSnapshot.data ?? Duration.zero;
-                  return StreamBuilder<Duration?>(
-                    stream: player.durationStream,
-                    builder: (context, durationSnapshot) {
-                      final total = durationSnapshot.data?.inMilliseconds ?? 0;
-                      final value = total <= 0
-                          ? 0.0
-                          : (position.inMilliseconds / total).clamp(0.0, 1.0);
-                      return LinearProgressIndicator(
-                        value: value,
-                        minHeight: 2,
-                        backgroundColor: Colors.white.withValues(alpha: 0.08),
-                        color: _mint,
-                      );
-                    },
-                  );
-                },
-              ),
-            ],
+                        );
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -1917,100 +1926,6 @@ class _NowPlayingSheet extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _SettingsScreen extends StatelessWidget {
-  const _SettingsScreen({
-    required this.sourceSummary,
-    required this.onFilters,
-    required this.filtersReady,
-    required this.onHistory,
-    required this.onManageSources,
-    required this.onScan,
-    required this.isScanning,
-  });
-  final String sourceSummary;
-  final VoidCallback onFilters;
-  final bool filtersReady;
-  final VoidCallback onHistory;
-  final VoidCallback onManageSources;
-  final VoidCallback onScan;
-  final bool isScanning;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(22, 18, 22, 24),
-      children: [
-        const Text(
-          'BIBLIOTECA TA',
-          style: TextStyle(
-            color: _mint,
-            fontSize: 10,
-            fontWeight: FontWeight.w800,
-            letterSpacing: 1.6,
-          ),
-        ),
-        const SizedBox(height: 6),
-        const Text(
-          'Setări',
-          style: TextStyle(fontSize: 26, fontWeight: FontWeight.w700),
-        ),
-        const SizedBox(height: 28),
-        const RatingSizeSettings(),
-        Card(
-          color: _surface,
-          child: ListTile(
-            leading: const Icon(Icons.filter_alt_outlined, color: _mint),
-            title: const Text('Filtre bibliotecă'),
-            subtitle: const Text('Durată minimă și foldere de mesagerie'),
-            onTap: filtersReady ? onFilters : null,
-          ),
-        ),
-        Card(
-          color: _surface,
-          child: ListTile(
-            leading: const Icon(Icons.history_rounded, color: _mint),
-            title: const Text('Istoric de ascultare'),
-            onTap: onHistory,
-          ),
-        ),
-        const SizedBox(height: 20),
-        const Text(
-          'Surse muzicale',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-        ),
-        const SizedBox(height: 12),
-        Card(
-          color: _surface,
-          margin: EdgeInsets.zero,
-          child: ListTile(
-            leading: const Icon(Icons.folder_open_rounded, color: _mint),
-            title: const Text('Foldere muzicale'),
-            subtitle: Text(
-              sourceSummary,
-              style: const TextStyle(color: _muted),
-            ),
-            trailing: const Icon(Icons.chevron_right_rounded),
-            onTap: isScanning ? null : onManageSources,
-          ),
-        ),
-        const SizedBox(height: 12),
-        OutlinedButton.icon(
-          onPressed: isScanning ? null : onScan,
-          icon: const Icon(Icons.refresh_rounded),
-          label: Text(
-            isScanning ? 'Se scanează...' : 'Actualizează biblioteca',
-          ),
-        ),
-        const SizedBox(height: 12),
-        const Text(
-          'Alege folderele care apar în bibliotecă. Actualizează lista după ce adaugi sau ștergi fișiere muzicale.',
-          style: TextStyle(color: _muted, height: 1.5),
-        ),
-      ],
     );
   }
 }

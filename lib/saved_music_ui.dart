@@ -15,7 +15,8 @@ class TrackRating extends StatefulWidget {
 
 class _TrackRatingState extends State<TrackRating> {
   bool _busy = false;
-  Future<void> _save(SavedMusicStore store, int rating) async {
+  double? _preview;
+  Future<void> _save(SavedMusicStore store, num rating) async {
     setState(() => _busy = true);
     await saveMusicAction(context, () => store.setRating(widget.uri, rating));
     if (mounted) setState(() => _busy = false);
@@ -24,32 +25,96 @@ class _TrackRatingState extends State<TrackRating> {
   @override
   Widget build(BuildContext context) {
     final store = SavedMusicScope.of(context);
-    final rating = store.data.ratingOf(widget.uri);
+    final rating = _preview ?? store.data.ratingOf(widget.uri);
     final enabled = store.ready && !_busy;
+    final iconSize = switch (store.data.starSize) {
+      RatingStarSize.small => 20.0,
+      RatingStarSize.medium => 28.0,
+      RatingStarSize.large => 36.0,
+    };
+    final cellWidth = iconSize + 12;
+    final width = cellWidth * 5;
+    void preview(Offset position) {
+      final x = Directionality.of(context) == TextDirection.rtl
+          ? width - position.dx
+          : position.dx;
+      setState(() => _preview = ((x / width * 10).ceil() / 2).clamp(0.0, 5.0));
+    }
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          rating == 0 ? 'Fără rating' : 'Ratingul tău: $rating din 5',
+          rating == 0
+              ? 'Fără rating'
+              : 'Ratingul tău: ${formatRating(rating)} din 5',
           style: const TextStyle(color: Colors.white60, fontSize: 12),
         ),
         Wrap(
           alignment: WrapAlignment.center,
           children: [
-            for (var star = 1; star <= 5; star++)
-              Semantics(
-                selected: star <= rating,
-                child: IconButton(
-                  tooltip: star == 1 ? 'Acordă 1 stea' : 'Acordă $star stele',
-                  icon: Icon(
-                    star <= rating
-                        ? Icons.star_rounded
-                        : Icons.star_border_rounded,
-                    color: star <= rating ? _mint : Colors.white38,
+            Semantics(
+              label: 'Rating prin glisare',
+              value: '${formatRating(rating)} din 5',
+              increasedValue: formatRating((rating + .5).clamp(0, 5)),
+              decreasedValue: formatRating((rating - .5).clamp(0, 5)),
+              onIncrease: enabled && rating < 5
+                  ? () => _save(store, rating + .5)
+                  : null,
+              onDecrease: enabled && rating > 0
+                  ? () => _save(store, rating - .5)
+                  : null,
+              child: GestureDetector(
+                key: const ValueKey('rating-drag-area'),
+                behavior: HitTestBehavior.opaque,
+                onHorizontalDragStart: enabled
+                    ? (details) => preview(details.localPosition)
+                    : null,
+                onHorizontalDragUpdate: enabled
+                    ? (details) => preview(details.localPosition)
+                    : null,
+                onHorizontalDragCancel: () => setState(() => _preview = null),
+                onHorizontalDragEnd: enabled
+                    ? (_) async {
+                        final next = _preview;
+                        if (next != null) await _save(store, next);
+                        if (mounted) setState(() => _preview = null);
+                      }
+                    : null,
+                child: SizedBox(
+                  width: width,
+                  height: 48,
+                  child: Row(
+                    children: [
+                      for (var star = 1; star <= 5; star++)
+                        SizedBox(
+                          width: cellWidth,
+                          child: IconButton(
+                            padding: EdgeInsets.zero,
+                            tooltip: star == 1
+                                ? 'Acordă 1 stea'
+                                : 'Acordă $star stele',
+                            iconSize: iconSize,
+                            icon: Icon(
+                              rating >= star
+                                  ? Icons.star_rounded
+                                  : rating >= star - .5
+                                  ? Icons.star_half_rounded
+                                  : Icons.star_border_rounded,
+                              color: rating >= star - .5
+                                  ? _mint
+                                  : Colors.white38,
+                            ),
+                            onPressed: enabled
+                                ? () => _save(store, star)
+                                : null,
+                          ),
+                        ),
+                    ],
                   ),
-                  onPressed: enabled ? () => _save(store, star) : null,
                 ),
               ),
+            ),
             IconButton(
               tooltip: 'Șterge ratingul',
               icon: const Icon(Icons.clear_rounded, size: 18),
@@ -71,10 +136,55 @@ class TrackRatingBadge extends StatelessWidget {
     return rating == 0
         ? const SizedBox.shrink()
         : Text(
-            '★ $rating',
-            semanticsLabel: 'Rating: $rating din 5',
+            '★ ${formatRating(rating)}',
+            semanticsLabel: 'Rating: ${formatRating(rating)} din 5',
             style: const TextStyle(color: _mint, fontSize: 12),
           );
+  }
+}
+
+class RatingSizeSettings extends StatelessWidget {
+  const RatingSizeSettings({super.key});
+  @override
+  Widget build(BuildContext context) {
+    final store = SavedMusicScope.of(context);
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('Dimensiunea stelelor', style: TextStyle(fontSize: 16)),
+            const SizedBox(height: 10),
+            Wrap(
+              spacing: 8,
+              children: [
+                for (final size in RatingStarSize.values)
+                  ChoiceChip(
+                    label: Text(switch (size) {
+                      RatingStarSize.small => 'Mici',
+                      RatingStarSize.medium => 'Medii',
+                      RatingStarSize.large => 'Mari',
+                    }),
+                    selected: store.data.starSize == size,
+                    onSelected: store.ready
+                        ? (_) => saveMusicAction(
+                            context,
+                            () => store.setStarSize(size),
+                          )
+                        : null,
+                  ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              'Glisează pe stele pentru rating în pași de jumătate de stea.',
+              style: TextStyle(color: Colors.white60, fontSize: 12),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -104,7 +214,7 @@ class RatingViewControls extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: PopupMenuButton<int>(
+          child: PopupMenuButton<double>(
             tooltip: 'Filtrează după rating',
             enabled: store.ready,
             initialValue: data.minimumRating,
@@ -113,16 +223,16 @@ class RatingViewControls extends StatelessWidget {
               () => store.setRatingView(minimum: value),
             ),
             itemBuilder: (_) => [
-              for (var value = 0; value <= 5; value++)
+              for (var step = 0; step <= 10; step++)
                 CheckedPopupMenuItem(
-                  value: value,
-                  checked: data.minimumRating == value,
+                  value: step / 2,
+                  checked: data.minimumRating == step / 2,
                   child: Text(
-                    value == 0
+                    step == 0
                         ? 'Toate ratingurile'
-                        : value == 5
+                        : step == 10
                         ? 'Doar 5 stele'
-                        : 'Cel puțin $value ${value == 1 ? 'stea' : 'stele'}',
+                        : 'Cel puțin ${formatRating(step / 2)} ${step == 2 ? 'stea' : 'stele'}',
                   ),
                 ),
             ],
@@ -136,7 +246,7 @@ class RatingViewControls extends StatelessWidget {
                     child: Text(
                       data.minimumRating == 0
                           ? 'Toate ratingurile'
-                          : 'Rating ≥ ${data.minimumRating}',
+                          : 'Rating ≥ ${formatRating(data.minimumRating)}',
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),

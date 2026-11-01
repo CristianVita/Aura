@@ -9,6 +9,8 @@ import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 
 import 'audio_track.dart';
+import 'audio_sources.dart';
+import 'navidrome_ui.dart';
 import 'day_greeting.dart';
 import 'playback_memory.dart';
 import 'playback_memory_controller.dart';
@@ -129,7 +131,11 @@ class _PlayerShellState extends State<PlayerShell> {
   List<AudioTrack> get _folderTracks => _selectedFolders == null
       ? _allTracks
       : _allTracks
-            .where((track) => _selectedFolders!.contains(track.folder))
+            .where(
+              (track) =>
+                  track.uri.startsWith('aura://navidrome/') ||
+                  _selectedFolders!.contains(track.folder),
+            )
             .toList(growable: false);
   List<AudioTrack> get _tracks => _folderTracks
       .where(_memory.data.filters.includes)
@@ -188,7 +194,7 @@ class _PlayerShellState extends State<PlayerShell> {
     ),
   );
 
-  Future<void> _loadLibrary() async {
+  Future<void> _loadLibrary({bool restorePlayback = true}) async {
     try {
       final rows = await _audioLibraryChannel.invokeListMethod<Object?>(
         'loadLibrary',
@@ -204,7 +210,7 @@ class _PlayerShellState extends State<PlayerShell> {
             .map(AudioTrack.fromMap)
             .toList(growable: false);
       });
-      await _memoryController.initialize(_allTracks);
+      if (restorePlayback) await _memoryController.initialize(_allTracks);
     } on MissingPluginException {
       // Other platforms will provide their own library storage adapter.
     } catch (_) {
@@ -222,7 +228,43 @@ class _PlayerShellState extends State<PlayerShell> {
     if (_isScanning || _isLoadingLibrary || _isManagingSources) return;
     _isManagingSources = true;
     try {
-      await _manageSourceFoldersInner();
+      final type = await showModalBottomSheet<String>(
+        context: context,
+        builder: (context) => SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: const Icon(Icons.folder_open_rounded),
+                title: Text(
+                  AudioLibrary.isWindows
+                      ? 'Muzică de pe PC'
+                      : 'Muzică de pe telefon',
+                ),
+                onTap: () => Navigator.pop(context, 'local'),
+              ),
+              ListTile(
+                leading: const Icon(Icons.dns_outlined),
+                title: const Text('Server Navidrome'),
+                subtitle: const Text('URL și cont de utilizator'),
+                onTap: () => Navigator.pop(context, 'server'),
+              ),
+            ],
+          ),
+        ),
+      );
+      if (!mounted || type == null) return;
+      if (type == 'server') {
+        await Navigator.of(context).push<void>(
+          MaterialPageRoute(
+            builder: (_) =>
+                NavidromeSourcesScreen(repository: AudioLibrary.navidrome),
+          ),
+        );
+        if (mounted) await _loadLibrary(restorePlayback: false);
+      } else {
+        await _manageSourceFoldersInner();
+      }
     } catch (_) {
       if (mounted) _showMessage('Nu am putut încărca sursele muzicale.');
     } finally {
@@ -348,7 +390,9 @@ class _PlayerShellState extends State<PlayerShell> {
       if (_allTracks.isEmpty) await _scanAudio();
       if (!mounted || _allTracks.isEmpty) return;
       final counts = <String, int>{};
-      for (final track in _allTracks) {
+      for (final track in _allTracks.where(
+        (track) => !track.uri.startsWith('aura://navidrome/'),
+      )) {
         counts.update(track.folder, (value) => value + 1, ifAbsent: () => 1);
       }
       for (final folder in _selectedFolders ?? <String>{}) {
@@ -388,14 +432,7 @@ class _PlayerShellState extends State<PlayerShell> {
     try {
       await _player.pause();
       await _player.setAudioSources(
-        queue
-            .map(
-              (track) => AudioSource.uri(
-                Uri.parse(track.uri),
-                tag: track.toMediaItem(),
-              ),
-            )
-            .toList(growable: false),
+        await Future.wait(queue.map(sourceForTrack)),
         initialIndex: index,
         initialPosition: Duration.zero,
       );
@@ -453,8 +490,23 @@ class _PlayerShellState extends State<PlayerShell> {
     setState(() => _isScanning = true);
 
     try {
+      final hasServerTracks = _allTracks.any(
+        (track) => track.uri.startsWith('aura://navidrome/'),
+      );
+      if (hasServerTracks) {
+        for (final server in await AudioLibrary.navidrome.servers()) {
+          await AudioLibrary.navidrome.connect(server);
+        }
+      }
+      final serverOnly =
+          hasServerTracks &&
+          _allTracks.every(
+            (track) => track.uri.startsWith('aura://navidrome/'),
+          );
       final rows =
-          await _audioLibraryChannel.invokeListMethod<Object?>('scanAudio') ??
+          await _audioLibraryChannel.invokeListMethod<Object?>(
+            serverOnly ? 'loadLibrary' : 'scanAudio',
+          ) ??
           const <Object?>[];
       final tracks = rows
           .whereType<Map<Object?, Object?>>()
@@ -899,8 +951,8 @@ class _SourceCard extends StatelessWidget {
                     const SizedBox(height: 5),
                     Text(
                       AudioLibrary.isWindows
-                          ? 'PC, server sau cloud'
-                          : 'Telefon, server sau cloud',
+                          ? 'PC sau server Navidrome'
+                          : 'Telefon sau server Navidrome',
                       style: TextStyle(color: Color(0xFFC2D1D0), fontSize: 14),
                     ),
                     const SizedBox(height: 15),
@@ -1898,6 +1950,7 @@ class _SettingsScreen extends StatelessWidget {
           style: TextStyle(fontSize: 26, fontWeight: FontWeight.w700),
         ),
         const SizedBox(height: 28),
+        const RatingSizeSettings(),
         Card(
           color: _surface,
           child: ListTile(

@@ -4,6 +4,30 @@ import 'package:aura/audio_track.dart';
 
 void main() {
   test(
+    'remote queue metadata retains logical identity and updated cover ID',
+    () {
+      const track = AudioTrack(
+        id: 'song',
+        title: 'Remote',
+        artist: 'Artist',
+        album: 'Album',
+        durationMs: 12000,
+        uri: 'aura://navidrome/server/song',
+        coverId: 'cover-v2',
+      );
+      final source = AudioSource.uri(
+        Uri.parse('https://music.example/rest/stream.view?t=temporary-token'),
+        tag: track.toMediaItem(),
+      );
+      final restored = audioTrackOf(source as IndexedAudioSource)!;
+      expect(restored.uri, track.uri);
+      expect(restored.coverId, 'cover-v2');
+      expect(restored.artworkUri.pathSegments, ['server', 'cover-v2']);
+      expect(restored.artworkKey, contains('cover-v2'));
+      expect(restored.toMediaItem().id, isNot(contains('temporary-token')));
+    },
+  );
+  test(
     'Queue metadata preserves the cover revision and folder after edits',
     () {
       const track = AudioTrack(

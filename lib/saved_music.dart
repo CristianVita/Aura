@@ -8,6 +8,15 @@ import 'audio_track.dart';
 
 enum RatingOrder { original, highest, lowest }
 
+enum RatingStarSize { small, medium, large }
+
+String formatRating(num rating) => rating == rating.roundToDouble()
+    ? rating.toInt().toString()
+    : rating.toString().replaceAll('.', ',');
+
+bool _validRating(num value) =>
+    value.isFinite && value >= 0 && value <= 5 && (value * 2) % 1 == 0;
+
 class MusicPlaylist {
   MusicPlaylist({
     required this.id,
@@ -29,31 +38,37 @@ class SavedMusicData {
   SavedMusicData({
     Iterable<String> favorites = const [],
     Iterable<MusicPlaylist> playlists = const [],
-    Map<String, int> ratings = const {},
+    Map<String, num> ratings = const {},
     this.minimumRating = 0,
     this.ratingOrder = RatingOrder.original,
+    this.starSize = RatingStarSize.medium,
   }) : favorites = Set.unmodifiable(favorites),
        playlists = List.unmodifiable(playlists),
-       ratings = Map.unmodifiable(ratings);
+       ratings = Map.unmodifiable(
+         ratings.map((key, value) => MapEntry(key, value.toDouble())),
+       );
   final Set<String> favorites;
   final List<MusicPlaylist> playlists;
-  final Map<String, int> ratings;
-  final int minimumRating;
+  final Map<String, double> ratings;
+  final double minimumRating;
   final RatingOrder ratingOrder;
-  int ratingOf(String uri) => ratings[uri] ?? 0;
+  final RatingStarSize starSize;
+  double ratingOf(String uri) => ratings[uri] ?? 0;
 
   SavedMusicData copy({
     Iterable<String>? favorites,
     Iterable<MusicPlaylist>? playlists,
-    Map<String, int>? ratings,
-    int? minimumRating,
+    Map<String, num>? ratings,
+    double? minimumRating,
     RatingOrder? ratingOrder,
+    RatingStarSize? starSize,
   }) => SavedMusicData(
     favorites: favorites ?? this.favorites,
     playlists: playlists ?? this.playlists,
     ratings: ratings ?? this.ratings,
     minimumRating: minimumRating ?? this.minimumRating,
     ratingOrder: ratingOrder ?? this.ratingOrder,
+    starSize: starSize ?? this.starSize,
   );
 
   /// Ratings change browsing only; an existing playback queue stays intact.
@@ -84,6 +99,7 @@ class SavedMusicData {
     'ratings': ratings,
     'minimumRating': minimumRating,
     'ratingOrder': ratingOrder.name,
+    'starSize': starSize.name,
   });
   factory SavedMusicData.decode(String value) {
     final root = jsonDecode(value) as Map<String, dynamic>;
@@ -111,22 +127,25 @@ class SavedMusicData {
       uri,
       value,
     ) {
-      if (uri.isEmpty || value is! int || value < 1 || value > 5) {
+      if (uri.isEmpty || value is! num || !_validRating(value) || value == 0) {
         throw const FormatException('Invalid track rating');
       }
-      return MapEntry(uri, value);
+      return MapEntry(uri, value.toDouble());
     });
     final minimum = root['minimumRating'] ?? 0;
-    if (minimum is! int || minimum < 0 || minimum > 5) {
+    if (minimum is! num || !_validRating(minimum)) {
       throw const FormatException('Invalid rating filter');
     }
     return SavedMusicData(
       favorites: favorites,
       playlists: playlists,
       ratings: ratings,
-      minimumRating: minimum,
+      minimumRating: minimum.toDouble(),
       ratingOrder: RatingOrder.values.byName(
         root['ratingOrder'] as String? ?? 'original',
+      ),
+      starSize: RatingStarSize.values.byName(
+        root['starSize'] as String? ?? 'medium',
       ),
     );
   }
@@ -195,26 +214,29 @@ class SavedMusicStore extends ChangeNotifier {
     return data.copy(favorites: favorites);
   });
 
-  Future<void> setRating(String uri, int rating) => _update((data) {
-    if (uri.isEmpty || rating < 0 || rating > 5) {
+  Future<void> setRating(String uri, num rating) => _update((data) {
+    if (uri.isEmpty || !_validRating(rating)) {
       throw ArgumentError('Invalid rating');
     }
     final ratings = {...data.ratings};
     if (rating == 0) {
       ratings.remove(uri);
     } else {
-      ratings[uri] = rating;
+      ratings[uri] = rating.toDouble();
     }
     return data.copy(ratings: ratings);
   });
 
-  Future<void> setRatingView({int? minimum, RatingOrder? order}) =>
+  Future<void> setRatingView({double? minimum, RatingOrder? order}) =>
       _update((data) {
-        if (minimum != null && (minimum < 0 || minimum > 5)) {
+        if (minimum != null && !_validRating(minimum)) {
           throw ArgumentError('Invalid rating filter');
         }
         return data.copy(minimumRating: minimum, ratingOrder: order);
       });
+
+  Future<void> setStarSize(RatingStarSize size) =>
+      _update((data) => data.copy(starSize: size));
 
   String _validName(String name) {
     final trimmed = name.trim();

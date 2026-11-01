@@ -11,6 +11,7 @@ class AudioTrack {
     required this.uri,
     this.folder = '',
     this.modifiedSeconds = 0,
+    this.coverId = '',
   });
 
   final String id;
@@ -21,8 +22,15 @@ class AudioTrack {
   final String uri;
   final String folder;
   final int modifiedSeconds;
-  String get artworkKey => '$uri:$modifiedSeconds';
-  Uri get artworkUri => Uri.parse(uri).scheme == 'file'
+  final String coverId;
+  String get artworkKey =>
+      '$uri:$modifiedSeconds${coverId.isEmpty ? '' : ':$coverId'}';
+  Uri get artworkUri => Uri.parse(uri).scheme == 'aura'
+      ? Uri.parse(uri).replace(
+          pathSegments: [Uri.parse(uri).pathSegments.first, coverId],
+          queryParameters: {'artwork': 'true'},
+        )
+      : Uri.parse(uri).scheme == 'file'
       ? Uri.parse(uri)
       : Uri(
           scheme: 'content',
@@ -35,12 +43,13 @@ class AudioTrack {
     title: title,
     artist: artist.isEmpty ? 'Artist necunoscut' : artist,
     album: album.isEmpty ? null : album,
-    artUri: artworkUri,
+    artUri: Uri.parse(uri).scheme == 'aura' ? null : artworkUri,
     duration: durationMs > 0 ? Duration(milliseconds: durationMs) : null,
     extras: {
       'trackId': id,
       'folder': folder,
       'modifiedSeconds': modifiedSeconds,
+      'coverId': coverId,
     },
   );
 
@@ -54,6 +63,7 @@ class AudioTrack {
       uri: map['uri']?.toString() ?? '',
       folder: map['folder']?.toString() ?? '',
       modifiedSeconds: (map['modifiedSeconds'] as num?)?.toInt() ?? 0,
+      coverId: map['coverId'] as String? ?? '',
     );
   }
 }
@@ -72,5 +82,6 @@ AudioTrack? audioTrackOf(IndexedAudioSource? source) {
     uri: item.id,
     folder: item.extras?['folder']?.toString() ?? '',
     modifiedSeconds: (item.extras?['modifiedSeconds'] as num?)?.toInt() ?? 0,
+    coverId: item.extras?['coverId'] as String? ?? '',
   );
 }

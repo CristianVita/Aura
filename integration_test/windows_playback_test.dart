@@ -5,9 +5,22 @@ import 'dart:typed_data';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  testWidgets('Windows secure storage roundtrip for server credentials', (
+    tester,
+  ) async {
+    const storage = FlutterSecureStorage();
+    final key = 'aura_test_${DateTime.now().microsecondsSinceEpoch}';
+    try {
+      await storage.write(key: key, value: 'synthetic test value');
+      expect(await storage.read(key: key), 'synthetic test value');
+    } finally {
+      await storage.delete(key: key);
+    }
+  });
   testWidgets('Windows native backend plays, seeks and changes queue entries', (
     tester,
   ) async {
@@ -63,6 +76,9 @@ void main() {
       await player.seek(const Duration(milliseconds: 1200));
       expect(player.position.inMilliseconds, closeTo(1200, 250));
       await player.seekToNext();
+      await player.currentIndexStream
+          .firstWhere((index) => index == 1)
+          .timeout(const Duration(seconds: 5));
       expect(player.currentIndex, 1);
       await player.setLoopMode(LoopMode.all);
       await player.setShuffleModeEnabled(true);

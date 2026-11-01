@@ -82,7 +82,7 @@ void main() {
   test(
     'corrupt ratings cannot silently overwrite saved favorites and playlists',
     () async {
-      for (final invalid in [0, 6, 2.5, '5']) {
+      for (final invalid in [0, 6, 2.25, '5']) {
         final storage = MemorySavedMusicStorage()
           ..value = jsonEncode({
             'version': 1,
@@ -194,7 +194,8 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(
         find.byWidgetPredicate(
-          (widget) => widget is CheckedPopupMenuItem<int> && widget.value == 4,
+          (widget) =>
+              widget is CheckedPopupMenuItem<double> && widget.value == 4,
         ),
       );
       await tester.pumpAndSettle();
@@ -215,13 +216,96 @@ void main() {
       );
       await tester.tap(find.text('Rating ≥ 4'));
       await tester.pumpAndSettle();
+      await tester.ensureVisible(
+        find.byWidgetPredicate(
+          (widget) =>
+              widget is CheckedPopupMenuItem<double> && widget.value == 0,
+        ),
+      );
+      await tester.pumpAndSettle();
       await tester.tap(
         find.byWidgetPredicate(
-          (widget) => widget is CheckedPopupMenuItem<int> && widget.value == 0,
+          (widget) =>
+              widget is CheckedPopupMenuItem<double> && widget.value == 0,
         ),
       );
       await tester.pumpAndSettle();
       expect(store.data.minimumRating, 0);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox());
+      store.dispose();
+    },
+  );
+
+  test(
+    'half stars, size and minimum rating persist alongside legacy integers',
+    () async {
+      final storage = MemorySavedMusicStorage()
+        ..value =
+            '{"version":1,"favorites":[],"playlists":[],"ratings":{"old":4}}';
+      final store = SavedMusicStore(storage);
+      await store.load();
+      await store.setRating('half', 3.5);
+      await store.setStarSize(RatingStarSize.large);
+      await store.setRatingView(minimum: 3.5);
+      final saved = SavedMusicData.decode(storage.value!);
+      expect(saved.ratingOf('old'), 4);
+      expect(saved.ratingOf('half'), 3.5);
+      expect(saved.minimumRating, 3.5);
+      expect(saved.starSize, RatingStarSize.large);
+      await expectLater(store.setRating('half', 3.25), throwsArgumentError);
+      store.dispose();
+    },
+  );
+
+  testWidgets(
+    'drag previews half stars live, persists on release and size setting changes width',
+    (tester) async {
+      final storage = MemorySavedMusicStorage();
+      final store = SavedMusicStore(storage);
+      await store.load();
+      await tester.pumpWidget(
+        SavedMusicScope(
+          store: store,
+          child: const MaterialApp(
+            home: Scaffold(
+              body: Column(
+                children: [
+                  RatingSizeSettings(),
+                  TrackRating(uri: 'swipe'),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+      final area = find.byKey(const ValueKey('rating-drag-area'));
+      final medium = tester.getSize(area).width;
+      await tester.tap(find.text('Mari'));
+      await tester.pumpAndSettle();
+      expect(tester.getSize(area).width, greaterThan(medium));
+      final box = tester.getRect(area);
+      final gesture = await tester.startGesture(
+        Offset(box.left + 10, box.center.dy),
+      );
+      await gesture.moveTo(Offset(box.left + box.width * .87, box.center.dy));
+      await tester.pump();
+      expect(find.text('Ratingul tău: 4,5 din 5'), findsOneWidget);
+      expect(store.data.ratingOf('swipe'), 0);
+      await gesture.moveTo(Offset(box.left + box.width * .47, box.center.dy));
+      await tester.pump();
+      expect(find.text('Ratingul tău: 2,5 din 5'), findsOneWidget);
+      expect(find.byIcon(Icons.star_half_rounded), findsOneWidget);
+      await gesture.up();
+      await tester.pumpAndSettle();
+      expect(store.data.ratingOf('swipe'), 2.5);
+      await tester.tap(find.text('Mici'));
+      await tester.pumpAndSettle();
+      expect(tester.getSize(area).width, lessThan(medium));
+      expect(
+        SavedMusicData.decode(storage.value!).starSize,
+        RatingStarSize.small,
+      );
       expect(tester.takeException(), isNull);
       await tester.pumpWidget(const SizedBox());
       store.dispose();

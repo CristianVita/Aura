@@ -154,14 +154,20 @@ class DesktopLibrary {
         return null;
       case 'loadSavedMusic':
       case 'loadPlaybackMemory':
-        final name = method == 'loadSavedMusic'
+      case 'loadServerCache':
+        final name = method == 'loadServerCache'
+            ? 'server_library.json'
+            : method == 'loadSavedMusic'
             ? 'saved_music.json'
             : 'playback_memory.json';
         final saved = await _read(name);
         return saved == null ? null : jsonEncode(saved);
       case 'saveSavedMusic':
       case 'savePlaybackMemory':
-        final name = method == 'saveSavedMusic'
+      case 'saveServerCache':
+        final name = method == 'saveServerCache'
+            ? 'server_library.json'
+            : method == 'saveSavedMusic'
             ? 'saved_music.json'
             : 'playback_memory.json';
         final data =

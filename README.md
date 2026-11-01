@@ -12,7 +12,8 @@ An independent Flutter music player for your own music library.
 - Playback queue with selection, removal and drag reordering.
 - Shuffle showing the actual playback order, and repeat off/all/one.
 - Persistent favorites and playlists, with creation, renaming, deletion and track selection.
-- Per-track 1–5 star ratings, with clearing, local persistence, a minimum-rating filter and ascending/descending rating sort in the collection.
+- Per-track 0.5–5 star ratings, horizontal drag with live half-star preview, small/medium/large star sizes, clearing, local persistence, a minimum-rating filter and rating sort.
+- Navidrome over HTTPS: connect with URL and credentials, load/refresh albums and songs, stream audio, display covers and disconnect sources.
 - Listening history with recent tracks and an option to clear it.
 - Restored queue, current track, position, shuffle order and repeat mode; reopening stays paused.
 - Optional minimum-duration and WhatsApp/Telegram folder filters.
@@ -42,11 +43,17 @@ Run the tests:
 flutter test
 ```
 
-Thirty-eight automated tests cover artwork, saved music, ratings and legacy-data migration, playback/session restoration, missing files, shuffle ordering, listening thresholds, library filters, concurrent writes, Windows scanning/storage and UI flows. Android behavior is also checked on a OnePlus 8T running Android 14.
+Forty-six automated tests cover artwork, saved music, rating gestures and legacy-data migration, playback/session restoration, missing files, shuffle ordering, listening thresholds, library filters, concurrent writes, Windows scanning/storage, the Navidrome protocol and UI flows. Android behavior is also checked on a OnePlus 8T running Android 14.
 
 Rate a track using the five stars below its details in the full player, or long-press a collection/search track to open its information. Long-press a track in favorites or a playlist to open the rating dialog. The clear button removes the rating. Collection rating filters and sorting are saved locally; unrated tracks appear last when sorting by rating. These preferences do not change an existing playback queue, playlist order or audio-file tags. Ratings currently belong to each device and are not synchronized.
 
-For Windows development, install Visual Studio's **Desktop development with C++** workload, including C++ CMake tools and a Windows SDK. Build with:
+Choose **Setări → Dimensiunea stelelor → Mici / Medii / Mari** to change their size. Drag horizontally across the stars for 0.5-star steps; the preview changes while dragging and the final value is saved on release. Tapping a star still selects its whole-star value. Existing integer ratings remain valid.
+
+Choose **Adaugă o sursă → Server Navidrome → Adaugă server Navidrome**. Enter the HTTPS server base URL (including a reverse-proxy subfolder, when applicable), username and password. Refresh or disconnect from the same source screen. Server tracks also appear in the collection and search. Refreshing a nonempty server collection updates its remote metadata; offline playback/downloads are not implemented.
+
+Navidrome uses Subsonic token authentication with a fresh salt per request. Credentials use `flutter_secure_storage`; the library and playback history retain logical track IDs rather than authenticated stream URLs. Only read endpoints are used: ratings, favorites and playlists remain local to Aura. Server covers are displayed inside the app; notification artwork for remote tracks is not implemented. Automated tests use simulated HTTP responses; verification against the user's actual Navidrome server is pending its URL and account.
+
+For Windows development, install Visual Studio's **Desktop development with C++** workload, including C++ CMake tools, C++ ATL and a Windows SDK. Build with:
 
 ```sh
 flutter build windows --release
@@ -54,7 +61,7 @@ flutter build windows --release
 
 Distribute the entire `build/windows/x64/runner/Release` folder, including its DLLs and `data` folder. The target PC also needs the Microsoft Visual C++ runtime. This is an unsigned development build.
 
-A Windows integration test generates a quiet WAV tone locally and verifies the native backend's play/pause, seek, next-track, shuffle and repeat controls:
+Windows integration tests check a secure-storage write/read/delete roundtrip and generate a quiet WAV tone to verify native play/pause, seek, next-track, shuffle and repeat controls:
 
 ```sh
 flutter test integration_test/windows_playback_test.dart -d windows
@@ -66,10 +73,12 @@ Regenerate the code-drawn Aura icon with `./tool/generate_brand_assets.ps1` on W
 
 Android is implemented and device-tested. Windows local scanning, persistence and playback are implemented; native playback is checked with WAV audio. File-format support depends on the Windows audio backend and installed codecs. Linux, macOS, web and iOS still need native library and playback integration. iOS is planned last.
 
-Server/cloud music sources, synchronization between devices and further interface refinements remain future work. Closing the Windows window exits the player; tray playback and Windows media-key integration are not implemented yet.
+Generic cloud sources, other server protocols, synchronization between devices and further interface refinements remain future work. Closing the Windows window exits the player; tray playback and Windows media-key integration are not implemented yet.
 
 Playback position is checkpointed about every three seconds while playing, and on pause, seek, queue changes and app lifecycle transitions. Abrupt process termination may lose the last few seconds. History records after five seconds of actual playback, or after hearing a shorter track through, and keeps the latest 100 distinct tracks. Folder and duration filters affect browsing without deleting media or saved playlist references.
 
 ## Local data
+
+Protocol reference: [OpenSubsonic authentication](https://opensubsonic.netlify.app/docs/api-reference/), [album pagination](https://opensubsonic.netlify.app/docs/endpoints/getalbumlist2/) and [album tracks](https://opensubsonic.netlify.app/docs/endpoints/getalbum/).
 
 Audio files stay on the device. Library metadata, folder preferences and cached artwork are stored in the app's private storage. Device libraries, audio files, SDK paths, signing keys and generated builds are not part of this repository.

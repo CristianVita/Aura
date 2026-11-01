@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:just_audio/just_audio.dart';
 
 import 'audio_track.dart';
+import 'audio_sources.dart';
 import 'playback_memory.dart';
 
 class PlaybackMemoryController with WidgetsBindingObserver {
@@ -43,14 +44,7 @@ class PlaybackMemoryController with WidgetsBindingObserver {
       try {
         await player.pause();
         await player.setAudioSources(
-          session.tracks
-              .map(
-                (track) => AudioSource.uri(
-                  Uri.parse(track.uri),
-                  tag: track.toMediaItem(),
-                ),
-              )
-              .toList(),
+          await Future.wait(session.tracks.map(sourceForTrack)),
           initialIndex: session.index,
           initialPosition: Duration(milliseconds: session.positionMs),
           shuffleOrder: RestoredShuffleOrder(session.order),

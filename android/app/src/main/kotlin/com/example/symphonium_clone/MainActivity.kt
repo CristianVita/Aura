@@ -22,6 +22,35 @@ class MainActivity : AudioServiceActivity() {
     private val artworkExecutor = Executors.newFixedThreadPool(2)
     private var pendingPermissionResult: MethodChannel.Result? = null
 
+    override fun onResume() {
+        super.onResume()
+        preferHighRefreshRate()
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus) preferHighRefreshRate()
+    }
+
+    @Suppress("DEPRECATION")
+    private fun preferHighRefreshRate() {
+        // Request a supported rate without locking the resolution or a mode ID.
+        // Android retains control for power saving, thermal limits and user settings.
+        val screen = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) display
+            else windowManager.defaultDisplay
+        screen ?: return
+        val current = screen.mode
+        val preferred = screen.supportedModes
+            .filter { it.physicalWidth == current.physicalWidth &&
+                it.physicalHeight == current.physicalHeight && it.refreshRate <= 144.5f }
+            .maxOfOrNull { it.refreshRate } ?: return
+        val attributes = window.attributes
+        if (attributes.preferredRefreshRate != preferred) {
+            attributes.preferredRefreshRate = preferred
+            window.attributes = attributes
+        }
+    }
+
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
 

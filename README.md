@@ -6,6 +6,7 @@ An independent Flutter music player for your own music library.
 
 - Dark interface with home, collection, search and settings screens.
 - Android audio scanning and persistent local library metadata.
+- Android requests the highest supported display refresh rate up to 144 Hz at the current resolution while Aura is foregrounded. Android power, thermal and user policies can lower the actual rate; this is not a guarantee of 144 rendered frames per second.
 - Source folder selection and browsing by song, album or artist.
 - Local and background playback, seeking, previous/next controls and media notification.
 - Embedded artwork and song information.

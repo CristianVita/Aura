@@ -38,6 +38,14 @@ Build a debug APK for an ARM64 Android device:
 flutter build apk --debug --target-platform android-arm64
 ```
 
+Use an optimized build when judging scrolling and animation performance on a phone:
+
+```sh
+flutter build apk --release --target-platform android-arm64
+```
+
+Debug builds retain development instrumentation and are not representative of release performance. With this Flutter SDK, let the release command regenerate plugin registration (omit `--no-pub` after switching from debug). The current release build uses the same development signing key, so it can update existing development installations with `adb install -r`; it is not yet configured for public-store distribution. See [device performance measurements](docs/android-performance.md).
+
 Run the tests:
 
 ```sh

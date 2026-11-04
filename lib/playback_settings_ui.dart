@@ -13,7 +13,7 @@ Future<void> _showSleepTimer(
 ) => showModalBottomSheet<void>(
   context: context,
   isScrollControlled: true,
-  backgroundColor: _surface,
+  backgroundColor: context.auraSurface,
   builder: (_) => _SleepTimerSheet(controls: controls),
 );
 
@@ -53,7 +53,7 @@ class _SleepTimerSheetState extends State<_SleepTimerSheet> {
             listenable: widget.controls.sleep,
             builder: (_, child) => Text(
               'Activ: ${_sleepLabel(widget.controls.sleep)}',
-              style: const TextStyle(color: _mint),
+              style: TextStyle(color: context.auraAccent),
             ),
           ),
           const SizedBox(height: 20),
@@ -174,7 +174,7 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
           PlaybackSettingsSection.playback => 'Redare',
           PlaybackSettingsSection.timer => 'Acțiuni automate',
         }),
-        backgroundColor: _background,
+        backgroundColor: context.auraBackground,
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),
@@ -191,9 +191,12 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
                     children: [
                       Text('Volumul playerului: ${(volume * 100).round()}%'),
                       const SizedBox(height: 6),
-                      const Text(
+                      Text(
                         'Se aplică doar în Aura, separat de volumul telefonului sau al PC-ului.',
-                        style: TextStyle(color: _muted, fontSize: 12),
+                        style: TextStyle(
+                          color: context.auraMuted,
+                          fontSize: 12,
+                        ),
                       ),
                       Slider(
                         label: '${(volume * 100).round()}%',
@@ -329,9 +332,13 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
               child: const Text('Restabilește viteza și volumul implicite'),
             ),
           const SizedBox(height: 8),
-          const Text(
+          Text(
             'Viteza și volumul sunt salvate pe acest dispozitiv. Temporizatorul se anulează la închiderea completă a aplicației.',
-            style: TextStyle(color: _muted, fontSize: 12, height: 1.5),
+            style: TextStyle(
+              color: context.auraMuted,
+              fontSize: 12,
+              height: 1.5,
+            ),
           ),
         ],
       ),
@@ -351,7 +358,9 @@ class _PlaybackQuickSettings extends StatelessWidget {
           child: TextButton.icon(
             icon: Icon(
               Icons.bedtime_outlined,
-              color: controls.sleep.active ? _mint : _muted,
+              color: controls.sleep.active
+                  ? context.auraAccent
+                  : context.auraMuted,
             ),
             label: Text(
               controls.sleep.active ? _sleepLabel(controls.sleep) : 'Somn',

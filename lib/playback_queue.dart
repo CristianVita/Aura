@@ -1,3 +1,5 @@
+import 'app_theme.dart';
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -5,8 +7,6 @@ import 'package:just_audio/just_audio.dart';
 
 import 'audio_track.dart';
 import 'track_artwork.dart';
-
-const _mint = Color(0xFF8BE0C0);
 
 class PlaybackOptions extends StatefulWidget {
   const PlaybackOptions({super.key, required this.player});
@@ -51,7 +51,10 @@ class _PlaybackOptionsState extends State<PlaybackOptions> {
                   ? 'Shuffle activ'
                   : 'Shuffle oprit',
               isSelected: state.shuffleModeEnabled,
-              selectedIcon: const Icon(Icons.shuffle_rounded, color: _mint),
+              selectedIcon: Icon(
+                Icons.shuffle_rounded,
+                color: context.auraAccent,
+              ),
               icon: const Icon(Icons.shuffle_rounded),
               onPressed: _busy
                   ? null
@@ -68,7 +71,7 @@ class _PlaybackOptionsState extends State<PlaybackOptions> {
                 onPressed: () => showModalBottomSheet<void>(
                   context: context,
                   isScrollControlled: true,
-                  backgroundColor: const Color(0xFF141D22),
+                  backgroundColor: context.auraSurface,
                   builder: (_) => PlaybackQueueSheet(player: player),
                 ),
               ),
@@ -79,7 +82,9 @@ class _PlaybackOptionsState extends State<PlaybackOptions> {
                 state.loopMode == LoopMode.one
                     ? Icons.repeat_one_rounded
                     : Icons.repeat_rounded,
-                color: state.loopMode == LoopMode.off ? null : _mint,
+                color: state.loopMode == LoopMode.off
+                    ? null
+                    : context.auraAccent,
               ),
               onPressed: _busy
                   ? null
@@ -180,7 +185,7 @@ class _PlaybackQueueSheetState extends State<PlaybackQueueSheet> {
                     state.shuffleModeEnabled
                         ? 'Ordine amestecată. Oprește shuffle pentru a reordona.'
                         : 'Trage de mâner pentru a schimba ordinea.',
-                    style: const TextStyle(color: Colors.white60, fontSize: 12),
+                    style: TextStyle(color: context.auraMuted, fontSize: 12),
                   ),
                 ),
                 Expanded(
@@ -212,7 +217,9 @@ class _PlaybackQueueSheetState extends State<PlaybackQueueSheet> {
                             return ListTile(
                               key: ObjectKey(source),
                               selected: current,
-                              selectedTileColor: _mint.withValues(alpha: .08),
+                              selectedTileColor: context.auraAccent.withValues(
+                                alpha: .08,
+                              ),
                               contentPadding: const EdgeInsets.only(
                                 left: 16,
                                 right: 4,
@@ -288,11 +295,11 @@ class _PlaybackQueueSheetState extends State<PlaybackQueueSheet> {
                                       index: index,
                                       child: Semantics(
                                         label: 'Mută ${track.title}',
-                                        child: const Padding(
+                                        child: Padding(
                                           padding: EdgeInsets.all(12),
                                           child: Icon(
                                             Icons.drag_handle_rounded,
-                                            color: Colors.white54,
+                                            color: context.auraMuted,
                                           ),
                                         ),
                                       ),

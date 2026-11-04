@@ -1,0 +1,38 @@
+{
+  "@@locale": "en",
+  "appearanceTitle": "Theme, font and colors",
+  "themeLabel": "Theme",
+  "themeSystem": "Follow system",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "themeOled": "OLED black",
+  "accentLabel": "Accent color",
+  "accentMint": "Mint",
+  "accentBlue": "Blue",
+  "accentViolet": "Violet",
+  "accentRose": "Rose",
+  "accentAmber": "Gold",
+  "accentTeal": "Teal",
+  "fontLabel": "Font",
+  "fontSystem": "System font",
+  "fontSerif": "Serif",
+  "fontMonospace": "Monospace",
+  "fontDescription": "Fonts use families available on the device. Their appearance may vary across platforms.",
+  "textSizeLabel": "Text size",
+  "textSizeDescription": "Combined with the text size in your device settings.",
+  "previewLabel": "Preview",
+  "previewTitle": "Your music, your rhythm",
+  "previewSubtitle": "Albums, artists and playlists",
+  "previewButton": "Play",
+  "resetAppearance": "Restore default appearance",
+  "appearanceSaveError": "Could not save appearance. Your previous settings were kept.",
+  "appearanceHelp": "Changes apply as soon as they are saved and are included in backups.",
+  "percentValue": "{value}%",
+  "@percentValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  }
+}

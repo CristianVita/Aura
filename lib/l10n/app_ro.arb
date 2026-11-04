@@ -1,0 +1,38 @@
+{
+  "@@locale": "ro",
+  "appearanceTitle": "Temă, font și culori",
+  "themeLabel": "Temă",
+  "themeSystem": "După sistem",
+  "themeLight": "Luminoasă",
+  "themeDark": "Întunecată",
+  "themeOled": "Negru OLED",
+  "accentLabel": "Culoare de accent",
+  "accentMint": "Mentă",
+  "accentBlue": "Albastru",
+  "accentViolet": "Violet",
+  "accentRose": "Roz",
+  "accentAmber": "Auriu",
+  "accentTeal": "Turcoaz",
+  "fontLabel": "Font",
+  "fontSystem": "Fontul sistemului",
+  "fontSerif": "Serif",
+  "fontMonospace": "Monospațiat",
+  "fontDescription": "Fonturile folosesc familiile disponibile pe dispozitiv. Aspectul poate varia între platforme.",
+  "textSizeLabel": "Dimensiunea textului",
+  "textSizeDescription": "Se combină cu dimensiunea textului din setările dispozitivului.",
+  "previewLabel": "Previzualizare",
+  "previewTitle": "Muzica ta, în ritmul tău",
+  "previewSubtitle": "Albume, artiști și playlisturi",
+  "previewButton": "Redă",
+  "resetAppearance": "Restabilește aspectul implicit",
+  "appearanceSaveError": "Nu am putut salva aspectul. Setările anterioare au fost păstrate.",
+  "appearanceHelp": "Schimbările se aplică imediat după salvare și sunt incluse în backup.",
+  "percentValue": "{value}%",
+  "@percentValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  }
+}

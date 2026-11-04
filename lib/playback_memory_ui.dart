@@ -1,3 +1,5 @@
+import 'app_theme.dart';
+
 import 'package:flutter/material.dart';
 
 import 'audio_track.dart';
@@ -152,11 +154,11 @@ class _LibraryFiltersScreenState extends State<LibraryFiltersScreen> {
                   ? null
                   : (value) => setState(() => _minimum = value!),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(vertical: 12),
               child: Text(
                 'Piesele cu durată necunoscută rămân vizibile.',
-                style: TextStyle(color: Colors.white60, fontSize: 12),
+                style: TextStyle(color: context.auraMuted, fontSize: 12),
               ),
             ),
             SwitchListTile(

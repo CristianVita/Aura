@@ -1,11 +1,10 @@
+import 'app_theme.dart';
+
 import 'package:flutter/material.dart';
 
 import 'audio_track.dart';
 import 'saved_music.dart';
 import 'track_artwork.dart';
-
-const _mint = Color(0xFF8BE0C0);
-const _ratingGold = Color(0xFFBCAF85);
 
 class TrackRating extends StatefulWidget {
   const TrackRating({super.key, required this.uri});
@@ -49,7 +48,7 @@ class _TrackRatingState extends State<TrackRating> {
           rating == 0
               ? 'Fără rating'
               : 'Ratingul tău: ${formatRating(rating)} din 5',
-          style: const TextStyle(color: Colors.white60, fontSize: 12),
+          style: TextStyle(color: context.auraMuted, fontSize: 12),
         ),
         Wrap(
           alignment: WrapAlignment.center,
@@ -103,7 +102,9 @@ class _TrackRatingState extends State<TrackRating> {
                                 children: [
                                   Icon(
                                     Icons.star,
-                                    color: _ratingGold.withValues(alpha: .22),
+                                    color: context.auraRating.withValues(
+                                      alpha: .22,
+                                    ),
                                   ),
                                   if (rating >= star - .5)
                                     ClipRect(
@@ -112,9 +113,9 @@ class _TrackRatingState extends State<TrackRating> {
                                         alignment:
                                             AlignmentDirectional.centerStart,
                                         widthFactor: rating >= star ? 1 : .5,
-                                        child: const Icon(
+                                        child: Icon(
                                           Icons.star,
-                                          color: _ratingGold,
+                                          color: context.auraRating,
                                         ),
                                       ),
                                     ),
@@ -154,7 +155,7 @@ class TrackRatingBadge extends StatelessWidget {
         : Text(
             '★ ${formatRating(rating)}',
             semanticsLabel: 'Rating: ${formatRating(rating)} din 5',
-            style: const TextStyle(color: _ratingGold, fontSize: 12),
+            style: TextStyle(color: context.auraRating, fontSize: 12),
           );
   }
 }
@@ -193,9 +194,9 @@ class RatingSizeSettings extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 8),
-            const Text(
+            Text(
               'Glisează pe stele pentru rating în pași de jumătate de stea.',
-              style: TextStyle(color: Colors.white60, fontSize: 12),
+              style: TextStyle(color: context.auraMuted, fontSize: 12),
             ),
           ],
         ),
@@ -256,7 +257,7 @@ class RatingViewControls extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 12),
               child: Row(
                 children: [
-                  const Icon(Icons.star_rounded, color: _mint, size: 18),
+                  Icon(Icons.star_rounded, color: context.auraAccent, size: 18),
                   const SizedBox(width: 7),
                   Flexible(
                     child: Text(
@@ -281,8 +282,8 @@ class RatingViewControls extends StatelessWidget {
           icon: Icon(
             Icons.sort_rounded,
             color: data.ratingOrder == RatingOrder.original
-                ? Colors.white60
-                : _mint,
+                ? context.auraMuted
+                : context.auraAccent,
           ),
           itemBuilder: (_) => [
             CheckedPopupMenuItem(
@@ -401,7 +402,7 @@ class SavedTrackActions extends StatelessWidget {
           tooltip: favorite ? 'Elimină din favorite' : 'Adaugă la favorite',
           icon: Icon(
             favorite ? Icons.favorite_rounded : Icons.favorite_border_rounded,
-            color: favorite ? _mint : Colors.white54,
+            color: favorite ? context.auraAccent : context.auraMuted,
             size: 22,
           ),
           onPressed: !store.ready
@@ -687,7 +688,7 @@ class _SavedMusicScreenState extends State<SavedMusicScreen> {
               child: ListView(
                 children: [
                   ListTile(
-                    leading: const Icon(Icons.favorite, color: _mint),
+                    leading: Icon(Icons.favorite, color: context.auraAccent),
                     title: const Text('Favorite'),
                     subtitle: Text(
                       '${_trackCount(store.data.favorites.length)} ${store.data.favorites.length == 1 ? 'salvată' : 'salvate'}',
@@ -704,7 +705,10 @@ class _SavedMusicScreenState extends State<SavedMusicScreen> {
                     ),
                   for (final p in playlists)
                     ListTile(
-                      leading: const Icon(Icons.queue_music, color: _mint),
+                      leading: Icon(
+                        Icons.queue_music,
+                        color: context.auraAccent,
+                      ),
                       title: Text(p.name),
                       subtitle: Text(_trackCount(p.tracks.length)),
                       trailing: const Icon(Icons.chevron_right),
@@ -721,7 +725,7 @@ class _SavedMusicScreenState extends State<SavedMusicScreen> {
                   Expanded(
                     child: Text(
                       '${_trackCount(tracks.length)} ${tracks.length == 1 ? 'disponibilă' : 'disponibile'}',
-                      style: const TextStyle(color: Colors.white60),
+                      style: TextStyle(color: context.auraMuted),
                     ),
                   ),
                   if (selected != null)
@@ -757,7 +761,7 @@ class _SavedMusicScreenState extends State<SavedMusicScreen> {
                   missing == 1
                       ? 'O piesă nu este în folderele selectate sau nu mai este disponibilă. Referința ei este păstrată.'
                       : '$missing piese nu sunt în folderele selectate sau nu mai sunt disponibile. Referințele lor sunt păstrate.',
-                  style: const TextStyle(fontSize: 12, color: Colors.white60),
+                  style: TextStyle(fontSize: 12, color: context.auraMuted),
                 ),
               ),
             if (tracks.isNotEmpty)

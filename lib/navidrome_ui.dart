@@ -1,3 +1,5 @@
+import 'app_theme.dart';
+
 import 'package:flutter/material.dart';
 
 import 'navidrome.dart';
@@ -174,9 +176,9 @@ class _NavidromeSourcesScreenState extends State<NavidromeSourcesScreen> {
             label: const Text('Adaugă server Navidrome'),
           ),
           const SizedBox(height: 20),
-          const Text(
+          Text(
             'Piesele apar în Colecție după conectare. Redarea necesită internet. Favoritele, ratingurile și playlisturile Aura rămân locale; nu modificăm biblioteca serverului.',
-            style: TextStyle(color: Colors.white60),
+            style: TextStyle(color: context.auraMuted),
           ),
         ],
       ),
@@ -260,9 +262,9 @@ class _ConnectionDialogState extends State<_ConnectionDialog> {
               onSubmitted: (_) => _submit(),
             ),
             const SizedBox(height: 12),
-            const Text(
+            Text(
               'Datele de conectare sunt salvate în stocarea securizată a dispozitivului.',
-              style: TextStyle(fontSize: 12, color: Colors.white60),
+              style: TextStyle(fontSize: 12, color: context.auraMuted),
             ),
             if (_error != null)
               Text(

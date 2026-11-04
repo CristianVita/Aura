@@ -77,7 +77,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       onPressed: () => setState(_controller.clear),
                     ),
               filled: true,
-              fillColor: _mint.withValues(alpha: .14),
+              fillColor: context.auraAccent.withValues(alpha: .14),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(28),
                 borderSide: BorderSide.none,
@@ -138,7 +138,7 @@ class _SearchScreenState extends State<SearchScreen> {
               if (query.isNotEmpty)
                 Text(
                   '${matches.length} rezultate',
-                  style: const TextStyle(color: _muted, fontSize: 12),
+                  style: TextStyle(color: context.auraMuted, fontSize: 12),
                 ),
             ],
           ),
@@ -168,12 +168,12 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                     const SizedBox(height: 10),
                     if (_recent.isEmpty)
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.all(24),
                         child: Text(
                           'Caută un titlu, artist sau album. Căutările confirmate rămân aici în această sesiune.',
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: _muted),
+                          style: TextStyle(color: context.auraMuted),
                         ),
                       ),
                     for (final recent in List<String>.of(_recent))

@@ -1,8 +1,5 @@
 part of 'main.dart';
 
-const _settingsAccent = Color(0xFFA9C7ED);
-const _settingsSurface = Color(0xFF252E39);
-
 void _settingsHelp(BuildContext context) => showDialog<void>(
   context: context,
   builder: (context) => AlertDialog(
@@ -22,14 +19,14 @@ void _settingsHelp(BuildContext context) => showDialog<void>(
 Future<void> _settingsPage(
   BuildContext context,
   String title,
-  List<Widget> children,
+  List<Widget> Function(BuildContext) buildChildren,
 ) => Navigator.push<void>(
   context,
   MaterialPageRoute(
-    builder: (_) => Scaffold(
-      backgroundColor: _background,
+    builder: (context) => Scaffold(
+      backgroundColor: context.auraBackground,
       appBar: AppBar(
-        backgroundColor: _background,
+        backgroundColor: context.auraBackground,
         title: Text(title),
         actions: [
           IconButton(
@@ -41,7 +38,7 @@ Future<void> _settingsPage(
       ),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(16, 20, 16, 28),
-        children: children,
+        children: buildChildren(context),
       ),
     ),
   ),
@@ -91,274 +88,296 @@ class SettingsScreen extends StatelessWidget {
           _SettingsRow(
             icon: Icons.touch_app_outlined,
             title: 'Interfață',
-            onTap: () => _settingsPage(context, 'Setări de interfață', [
-              _SettingsGroup(
-                title: 'Stilul aplicației',
-                collapsible: true,
-                children: [
-                  _SettingsRow(
-                    icon: Icons.palette_outlined,
-                    title: 'Temă, font și culori',
-                    onTap: null,
-                    pending: true,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 24),
-              _SettingsGroup(
-                title: 'General',
-                collapsible: true,
-                children: [
-                  _SettingsRow(
-                    icon: Icons.folder_outlined,
-                    title: 'Navigare și ecran de pornire',
-                    onTap: null,
-                    pending: true,
-                  ),
-                  _SettingsRow(
-                    icon: Icons.view_list_outlined,
-                    title: 'Liste media',
-                    onTap: filtersReady ? onFilters : null,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 24),
-              _SettingsGroup(
-                title: 'Ecrane de redare',
-                collapsible: true,
-                children: [
-                  _SettingsRow(
-                    icon: Icons.play_circle_outline,
-                    title: 'Ecran de redare',
-                    onTap: () => _settingsPage(context, 'Ecran de redare', [
-                      const _SettingsGroup(
-                        title: 'Ratingul pieselor',
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(8),
-                            child: RatingSizeSettings(),
+            onTap: () => _settingsPage(
+              context,
+              'Setări de interfață',
+              (context) => [
+                _SettingsGroup(
+                  title: 'Stilul aplicației',
+                  collapsible: true,
+                  children: [
+                    _SettingsRow(
+                      icon: Icons.palette_outlined,
+                      title: context.appearanceStrings.appearanceTitle,
+                      onTap: () => Navigator.push<void>(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const AppearanceSettingsScreen(),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 24),
+                _SettingsGroup(
+                  title: 'General',
+                  collapsible: true,
+                  children: [
+                    _SettingsRow(
+                      icon: Icons.folder_outlined,
+                      title: 'Navigare și ecran de pornire',
+                      onTap: null,
+                      pending: true,
+                    ),
+                    _SettingsRow(
+                      icon: Icons.view_list_outlined,
+                      title: 'Liste media',
+                      onTap: filtersReady ? onFilters : null,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 24),
+                _SettingsGroup(
+                  title: 'Ecrane de redare',
+                  collapsible: true,
+                  children: [
+                    _SettingsRow(
+                      icon: Icons.play_circle_outline,
+                      title: 'Ecran de redare',
+                      onTap: () => _settingsPage(
+                        context,
+                        'Ecran de redare',
+                        (context) => [
+                          const _SettingsGroup(
+                            title: 'Ratingul pieselor',
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.all(8),
+                                child: RatingSizeSettings(),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            'Glisează pe stele pentru rating în pași de jumătate de stea. Dimensiunea se aplică în player și în informațiile piesei.',
+                            style: TextStyle(
+                              color: context.auraMuted,
+                              height: 1.5,
+                            ),
                           ),
                         ],
                       ),
-                      const SizedBox(height: 16),
-                      const Text(
-                        'Glisează pe stele pentru rating în pași de jumătate de stea. Dimensiunea se aplică în player și în informațiile piesei.',
-                        style: TextStyle(color: _muted, height: 1.5),
-                      ),
-                    ]),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 24),
-              _SettingsGroup(
-                title: 'Setări pagini',
-                collapsible: true,
-                children: [
-                  _SettingsRow(
-                    icon: Icons.home_outlined,
-                    title: 'Pagina Acasă',
-                    onTap: null,
-                    pending: true,
-                  ),
-                  _SettingsRow(
-                    icon: Icons.library_music_outlined,
-                    title: 'Pagina Bibliotecă',
-                    onTap: null,
-                    pending: true,
-                  ),
-                  _SettingsRow(
-                    icon: Icons.album_outlined,
-                    title: 'Pagina Album',
-                    onTap: null,
-                    pending: true,
-                  ),
-                  _SettingsRow(
-                    icon: Icons.person_outline,
-                    title: 'Pagina Artist',
-                    onTap: null,
-                    pending: true,
-                  ),
-                  _SettingsRow(
-                    icon: Icons.style_outlined,
-                    title: 'Pagina Gen muzical',
-                    onTap: null,
-                    pending: true,
-                  ),
-                  _SettingsRow(
-                    icon: Icons.queue_music,
-                    title: 'Pagina Playlist',
-                    onTap: null,
-                    pending: true,
-                  ),
-                  _SettingsRow(
-                    icon: Icons.search,
-                    title: 'Pagina Căutare',
-                    onTap: null,
-                    pending: true,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 24),
-              _SettingsGroup(
-                title: 'Avansat',
-                collapsible: true,
-                children: [
-                  _SettingsRow(
-                    icon: Icons.settings_outlined,
-                    title: 'Setări avansate de interfață',
-                    onTap: null,
-                    pending: true,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 24),
-            ]),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 24),
+                _SettingsGroup(
+                  title: 'Setări pagini',
+                  collapsible: true,
+                  children: [
+                    _SettingsRow(
+                      icon: Icons.home_outlined,
+                      title: 'Pagina Acasă',
+                      onTap: null,
+                      pending: true,
+                    ),
+                    _SettingsRow(
+                      icon: Icons.library_music_outlined,
+                      title: 'Pagina Bibliotecă',
+                      onTap: null,
+                      pending: true,
+                    ),
+                    _SettingsRow(
+                      icon: Icons.album_outlined,
+                      title: 'Pagina Album',
+                      onTap: null,
+                      pending: true,
+                    ),
+                    _SettingsRow(
+                      icon: Icons.person_outline,
+                      title: 'Pagina Artist',
+                      onTap: null,
+                      pending: true,
+                    ),
+                    _SettingsRow(
+                      icon: Icons.style_outlined,
+                      title: 'Pagina Gen muzical',
+                      onTap: null,
+                      pending: true,
+                    ),
+                    _SettingsRow(
+                      icon: Icons.queue_music,
+                      title: 'Pagina Playlist',
+                      onTap: null,
+                      pending: true,
+                    ),
+                    _SettingsRow(
+                      icon: Icons.search,
+                      title: 'Pagina Căutare',
+                      onTap: null,
+                      pending: true,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 24),
+                _SettingsGroup(
+                  title: 'Avansat',
+                  collapsible: true,
+                  children: [
+                    _SettingsRow(
+                      icon: Icons.settings_outlined,
+                      title: 'Setări avansate de interfață',
+                      onTap: null,
+                      pending: true,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 24),
+              ],
+            ),
           ),
           _SettingsRow(
             icon: Icons.radio_outlined,
             title: 'Redare',
-            onTap: () => _settingsPage(context, 'Setări de redare', [
-              _SettingsGroup(
-                title: '',
-                children: [
-                  _SettingsRow(
-                    icon: Icons.headphones_outlined,
-                    title: 'Setări de ieșire',
-                    onTap: () => Navigator.push<void>(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => PlaybackSettingsScreen(
-                          controls: controls,
-                          section: PlaybackSettingsSection.output,
+            onTap: () => _settingsPage(
+              context,
+              'Setări de redare',
+              (context) => [
+                _SettingsGroup(
+                  title: '',
+                  children: [
+                    _SettingsRow(
+                      icon: Icons.headphones_outlined,
+                      title: 'Setări de ieșire',
+                      onTap: () => Navigator.push<void>(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => PlaybackSettingsScreen(
+                            controls: controls,
+                            section: PlaybackSettingsSection.output,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  _SettingsRow(
-                    icon: Icons.graphic_eq,
-                    title: 'Redare',
-                    onTap: () => Navigator.push<void>(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => PlaybackSettingsScreen(
-                          controls: controls,
-                          section: PlaybackSettingsSection.playback,
+                    _SettingsRow(
+                      icon: Icons.graphic_eq,
+                      title: 'Redare',
+                      onTap: () => Navigator.push<void>(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => PlaybackSettingsScreen(
+                            controls: controls,
+                            section: PlaybackSettingsSection.playback,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  _SettingsRow(
-                    icon: Icons.auto_awesome_outlined,
-                    title: 'Acțiuni automate',
-                    onTap: () => Navigator.push<void>(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => PlaybackSettingsScreen(
-                          controls: controls,
-                          section: PlaybackSettingsSection.timer,
+                    _SettingsRow(
+                      icon: Icons.auto_awesome_outlined,
+                      title: 'Acțiuni automate',
+                      onTap: () => Navigator.push<void>(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => PlaybackSettingsScreen(
+                            controls: controls,
+                            section: PlaybackSettingsSection.timer,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  _SettingsRow(
-                    icon: Icons.tune,
-                    title: 'Decodare și transcodare',
-                    onTap: null,
-                    pending: true,
-                  ),
-                  _SettingsRow(
-                    icon: Icons.compare_arrows,
-                    title: 'Tranziții',
-                    onTap: () => Navigator.push<void>(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => const _AudioFeatureSettings(
-                          page: _AudioFeaturePage.transitions,
+                    _SettingsRow(
+                      icon: Icons.tune,
+                      title: 'Decodare și transcodare',
+                      onTap: null,
+                      pending: true,
+                    ),
+                    _SettingsRow(
+                      icon: Icons.compare_arrows,
+                      title: 'Tranziții',
+                      onTap: () => Navigator.push<void>(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const _AudioFeatureSettings(
+                            page: _AudioFeaturePage.transitions,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  _SettingsRow(
-                    icon: Icons.info_outline,
-                    title: 'Focalizare audio',
-                    onTap: null,
-                    pending: true,
-                  ),
-                  _SettingsRow(
-                    icon: Icons.headphones_outlined,
-                    title: 'Butoanele căștilor',
-                    onTap: () => Navigator.push<void>(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => const _AudioFeatureSettings(
-                          page: _AudioFeaturePage.headset,
+                    _SettingsRow(
+                      icon: Icons.info_outline,
+                      title: 'Focalizare audio',
+                      onTap: null,
+                      pending: true,
+                    ),
+                    _SettingsRow(
+                      icon: Icons.headphones_outlined,
+                      title: 'Butoanele căștilor',
+                      onTap: () => Navigator.push<void>(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const _AudioFeatureSettings(
+                            page: _AudioFeaturePage.headset,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  _SettingsRow(
-                    icon: Icons.view_sidebar_outlined,
-                    title: 'Butoane notificare și sesiune media',
-                    onTap: () => Navigator.push<void>(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => const _AudioFeatureSettings(
-                          page: _AudioFeaturePage.notification,
+                    _SettingsRow(
+                      icon: Icons.view_sidebar_outlined,
+                      title: 'Butoane notificare și sesiune media',
+                      onTap: () => Navigator.push<void>(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const _AudioFeatureSettings(
+                            page: _AudioFeaturePage.notification,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  _SettingsRow(
-                    icon: Icons.settings_outlined,
-                    title: 'Setări avansate de redare',
-                    onTap: null,
-                    pending: true,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 24),
-            ]),
+                    _SettingsRow(
+                      icon: Icons.settings_outlined,
+                      title: 'Setări avansate de redare',
+                      onTap: null,
+                      pending: true,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 24),
+              ],
+            ),
           ),
           _SettingsRow(
             icon: Icons.download_outlined,
             title: 'Offline, cache și descărcări',
-            onTap: () =>
-                _settingsPage(context, 'Offline, cache și descărcări', [
-                  _SettingsGroup(
-                    title: '',
-                    children: [
-                      _SettingsRow(
-                        icon: Icons.download_outlined,
-                        title: 'General',
-                        onTap: null,
-                        pending: true,
-                      ),
-                      _SettingsRow(
-                        icon: Icons.music_note_outlined,
-                        title: 'Media',
-                        onTap: null,
-                        pending: true,
-                      ),
-                      _SettingsRow(
-                        icon: Icons.play_arrow_outlined,
-                        title: 'Redare offline de pe server',
-                        onTap: null,
-                        pending: true,
-                      ),
-                      _SettingsRow(
-                        icon: Icons.image_outlined,
-                        title: 'Imagini',
-                        onTap: null,
-                        pending: true,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 24),
-                  const Text(
-                    'Piesele locale funcționează fără internet. Descărcarea pieselor de pe server și administrarea cache-ului sunt în pregătire.',
-                    style: TextStyle(color: _muted, height: 1.5),
-                  ),
-                ]),
+            onTap: () => _settingsPage(
+              context,
+              'Offline, cache și descărcări',
+              (context) => [
+                _SettingsGroup(
+                  title: '',
+                  children: [
+                    _SettingsRow(
+                      icon: Icons.download_outlined,
+                      title: 'General',
+                      onTap: null,
+                      pending: true,
+                    ),
+                    _SettingsRow(
+                      icon: Icons.music_note_outlined,
+                      title: 'Media',
+                      onTap: null,
+                      pending: true,
+                    ),
+                    _SettingsRow(
+                      icon: Icons.play_arrow_outlined,
+                      title: 'Redare offline de pe server',
+                      onTap: null,
+                      pending: true,
+                    ),
+                    _SettingsRow(
+                      icon: Icons.image_outlined,
+                      title: 'Imagini',
+                      onTap: null,
+                      pending: true,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 24),
+                Text(
+                  'Piesele locale funcționează fără internet. Descărcarea pieselor de pe server și administrarea cache-ului sunt în pregătire.',
+                  style: TextStyle(color: context.auraMuted, height: 1.5),
+                ),
+              ],
+            ),
           ),
           _SettingsRow(
             icon: Icons.directions_car_outlined,
@@ -369,19 +388,23 @@ class SettingsScreen extends StatelessWidget {
           _SettingsRow(
             icon: Icons.memory_outlined,
             title: 'Avansat',
-            onTap: () => _settingsPage(context, 'Setări avansate', [
-              _SettingsGroup(
-                title: 'Bibliotecă',
-                children: [
-                  _SettingsRow(
-                    icon: Icons.filter_alt_outlined,
-                    title: 'Filtre bibliotecă',
-                    onTap: filtersReady ? onFilters : null,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 24),
-            ]),
+            onTap: () => _settingsPage(
+              context,
+              'Setări avansate',
+              (context) => [
+                _SettingsGroup(
+                  title: 'Bibliotecă',
+                  children: [
+                    _SettingsRow(
+                      icon: Icons.filter_alt_outlined,
+                      title: 'Filtre bibliotecă',
+                      onTap: filtersReady ? onFilters : null,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 24),
+              ],
+            ),
           ),
         ],
       ),
@@ -397,27 +420,31 @@ class SettingsScreen extends StatelessWidget {
           _SettingsRow(
             icon: Icons.sync,
             title: 'Manager de sincronizare',
-            onTap: () => _settingsPage(context, 'Manager de sincronizare', [
-              _SettingsGroup(
-                title: 'Bibliotecă',
-                children: [
-                  _SettingsRow(
-                    icon: Icons.sync,
-                    title: isScanning
-                        ? 'Se actualizează…'
-                        : 'Actualizează biblioteca',
-                    subtitle: sourceSummary,
-                    onTap: isScanning ? null : onScan,
-                  ),
-                  _SettingsRow(
-                    icon: Icons.dns_outlined,
-                    title: 'Actualizează sursele Navidrome',
-                    onTap: isScanning ? null : onManageSources,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 24),
-            ]),
+            onTap: () => _settingsPage(
+              context,
+              'Manager de sincronizare',
+              (context) => [
+                _SettingsGroup(
+                  title: 'Bibliotecă',
+                  children: [
+                    _SettingsRow(
+                      icon: Icons.sync,
+                      title: isScanning
+                          ? 'Se actualizează…'
+                          : 'Actualizează biblioteca',
+                      subtitle: sourceSummary,
+                      onTap: isScanning ? null : onScan,
+                    ),
+                    _SettingsRow(
+                      icon: Icons.dns_outlined,
+                      title: 'Actualizează sursele Navidrome',
+                      onTap: isScanning ? null : onManageSources,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 24),
+              ],
+            ),
           ),
           _SettingsRow(
             icon: Icons.download_done_outlined,
@@ -474,12 +501,16 @@ class SettingsScreen extends StatelessWidget {
           _SettingsRow(
             icon: Icons.description_outlined,
             title: 'Noutăți',
-            onTap: () => _settingsPage(context, 'Noutăți Aura', [
-              const Text(
-                'Bibliotecă locală și Navidrome • Ratinguri în jumătăți de stea • Istoric, playlisturi și favorite • Crossfade, temporizator și egalizator Android • Ecrane de până la 144 Hz',
-                style: TextStyle(height: 1.8),
-              ),
-            ]),
+            onTap: () => _settingsPage(
+              context,
+              'Noutăți Aura',
+              (context) => [
+                const Text(
+                  'Bibliotecă locală și Navidrome • Ratinguri în jumătăți de stea • Istoric, playlisturi și favorite • Crossfade, temporizator și egalizator Android • Ecrane de până la 144 Hz',
+                  style: TextStyle(height: 1.8),
+                ),
+              ],
+            ),
           ),
           _SettingsRow(
             icon: Icons.info_outline,
@@ -537,15 +568,15 @@ class _SettingsGroupState extends State<_SettingsGroup> {
                         Expanded(
                           child: Text(
                             widget.title,
-                            style: const TextStyle(
-                              color: _settingsAccent,
+                            style: TextStyle(
+                              color: context.auraAccent,
                               fontSize: 16,
                             ),
                           ),
                         ),
                         Icon(
                           _expanded ? Icons.expand_less : Icons.expand_more,
-                          color: _settingsAccent,
+                          color: context.auraAccent,
                           size: 20,
                         ),
                       ],
@@ -554,8 +585,8 @@ class _SettingsGroupState extends State<_SettingsGroup> {
                 )
               : Text(
                   widget.title,
-                  style: const TextStyle(
-                    color: _settingsAccent,
+                  style: TextStyle(
+                    color: context.auraAccent,
                     fontSize: 18,
                     fontWeight: FontWeight.w400,
                   ),
@@ -563,14 +594,18 @@ class _SettingsGroupState extends State<_SettingsGroup> {
         ),
       if (_expanded || !widget.collapsible)
         Material(
-          color: _settingsSurface,
+          color: context.auraSettingsSurface,
           borderRadius: BorderRadius.circular(18),
           clipBehavior: Clip.antiAlias,
           child: Column(
             children: [
               for (var index = 0; index < widget.children.length; index++) ...[
                 if (index > 0)
-                  const Divider(height: 3, thickness: 3, color: _background),
+                  Divider(
+                    height: 3,
+                    thickness: 3,
+                    color: context.auraBackground,
+                  ),
                 widget.children[index],
               ],
             ],
@@ -602,21 +637,24 @@ class _SettingsRow extends StatelessWidget {
       icon,
       size: 22,
       color: onTap == null
-          ? _muted.withValues(alpha: .5)
-          : const Color(0xFFDEE3EB),
+          ? context.auraMuted.withValues(alpha: .5)
+          : context.auraOnSurface,
     ),
     title: Text(
       title,
       style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
     ),
     subtitle: pending
-        ? const Text(
+        ? Text(
             'În pregătire',
-            style: TextStyle(color: _muted, fontSize: 11),
+            style: TextStyle(color: context.auraMuted, fontSize: 11),
           )
         : subtitle == null
         ? null
-        : Text(subtitle!, style: const TextStyle(color: _muted, fontSize: 12)),
+        : Text(
+            subtitle!,
+            style: TextStyle(color: context.auraMuted, fontSize: 12),
+          ),
     onTap: onTap,
   );
 }

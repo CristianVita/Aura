@@ -8,6 +8,9 @@ import 'package:flutter/services.dart';
 import 'package:just_audio/just_audio.dart';
 
 import 'audio_runtime.dart';
+import 'app_theme.dart';
+import 'appearance_app.dart';
+import 'appearance_settings_screen.dart';
 import 'aura_backup.dart';
 import 'backup_screen.dart';
 import 'audio_features.dart';
@@ -32,10 +35,6 @@ part 'settings_screen.dart';
 part 'playback_settings_ui.dart';
 part 'audio_features_ui.dart';
 
-const _background = Color(0xFF0B1014);
-const _surface = Color(0xFF141D22);
-const _mint = Color(0xFF8BE0C0);
-const _muted = Color(0xFFA4B3B8);
 const _audioLibraryChannel = AudioLibrary();
 
 enum _LibraryMode { songs, albums, artists, playlists, favorites }
@@ -118,23 +117,7 @@ class _SoundLibraryAppState extends State<SoundLibraryApp> {
 
   @override
   Widget build(BuildContext context) {
-    return SavedMusicScope(
-      store: _savedMusic,
-      child: MaterialApp(
-        title: 'Aura',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          useMaterial3: true,
-          brightness: Brightness.dark,
-          scaffoldBackgroundColor: _background,
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: _mint,
-            brightness: Brightness.dark,
-          ).copyWith(surface: _surface),
-        ),
-        home: const PlayerShell(),
-      ),
-    );
+    return AuraAppearanceApp(store: _savedMusic, home: const PlayerShell());
   }
 }
 
@@ -532,7 +515,7 @@ class _PlayerShellState extends State<PlayerShell> {
     await showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
-      backgroundColor: _surface,
+      backgroundColor: context.auraSurface,
       builder: (context) =>
           _NowPlayingSheet(player: _player, controls: _playbackSettings!),
     );
@@ -709,15 +692,15 @@ class _PlayerShellState extends State<PlayerShell> {
             children: [
               NavigationRail(
                 extended: true,
-                backgroundColor: _surface,
-                leading: const Padding(
+                backgroundColor: context.auraSurface,
+                leading: Padding(
                   padding: EdgeInsets.symmetric(vertical: 24),
                   child: Text(
                     'Aura',
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
-                      color: _mint,
+                      color: context.auraAccent,
                     ),
                   ),
                 ),
@@ -750,9 +733,9 @@ class _PlayerShellState extends State<PlayerShell> {
                         child: ConstrainedBox(
                           constraints: const BoxConstraints(maxWidth: 1100),
                           child: _isLoadingLibrary
-                              ? const Center(
+                              ? Center(
                                   child: CircularProgressIndicator(
-                                    color: _mint,
+                                    color: context.auraAccent,
                                   ),
                                 )
                               : _page(),
@@ -776,7 +759,9 @@ class _PlayerShellState extends State<PlayerShell> {
     return Scaffold(
       body: SafeArea(
         child: _isLoadingLibrary
-            ? const Center(child: CircularProgressIndicator(color: _mint))
+            ? Center(
+                child: CircularProgressIndicator(color: context.auraAccent),
+              )
             : _page(),
       ),
       bottomNavigationBar: Column(
@@ -791,8 +776,8 @@ class _PlayerShellState extends State<PlayerShell> {
           NavigationBar(
             height: 56,
             labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-            backgroundColor: _surface,
-            indicatorColor: _mint.withValues(alpha: 0.16),
+            backgroundColor: context.auraSurface,
+            indicatorColor: context.auraAccent.withValues(alpha: 0.16),
             selectedIndex: _selectedTab,
             onDestinationSelected: _selectTab,
             destinations: const [
@@ -872,7 +857,7 @@ class _HomeScreen extends StatelessWidget {
                 trackCount == 0
                     ? 'Unde se află muzica ta?'
                     : '$trackCount de piese, în ritmul tău.',
-                style: const TextStyle(color: _muted, fontSize: 14),
+                style: TextStyle(color: context.auraMuted, fontSize: 14),
               ),
               const SizedBox(height: 22),
               if (trackCount == 0)
@@ -958,7 +943,7 @@ class _TopBar extends StatelessWidget {
           width: 42,
           height: 42,
           decoration: BoxDecoration(
-            color: _mint.withValues(alpha: 0.12),
+            color: context.auraAccent.withValues(alpha: 0.12),
             borderRadius: BorderRadius.circular(14),
           ),
           child: ClipRRect(
@@ -967,33 +952,36 @@ class _TopBar extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 12),
-        const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'AURA',
-              style: TextStyle(
-                color: _muted,
-                fontSize: 10,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 1.7,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'AURA',
+                style: TextStyle(
+                  color: context.auraMuted,
+                  fontSize: 10,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 1.7,
+                ),
               ),
-            ),
-            SizedBox(height: 3),
-            Text(
-              'Biblioteca ta',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-            ),
-          ],
+              SizedBox(height: 3),
+              Text(
+                'Biblioteca ta',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+              ),
+            ],
+          ),
         ),
-        const Spacer(),
         IconButton.filledTonal(
           tooltip: 'Caută',
           onPressed: onSearch,
           icon: const Icon(Icons.search_rounded),
           style: IconButton.styleFrom(
-            backgroundColor: _surface,
-            foregroundColor: Colors.white,
+            backgroundColor: context.auraSurface,
+            foregroundColor: context.auraOnSurface,
           ),
         ),
       ],
@@ -1016,13 +1004,16 @@ class _SourceCard extends StatelessWidget {
         onTap: isScanning ? null : onTap,
         borderRadius: BorderRadius.circular(26),
         child: Ink(
-          height: 218,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(26),
-            gradient: const LinearGradient(
+            gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [Color(0xFF183A37), Color(0xFF14272D), Color(0xFF17202B)],
+              colors: [
+                context.auraAccent.withValues(alpha: .2),
+                context.auraSurface,
+                context.auraSettingsSurface,
+              ],
             ),
           ),
           child: Stack(
@@ -1035,7 +1026,7 @@ class _SourceCard extends StatelessWidget {
                   height: 220,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: _mint.withValues(alpha: 0.08),
+                    color: context.auraAccent.withValues(alpha: 0.08),
                   ),
                 ),
               ),
@@ -1045,12 +1036,13 @@ class _SourceCard extends StatelessWidget {
                 child: Icon(
                   Icons.graphic_eq_rounded,
                   size: 116,
-                  color: Colors.white.withValues(alpha: 0.06),
+                  color: context.auraOnSurface.withValues(alpha: 0.06),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(21),
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
@@ -1059,20 +1051,20 @@ class _SourceCard extends StatelessWidget {
                         vertical: 6,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.black.withValues(alpha: 0.18),
+                        color: context.auraAccent.withValues(alpha: .1),
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: const Text(
+                      child: Text(
                         'ÎNCEPE CU O SURSĂ',
                         style: TextStyle(
-                          color: _mint,
+                          color: context.auraAccent,
                           fontSize: 10,
                           fontWeight: FontWeight.w800,
                           letterSpacing: 1.2,
                         ),
                       ),
                     ),
-                    const Spacer(),
+                    const SizedBox(height: 20),
                     const Text(
                       'Adaugă muzica ta',
                       style: TextStyle(
@@ -1086,18 +1078,18 @@ class _SourceCard extends StatelessWidget {
                       AudioLibrary.isWindows
                           ? 'PC sau server Navidrome'
                           : 'Telefon sau server Navidrome',
-                      style: TextStyle(color: Color(0xFFC2D1D0), fontSize: 14),
+                      style: TextStyle(color: context.auraMuted, fontSize: 14),
                     ),
                     const SizedBox(height: 15),
                     FilledButton.icon(
                       onPressed: isScanning ? null : onTap,
                       icon: isScanning
-                          ? const SizedBox(
+                          ? SizedBox(
                               width: 18,
                               height: 18,
                               child: CircularProgressIndicator(
                                 strokeWidth: 2,
-                                color: Color(0xFF10211D),
+                                color: context.auraOnAccent,
                               ),
                             )
                           : const Icon(Icons.add_rounded, size: 19),
@@ -1105,8 +1097,8 @@ class _SourceCard extends StatelessWidget {
                         isScanning ? 'Se scanează...' : 'Adaugă o sursă',
                       ),
                       style: FilledButton.styleFrom(
-                        backgroundColor: _mint,
-                        foregroundColor: const Color(0xFF10211D),
+                        backgroundColor: context.auraAccent,
+                        foregroundColor: context.auraOnAccent,
                         padding: const EdgeInsets.symmetric(
                           horizontal: 15,
                           vertical: 11,
@@ -1134,13 +1126,18 @@ class _SectionTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
-          title,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+        Expanded(
+          child: Text(
+            title,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+          ),
         ),
-        const Spacer(),
+        const SizedBox(width: 8),
         if (trailing != null)
-          Text(trailing!, style: const TextStyle(color: _muted, fontSize: 12)),
+          Text(
+            trailing!,
+            style: TextStyle(color: context.auraMuted, fontSize: 12),
+          ),
       ],
     );
   }
@@ -1166,14 +1163,14 @@ class _BrowseGrid extends StatelessWidget {
         itemCount: items.length + (onSources == null ? 0 : 1),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: constraints.maxWidth >= 650 ? 6 : 3,
-          mainAxisExtent: 112,
+          mainAxisExtent: 88 + MediaQuery.textScalerOf(context).scale(12) * 2,
           mainAxisSpacing: 8,
           crossAxisSpacing: 8,
         ),
         itemBuilder: (context, index) {
           final item = index < items.length ? items[index] : null;
           return Material(
-            color: _surface,
+            color: context.auraSurface,
             borderRadius: BorderRadius.circular(8),
             child: InkWell(
               borderRadius: BorderRadius.circular(8),
@@ -1185,7 +1182,7 @@ class _BrowseGrid extends StatelessWidget {
                   children: [
                     Icon(
                       item?.icon ?? Icons.folder_open_outlined,
-                      color: _mint,
+                      color: context.auraAccent,
                       size: 26,
                     ),
                     const SizedBox(height: 16),
@@ -1231,7 +1228,7 @@ class _LibraryOverview extends StatelessWidget {
       const SizedBox(height: 18),
       Text(
         '$trackCount de piese în bibliotecă',
-        style: const TextStyle(color: _muted),
+        style: TextStyle(color: context.auraMuted),
       ),
     ],
   );
@@ -1252,7 +1249,7 @@ class _HomeShortcuts extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 3),
             child: Material(
-              color: _mint.withValues(alpha: .15),
+              color: context.auraAccent.withValues(alpha: .15),
               borderRadius: BorderRadius.circular(8),
               child: InkWell(
                 onTap: () => onBrowse(mode),
@@ -1261,7 +1258,7 @@ class _HomeShortcuts extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 17),
                   child: Column(
                     children: [
-                      Icon(mode.icon, color: _mint),
+                      Icon(mode.icon, color: context.auraAccent),
                       const SizedBox(height: 9),
                       Text(mode.label, style: const TextStyle(fontSize: 12)),
                     ],
@@ -1283,18 +1280,20 @@ class _EmptyListeningCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: _surface,
+        color: context.auraSurface,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.04)),
+        border: Border.all(
+          color: context.auraOnSurface.withValues(alpha: 0.04),
+        ),
       ),
-      child: const Row(
+      child: Row(
         children: [
-          Icon(Icons.history_rounded, color: _muted, size: 24),
+          Icon(Icons.history_rounded, color: context.auraMuted, size: 24),
           SizedBox(width: 13),
           Expanded(
             child: Text(
               'Istoricul tău de ascultare va apărea aici.',
-              style: TextStyle(color: _muted, height: 1.4),
+              style: TextStyle(color: context.auraMuted, height: 1.4),
             ),
           ),
         ],
@@ -1386,7 +1385,7 @@ class _CollectionScreen extends StatelessWidget {
                     Text(
                       'COLECȚIA TA',
                       style: TextStyle(
-                        color: _mint,
+                        color: context.auraAccent,
                         fontSize: 10,
                         fontWeight: FontWeight.w800,
                         letterSpacing: 1.6,
@@ -1438,7 +1437,7 @@ class _CollectionScreen extends StatelessWidget {
               showGroups
                   ? '${groups.length} ${groups.length == 1 ? 'element' : 'elemente'}'
                   : '${filteredTracks.length} ${filteredTracks.length == 1 ? 'piesă găsită' : 'piese găsite'}',
-              style: const TextStyle(color: _muted, fontSize: 13),
+              style: TextStyle(color: context.auraMuted, fontSize: 13),
             ),
           ),
         ),
@@ -1460,7 +1459,7 @@ class _CollectionScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final entry = groups.entries.elementAt(index);
                     return Card(
-                      color: _surface,
+                      color: context.auraSurface,
                       margin: EdgeInsets.zero,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
@@ -1480,11 +1479,14 @@ class _CollectionScreen extends StatelessWidget {
                         ),
                         subtitle: Text(
                           '${entry.value.length} ${entry.value.length == 1 ? 'piesă' : 'piese'}',
-                          style: const TextStyle(color: _muted, fontSize: 12),
+                          style: TextStyle(
+                            color: context.auraMuted,
+                            fontSize: 12,
+                          ),
                         ),
-                        trailing: const Icon(
+                        trailing: Icon(
                           Icons.chevron_right_rounded,
-                          color: _muted,
+                          color: context.auraMuted,
                         ),
                       ),
                     );
@@ -1523,7 +1525,7 @@ class _AudioTrackTile extends StatelessWidget {
     ].join(' · ');
 
     return Card(
-      color: _surface,
+      color: context.auraSurface,
       margin: EdgeInsets.zero,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: ListTile(
@@ -1548,7 +1550,7 @@ class _AudioTrackTile extends StatelessWidget {
                 details.isEmpty ? 'Artist necunoscut' : details,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(color: _muted, fontSize: 12),
+                style: TextStyle(color: context.auraMuted, fontSize: 12),
               ),
             ),
             TrackRatingBadge(uri: track.uri),
@@ -1557,7 +1559,10 @@ class _AudioTrackTile extends StatelessWidget {
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(duration, style: const TextStyle(color: _muted, fontSize: 12)),
+            Text(
+              duration,
+              style: TextStyle(color: context.auraMuted, fontSize: 12),
+            ),
             SavedTrackActions(track: track),
           ],
         ),
@@ -1603,7 +1608,7 @@ Future<void> _showTrackDetails(BuildContext context, AudioTrack track) {
   return showModalBottomSheet<void>(
     context: context,
     isScrollControlled: true,
-    backgroundColor: _surface,
+    backgroundColor: context.auraSurface,
     builder: (context) => SafeArea(
       child: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(24, 22, 24, 24),
@@ -1654,7 +1659,7 @@ Future<void> _showTrackDetails(BuildContext context, AudioTrack track) {
                   children: [
                     Text(
                       detail.$1,
-                      style: const TextStyle(color: _muted, fontSize: 12),
+                      style: TextStyle(color: context.auraMuted, fontSize: 12),
                     ),
                     const SizedBox(height: 4),
                     SelectableText(detail.$2),
@@ -1684,7 +1689,7 @@ class _MiniPlayer extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
       child: Material(
-        color: _mint.withValues(alpha: .12),
+        color: context.auraAccent.withValues(alpha: .12),
         borderRadius: BorderRadius.circular(12),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
@@ -1720,7 +1725,10 @@ class _MiniPlayer extends StatelessWidget {
                                 : track.artist,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(color: _muted, fontSize: 12),
+                            style: TextStyle(
+                              color: context.auraMuted,
+                              fontSize: 12,
+                            ),
                           ),
                         ],
                       ),
@@ -1739,7 +1747,7 @@ class _MiniPlayer extends StatelessWidget {
                             isPlaying
                                 ? Icons.pause_rounded
                                 : Icons.play_arrow_rounded,
-                            color: _mint,
+                            color: context.auraAccent,
                             size: 30,
                           ),
                         );
@@ -1751,7 +1759,10 @@ class _MiniPlayer extends StatelessWidget {
                       onPressed: player.hasNext
                           ? () => _audioRuntime.skip(true)
                           : null,
-                      icon: const Icon(Icons.skip_next_rounded, color: _muted),
+                      icon: Icon(
+                        Icons.skip_next_rounded,
+                        color: context.auraMuted,
+                      ),
                     ),
                   ],
                 ),
@@ -1770,8 +1781,10 @@ class _MiniPlayer extends StatelessWidget {
                         return LinearProgressIndicator(
                           value: value,
                           minHeight: 2,
-                          backgroundColor: Colors.white.withValues(alpha: 0.08),
-                          color: _mint,
+                          backgroundColor: context.auraOnSurface.withValues(
+                            alpha: 0.08,
+                          ),
+                          color: context.auraAccent,
                         );
                       },
                     );
@@ -1828,7 +1841,7 @@ class _NowPlayingSheet extends StatelessWidget {
                       width: 38,
                       height: 4,
                       decoration: BoxDecoration(
-                        color: Colors.white24,
+                        color: context.auraMuted.withValues(alpha: .4),
                         borderRadius: BorderRadius.circular(4),
                       ),
                     ),
@@ -1865,9 +1878,9 @@ class _NowPlayingSheet extends StatelessWidget {
                       IconButton(
                         tooltip: 'Informații piesă',
                         onPressed: () => _showTrackDetails(context, track),
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.info_outline_rounded,
-                          color: _muted,
+                          color: context.auraMuted,
                         ),
                       ),
                     ],
@@ -1877,7 +1890,7 @@ class _NowPlayingSheet extends StatelessWidget {
                     track.artist.isEmpty ? 'Artist necunoscut' : track.artist,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(color: _muted, fontSize: 15),
+                    style: TextStyle(color: context.auraMuted, fontSize: 15),
                   ),
                   if (track.album.isNotEmpty) ...[
                     const SizedBox(height: 5),
@@ -1885,7 +1898,7 @@ class _NowPlayingSheet extends StatelessWidget {
                       track.album,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(color: _muted, fontSize: 13),
+                      style: TextStyle(color: context.auraMuted, fontSize: 13),
                     ),
                   ],
                   const SizedBox(height: 12),
@@ -1916,8 +1929,10 @@ class _NowPlayingSheet extends StatelessWidget {
                                     : (next) => player.seek(
                                         Duration(milliseconds: next.round()),
                                       ),
-                                activeColor: _mint,
-                                inactiveColor: Colors.white12,
+                                activeColor: context.auraAccent,
+                                inactiveColor: context.auraMuted.withValues(
+                                  alpha: .2,
+                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.symmetric(
@@ -1929,15 +1944,15 @@ class _NowPlayingSheet extends StatelessWidget {
                                   children: [
                                     Text(
                                       _format(position),
-                                      style: const TextStyle(
-                                        color: _muted,
+                                      style: TextStyle(
+                                        color: context.auraMuted,
                                         fontSize: 12,
                                       ),
                                     ),
                                     Text(
                                       _format(duration),
-                                      style: const TextStyle(
-                                        color: _muted,
+                                      style: TextStyle(
+                                        color: context.auraMuted,
                                         fontSize: 12,
                                       ),
                                     ),
@@ -1976,8 +1991,8 @@ class _NowPlayingSheet extends StatelessWidget {
                             onPressed: () => _togglePlayback(context, player),
                             iconSize: 34,
                             style: IconButton.styleFrom(
-                              backgroundColor: _mint,
-                              foregroundColor: _background,
+                              backgroundColor: context.auraAccent,
+                              foregroundColor: context.auraOnAccent,
                               minimumSize: const Size(68, 68),
                             ),
                             icon: Icon(
@@ -2040,16 +2055,16 @@ class _SimplePage extends StatelessWidget {
               width: 72,
               height: 72,
               decoration: BoxDecoration(
-                color: _mint.withValues(alpha: 0.12),
+                color: context.auraAccent.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(24),
               ),
-              child: Icon(icon, color: _mint, size: 34),
+              child: Icon(icon, color: context.auraAccent, size: 34),
             ),
             const SizedBox(height: 24),
             Text(
               eyebrow,
-              style: const TextStyle(
-                color: _mint,
+              style: TextStyle(
+                color: context.auraAccent,
                 fontSize: 11,
                 fontWeight: FontWeight.w800,
                 letterSpacing: 1.7,
@@ -2065,7 +2080,7 @@ class _SimplePage extends StatelessWidget {
             Text(
               message,
               textAlign: TextAlign.center,
-              style: const TextStyle(color: _muted, height: 1.5),
+              style: TextStyle(color: context.auraMuted, height: 1.5),
             ),
             if (actionLabel != null) ...[
               const SizedBox(height: 20),

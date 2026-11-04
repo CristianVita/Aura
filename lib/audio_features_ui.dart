@@ -42,7 +42,7 @@ class _AudioFeatureSettingsState extends State<_AudioFeatureSettings> {
     final enabled = store.ready && !_busy;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: _background,
+        backgroundColor: context.auraBackground,
         title: Text(switch (widget.page) {
           _AudioFeaturePage.transitions => 'Tranziții',
           _AudioFeaturePage.equalizer => 'Egalizator',
@@ -89,10 +89,10 @@ class _AudioFeatureSettingsState extends State<_AudioFeatureSettings> {
                               )
                             : null,
                       ),
-                      const Text(
+                      Text(
                         'Suprapune sfârșitul piesei cu începutul următoarei la avansare automată. Piesele foarte scurte și repetarea unei singure piese nu folosesc crossfade.',
                         style: TextStyle(
-                          color: _muted,
+                          color: context.auraMuted,
                           fontSize: 12,
                           height: 1.5,
                         ),
@@ -183,9 +183,9 @@ class _AudioFeatureSettingsState extends State<_AudioFeatureSettings> {
               ],
             ),
             const SizedBox(height: 16),
-            const Text(
+            Text(
               'Comenzile din notificare și căști sunt disponibile pe Android. Unele sisteme rearanjează butoanele notificării.',
-              style: TextStyle(color: _muted, fontSize: 12),
+              style: TextStyle(color: context.auraMuted, fontSize: 12),
             ),
           ],
           if (widget.page == _AudioFeaturePage.equalizer)
@@ -302,12 +302,12 @@ class _AudioFeatureSettingsState extends State<_AudioFeatureSettings> {
                           ],
                         ),
                       ),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.all(16),
                       child: Text(
                         'Când amplifici o bandă, Aura reduce automat nivelul general pentru a păstra rezervă de volum și a limita distorsiunea.',
                         style: TextStyle(
-                          color: _muted,
+                          color: context.auraMuted,
                           fontSize: 12,
                           height: 1.5,
                         ),

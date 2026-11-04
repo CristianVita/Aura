@@ -1,4 +1,5 @@
 import 'audio_features.dart';
+import 'appearance.dart';
 import 'audio_library.dart';
 
 import 'dart:convert';
@@ -46,6 +47,7 @@ class SavedMusicData {
     this.audioFeatures = const AudioFeatures(),
     this.playbackSpeed = 1,
     this.playbackVolume = 1,
+    this.appearance = const AppearancePreferences(),
   }) : favorites = Set.unmodifiable(favorites),
        playlists = List.unmodifiable(playlists),
        ratings = Map.unmodifiable(
@@ -60,6 +62,7 @@ class SavedMusicData {
   final AudioFeatures audioFeatures;
   final double playbackSpeed;
   final double playbackVolume;
+  final AppearancePreferences appearance;
   double ratingOf(String uri) => ratings[uri] ?? 0;
 
   SavedMusicData copy({
@@ -72,6 +75,7 @@ class SavedMusicData {
     AudioFeatures? audioFeatures,
     double? playbackSpeed,
     double? playbackVolume,
+    AppearancePreferences? appearance,
   }) => SavedMusicData(
     favorites: favorites ?? this.favorites,
     playlists: playlists ?? this.playlists,
@@ -82,6 +86,7 @@ class SavedMusicData {
     audioFeatures: audioFeatures ?? this.audioFeatures,
     playbackSpeed: playbackSpeed ?? this.playbackSpeed,
     playbackVolume: playbackVolume ?? this.playbackVolume,
+    appearance: appearance ?? this.appearance,
   );
 
   /// Ratings change browsing only; an existing playback queue stays intact.
@@ -116,6 +121,7 @@ class SavedMusicData {
     'audioFeatures': audioFeatures.toJson(),
     'playbackSpeed': playbackSpeed,
     'playbackVolume': playbackVolume,
+    'appearance': appearance.toJson(),
   });
   factory SavedMusicData.decode(String value) {
     final root = jsonDecode(value) as Map<String, dynamic>;
@@ -165,6 +171,9 @@ class SavedMusicData {
       throw const FormatException('Invalid playback preferences');
     }
     return SavedMusicData(
+      appearance: AppearancePreferences.fromJson(
+        root['appearance'] as Map<String, dynamic>? ?? {},
+      ),
       audioFeatures: AudioFeatures.fromJson(
         root['audioFeatures'] as Map<String, dynamic>? ?? {},
       ),
@@ -275,6 +284,12 @@ class SavedMusicStore extends ChangeNotifier {
 
   Future<void> setStarSize(RatingStarSize size) =>
       _update((data) => data.copy(starSize: size));
+
+  Future<void> setAppearance(AppearancePreferences preferences) =>
+      _update((data) {
+        final validated = AppearancePreferences.fromJson(preferences.toJson());
+        return data.copy(appearance: validated);
+      });
 
   Future<void> setPlaybackPreferences({double? speed, double? volume}) =>
       _update((data) {

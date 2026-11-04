@@ -4,7 +4,7 @@ An independent Flutter music player for your own music library.
 
 ## Current features
 
-- Dark interface with home, collection, search and settings screens.
+- Configurable light/dark/system/OLED appearance, six accent colors, system/serif/monospace fonts and text scaling. See [appearance settings](docs/appearance.md).
 - Android audio scanning and persistent local library metadata.
 - Android requests the highest supported display refresh rate up to 144 Hz at the current resolution while Aura is foregrounded. Android power, thermal and user policies can lower the actual rate; this is not a guarantee of 144 rendered frames per second.
 - Source folder selection and browsing by song, album or artist.
@@ -53,7 +53,7 @@ Run the tests:
 flutter test
 ```
 
-Seventy-six automated tests cover artwork, saved music, rating gestures and legacy-data migration, playback/session restoration, missing files, shuffle ordering, listening thresholds, library filters, concurrent writes, Windows scanning/storage, the Navidrome protocol, audio preferences, sleep-timer deadlines and UI flows, including nested settings navigation on a narrow screen. Android behavior is also checked on a OnePlus 8T running Android 14.
+Eighty-six automated tests cover artwork, saved music, rating gestures and legacy-data migration, playback/session restoration, missing files, shuffle ordering, listening thresholds, library filters, concurrent writes, Windows scanning/storage, the Navidrome protocol, audio preferences, sleep-timer deadlines and UI flows, including nested settings navigation on a narrow screen. Android behavior is also checked on a OnePlus 8T running Android 14.
 
 Rate a track using the five stars below its details in the full player, or long-press a collection/search track to open its information. Long-press a track in favorites or a playlist to open the rating dialog. The clear button removes the rating. Collection rating filters and sorting are saved locally; unrated tracks appear last when sorting by rating. These preferences do not change an existing playback queue, playlist order or audio-file tags. Ratings currently belong to each device and are not synchronized.
 

@@ -522,11 +522,7 @@ class SettingsScreen extends StatelessWidget {
             onTap: () => showAboutDialog(
               context: context,
               applicationName: 'Aura',
-              applicationIcon: Image.asset(
-                'assets/branding/aura.png',
-                width: 48,
-                height: 48,
-              ),
+              applicationIcon: const AuraLogo(size: 48),
               children: const [
                 Text('Player pentru muzica locală și biblioteca ta Navidrome.'),
               ],

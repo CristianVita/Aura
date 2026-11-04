@@ -14,3 +14,7 @@ New appearance text uses ARB resources in `lib/l10n/app_ro.arb` and `app_en.arb`
 Tests cover concurrent rating/appearance saves, failed writes, invalid fields, legacy data, backup settings opt-in, palette contrast, platform fonts, system brightness, nonlinear text scaling, route preservation and English/Romanian appearance controls on a narrow screen.
 
 The optimized Android build was checked on a OnePlus 8T: light/violet/serif remained selected after restarting Aura, OLED was verified, and the default appearance was restored afterward. The home screen still showed 153 tracks and the existing rating/queue. Android ARM64 and Windows x64 release builds succeeded; native visual checks were performed on Android.
+
+Aura's in-app logo (home header and About dialog) is drawn as a vector using the current theme surface and primary accent. It follows live appearance changes and system brightness without recoloring the raster background. Packaged launcher assets remain independent of in-app preferences.
+
+The themed logo was visually checked on the Android release in OLED/gold and light/violet, including landscape. The existing OLED/gold preference was restored. The 153-track library, saved rating and paused queue remained present. Analysis and all 91 unit/widget tests passed.

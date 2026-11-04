@@ -25,7 +25,7 @@
 - [ ] De implementat: Adaptarea aplicației pentru toate limbile (global translation).
 - Localizare existentă: paginile de aspect și navigare folosesc ARB ro/en și delegați Flutter; celelalte ecrane trebuie migrate.
 - [ ] De revizuit: Implementarea unei logici de a importa si folosi poze de cover pentru albume in momentul in care se asculta o piesa cu un album specificat; poza poate fi preluata local de pe device-ul respectiv, sau de pe un server / google foto
-- [ ] Modifica iconita Aura din aplicatie sa aibe fundalul adaptabil la tema aleasa de catre utilizator, iar culoarea logo-ului schimb-o in functie de culoarea de accent aleasa de user.
+- [x] Sigla Aura din aplicație are fundal adaptat temei și desen în culoarea de accent; comună antetului și ferestrei Despre Aura.
 
 ## Siguranța datelor
 - Respectă AGENTS.md: fără dezinstalarea sau ștergerea datelor aplicației live și fără teste Android de integrare sub ID-ul ei.

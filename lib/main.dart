@@ -9,6 +9,7 @@ import 'package:just_audio/just_audio.dart';
 
 import 'audio_runtime.dart';
 import 'app_theme.dart';
+import 'aura_logo.dart';
 import 'app_strings.dart';
 import 'navigation_preferences.dart';
 import 'navigation_settings_screen.dart';
@@ -947,18 +948,7 @@ class _TopBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Container(
-          width: 42,
-          height: 42,
-          decoration: BoxDecoration(
-            color: context.auraAccent.withValues(alpha: 0.12),
-            borderRadius: BorderRadius.circular(14),
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(14),
-            child: Image.asset('assets/branding/aura.png'),
-          ),
-        ),
+        const AuraLogo(),
         const SizedBox(width: 12),
         Expanded(
           child: Column(

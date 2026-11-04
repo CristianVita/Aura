@@ -60,5 +60,41 @@
   "landingFavorites": "Favorites",
   "resetNavigation": "Restore default navigation",
   "navigationSaveError": "Could not save navigation. Your previous preferences were kept.",
-  "navigationPreview": "Navigation preview"
+  "navigationPreview": "Navigation preview",
+  "libraryPageTitle": "Library page",
+  "albumPageTitle": "Album page",
+  "artistPageTitle": "Artist page",
+  "categoryOrder": "Categories and order",
+  "categoryHelp": "Drag the handle to reorder. Keep at least one category visible. Hiding categories does not delete music.",
+  "pageColumns": "Columns on a phone",
+  "pageColumnsHelp": "Wider screens automatically add columns. Large text may reduce the column count for readability.",
+  "pageLayout": "Layout",
+  "layoutList": "List",
+  "layoutGrid": "Cover grid",
+  "pageSort": "Sort order",
+  "sortName": "Name A–Z",
+  "sortNameDescending": "Name Z–A",
+  "sortTrackCount": "Track count",
+  "pageSummary": "Artwork and summary on the opened page",
+  "pageSummaryHelp": "Uses the available artwork for the first track in the group.",
+  "pageReset": "Reset this page",
+  "pageSaveError": "Could not save the page. Your previous preferences were kept.",
+  "librarySources": "Sources",
+  "unknownGroup": "Unknown",
+  "groupTracks": "{count, plural, one{1 track} other{{count} tracks}}",
+  "groupMinutes": "{minutes} min in total",
+  "@groupTracks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@groupMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  }
 }

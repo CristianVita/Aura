@@ -10,6 +10,10 @@ import 'package:just_audio/just_audio.dart';
 import 'audio_runtime.dart';
 import 'app_theme.dart';
 import 'aura_logo.dart';
+import 'library_preferences.dart';
+import 'library_page_settings.dart';
+import 'library_catalog.dart';
+import 'library_groups.dart';
 import 'app_strings.dart';
 import 'navigation_preferences.dart';
 import 'navigation_settings_screen.dart';
@@ -1142,31 +1146,43 @@ class _SectionTitle extends StatelessWidget {
 }
 
 class _BrowseGrid extends StatelessWidget {
-  const _BrowseGrid({required this.onTap, this.onSources});
+  const _BrowseGrid({required this.onTap, this.onSources, this.preferences});
   final ValueChanged<_LibraryMode> onTap;
   final VoidCallback? onSources;
+  final LibraryPagePreferences? preferences;
   @override
   Widget build(BuildContext context) {
-    final items = [
-      _LibraryMode.albums,
-      _LibraryMode.artists,
-      _LibraryMode.songs,
-      _LibraryMode.playlists,
-      _LibraryMode.favorites,
-    ];
+    final sections = preferences?.visible ?? LibrarySection.values;
+    final items = sections
+        .where(
+          (section) => section != LibrarySection.sources || onSources != null,
+        )
+        .toList();
     return LayoutBuilder(
       builder: (context, constraints) => GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemCount: items.length + (onSources == null ? 0 : 1),
+        itemCount: items.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: constraints.maxWidth >= 650 ? 6 : 3,
+          crossAxisCount: libraryGridColumns(
+            constraints.maxWidth,
+            preferences?.columns ?? 3,
+            MediaQuery.textScalerOf(context).scale(12) / 12,
+          ),
           mainAxisExtent: 88 + MediaQuery.textScalerOf(context).scale(12) * 2,
           mainAxisSpacing: 8,
           crossAxisSpacing: 8,
         ),
         itemBuilder: (context, index) {
-          final item = index < items.length ? items[index] : null;
+          final section = items[index];
+          final item = switch (section) {
+            LibrarySection.albums => _LibraryMode.albums,
+            LibrarySection.artists => _LibraryMode.artists,
+            LibrarySection.tracks => _LibraryMode.songs,
+            LibrarySection.playlists => _LibraryMode.playlists,
+            LibrarySection.favorites => _LibraryMode.favorites,
+            LibrarySection.sources => null,
+          };
           return Material(
             color: context.auraSurface,
             borderRadius: BorderRadius.circular(8),
@@ -1185,7 +1201,7 @@ class _BrowseGrid extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      item?.label ?? 'Surse',
+                      librarySectionLabel(context, section),
                       textAlign: TextAlign.center,
                       maxLines: 2,
                       style: const TextStyle(fontSize: 12),
@@ -1222,7 +1238,11 @@ class _LibraryOverview extends StatelessWidget {
         ],
       ),
       const SizedBox(height: 22),
-      _BrowseGrid(onTap: onBrowse, onSources: onSources),
+      _BrowseGrid(
+        onTap: onBrowse,
+        onSources: onSources,
+        preferences: SavedMusicScope.of(context).data.libraryPages,
+      ),
       const SizedBox(height: 18),
       Text(
         '$trackCount de piese în bibliotecă',
@@ -1350,7 +1370,11 @@ class _CollectionScreen extends StatelessWidget {
       );
     }
 
-    final ratedTracks = SavedMusicScope.of(context).data.ratedTracks(tracks);
+    final saved = SavedMusicScope.of(context).data;
+    final pagePreferences = mode == _LibraryMode.artists
+        ? saved.libraryPages.artists
+        : saved.libraryPages.albums;
+    final ratedTracks = saved.ratedTracks(tracks);
     final filteredTracks = groupFilter == null
         ? ratedTracks
         : ratedTracks
@@ -1370,138 +1394,109 @@ class _CollectionScreen extends StatelessWidget {
       }
     }
 
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(22, 12, 14, 10),
-          child: Row(
+    return NestedScrollView(
+      key: ValueKey((mode, groupFilter)),
+      headerSliverBuilder: (context, innerBoxIsScrolled) => [
+        SliverToBoxAdapter(
+          child: Column(
             children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              Padding(
+                padding: const EdgeInsets.fromLTRB(22, 12, 14, 10),
+                child: Row(
                   children: [
-                    Text(
-                      'COLECȚIA TA',
-                      style: TextStyle(
-                        color: context.auraAccent,
-                        fontSize: 10,
-                        fontWeight: FontWeight.w800,
-                        letterSpacing: 1.6,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'COLECȚIA TA',
+                            style: TextStyle(
+                              color: context.auraAccent,
+                              fontSize: 10,
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: 1.6,
+                            ),
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            groupFilter == ''
+                                ? 'Necunoscut'
+                                : groupFilter ?? mode.label,
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    SizedBox(height: 5),
-                    Text(
-                      groupFilter == ''
-                          ? 'Necunoscut'
-                          : groupFilter ?? mode.label,
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w700,
+                    if (groupFilter != null)
+                      IconButton.filledTonal(
+                        tooltip: 'Înapoi la ${mode.label.toLowerCase()}',
+                        onPressed: onBackToGroups,
+                        icon: const Icon(Icons.arrow_back_rounded),
                       ),
+                    IconButton.filledTonal(
+                      tooltip: 'Scanează din nou',
+                      onPressed: isScanning ? null : onAddSource,
+                      icon: isScanning
+                          ? const SizedBox(
+                              width: 18,
+                              height: 18,
+                              child: CircularProgressIndicator(strokeWidth: 2),
+                            )
+                          : const Icon(Icons.refresh_rounded),
+                    ),
+                    IconButton(
+                      tooltip: 'Alege folderele',
+                      onPressed: isScanning ? null : onManageSources,
+                      icon: const Icon(Icons.folder_open_rounded),
                     ),
                   ],
                 ),
               ),
-              if (groupFilter != null)
-                IconButton.filledTonal(
-                  tooltip: 'Înapoi la ${mode.label.toLowerCase()}',
-                  onPressed: onBackToGroups,
-                  icon: const Icon(Icons.arrow_back_rounded),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(22, 0, 22, 12),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    showGroups
+                        ? '${groups.length} ${groups.length == 1 ? 'element' : 'elemente'}'
+                        : '${filteredTracks.length} ${filteredTracks.length == 1 ? 'piesă găsită' : 'piese găsite'}',
+                    style: TextStyle(color: context.auraMuted, fontSize: 13),
+                  ),
                 ),
-              IconButton.filledTonal(
-                tooltip: 'Scanează din nou',
-                onPressed: isScanning ? null : onAddSource,
-                icon: isScanning
-                    ? const SizedBox(
-                        width: 18,
-                        height: 18,
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      )
-                    : const Icon(Icons.refresh_rounded),
               ),
-              IconButton(
-                tooltip: 'Alege folderele',
-                onPressed: isScanning ? null : onManageSources,
-                icon: const Icon(Icons.folder_open_rounded),
+              if (groupFilter != null && pagePreferences.showSummary)
+                LibraryGroupSummary(tracks: filteredTracks, icon: mode.icon),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 22),
+                child: RatingViewControls(),
               ),
             ],
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(22, 0, 22, 12),
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              showGroups
-                  ? '${groups.length} ${groups.length == 1 ? 'element' : 'elemente'}'
-                  : '${filteredTracks.length} ${filteredTracks.length == 1 ? 'piesă găsită' : 'piese găsite'}',
-              style: TextStyle(color: context.auraMuted, fontSize: 13),
-            ),
-          ),
-        ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 22),
-          child: RatingViewControls(),
-        ),
-        Expanded(
-          child: filteredTracks.isEmpty
-              ? const Center(
-                  child: Text('Nicio piesă nu corespunde ratingului selectat.'),
-                )
-              : showGroups
-              ? ListView.separated(
-                  padding: const EdgeInsets.fromLTRB(12, 0, 12, 18),
-                  itemCount: groups.length,
-                  separatorBuilder: (context, index) =>
-                      const SizedBox(height: 2),
-                  itemBuilder: (context, index) {
-                    final entry = groups.entries.elementAt(index);
-                    return Card(
-                      color: context.auraSurface,
-                      margin: EdgeInsets.zero,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: ListTile(
-                        onTap: () => onOpenGroup(entry.key),
-                        leading: TrackArtwork(
-                          uri: entry.value.first.artworkUri.toString(),
-                          cacheKey: entry.value.first.artworkKey,
-                          size: 46,
-                          fallbackIcon: mode.icon,
-                        ),
-                        title: Text(
-                          entry.key.isEmpty ? 'Necunoscut' : entry.key,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        subtitle: Text(
-                          '${entry.value.length} ${entry.value.length == 1 ? 'piesă' : 'piese'}',
-                          style: TextStyle(
-                            color: context.auraMuted,
-                            fontSize: 12,
-                          ),
-                        ),
-                        trailing: Icon(
-                          Icons.chevron_right_rounded,
-                          color: context.auraMuted,
-                        ),
-                      ),
-                    );
-                  },
-                )
-              : ListView.separated(
-                  padding: const EdgeInsets.fromLTRB(12, 0, 12, 18),
-                  itemCount: filteredTracks.length,
-                  separatorBuilder: (context, index) =>
-                      const SizedBox(height: 2),
-                  itemBuilder: (context, index) => _AudioTrackTile(
-                    track: filteredTracks[index],
-                    onTap: () => onTrackSelected(filteredTracks, index),
-                  ),
-                ),
-        ),
       ],
+      body: filteredTracks.isEmpty
+          ? const Center(
+              child: Text('Nicio piesă nu corespunde ratingului selectat.'),
+            )
+          : showGroups
+          ? LibraryGroups(
+              groups: groups,
+              preferences: pagePreferences,
+              icon: mode.icon,
+              onOpen: onOpenGroup,
+            )
+          : ListView.separated(
+              padding: const EdgeInsets.fromLTRB(12, 0, 12, 18),
+              itemCount: filteredTracks.length,
+              separatorBuilder: (context, index) => const SizedBox(height: 2),
+              itemBuilder: (context, index) => _AudioTrackTile(
+                track: filteredTracks[index],
+                onTap: () => onTrackSelected(filteredTracks, index),
+              ),
+            ),
     );
   }
 }

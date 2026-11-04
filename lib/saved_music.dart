@@ -1,6 +1,7 @@
 import 'audio_features.dart';
 import 'appearance.dart';
 import 'navigation_preferences.dart';
+import 'library_preferences.dart';
 import 'audio_library.dart';
 
 import 'dart:convert';
@@ -50,7 +51,9 @@ class SavedMusicData {
     this.playbackVolume = 1,
     this.appearance = const AppearancePreferences(),
     NavigationPreferences? navigation,
-  }) : navigation = navigation ?? NavigationPreferences(),
+    LibraryPagePreferences? libraryPages,
+  }) : libraryPages = libraryPages ?? LibraryPagePreferences(),
+       navigation = navigation ?? NavigationPreferences(),
        favorites = Set.unmodifiable(favorites),
        playlists = List.unmodifiable(playlists),
        ratings = Map.unmodifiable(
@@ -67,6 +70,7 @@ class SavedMusicData {
   final double playbackVolume;
   final AppearancePreferences appearance;
   final NavigationPreferences navigation;
+  final LibraryPagePreferences libraryPages;
   double ratingOf(String uri) => ratings[uri] ?? 0;
 
   SavedMusicData copy({
@@ -81,6 +85,7 @@ class SavedMusicData {
     double? playbackVolume,
     AppearancePreferences? appearance,
     NavigationPreferences? navigation,
+    LibraryPagePreferences? libraryPages,
   }) => SavedMusicData(
     favorites: favorites ?? this.favorites,
     playlists: playlists ?? this.playlists,
@@ -93,6 +98,7 @@ class SavedMusicData {
     playbackVolume: playbackVolume ?? this.playbackVolume,
     appearance: appearance ?? this.appearance,
     navigation: navigation ?? this.navigation,
+    libraryPages: libraryPages ?? this.libraryPages,
   );
 
   /// Ratings change browsing only; an existing playback queue stays intact.
@@ -129,6 +135,7 @@ class SavedMusicData {
     'playbackVolume': playbackVolume,
     'appearance': appearance.toJson(),
     'navigation': navigation.toJson(),
+    'libraryPages': libraryPages.toJson(),
   });
   factory SavedMusicData.decode(String value) {
     final root = jsonDecode(value) as Map<String, dynamic>;
@@ -178,6 +185,9 @@ class SavedMusicData {
       throw const FormatException('Invalid playback preferences');
     }
     return SavedMusicData(
+      libraryPages: LibraryPagePreferences.fromJson(
+        root['libraryPages'] as Map<String, dynamic>? ?? {},
+      ),
       navigation: NavigationPreferences.fromJson(
         root['navigation'] as Map<String, dynamic>? ?? {},
       ),
@@ -300,6 +310,12 @@ class SavedMusicStore extends ChangeNotifier {
         final validated = AppearancePreferences.fromJson(preferences.toJson());
         return data.copy(appearance: validated);
       });
+
+  Future<void> setLibraryPages(LibraryPagePreferences preferences) => _update(
+    (data) => data.copy(
+      libraryPages: LibraryPagePreferences.fromJson(preferences.toJson()),
+    ),
+  );
 
   Future<void> setNavigation(NavigationPreferences preferences) =>
       _update((data) {

@@ -98,3 +98,5 @@ Protocol reference: [OpenSubsonic authentication](https://opensubsonic.netlify.a
 Audio files stay on the device. Library metadata, folder preferences and cached artwork are stored in the app's private storage. Device libraries, audio files, SDK paths, signing keys and generated builds are not part of this repository.
 
 Navigation order, visible tabs, labels, startup screen and library landing page are configurable under Interface. See [navigation preferences](docs/navigation.md).
+
+Library categories, album/artist list or cover-grid views, sorting and group summaries are configurable under Interface → Page settings. See [library page preferences](docs/library-pages.md).

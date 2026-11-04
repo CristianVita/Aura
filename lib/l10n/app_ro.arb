@@ -60,5 +60,41 @@
   "landingFavorites": "Favorite",
   "resetNavigation": "Restabilește navigarea implicită",
   "navigationSaveError": "Nu am putut salva navigarea. Preferințele anterioare au fost păstrate.",
-  "navigationPreview": "Previzualizare navigare"
+  "navigationPreview": "Previzualizare navigare",
+  "libraryPageTitle": "Pagina Bibliotecă",
+  "albumPageTitle": "Pagina Album",
+  "artistPageTitle": "Pagina Artist",
+  "categoryOrder": "Categorii și ordine",
+  "categoryHelp": "Trage de mâner pentru a schimba ordinea. Păstrează cel puțin o categorie vizibilă. Ascunderea nu șterge muzica.",
+  "pageColumns": "Coloane pe telefon",
+  "pageColumnsHelp": "Pe ecrane mai late, grila adaugă automat coloane. Textul mare poate reduce numărul lor pentru lizibilitate.",
+  "pageLayout": "Afișare",
+  "layoutList": "Listă",
+  "layoutGrid": "Grilă cu coperți",
+  "pageSort": "Sortare",
+  "sortName": "Nume A–Z",
+  "sortNameDescending": "Nume Z–A",
+  "sortTrackCount": "Număr de piese",
+  "pageSummary": "Copertă și rezumat în pagina deschisă",
+  "pageSummaryHelp": "Folosește coperta disponibilă pentru prima piesă din grup.",
+  "pageReset": "Restabilește această pagină",
+  "pageSaveError": "Nu am putut salva pagina. Preferințele anterioare au fost păstrate.",
+  "librarySources": "Surse",
+  "unknownGroup": "Necunoscut",
+  "groupTracks": "{count, plural, one{1 piesă} other{{count} piese}}",
+  "groupMinutes": "{minutes} min în total",
+  "@groupTracks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@groupMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  }
 }

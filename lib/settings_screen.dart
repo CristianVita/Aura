@@ -177,21 +177,39 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     _SettingsRow(
                       icon: Icons.library_music_outlined,
-                      title: 'Pagina Bibliotecă',
-                      onTap: null,
-                      pending: true,
+                      title: context.appStrings.libraryPageTitle,
+                      onTap: () => Navigator.push<void>(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const LibraryPageSettings(
+                            page: LibraryPageKind.library,
+                          ),
+                        ),
+                      ),
                     ),
                     _SettingsRow(
                       icon: Icons.album_outlined,
-                      title: 'Pagina Album',
-                      onTap: null,
-                      pending: true,
+                      title: context.appStrings.albumPageTitle,
+                      onTap: () => Navigator.push<void>(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const LibraryPageSettings(
+                            page: LibraryPageKind.albums,
+                          ),
+                        ),
+                      ),
                     ),
                     _SettingsRow(
                       icon: Icons.person_outline,
-                      title: 'Pagina Artist',
-                      onTap: null,
-                      pending: true,
+                      title: context.appStrings.artistPageTitle,
+                      onTap: () => Navigator.push<void>(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const LibraryPageSettings(
+                            page: LibraryPageKind.artists,
+                          ),
+                        ),
+                      ),
                     ),
                     _SettingsRow(
                       icon: Icons.style_outlined,

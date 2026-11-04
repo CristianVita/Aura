@@ -1,0 +1,17 @@
+# Backup and restore
+
+Open **Setări → Backup și restaurare** to export a JSON file through the platform save dialog or preview an existing backup through the file picker. Cancellation does not import or clear anything. Android and Windows use the same format.
+
+Included: favorites, half-star ratings, named playlists, listening history, rating display/filter preferences, playback speed/volume, audio-feature preferences and library duration/messaging filters. Audio files, the current queue/session, sleep timer, source-folder selection, server configuration and credentials are excluded. Backups contain readable personal library metadata; store them somewhere you control.
+
+Import shows creation time, item counts and matched/remapped/unavailable references before confirmation. The default merge preserves current rating conflicts and playlist names, unions playlist membership and favorites, and merges history using the latest timestamp and maximum play count without counting the same backup twice. Settings are opt-in. Replacement requires an explicit switch and confirmation. Playback pauses and its sleep timer is canceled; the current queue is retained.
+
+Local track identities include normalized title/artist/album and duration rounded down to seconds. An existing URI must match its fingerprint; otherwise remapping requires a unique fingerprint in both the backup and the current library. Ambiguous or missing local references become stable unavailable IDs instead of attaching an old MediaStore ID to a different song. Metadata matching cannot distinguish recordings with identical metadata. Keep the original backup and reimport after adding missing sources. Navidrome uses stable logical server/song URIs, including when a server is disconnected.
+
+Format: `format: aura.backup`, `version: 1`, a UTC creation timestamp, saved-music/playback payloads, a referenced-track catalog, and a SHA-256 checksum of the encoded payload. The checksum detects accidental modification, not authenticity. Imports are limited to 4 MiB and validate versions, field types, rating ranges, playlist IDs, history and collection limits before writing.
+
+Restore waits for pending edits, writes the pre-import snapshots to a private local journal, then updates both stores. Any failure rolls back both. If rollback fails, further restoration/navigation is blocked until recovery succeeds. Startup recovery processes a pending journal before loading normal app state, so an interrupted import returns to its previous data. The complete marker removes the journal's old metadata payload.
+
+Verification uses synthetic stores and files, checksum/schema corruption, ID collisions, duplicate songs, merging/replacement, queued edits, write/commit/player failures, failed rollback and repeated startup recovery. Narrow-screen widget tests check preview, cancellation, opt-in replacement/settings and invalid-file handling. Windows journal persistence is checked with temporary files. No personal phone backup is imported during these tests.
+
+The Android release was updated using `adb install -r` after preserving private metadata. The phone retained its 153-track library. The Android save picker opened with the generated JSON filename, and the import picker opened successfully; both were canceled and the page returned to an enabled state. Actual restoration/failure injection was exercised with synthetic data on the PC, not the user's phone. Release builds succeeded for Android ARM64 and Windows x64.

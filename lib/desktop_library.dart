@@ -155,7 +155,10 @@ class DesktopLibrary {
       case 'loadSavedMusic':
       case 'loadPlaybackMemory':
       case 'loadServerCache':
-        final name = method == 'loadServerCache'
+      case 'loadBackupJournal':
+        final name = method == 'loadBackupJournal'
+            ? 'backup_restore_journal.json'
+            : method == 'loadServerCache'
             ? 'server_library.json'
             : method == 'loadSavedMusic'
             ? 'saved_music.json'
@@ -165,7 +168,10 @@ class DesktopLibrary {
       case 'saveSavedMusic':
       case 'savePlaybackMemory':
       case 'saveServerCache':
-        final name = method == 'saveServerCache'
+      case 'saveBackupJournal':
+        final name = method == 'saveBackupJournal'
+            ? 'backup_restore_journal.json'
+            : method == 'saveServerCache'
             ? 'server_library.json'
             : method == 'saveSavedMusic'
             ? 'saved_music.json'

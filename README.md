@@ -16,6 +16,7 @@ An independent Flutter music player for your own music library.
 - Per-track 0.5–5 star ratings, horizontal drag with live half-star preview, small/medium/large star sizes, clearing, local persistence, a minimum-rating filter and rating sort.
 - Navidrome over HTTPS: connect with URL and credentials, load/refresh albums and songs, stream audio, display covers and disconnect sources.
 - Listening history with recent tracks and an option to clear it.
+- [Backup and restore](docs/backup-restore.md) for ratings, favorites, playlists, history and preferences, with preview, safe merging and interrupted-restore recovery.
 - Restored queue, current track, position, shuffle order and repeat mode; reopening stays paused.
 - Optional minimum-duration and WhatsApp/Telegram folder filters.
 - Windows local library: add music folders, rescan, select visible folders and remove sources without deleting files.
@@ -52,7 +53,7 @@ Run the tests:
 flutter test
 ```
 
-Sixty-one automated tests cover artwork, saved music, rating gestures and legacy-data migration, playback/session restoration, missing files, shuffle ordering, listening thresholds, library filters, concurrent writes, Windows scanning/storage, the Navidrome protocol, audio preferences, sleep-timer deadlines and UI flows, including nested settings navigation on a narrow screen. Android behavior is also checked on a OnePlus 8T running Android 14.
+Seventy-six automated tests cover artwork, saved music, rating gestures and legacy-data migration, playback/session restoration, missing files, shuffle ordering, listening thresholds, library filters, concurrent writes, Windows scanning/storage, the Navidrome protocol, audio preferences, sleep-timer deadlines and UI flows, including nested settings navigation on a narrow screen. Android behavior is also checked on a OnePlus 8T running Android 14.
 
 Rate a track using the five stars below its details in the full player, or long-press a collection/search track to open its information. Long-press a track in favorites or a playlist to open the rating dialog. The clear button removes the rating. Collection rating filters and sorting are saved locally; unrated tracks appear last when sorting by rating. These preferences do not change an existing playback queue, playlist order or audio-file tags. Ratings currently belong to each device and are not synchronized.
 

@@ -57,6 +57,14 @@ class PlaybackSettingsController with WidgetsBindingObserver {
     await player.setSpeed(speed);
   }
 
+  Future<void> applyStoredPreferences() {
+    final operation = _pending.then(
+      (_) => _apply(store.data.playbackSpeed, store.data.playbackVolume),
+    );
+    _pending = operation.catchError((Object _) {});
+    return operation;
+  }
+
   Future<void> change({double? speed, double? volume}) {
     if ((speed != null && (!speed.isFinite || speed < .5 || speed > 2)) ||
         (volume != null && (!volume.isFinite || volume < 0 || volume > 1))) {

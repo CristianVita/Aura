@@ -241,6 +241,11 @@ class SavedMusicStore extends ChangeNotifier {
     return operation;
   }
 
+  Future<void> replaceData(SavedMusicData next) =>
+      _update((_) => SavedMusicData.decode(next.encode()));
+
+  Future<void> flush() => _pending;
+
   Future<void> toggleFavorite(String uri) => _update((data) {
     final favorites = {...data.favorites};
     if (!favorites.remove(uri)) favorites.add(uri);

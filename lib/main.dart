@@ -3,10 +3,13 @@ import 'audio_library.dart';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:just_audio/just_audio.dart';
 
 import 'audio_runtime.dart';
+import 'aura_backup.dart';
+import 'backup_screen.dart';
 import 'audio_features.dart';
 
 import 'audio_track.dart';
@@ -64,6 +67,34 @@ late final AuraAudioRuntime _audioRuntime;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  try {
+    if (AudioLibrary.isWindows ||
+        (!kIsWeb && defaultTargetPlatform == TargetPlatform.android)) {
+      await BackupRestoreService.recover(
+        journal: DeviceBackupJournal(),
+        saved: DeviceSavedMusicStorage(),
+        memory: DevicePlaybackMemoryStorage(),
+      );
+    }
+  } catch (_) {
+    runApp(
+      const MaterialApp(
+        home: Scaffold(
+          body: SafeArea(
+            child: Padding(
+              padding: EdgeInsets.all(24),
+              child: Center(
+                child: Text(
+                  'Aura nu a putut recupera o restaurare întreruptă. Datele anterioare sunt păstrate în jurnalul local. Închide și redeschide aplicația pentru a încerca din nou.',
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+    return;
+  }
   final store = SavedMusicStore(DeviceSavedMusicStorage());
   await store.load();
   _audioRuntime = AuraAudioRuntime(store);
@@ -193,6 +224,37 @@ class _PlayerShellState extends State<PlayerShell> {
 
   void _memoryChanged() {
     if (mounted) setState(() {});
+  }
+
+  Future<void> _openBackup() async {
+    final saved = SavedMusicScope.of(context);
+    final service = BackupRestoreService(
+      saved: saved,
+      memory: _memory,
+      journal: DeviceBackupJournal(),
+      beforeRestore: () async {
+        await _audioRuntime.pause();
+        _playbackSettings?.sleep.cancel();
+        await _memoryController.flush();
+        _memoryController.beginQueueChange();
+      },
+      afterRestore: _memoryController.endQueueChange,
+      applyPreferences: () async {
+        await _playbackSettings?.applyStoredPreferences();
+        await _audioRuntime.applyStoredAudioPreferences();
+      },
+    );
+    await Navigator.push<void>(
+      context,
+      MaterialPageRoute(
+        builder: (_) => BackupScreen(
+          saved: saved,
+          memory: _memory,
+          service: service,
+          tracks: _allTracks,
+        ),
+      ),
+    );
   }
 
   Future<void> _openFilters() => Navigator.of(context).push<void>(
@@ -623,6 +685,7 @@ class _PlayerShellState extends State<PlayerShell> {
         );
       default:
         return SettingsScreen(
+          onBackup: _openBackup,
           controls: _playbackSettings!,
           sourceSummary: _selectedFolders == null
               ? 'Toate folderele · ${_tracks.length} piese'

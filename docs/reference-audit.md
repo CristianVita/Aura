@@ -18,7 +18,7 @@ The second UI inspection covered library categories, player actions and offline 
 
 Recommended next work, in order:
 
-1. In-app backup/restore of preferences, ratings, playlists and history, with a preview before restoring.
+1. In-app backup/restore of preferences, ratings, playlists and history, with a preview before restoring — completed on 2026-11-04; see [backup behavior and validation](backup-restore.md).
 2. Explicit offline downloads and a bounded playback cache, with Wi-Fi and storage controls.
 3. Smart playlists built from rating, favorites, play count and recency.
 4. Search by genre/year, configurable library categories and durable search history.

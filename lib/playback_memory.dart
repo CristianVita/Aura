@@ -245,6 +245,8 @@ class PlaybackMemoryStore extends ChangeNotifier {
   }
 
   Future<void> load() async {
+    ready = false;
+    failed = false;
     try {
       final saved = await storage.read();
       data = saved == null
@@ -271,6 +273,16 @@ class PlaybackMemoryStore extends ChangeNotifier {
     _pending = operation.catchError((Object _) {});
     return operation;
   }
+
+  Future<void> replaceLibraryData(PlaybackMemoryData next) => _update(
+    (current) => PlaybackMemoryData(
+      history: next.history,
+      filters: next.filters,
+      session: current.session,
+    ),
+  );
+
+  Future<void> flush() => _pending;
 
   Future<void> saveSession(PlaybackSession session) => _update(
     (d) => PlaybackMemoryData(

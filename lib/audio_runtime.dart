@@ -65,6 +65,7 @@ class AuraAudioRuntime {
   int _generation = 0, _fadeGeneration = 0;
   String? _effectsKey;
   bool _effectsBusy = false;
+  Completer<void>? _effectsCompletion;
   double _lastPrimaryGain = -1;
   bool Function()? allowCrossfade;
   bool get incomingPlaying => _incoming?.playing ?? false;
@@ -75,6 +76,14 @@ class AuraAudioRuntime {
         ? features.bandGains.fold<double>(0, (a, b) => math.max(a, b))
         : 0.0;
     return store.data.playbackVolume * math.pow(10, -positive / 20);
+  }
+
+  Future<void> refreshOutputGain() => _gain(player, baseVolume);
+
+  Future<void> applyStoredAudioPreferences() async {
+    await cancelTransition();
+    await _restoreEffects(reportErrors: true);
+    await refreshOutputGain();
   }
 
   Future<void> initializeService() async {
@@ -163,26 +172,37 @@ class AuraAudioRuntime {
     }
   }
 
-  Future<void> _restoreEffects() async {
+  Future<void> _restoreEffects({bool reportErrors = false}) async {
     if (_disposed ||
-        _effectsBusy ||
         equalizer == null ||
         player.processingState != ProcessingState.ready) {
       return;
     }
+    if (_effectsBusy) {
+      await _effectsCompletion!.future;
+      return _restoreEffects(reportErrors: reportErrors);
+    }
     final key = '${features.equalizerEnabled}:${features.bandGains}';
     if (key == _effectsKey) return;
     _effectsBusy = true;
+    final completion = _effectsCompletion = Completer<void>();
+    var applied = false;
     try {
       await _applyEqualizer(equalizer!, features);
       _effectsKey = key;
+      applied = true;
       if (!transitioning && _fadeGeneration == 0) {
         await _gain(player, baseVolume);
       }
     } catch (_) {
-      /* UI can retry and report device support. */
+      if (reportErrors) rethrow;
     } finally {
       _effectsBusy = false;
+      completion.complete();
+    }
+    if (applied &&
+        key != '${features.equalizerEnabled}:${features.bandGains}') {
+      await _restoreEffects(reportErrors: reportErrors);
     }
   }
 

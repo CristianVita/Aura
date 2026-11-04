@@ -40,6 +40,44 @@ void main() {
   });
   tearDown(() async => temporary.delete(recursive: true));
 
+  test('restore journal persists separately from normal saved music', () async {
+    final library = DesktopLibrary(storageDirectory: storage);
+    expect(await library.invoke('loadBackupJournal', null), isNull);
+    final saved = jsonEncode({
+      'version': 1,
+      'favorites': ['synthetic'],
+    });
+    final pending = jsonEncode({
+      'version': 1,
+      'state': 'pending',
+      'savedBefore': saved,
+    });
+    await library.invoke('saveSavedMusic', {'json': saved});
+    await library.invoke('saveBackupJournal', {'json': pending});
+    final reopened = DesktopLibrary(storageDirectory: storage);
+    expect(
+      jsonDecode(
+        await reopened.invoke('loadBackupJournal', null) as String,
+      )['state'],
+      'pending',
+    );
+    expect(
+      jsonDecode(
+        await reopened.invoke('loadSavedMusic', null) as String,
+      )['favorites'],
+      ['synthetic'],
+    );
+    await reopened.invoke('saveBackupJournal', {
+      'json': jsonEncode({'version': 1, 'state': 'complete'}),
+    });
+    expect(
+      jsonDecode(
+        await reopened.invoke('loadBackupJournal', null) as String,
+      )['state'],
+      'complete',
+    );
+  });
+
   test('scan reads WAV metadata, deduplicates overlapping roots and ignores unrelated files', () async {
     await File(p.join(music.path, 'notes.txt')).writeAsString('not music');
     final rows = scanDesktopFolders([music.path, music.path]);

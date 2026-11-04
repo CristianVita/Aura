@@ -59,8 +59,8 @@ class MainActivity : AudioServiceActivity() {
                 when (call.method) {
                     "scanAudio" -> requestAudioAccessAndScan(result)
                     "loadLibrary" -> loadLibrary(result)
-                    "loadSavedMusic", "loadPlaybackMemory", "loadServerCache" -> {
-                        val fileName = if (call.method == "loadServerCache") "server_library.json" else if (call.method == "loadSavedMusic") "saved_music.json" else "playback_memory.json"
+                    "loadSavedMusic", "loadPlaybackMemory", "loadServerCache", "loadBackupJournal" -> {
+                        val fileName = if (call.method == "loadBackupJournal") "backup_restore_journal.json" else if (call.method == "loadServerCache") "server_library.json" else if (call.method == "loadSavedMusic") "saved_music.json" else "playback_memory.json"
                         queryExecutor.execute {
                             try {
                                 val file = AtomicFile(File(filesDir, fileName))
@@ -73,8 +73,8 @@ class MainActivity : AudioServiceActivity() {
                             }
                         }
                     }
-                    "saveSavedMusic", "savePlaybackMemory", "saveServerCache" -> {
-                        val fileName = if (call.method == "saveServerCache") "server_library.json" else if (call.method == "saveSavedMusic") "saved_music.json" else "playback_memory.json"
+                    "saveSavedMusic", "savePlaybackMemory", "saveServerCache", "saveBackupJournal" -> {
+                        val fileName = if (call.method == "saveBackupJournal") "backup_restore_journal.json" else if (call.method == "saveServerCache") "server_library.json" else if (call.method == "saveSavedMusic") "saved_music.json" else "playback_memory.json"
                         val json = call.argument<String>("json")
                         if (json == null) {
                             result.error("invalid_data", "Missing saved music", null)

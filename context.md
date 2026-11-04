@@ -27,14 +27,19 @@
 - [ ] Revizie lingvistică de către vorbitori nativi pentru pachetul extins; traducerile suplimentare au pornit din schițe asistate automat, cu revizie manuală a comenzilor principale.
 - [ ] De revizuit: Implementarea unei logici de a importa si folosi poze de cover pentru albume in momentul in care se asculta o piesa cu un album specificat; poza poate fi preluata local de pe device-ul respectiv, sau de pe un server / google foto
 - [x] Sigla Aura din aplicație are fundal adaptat temei și desen în culoarea de accent; comună antetului și ferestrei Despre Aura.
+- [x] Limbă nativă aleasă explicit la prima configurare, salvată separat de limba interfeței și modificabilă din Setări → Traduceri. Instalațiile existente o aleg o singură dată după actualizare. Backupurile importate nu o înlocuiesc.
+- [x] Protecție la schimbarea limbii: dialog DA/NU întotdeauna în limba nativă și direcția ei, temporizator de 5 secunde și revenire automată la limba nativă. NU, Back, atingerea în afara dialogului sau trecerea în fundal anulează schimbarea; numai DA păstrează limba nouă. Previzualizările nu ajung în salvări concurente sau backupuri.
 
 ## Rezumat actualizat — 4 noiembrie 2026
 - Etapele recente includ sigla vectorială adaptată temei, setările de aspect, navigarea configurabilă și paginile de bibliotecă/albume/artiști cu listă, grilă și sortare.
 - Pachetul de localizare include română, engleză, franceză, germană, spaniolă, italiană, portugheză, rusă, ucraineană, poloneză, neerlandeză, turcă, arabă, hindi, chineză simplificată, japoneză, coreeană, indoneziană, vietnameză și thailandeză.
-- Preferința de limbă se salvează local și se restaurează din backup numai cu importul setărilor. Instalațiile existente păstrează româna; cele noi urmează sistemul, cu engleză ca rezervă.
-- Validare: 104 teste automate trecute și analiză fără probleme. Testele includ schimbarea limbii pe rute deja deschise, salvări eșuate, pluraluri și gesturi de rating în arabă. După corecțiile de formulare au trecut din nou cele 7 teste de localizare.
+- Limba curentă și limba nativă se salvează separat. Sistemul oferă limba inițială pentru ecranul de configurare, cu engleză ca rezervă; utilizatorul alege apoi explicit limba nativă. Confirmările și anulările folosesc mereu limba nativă, inclusiv după mai multe schimbări succesive.
+- Validare: 111 teste automate trecute și analiză fără probleme, dintre care 14 teste de localizare. Acoperă alegerea inițială, persistența limbii native, confirmări, salvări eșuate, pluraluri, RTL, expirarea la 5 secunde, anularea lângă expirare, revenirea din fundal și japoneză → coreeană → română nativă.
+- Verificarea catalogelor a eliminat marcajele de tokenizare rămase în cinci limbi și a adăugat o verificare automată împotriva reapariției lor. Au fost corectate și etichete de meniu în japoneză/chineză; revizia lingvistică completă rămâne în TODO.
 - Au fost generate versiuni release Android ARM64 și Windows x64. Pe OnePlus 8T au fost verificate schimbarea imediată română/engleză/arabă și orientarea RTL; aplicația a fost readusă în română. Biblioteca de 153 de piese, ratingul existent și coada pusă pe pauză au rămas prezente.
+- Verificări suplimentare pe telefon: alegerea inițială a românei native, confirmarea japonezei și japoneză → coreeană cu dialog în română și revenire automată la româna nativă. Au fost verificate și afișarea chinezei și confirmările japoneze pe etapa anterioară a fluxului.
 - Detalii și limite lingvistice: `docs/localization.md`. Descărcările offline/cache, importul de coperte și revizia traducerilor extinse rămân de continuat.
+- Repository-ul `https://github.com/CristianVita/Aura` a fost făcut public la cererea utilizatorului; accesul fără autentificare a fost verificat. Versiunile validate rămân Android și Windows; iOS nu are încă o versiune distribuibilă.
 
 ## Siguranța datelor
 - Respectă AGENTS.md: fără dezinstalarea sau ștergerea datelor aplicației live și fără teste Android de integrare sub ID-ul ei.

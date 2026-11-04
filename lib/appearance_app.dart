@@ -27,16 +27,16 @@ class _AuraAppearanceAppState extends State<AuraAppearanceApp> {
   void initState() {
     super.initState();
     _appearance = widget.store.data.appearance;
-    _language = widget.store.data.language;
+    _language = widget.store.effectiveLanguage;
     widget.store.addListener(_changed);
   }
 
   void _changed() {
     if (_appearance != widget.store.data.appearance ||
-        _language != widget.store.data.language) {
+        _language != widget.store.effectiveLanguage) {
       setState(() {
         _appearance = widget.store.data.appearance;
-        _language = widget.store.data.language;
+        _language = widget.store.effectiveLanguage;
       });
     }
   }
@@ -48,7 +48,7 @@ class _AuraAppearanceAppState extends State<AuraAppearanceApp> {
       oldWidget.store.removeListener(_changed);
       widget.store.addListener(_changed);
       _appearance = widget.store.data.appearance;
-      _language = widget.store.data.language;
+      _language = widget.store.effectiveLanguage;
     }
   }
 

@@ -772,9 +772,23 @@
   "languageTitle": "Limba aplicației",
   "languageSystem": "După sistem",
   "languageHelp": "Se aplică imediat. Numele pieselor, artiștilor, folderelor și playlisturilor tale nu se traduc.",
-  "languageSaveError": "Nu am putut salva limba. Alegerea anterioară a fost păstrată.",
+  "languageSaveError": "Nu am putut salva schimbarea limbii. Încearcă din nou.",
   "uiBass": "Bass",
   "mediaStop": "Oprește",
   "mediaSeekBack": "Înapoi 10 secunde",
-  "mediaSeekForward": "Înainte 10 secunde"
+  "mediaSeekForward": "Înainte 10 secunde",
+  "languageConfirmTitle": "Păstrăm această limbă?",
+  "languageConfirmMessage": "Confirmă în {seconds} s. Altfel revenim automat la limba ta nativă.",
+  "languageConfirmYes": "DA",
+  "languageConfirmNo": "NU",
+  "@languageConfirmMessage": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "nativeLanguageTitle": "Limba nativă",
+  "nativeLanguageHelp": "Alege limba pe care o înțelegi cel mai bine. Confirmările și revenirea automată vor folosi mereu această limbă.",
+  "nativeLanguageContinue": "Continuă"
 }

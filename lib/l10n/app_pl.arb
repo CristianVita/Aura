@@ -772,9 +772,23 @@
   "languageTitle": "Język aplikacji",
   "languageSystem": "Zgodnie z systemem",
   "languageHelp": "Twoje nazwy utworu, artysty, folderu i listy odtwarzania nie są tłumaczone.",
-  "languageSaveError": "Nie można zapisać języka. Twój poprzedni wybór został zachowany.",
+  "languageSaveError": "Nie udało się zapisać zmiany języka. Spróbuj ponownie.",
   "uiBass": "Basy",
   "mediaStop": "Zatrzymaj",
   "mediaSeekBack": "Cofnij o 10 sekund",
-  "mediaSeekForward": "Przewiń o 10 sekund"
+  "mediaSeekForward": "Przewiń o 10 sekund",
+  "languageConfirmTitle": "Zachować ten język?",
+  "languageConfirmMessage": "Potwierdź w ciągu {seconds} s. W przeciwnym razie język ojczysty zostanie przywrócony automatycznie.",
+  "languageConfirmYes": "TAK",
+  "languageConfirmNo": "NIE",
+  "@languageConfirmMessage": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "nativeLanguageTitle": "Język ojczysty",
+  "nativeLanguageHelp": "Wybierz język, który rozumiesz najlepiej. Potwierdzenia i automatyczny powrót zawsze będą używać tego języka.",
+  "nativeLanguageContinue": "Kontynuuj"
 }

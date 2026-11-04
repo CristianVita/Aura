@@ -221,6 +221,7 @@ class BackupPlan {
       if (!replace) ...current.ratings,
     };
     return (settings ? source.saved : current).copy(
+      nativeLanguage: current.nativeLanguage,
       favorites: {
         if (!replace) ...current.favorites,
         ...source.saved.favorites.map(_uri),

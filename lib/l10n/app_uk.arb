@@ -772,9 +772,23 @@
   "languageTitle": "Мова застосунку",
   "languageSystem": "Як у системі",
   "languageHelp": "Відповіді відразу. Ваш трек, художник, папка і імена плейлистів не переведені.",
-  "languageSaveError": "Не вдалося зберегти мову. Ваш попередній вибір зберігався.",
+  "languageSaveError": "Не вдалося зберегти зміну мови. Спробуйте ще раз.",
   "uiBass": "Баси",
   "mediaStop": "Зупинити",
   "mediaSeekBack": "Назад на 10 секунд",
-  "mediaSeekForward": "Уперед на 10 секунд"
+  "mediaSeekForward": "Уперед на 10 секунд",
+  "languageConfirmTitle": "Залишити цю мову?",
+  "languageConfirmMessage": "Підтвердьте протягом {seconds} с. Інакше буде автоматично відновлено вашу рідну мову.",
+  "languageConfirmYes": "ТАК",
+  "languageConfirmNo": "НІ",
+  "@languageConfirmMessage": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "nativeLanguageTitle": "Рідна мова",
+  "nativeLanguageHelp": "Виберіть мову, яку розумієте найкраще. Підтвердження й автоматичне повернення завжди використовуватимуть цю мову.",
+  "nativeLanguageContinue": "Продовжити"
 }

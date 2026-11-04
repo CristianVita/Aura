@@ -772,9 +772,23 @@
   "languageTitle": "Bahasa aplikasi",
   "languageSystem": "Ikuti sistem",
   "languageHelp": "Applies segera. Anda trek, artis, folder dan nama daftar putar tidak diterjemahkan.",
-  "languageSaveError": "Tidak dapat menyimpan bahasa. pilihan sebelumnya disimpan.",
+  "languageSaveError": "Perubahan bahasa tidak dapat disimpan. Coba lagi.",
   "uiBass": "Bas",
   "mediaStop": "Hentikan",
   "mediaSeekBack": "Mundur 10 detik",
-  "mediaSeekForward": "Maju 10 detik"
+  "mediaSeekForward": "Maju 10 detik",
+  "languageConfirmTitle": "Pertahankan bahasa ini?",
+  "languageConfirmMessage": "Konfirmasikan dalam {seconds} detik. Jika tidak, bahasa ibu Anda akan dipulihkan secara otomatis.",
+  "languageConfirmYes": "YA",
+  "languageConfirmNo": "TIDAK",
+  "@languageConfirmMessage": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "nativeLanguageTitle": "Bahasa ibu",
+  "nativeLanguageHelp": "Pilih bahasa yang paling Anda pahami. Konfirmasi dan pemulihan otomatis akan selalu menggunakan bahasa ini.",
+  "nativeLanguageContinue": "Lanjutkan"
 }

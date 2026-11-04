@@ -751,7 +751,7 @@
   "languageTitle": "Langue de l’application",
   "languageSystem": "Suivre le système",
   "languageHelp": "S’applique immédiatement. Les noms de vos morceaux, artistes, dossiers et playlists ne sont pas traduits.",
-  "languageSaveError": "Impossible d’enregistrer la langue. Votre choix précédent est conservé.",
+  "languageSaveError": "Impossible d’enregistrer le changement de langue. Réessayez.",
   "@percentValue": {
     "placeholders": {
       "value": {
@@ -776,5 +776,19 @@
   "uiBass": "Graves",
   "mediaStop": "Arrêter",
   "mediaSeekBack": "Reculer de 10 secondes",
-  "mediaSeekForward": "Avancer de 10 secondes"
+  "mediaSeekForward": "Avancer de 10 secondes",
+  "languageConfirmTitle": "Garder cette langue ?",
+  "languageConfirmMessage": "Confirmez dans les {seconds} s. Sinon, votre langue maternelle sera rétablie automatiquement.",
+  "languageConfirmYes": "OUI",
+  "languageConfirmNo": "NON",
+  "@languageConfirmMessage": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "nativeLanguageTitle": "Langue maternelle",
+  "nativeLanguageHelp": "Choisissez la langue que vous comprenez le mieux. Les confirmations et le retour automatique utiliseront toujours cette langue.",
+  "nativeLanguageContinue": "Continuer"
 }

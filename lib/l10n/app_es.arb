@@ -751,7 +751,7 @@
   "languageTitle": "Idioma de la aplicación",
   "languageSystem": "Seguir sistema",
   "languageHelp": "Se aplica al instante. No se traducen los nombres de tus pistas, artistas, carpetas y listas.",
-  "languageSaveError": "No se pudo guardar el idioma. Se conservó la elección anterior.",
+  "languageSaveError": "No se pudo guardar el cambio de idioma. Inténtalo de nuevo.",
   "@percentValue": {
     "placeholders": {
       "value": {
@@ -776,5 +776,19 @@
   "uiBass": "Bajos",
   "mediaStop": "Detener",
   "mediaSeekBack": "Retroceder 10 segundos",
-  "mediaSeekForward": "Avanzar 10 segundos"
+  "mediaSeekForward": "Avanzar 10 segundos",
+  "languageConfirmTitle": "¿Mantener este idioma?",
+  "languageConfirmMessage": "Confirma en {seconds} s. De lo contrario, se restablecerá automáticamente tu idioma nativo.",
+  "languageConfirmYes": "SÍ",
+  "languageConfirmNo": "NO",
+  "@languageConfirmMessage": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "nativeLanguageTitle": "Idioma nativo",
+  "nativeLanguageHelp": "Elige el idioma que mejor entiendas. Las confirmaciones y el retorno automático siempre usarán este idioma.",
+  "nativeLanguageContinue": "Continuar"
 }

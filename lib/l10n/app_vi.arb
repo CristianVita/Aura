@@ -1,32 +1,32 @@
 {
   "@@locale": "vi",
-  "appearanceTitle": "▁Sắc▁thái,▁phông▁chữ▁và▁màu▁sắc",
-  "themeLabel": "▁Sắc▁thái",
+  "appearanceTitle": "Sắc thái, phông chữ và màu sắc",
+  "themeLabel": "Sắc thái",
   "themeSystem": "Theo hệ thống",
-  "themeLight": "▁Làm▁sáng",
-  "themeDark": "▁Tối",
-  "themeOled": "OLED ▁đen",
-  "accentLabel": "▁Màu▁triều▁đại",
-  "accentMint": "▁Bóng",
-  "accentBlue": "▁Xanh▁dương",
+  "themeLight": "Làm sáng",
+  "themeDark": "Tối",
+  "themeOled": "OLED đen",
+  "accentLabel": "Màu triều đại",
+  "accentMint": "Bóng",
+  "accentBlue": "Xanh dương",
   "accentViolet": "Tím",
-  "accentRose": "▁Hoa▁hồng",
-  "accentAmber": "▁Vàng",
-  "accentTeal": "▁Răng",
-  "fontLabel": "▁Phông",
-  "fontSystem": "▁Phông▁hệ▁thống",
+  "accentRose": "Hoa hồng",
+  "accentAmber": "Vàng",
+  "accentTeal": "Răng",
+  "fontLabel": "Phông",
+  "fontSystem": "Phông hệ thống",
   "fontSerif": "Có chân",
   "fontMonospace": "Đơn cách",
-  "fontDescription": "▁Phông▁chữ▁sử▁dụng▁các▁gia▁đình▁có▁trên▁thiết▁bị▁này;▁ngoại▁diện▁của▁họ▁có▁thể▁khác▁nhau▁trên▁các▁nền▁tảng.",
-  "textSizeLabel": "▁Cỡ▁văn▁bản",
-  "textSizeDescription": "▁Kết▁hợp▁với▁kích▁cỡ▁văn▁bản▁trong▁thiết▁lập▁thiết▁bị.",
-  "previewLabel": "▁Xem▁thử",
-  "previewTitle": "▁Âm▁nhạc,▁nhịp▁điệu▁của▁bạn",
-  "previewSubtitle": "▁Tập▁ảnh,▁nghệ▁sĩ▁và▁danh▁sách▁nhạc",
+  "fontDescription": "Phông chữ sử dụng các gia đình có trên thiết bị này; ngoại diện của họ có thể khác nhau trên các nền tảng.",
+  "textSizeLabel": "Cỡ văn bản",
+  "textSizeDescription": "Kết hợp với kích cỡ văn bản trong thiết lập thiết bị.",
+  "previewLabel": "Xem thử",
+  "previewTitle": "Âm nhạc, nhịp điệu của bạn",
+  "previewSubtitle": "Tập ảnh, nghệ sĩ và danh sách nhạc",
   "previewButton": "Phát",
-  "resetAppearance": "▁Phục▁hồi▁ngoại▁hình▁mặc▁định",
-  "appearanceSaveError": "▁Không▁thể▁lưu▁hình.▁Thiết▁lập▁trước▁của▁bạn▁đã▁được▁lưu.",
-  "appearanceHelp": "▁Những▁thay▁đổi▁được▁áp▁dụng▁ngay▁khi▁được▁cứu▁và▁được▁bao▁gồm▁trong▁các▁dự▁phòng.",
+  "resetAppearance": "Phục hồi ngoại hình mặc định",
+  "appearanceSaveError": "Không thể lưu hình. Thiết lập trước của bạn đã được lưu.",
+  "appearanceHelp": "Những thay đổi được áp dụng ngay khi được cứu và được bao gồm trong các dự phòng.",
   "percentValue": "{value}%",
   "@percentValue": {
     "placeholders": {
@@ -35,54 +35,54 @@
       }
     }
   },
-  "navigationTitle": "Di▁chuyển▁và▁khởi▁động▁màn▁hình",
-  "navigationOrder": "▁Thứ▁tự▁thẻ",
-  "navigationHelp": "▁Kéo▁điều▁khiển▁để▁sắp▁xếp▁lại▁các▁thẻ.▁Thư▁viện▁và▁Thiết▁lập▁luôn▁luôn▁có▁thể▁truy▁cập▁được.",
+  "navigationTitle": "Di chuyển và khởi động màn hình",
+  "navigationOrder": "Thứ tự thẻ",
+  "navigationHelp": "Kéo điều khiển để sắp xếp lại các thẻ. Thư viện và Thiết lập luôn luôn có thể truy cập được.",
   "navigationHome": "Trang chủ",
   "navigationLibrary": "Thư viện",
   "navigationSearch": "Tìm kiếm",
   "navigationSettings": "Cài đặt",
-  "navigationRequired": "▁Thẻ▁cần▁thiết",
-  "navigationLabels": "▁Nhãn▁thẻ",
-  "labelsAdaptive": "▁Thích▁nghi",
-  "labelsHidden": "▁Chỉ▁biểu▁tượng",
-  "labelsSelected": "▁Thẻ▁đã▁chọn",
-  "labelsAlways": "▁Tất▁cả",
-  "labelsHelp": "▁Thích▁nghi:▁biểu▁tượng▁trên▁điện▁thoại▁và▁nhãn▁trên▁thanh▁bên▁màn▁hình▁nền.",
-  "navigationStart": "▁Khởi▁chạy▁màn▁hình",
-  "navigationStartHelp": "▁Ứng▁dụng▁lần▁tới▁khi▁ứng▁dụng▁bắt▁đầu.",
-  "libraryLanding": "▁Khi▁mở▁thư▁viện",
-  "landingCategories": "▁Loại",
+  "navigationRequired": "Thẻ cần thiết",
+  "navigationLabels": "Nhãn thẻ",
+  "labelsAdaptive": "Thích nghi",
+  "labelsHidden": "Chỉ biểu tượng",
+  "labelsSelected": "Thẻ đã chọn",
+  "labelsAlways": "Tất cả",
+  "labelsHelp": "Thích nghi: biểu tượng trên điện thoại và nhãn trên thanh bên màn hình nền.",
+  "navigationStart": "Khởi chạy màn hình",
+  "navigationStartHelp": "Ứng dụng lần tới khi ứng dụng bắt đầu.",
+  "libraryLanding": "Khi mở thư viện",
+  "landingCategories": "Loại",
   "landingTracks": "Bài hát",
   "landingAlbums": "Album",
   "landingArtists": "Nghệ sĩ",
   "landingPlaylists": "Danh sách phát",
   "landingFavorites": "Yêu thích",
-  "resetNavigation": "▁Phục▁hồi▁định▁hướng▁mặc▁định",
-  "navigationSaveError": "▁Không▁thể▁lưu▁định▁hướng.▁Các▁ưu▁tiên▁trước▁đây▁được▁giữ▁lại.",
-  "navigationPreview": "▁Xem▁thử▁duyệt qua",
-  "libraryPageTitle": "▁Trang▁thư▁viện",
-  "albumPageTitle": "▁Trang▁tập▁ảnh",
-  "artistPageTitle": "▁Trang▁nghệ▁sĩ",
-  "categoryOrder": "▁Loại",
-  "categoryHelp": "▁Kéo▁cái▁điều▁khiển▁để▁sắp▁xếp▁lại.▁Giữ▁ít▁nhất▁một▁phân▁loại▁có▁thể▁nhìn▁thấy.▁Loại▁ẩn▁không▁xóa▁bỏ▁âm▁nhạc.",
-  "pageColumns": "▁Cột▁trên▁điện▁thoại",
-  "pageColumnsHelp": "▁Màn▁hình▁mở▁rộng▁tự▁động▁thêm▁cột.▁Văn▁bản▁lớn▁có▁thể▁giảm▁số▁đếm▁cột cho▁khả▁năng▁đọc.",
-  "pageLayout": "▁Bố▁trí",
-  "layoutList": "▁Đường",
-  "layoutGrid": "▁Lưới▁bìa",
-  "pageSort": "▁Thứ▁tự▁sắp▁xếp",
+  "resetNavigation": "Phục hồi định hướng mặc định",
+  "navigationSaveError": "Không thể lưu định hướng. Các ưu tiên trước đây được giữ lại.",
+  "navigationPreview": "Xem thử duyệt qua",
+  "libraryPageTitle": "Trang thư viện",
+  "albumPageTitle": "Trang tập ảnh",
+  "artistPageTitle": "Trang nghệ sĩ",
+  "categoryOrder": "Loại",
+  "categoryHelp": "Kéo cái điều khiển để sắp xếp lại. Giữ ít nhất một phân loại có thể nhìn thấy. Loại ẩn không xóa bỏ âm nhạc.",
+  "pageColumns": "Cột trên điện thoại",
+  "pageColumnsHelp": "Màn hình mở rộng tự động thêm cột. Văn bản lớn có thể giảm số đếm cột cho khả năng đọc.",
+  "pageLayout": "Bố trí",
+  "layoutList": "Đường",
+  "layoutGrid": "Lưới bìa",
+  "pageSort": "Thứ tự sắp xếp",
   "sortName": "Name",
   "sortNameDescending": "Name",
-  "sortTrackCount": "▁Số▁lần",
-  "pageSummary": "▁Tác▁phẩm▁nghệ▁thuật▁và▁tóm▁tắt▁trên▁trang▁mở",
-  "pageSummaryHelp": "▁Dùng▁các▁tác▁phẩm▁nghệ▁thuật▁sẵn▁có cho▁bài▁đầu▁tiên▁trong▁nhóm.",
-  "pageReset": "▁Đặt▁lại▁trang▁này",
-  "pageSaveError": "▁Không▁thể▁lưu▁trang.▁Tùy▁thích▁trước▁của▁bạn▁được▁giữ▁lại.",
-  "librarySources": "▁Nguồn",
-  "unknownGroup": "▁Không▁rõ",
-  "groupTracks": "{count, plural, one{1 Theo▁dõi} other{▁Các▁dấu▁vết {count}}}",
-  "groupMinutes": "▁Tổng▁cộng {minutes}▁phút",
+  "sortTrackCount": "Số lần",
+  "pageSummary": "Tác phẩm nghệ thuật và tóm tắt trên trang mở",
+  "pageSummaryHelp": "Dùng các tác phẩm nghệ thuật sẵn có cho bài đầu tiên trong nhóm.",
+  "pageReset": "Đặt lại trang này",
+  "pageSaveError": "Không thể lưu trang. Tùy thích trước của bạn được giữ lại.",
+  "librarySources": "Nguồn",
+  "unknownGroup": "Không rõ",
+  "groupTracks": "{count, plural, one{1 Theo dõi} other{ Các dấu vết {count}}}",
+  "groupMinutes": "Tổng cộng {minutes} phút",
   "@groupTracks": {
     "placeholders": {
       "count": {
@@ -97,327 +97,327 @@
       }
     }
   },
-  "uiTransitions": "▁Chuyển▁đổi",
-  "uiEqualizer": "▁Trình▁điều▁khiển",
-  "uiMediaControls": "▁Điều▁khiển▁phương▁tiện",
-  "uiHeadsetButtons": "▁Nút▁tai",
-  "uiNotificationButtons": "▁Nút▁Thông▁báo",
-  "uiCrossfade": "▁Chữ▁thập",
+  "uiTransitions": "Chuyển đổi",
+  "uiEqualizer": "Trình điều khiển",
+  "uiMediaControls": "Điều khiển phương tiện",
+  "uiHeadsetButtons": "Nút tai",
+  "uiNotificationButtons": "Nút Thông báo",
+  "uiCrossfade": "Chữ thập",
   "uiOff": "Tắt",
-  "uiOverlapsTheEndOfATrackWith": "▁Quá▁tải▁kết▁thúc▁của▁một▁đường ray▁với▁sự▁khởi▁đầu▁tiếp▁theo▁khi▁phát▁lại▁tự▁động.",
-  "uiPlayAndPause": "▁Phát▁và▁dừng",
-  "uiNoFade": "▁Không▁phai▁mờ",
-  "uiNotificationAndLockScreen": "▁Thông▁báo▁và▁khoá▁màn▁hình",
-  "uiSeekButtons10Seconds": "▁Tìm▁nút 010▁giây",
-  "uiReplacesPreviousnextWithSeekingInTheNotification": "▁Thay▁thế▁các▁tập tin▁trước/tiếp▁tục▁với▁việc▁tìm▁kiếm▁trong▁thông▁báo.",
-  "uiShowStopButton": "▁Hiện▁nút▁Dừng",
-  "uiHeadsetAndMediaButtons": "Tai▁nghe▁và▁nút▁phương▁tiện",
-  "uiSeek10SecondsFromHeadset": "▁Tìm _10▁giây▁từ▁bộ▁tai▁nghe",
-  "uiPreviousnextButtonsSeekWithinTheCurrentTrack": "▁Nút▁trước/xxt▁tìm▁trong▁đường▁dẫn▁hiện▁thời.▁Nút▁giữa▁giữ Play/Pause.",
-  "uiKeepPausedWhenChangingTracks": "▁Giữ▁dừng▁lại▁khi▁thay▁đổi▁đường",
-  "uiNotificationAndHeadsetControlsAreAvailableOn": "▁Điều▁khiển▁thông▁báo▁và▁tai▁nghe▁sẵn▁sàng▁trên Android.▁Một▁số▁hệ▁thống▁sắp▁xếp▁lại▁các▁nút▁thông▁báo.",
-  "uiTheEqualizerIsCurrentlyAvailableOnAndroid": "▁Thiết▁bị▁đồng▁bằng▁hiện▁có▁trên Android.",
-  "uiSelectATrackAndReopenTheEqualizer": "▁Chọn▁một▁đường▁dẫn▁và▁mở▁lại▁bộ▁đồng▁bộ.▁Nếu▁nó▁vẫn▁chưa▁sẵn▁sàng,▁thiết▁bị▁này▁không▁phơi▁bày▁hiệu▁ứng▁âm▁thanh▁cần▁thiết.",
-  "uiAndroidEqualizer": "Android ▁đồng▁bộ▁hoá",
-  "uiEnableEqualizer": "▁Bật▁bộ▁đồng▁bộ",
-  "uiFlat": "▁Bằng",
-  "uiVoice": "▁Giọng▁nói",
-  "uiWhenBoostingABandAuraAutomaticallyReduces": "▁Khi▁tăng▁một ban▁nhạc, Aura▁tự▁động▁giảm▁toàn▁bộ▁cấp▁độ▁để▁rời▁phòng▁đầu▁và▁giới▁hạn▁sự▁méo▁mó.",
-  "uiAudioPlayback": "▁Phát▁lại▁âm▁thanh",
-  "uiPlaybackIsUnavailable": "▁Không▁có▁phát▁lại.",
+  "uiOverlapsTheEndOfATrackWith": "Quá tải kết thúc của một đường ray với sự khởi đầu tiếp theo khi phát lại tự động.",
+  "uiPlayAndPause": "Phát và dừng",
+  "uiNoFade": "Không phai mờ",
+  "uiNotificationAndLockScreen": "Thông báo và khoá màn hình",
+  "uiSeekButtons10Seconds": "Tìm nút 010 giây",
+  "uiReplacesPreviousnextWithSeekingInTheNotification": "Thay thế các tập tin trước/tiếp tục với việc tìm kiếm trong thông báo.",
+  "uiShowStopButton": "Hiện nút Dừng",
+  "uiHeadsetAndMediaButtons": "Tai nghe và nút phương tiện",
+  "uiSeek10SecondsFromHeadset": "Tìm _10 giây từ bộ tai nghe",
+  "uiPreviousnextButtonsSeekWithinTheCurrentTrack": "Nút trước/xxt tìm trong đường dẫn hiện thời. Nút giữa giữ Play/Pause.",
+  "uiKeepPausedWhenChangingTracks": "Giữ dừng lại khi thay đổi đường",
+  "uiNotificationAndHeadsetControlsAreAvailableOn": "Điều khiển thông báo và tai nghe sẵn sàng trên Android. Một số hệ thống sắp xếp lại các nút thông báo.",
+  "uiTheEqualizerIsCurrentlyAvailableOnAndroid": "Thiết bị đồng bằng hiện có trên Android.",
+  "uiSelectATrackAndReopenTheEqualizer": "Chọn một đường dẫn và mở lại bộ đồng bộ. Nếu nó vẫn chưa sẵn sàng, thiết bị này không phơi bày hiệu ứng âm thanh cần thiết.",
+  "uiAndroidEqualizer": "Android đồng bộ hoá",
+  "uiEnableEqualizer": "Bật bộ đồng bộ",
+  "uiFlat": "Bằng",
+  "uiVoice": "Giọng nói",
+  "uiWhenBoostingABandAuraAutomaticallyReduces": "Khi tăng một ban nhạc, Aura tự động giảm toàn bộ cấp độ để rời phòng đầu và giới hạn sự méo mó.",
+  "uiAudioPlayback": "Phát lại âm thanh",
+  "uiPlaybackIsUnavailable": "Không có phát lại.",
   "uiUnknownArtist": "Nghệ sĩ không xác định",
   "uiUntitledTrack": "Bài hát không có tiêu đề",
-  "uiTheFileIsNotAValidAura": "▁Tập tin▁không▁phải là▁bản▁sao▁lưu▁hợp▁lệ Aura▁hoặc▁bị▁hỏng.",
-  "uiChooseAnAuraBackup": "▁Chọn▁bản▁sao▁lưu Aura",
-  "uiSaveAuraBackup": "▁Lưu▁bản▁sao▁lưu Aura",
-  "uiBackupSaved": "▁Đã▁lưu▁dự▁phòng.",
-  "uiCouldNotSaveTheBackupAuraData": "▁Không▁thể▁lưu▁bản▁sao▁lưu. Aura ▁dữ▁liệu▁không▁được▁thay▁đổi.",
-  "uiTheFileIsNotAValidAura82": "▁Tập tin▁không▁phải là▁bản▁sao▁hợp▁lệ Aura,▁bị▁hỏng▁hoặc▁vượt▁quá 4 MB.",
-  "uiRestoreBackup": "▁Phục▁hồi▁bản▁sao▁lưu?",
-  "uiYourCurrentFavoritesRatingsPlaylistsAndHistory": "▁Loại▁yêu▁thích▁hiện▁tại▁của▁bạn,▁đánh▁giá,▁danh▁sách▁nhạc▁và▁lịch▁sử▁sẽ▁được▁thay▁thế.",
-  "uiDataWillBeMergedExistingRatingsAnd": "▁Dữ▁liệu▁sẽ▁được▁hợp▁nhất.▁Đánh▁giá▁và▁tên▁danh▁sách▁nhạc là▁ưu▁tiên▁hàng▁đầu.",
-  "uiSettingsWillAlsoBeImported": "▁Thiết▁lập▁cũng▁sẽ▁được▁nhập.",
-  "uiYourCurrentSettingsWillBeKept": "▁Thiết▁lập▁hiện▁thời▁của▁bạn▁sẽ▁được▁lưu▁lại.",
+  "uiTheFileIsNotAValidAura": "Tập tin không phải là bản sao lưu hợp lệ Aura hoặc bị hỏng.",
+  "uiChooseAnAuraBackup": "Chọn bản sao lưu Aura",
+  "uiSaveAuraBackup": "Lưu bản sao lưu Aura",
+  "uiBackupSaved": "Đã lưu dự phòng.",
+  "uiCouldNotSaveTheBackupAuraData": "Không thể lưu bản sao lưu. Aura dữ liệu không được thay đổi.",
+  "uiTheFileIsNotAValidAura82": "Tập tin không phải là bản sao hợp lệ Aura, bị hỏng hoặc vượt quá 4 MB.",
+  "uiRestoreBackup": "Phục hồi bản sao lưu?",
+  "uiYourCurrentFavoritesRatingsPlaylistsAndHistory": "Loại yêu thích hiện tại của bạn, đánh giá, danh sách nhạc và lịch sử sẽ được thay thế.",
+  "uiDataWillBeMergedExistingRatingsAnd": "Dữ liệu sẽ được hợp nhất. Đánh giá và tên danh sách nhạc là ưu tiên hàng đầu.",
+  "uiSettingsWillAlsoBeImported": "Thiết lập cũng sẽ được nhập.",
+  "uiYourCurrentSettingsWillBeKept": "Thiết lập hiện thời của bạn sẽ được lưu lại.",
   "uiCancel": "Hủy",
-  "uiReplaceAndRestore": "▁Thay▁thế▁và▁phục▁hồi",
-  "uiRestore": "▁Phục▁hồi",
-  "uiBackupRestoredUnavailableTracksAreKeptAs": "▁Đã▁phục▁hồi.▁Dấu▁vết▁không▁thể▁xác▁định▁được▁được▁được▁giữ▁như là▁tài▁liệu▁tham▁khảo.",
-  "uiDataRecoveryMustFinishBeforeContinuing": "▁Việc▁phục▁hồi▁dữ▁liệu▁phải▁hoàn▁thành▁trước▁khi▁tiếp▁tục.",
-  "uiRestoreFailedYourPreviousDataWasKept": "▁Việc▁phục▁hồi▁bị▁lỗi.▁Dữ▁liệu▁trước▁đây▁của▁bạn▁đã▁được▁lưu▁lại.",
-  "uiPreviousDataRecovered": "▁Dữ▁liệu▁trước▁đây▁đã▁được▁thu▁hồi.",
-  "uiCouldNotRecoverTheDataYetTry": "▁Chưa▁thể▁lấy▁lại▁dữ▁liệu.▁Thử▁lại▁hoặc▁khởi▁chạy▁lại Aura.",
-  "uiBackupAndRestore": "▁Sao▁lưu▁và▁phục▁hồi",
-  "uiDataRecoveryIsRequiredBeforeContinuingAura": "▁Phải▁thu▁hồi▁dữ▁liệu▁trước▁khi▁tiếp▁tục. Aura▁giữ▁tình▁trạng▁trước▁đây▁trong▁một▁tạp▁chí▁địa▁phương.",
-  "uiTryRecovery": "▁Cố▁gắng▁hồi▁phục",
-  "uiKeepWhatYouHaveOrganized": "▁Hãy▁giữ▁những▁gì▁bạn▁đã▁tổ▁chức",
-  "uiBackupsIncludeFavoritesRatingsPlaylistsHistoryPlayback": "▁Các▁bản▁sao▁lại▁bao▁gồm▁các▁bản▁yêu▁thích,▁đánh▁giá,▁danh▁sách▁phát▁nhạc,▁lịch▁sử,▁thiết▁lập▁phát▁lại▁và▁bộ▁lọc▁thư▁viện.▁Tập tin▁âm▁thanh,▁nguồn▁và▁các▁thư▁mục▁đã▁chọn▁không▁được▁liệt▁kê▁và▁phải▁được▁cấu▁hình▁riêng.",
-  "uiExportBackup": "▁Xuất▁bản▁bản▁sao▁lưu",
-  "uiChooseABackupToRestore": "▁Chọn▁bản▁sao▁lưu▁cần▁phục▁hồi",
-  "uiMissingReferencesAreKeptWithoutAssigningRatings": "▁Thiếu▁tài▁liệu▁tham▁khảo▁được▁lưu▁mà▁không▁phân▁loại▁các▁bài▁hát▁khác.▁Bạn▁có▁thể▁gửi▁lại▁bản▁sao▁lưu▁sau▁khi▁thêm▁các▁nguồn▁khớp.",
-  "uiReplaceCurrentData": "▁Thay▁thế▁dữ▁liệu▁hiện▁thời",
-  "uiOffMergeDataAndKeepExistingRatings": "▁Tắt:▁nhập▁dữ▁liệu▁và▁giữ▁tỉ▁lệ▁đã▁có.",
-  "uiRestoreSettingsToo": "▁Phục▁hồi▁thiết▁lập",
-  "uiReviewAndRestore": "▁Xem▁lại▁và▁phục▁hồi",
+  "uiReplaceAndRestore": "Thay thế và phục hồi",
+  "uiRestore": "Phục hồi",
+  "uiBackupRestoredUnavailableTracksAreKeptAs": "Đã phục hồi. Dấu vết không thể xác định được được được giữ như là tài liệu tham khảo.",
+  "uiDataRecoveryMustFinishBeforeContinuing": "Việc phục hồi dữ liệu phải hoàn thành trước khi tiếp tục.",
+  "uiRestoreFailedYourPreviousDataWasKept": "Việc phục hồi bị lỗi. Dữ liệu trước đây của bạn đã được lưu lại.",
+  "uiPreviousDataRecovered": "Dữ liệu trước đây đã được thu hồi.",
+  "uiCouldNotRecoverTheDataYetTry": "Chưa thể lấy lại dữ liệu. Thử lại hoặc khởi chạy lại Aura.",
+  "uiBackupAndRestore": "Sao lưu và phục hồi",
+  "uiDataRecoveryIsRequiredBeforeContinuingAura": "Phải thu hồi dữ liệu trước khi tiếp tục. Aura giữ tình trạng trước đây trong một tạp chí địa phương.",
+  "uiTryRecovery": "Cố gắng hồi phục",
+  "uiKeepWhatYouHaveOrganized": "Hãy giữ những gì bạn đã tổ chức",
+  "uiBackupsIncludeFavoritesRatingsPlaylistsHistoryPlayback": "Các bản sao lại bao gồm các bản yêu thích, đánh giá, danh sách phát nhạc, lịch sử, thiết lập phát lại và bộ lọc thư viện. Tập tin âm thanh, nguồn và các thư mục đã chọn không được liệt kê và phải được cấu hình riêng.",
+  "uiExportBackup": "Xuất bản bản sao lưu",
+  "uiChooseABackupToRestore": "Chọn bản sao lưu cần phục hồi",
+  "uiMissingReferencesAreKeptWithoutAssigningRatings": "Thiếu tài liệu tham khảo được lưu mà không phân loại các bài hát khác. Bạn có thể gửi lại bản sao lưu sau khi thêm các nguồn khớp.",
+  "uiReplaceCurrentData": "Thay thế dữ liệu hiện thời",
+  "uiOffMergeDataAndKeepExistingRatings": "Tắt: nhập dữ liệu và giữ tỉ lệ đã có.",
+  "uiRestoreSettingsToo": "Phục hồi thiết lập",
+  "uiReviewAndRestore": "Xem lại và phục hồi",
   "uiHelloNightOwl": "Xin chào, cú đêm 🦉",
   "uiGoodMorning": "Chào buổi sáng 🌅",
   "uiGoodAfternoon": "Chào buổi chiều ☀️",
   "uiGoodEvening": "Chào buổi tối 🌆",
-  "uiChooseYourMusicFolder": "▁Chọn▁thư▁mục▁âm▁nhạc",
-  "uiAuraCouldNotRecoverAnInterruptedRestore": "Aura▁không▁thể▁phục▁hồi▁một▁bản▁phục▁hồi▁bị▁gián▁đoạn.▁Dữ▁liệu▁cũ▁của▁bạn▁được▁lưu▁trong▁tạp▁chí▁địa▁phương.▁Đóng▁và▁mở▁lại▁ứng▁dụng▁để▁thử▁lại.",
-  "uiCouldNotLoadOrSaveListeningHistory": "▁Không▁thể▁tải hay▁lưu▁lịch▁sử▁lắng▁nghe▁và▁phát▁lại▁cuối▁cùng.",
-  "uiCouldNotApplyPlaybackSettingsOrThe": "▁Không▁thể▁áp▁dụng▁thiết▁lập▁phát▁lại▁hoặc▁đồng▁hồ▁hẹn▁giờ▁giấc.",
-  "uiCouldNotLoadTheLibraryScanYour": "▁Không▁thể▁tải▁thư▁viện.▁Hãy▁quét▁lại▁âm▁nhạc▁của▁bạn.",
-  "uiMusicOnYourPC": "▁Âm▁nhạc▁trên▁số PC",
-  "uiMusicOnYourPhone": "▁Âm▁nhạc▁trên▁điện▁thoại▁của▁bạn",
-  "uiNavidromeServer": "▁Máy▁chủ Navidrome",
-  "uiURLAndUserAccount": "URL▁và▁tài▁khoản▁người▁dùng",
-  "uiCouldNotLoadMusicSources": "▁Không▁nạp▁được▁nguồn▁nhạc.",
-  "uiAddAFolderFromYourPC": "▁Thêm▁một▁thư▁mục▁từ▁số PC",
-  "uiChooseVisibleFolders": "▁Chọn▁thư▁mục▁thấy▁được",
-  "uiRemoveAFolderFromTheLibrary": "Gỡ▁bỏ▁thư▁mục▁khỏi▁thư▁viện",
-  "uiFilesStayOnYourPC": "▁Hồ▁sơ▁vẫn▁còn▁trên▁số PC.",
-  "uiYouHaveNotAddedAnyFoldersYet": "▁Bạn▁chưa▁thêm▁thư▁mục▁nào.",
-  "uiRemoveFromLibrary": "▁Bỏ▁khỏi▁thư▁viện",
-  "uiFolderRemovedFromTheLibraryFilesStayed": "▁Thư▁mục▁bị▁gỡ▁bỏ▁khỏi▁thư▁viện.▁Tập tin▁vẫn▁còn▁lại▁trên PC▁của▁bạn.",
-  "uiCouldNotRemoveTheFolderFromThe": "▁Không▁thể▁gỡ▁bỏ▁thư▁mục▁khỏi▁thư▁viện.",
-  "uiCouldNotReadTheFolderCheckThat": "▁Không▁thể▁đọc▁thư▁mục▁này.▁Hãy▁kiểm tra▁xem▁nó▁có▁sẵn▁không.",
-  "uiCouldNotSaveSourcesTryAgain": "▁Không▁thể▁lưu▁nguồn.▁Thử▁lại▁đi.",
-  "uiCouldNotPlayTheTrackTryScanning": "▁Không▁thể▁chơi▁theo▁dõi.▁Thử▁quét▁lại▁lần▁nữa.",
-  "uiNoAudioFilesFoundOnTheDevice": "▁Không▁tìm▁thấy▁tập tin▁âm▁thanh▁trên▁thiết▁bị.",
-  "uiAllowMusicAccessToScanYourLibrary": "Cho▁phép▁âm▁nhạc▁quét▁thư▁viện▁của▁bạn.",
-  "uiCouldNotScanYourMusicTryAgain": "▁Không▁thể▁quét▁được▁nhạc▁của▁bạn.▁Hãy▁thử▁lại.",
-  "uiLibraryScanningIsCurrentlyAvailableOnAndroid": "▁Thư▁viện scan▁hiện▁có▁trên Android.",
-  "uiAProblemOccurredWhileScanningMusic": "▁Một▁vấn▁đề▁xảy ra▁khi▁quét▁âm▁nhạc.",
-  "uiWhereIsYourMusic": "▁Nhạc▁của▁anh▁đâu?",
-  "uiFavoriteTracks": "▁Dấu▁vết▁yêu▁thích",
-  "uiAllFavorites": "▁Mọi▁thứ▁ưa▁thích",
-  "uiBrowse": "▁Duyệt",
-  "uiRecentlyPlayed": "▁Mới▁phát",
-  "uiSeeAll": "▁Xem▁tất▁cả",
-  "uiYourLibrary": "▁Thư▁viện▁của▁bạn",
-  "uiSTARTWITHASOURCE": "▁Bắt▁đầu▁với▁một▁sức▁mạnh",
-  "uiAddYourMusic": "▁Thêm▁âm▁nhạc▁của▁bạn",
-  "uiPCOrNavidromeServer": "▁Máy▁chủ PC▁hoặc Navidrome",
-  "uiPhoneOrNavidromeServer": "▁Máy▁chủ▁điện▁thoại▁hoặc Navidrome",
-  "uiScanning": "▁Đang▁quét...",
-  "uiAddASource": "▁Thêm▁nguồn",
+  "uiChooseYourMusicFolder": "Chọn thư mục âm nhạc",
+  "uiAuraCouldNotRecoverAnInterruptedRestore": "Aura không thể phục hồi một bản phục hồi bị gián đoạn. Dữ liệu cũ của bạn được lưu trong tạp chí địa phương. Đóng và mở lại ứng dụng để thử lại.",
+  "uiCouldNotLoadOrSaveListeningHistory": "Không thể tải hay lưu lịch sử lắng nghe và phát lại cuối cùng.",
+  "uiCouldNotApplyPlaybackSettingsOrThe": "Không thể áp dụng thiết lập phát lại hoặc đồng hồ hẹn giờ giấc.",
+  "uiCouldNotLoadTheLibraryScanYour": "Không thể tải thư viện. Hãy quét lại âm nhạc của bạn.",
+  "uiMusicOnYourPC": "Âm nhạc trên số PC",
+  "uiMusicOnYourPhone": "Âm nhạc trên điện thoại của bạn",
+  "uiNavidromeServer": "Máy chủ Navidrome",
+  "uiURLAndUserAccount": "URL và tài khoản người dùng",
+  "uiCouldNotLoadMusicSources": "Không nạp được nguồn nhạc.",
+  "uiAddAFolderFromYourPC": "Thêm một thư mục từ số PC",
+  "uiChooseVisibleFolders": "Chọn thư mục thấy được",
+  "uiRemoveAFolderFromTheLibrary": "Gỡ bỏ thư mục khỏi thư viện",
+  "uiFilesStayOnYourPC": "Hồ sơ vẫn còn trên số PC.",
+  "uiYouHaveNotAddedAnyFoldersYet": "Bạn chưa thêm thư mục nào.",
+  "uiRemoveFromLibrary": "Bỏ khỏi thư viện",
+  "uiFolderRemovedFromTheLibraryFilesStayed": "Thư mục bị gỡ bỏ khỏi thư viện. Tập tin vẫn còn lại trên PC của bạn.",
+  "uiCouldNotRemoveTheFolderFromThe": "Không thể gỡ bỏ thư mục khỏi thư viện.",
+  "uiCouldNotReadTheFolderCheckThat": "Không thể đọc thư mục này. Hãy kiểm tra xem nó có sẵn không.",
+  "uiCouldNotSaveSourcesTryAgain": "Không thể lưu nguồn. Thử lại đi.",
+  "uiCouldNotPlayTheTrackTryScanning": "Không thể chơi theo dõi. Thử quét lại lần nữa.",
+  "uiNoAudioFilesFoundOnTheDevice": "Không tìm thấy tập tin âm thanh trên thiết bị.",
+  "uiAllowMusicAccessToScanYourLibrary": "Cho phép âm nhạc quét thư viện của bạn.",
+  "uiCouldNotScanYourMusicTryAgain": "Không thể quét được nhạc của bạn. Hãy thử lại.",
+  "uiLibraryScanningIsCurrentlyAvailableOnAndroid": "Thư viện scan hiện có trên Android.",
+  "uiAProblemOccurredWhileScanningMusic": "Một vấn đề xảy ra khi quét âm nhạc.",
+  "uiWhereIsYourMusic": "Nhạc của anh đâu?",
+  "uiFavoriteTracks": "Dấu vết yêu thích",
+  "uiAllFavorites": "Mọi thứ ưa thích",
+  "uiBrowse": "Duyệt",
+  "uiRecentlyPlayed": "Mới phát",
+  "uiSeeAll": "Xem tất cả",
+  "uiYourLibrary": "Thư viện của bạn",
+  "uiSTARTWITHASOURCE": "Bắt đầu với một sức mạnh",
+  "uiAddYourMusic": "Thêm âm nhạc của bạn",
+  "uiPCOrNavidromeServer": "Máy chủ PC hoặc Navidrome",
+  "uiPhoneOrNavidromeServer": "Máy chủ điện thoại hoặc Navidrome",
+  "uiScanning": "Đang quét...",
+  "uiAddASource": "Thêm nguồn",
   "uiLibrary": "Thư viện",
-  "uiYourListeningHistoryWillAppearHere": "▁Lịch▁sử▁lắng▁nghe▁sẽ▁xuất▁hiện▁ở▁đây.",
-  "uiYOURCOLLECTION": "NHỮNG CÂU▁HỎI▁CỦA▁BẠN",
+  "uiYourListeningHistoryWillAppearHere": "Lịch sử lắng nghe sẽ xuất hiện ở đây.",
+  "uiYOURCOLLECTION": "NHỮNG CÂU HỎI CỦA BẠN",
   "uiLibrary178": "Thư viện",
-  "uiNoTracksMatchTheSelectedFilters": "▁Không▁có▁dấu▁vết▁khớp▁với▁bộ▁lọc▁đã▁chọn.",
-  "uiChooseMusicFoldersToSeeTracksIn": "▁Chọn▁thư▁mục▁âm▁nhạc▁để▁xem▁đường▁dẫn▁trong▁thư▁viện▁của▁bạn.",
-  "uiChangeFilters": "▁Đổi▁bộ▁lọc",
-  "uiChooseFolders": "▁Chọn▁thư▁mục",
-  "uiScanAgain": "▁Quét▁lại",
-  "uiNoTracksMatchTheSelectedRating": "▁Không▁có▁dấu▁vết▁khớp▁với▁đánh▁giá▁đã▁chọn.",
-  "uiCouldNotResumeTheTrackTrySelecting": "▁Không▁thể▁tiếp▁tục▁theo▁dõi.▁Thử▁chọn▁lại▁lần▁nữa.",
-  "uiUnknownDuration": "▁Thời▁gian▁lạ",
-  "uiTrackInformation": "Theo▁dõi▁thông tin",
+  "uiNoTracksMatchTheSelectedFilters": "Không có dấu vết khớp với bộ lọc đã chọn.",
+  "uiChooseMusicFoldersToSeeTracksIn": "Chọn thư mục âm nhạc để xem đường dẫn trong thư viện của bạn.",
+  "uiChangeFilters": "Đổi bộ lọc",
+  "uiChooseFolders": "Chọn thư mục",
+  "uiScanAgain": "Quét lại",
+  "uiNoTracksMatchTheSelectedRating": "Không có dấu vết khớp với đánh giá đã chọn.",
+  "uiCouldNotResumeTheTrackTrySelecting": "Không thể tiếp tục theo dõi. Thử chọn lại lần nữa.",
+  "uiUnknownDuration": "Thời gian lạ",
+  "uiTrackInformation": "Theo dõi thông tin",
   "uiClose": "Đóng",
-  "uiArtist": "▁Nghệ▁sĩ",
-  "uiAlbum": "▁Tập",
-  "uiUnknownAlbum": "▁Tập▁ảnh▁lạ",
-  "uiDuration": "▁Thời▁gian",
-  "uiFolder": "▁Thư▁mục",
-  "uiUnknownFolder": "▁Thư▁mục▁lạ",
+  "uiArtist": "Nghệ sĩ",
+  "uiAlbum": "Tập",
+  "uiUnknownAlbum": "Tập ảnh lạ",
+  "uiDuration": "Thời gian",
+  "uiFolder": "Thư mục",
+  "uiUnknownFolder": "Thư mục lạ",
   "uiPause": "Tạm dừng",
-  "uiNextTrack": "Theo▁dõi▁kế",
-  "uiTheQueueIsEmpty": "▁Hàng▁đợi▁trống",
-  "uiPreviousTrack": "Theo▁dõi▁trước",
-  "uiEnterTheHTTPSServerAddressWithoutA": "▁Hãy▁nhập▁địa▁chỉ▁máy▁chủ HTTPS▁mà▁không▁có▁tên▁người▁dùng,▁mật▁khẩu▁hoặc URL▁tham▁số.",
-  "uiEnterTheSourceNameUsernameAndPassword": "▁Nhập▁tên▁nguồn,▁tên▁người▁dùng▁và▁mật▁khẩu.",
-  "uiTheServerDidNotRespondCorrectlyCheck": "▁Máy▁phục▁vụ▁không▁trả▁lời▁đúng.▁Hãy▁kiểm tra▁địa▁chỉ▁và▁tài▁khoản Navidrome.",
-  "uiTheServerResponseIsTooLarge": "▁Đáp▁ứng▁máy▁chủ▁quá▁lớn.",
-  "uiCouldNotReachTheServerCheckYour": "▁Không▁thể▁tới▁máy▁phục▁vụ.▁Hãy▁kiểm tra▁kết▁nối,▁địa▁chỉ▁và HTTPS▁chứng▁nhận.",
-  "uiAuthenticationFailedCheckYourUsernameAndPassword": "▁Xác▁thực▁thất▁bại.▁Hãy▁kiểm tra▁tên▁người▁dùng▁và▁mật▁khẩu.",
-  "uiNavidromeRejectedTheRequestCheckTheAccounts": "Navidrome▁từ▁chối▁yêu▁cầu▁này.▁Hãy▁kiểm tra▁xem▁thư▁viện▁của▁tài▁khoản▁có▁truy▁cập▁được▁không.",
-  "uiTheAddressDidNotReturnAValid": "▁Địa▁chỉ▁không▁có▁giá▁trị Navidrome ▁Trả▁lời▁đi.",
-  "uiTheServerRepeatedAnAlbumPageYour": "▁Máy▁phục▁vụ▁lặp▁lại▁một▁trang▁tập▁ảnh.▁Thư▁viện▁trước▁của▁bạn▁đã▁được▁cất▁giữ.",
-  "uiInvalidServerTrack": "Theo▁dõi▁máy▁phục▁vụ▁không▁hợp▁lệ.",
-  "uiReconnectTheNavidromeSourceToPlayThis": "▁Tái▁kết▁nối▁nguồn▁gốc Navidrome▁để▁chơi▁đường▁đua▁này.",
-  "uiCouldNotLoadSavedSourcesTryAgain": "▁Không▁thể▁tải▁nguồn▁đã▁lưu.▁Thử▁lại.",
-  "uiCouldNotSaveTheSourceChangeTry": "▁Không▁thể▁lưu▁sự▁thay▁đổi▁về▁nguồn.▁Hãy▁thử▁lại.",
-  "uiConnectedTheServerLibraryHasBeenLoaded": "▁Đã▁kết▁nối.▁Đã▁tải▁thư▁viện▁máy▁phục▁vụ.",
-  "uiDisconnectThisSource": "▁Ngắt▁kết▁nối▁nguồn▁này?",
+  "uiNextTrack": "Theo dõi kế",
+  "uiTheQueueIsEmpty": "Hàng đợi trống",
+  "uiPreviousTrack": "Theo dõi trước",
+  "uiEnterTheHTTPSServerAddressWithoutA": "Hãy nhập địa chỉ máy chủ HTTPS mà không có tên người dùng, mật khẩu hoặc URL tham số.",
+  "uiEnterTheSourceNameUsernameAndPassword": "Nhập tên nguồn, tên người dùng và mật khẩu.",
+  "uiTheServerDidNotRespondCorrectlyCheck": "Máy phục vụ không trả lời đúng. Hãy kiểm tra địa chỉ và tài khoản Navidrome.",
+  "uiTheServerResponseIsTooLarge": "Đáp ứng máy chủ quá lớn.",
+  "uiCouldNotReachTheServerCheckYour": "Không thể tới máy phục vụ. Hãy kiểm tra kết nối, địa chỉ và HTTPS chứng nhận.",
+  "uiAuthenticationFailedCheckYourUsernameAndPassword": "Xác thực thất bại. Hãy kiểm tra tên người dùng và mật khẩu.",
+  "uiNavidromeRejectedTheRequestCheckTheAccounts": "Navidrome từ chối yêu cầu này. Hãy kiểm tra xem thư viện của tài khoản có truy cập được không.",
+  "uiTheAddressDidNotReturnAValid": "Địa chỉ không có giá trị Navidrome Trả lời đi.",
+  "uiTheServerRepeatedAnAlbumPageYour": "Máy phục vụ lặp lại một trang tập ảnh. Thư viện trước của bạn đã được cất giữ.",
+  "uiInvalidServerTrack": "Theo dõi máy phục vụ không hợp lệ.",
+  "uiReconnectTheNavidromeSourceToPlayThis": "Tái kết nối nguồn gốc Navidrome để chơi đường đua này.",
+  "uiCouldNotLoadSavedSourcesTryAgain": "Không thể tải nguồn đã lưu. Thử lại.",
+  "uiCouldNotSaveTheSourceChangeTry": "Không thể lưu sự thay đổi về nguồn. Hãy thử lại.",
+  "uiConnectedTheServerLibraryHasBeenLoaded": "Đã kết nối. Đã tải thư viện máy phục vụ.",
+  "uiDisconnectThisSource": "Ngắt kết nối nguồn này?",
   "uiCancel228": "Hủy",
-  "uiDisconnect": "▁Ngắt▁kết▁nối",
-  "uiSourceDisconnected": "▁Nguồn▁không▁hoạt▁động.",
-  "uiNavidromeSources": "Navidrome ▁Nguồn",
-  "uiConnectYourLibraryFromANavidromeServer": "▁Kết▁nối▁thư▁viện▁của▁bạn▁từ▁máy▁chủ Navidrome▁trên HTTPS.",
-  "uiLoadingTheServerLibrary": "▁Đang▁nạp▁thư▁viện▁máy▁phục▁vụ...",
-  "uiReloadSources": "▁Nguồn▁tải▁lại",
-  "uiLibraryUpdated": "▁Thư▁viện▁đã▁cập▁nhật.",
-  "uiRefresh": "▁Cập▁nhật",
-  "uiReconnect": "&▁Kết▁nối",
-  "uiAddNavidromeServer": "▁Thêm Navidrome ▁máy▁phục▁vụ",
-  "uiTracksAppearInLibraryAfterConnectingPlayback": "▁Các▁dấu▁vết▁xuất▁hiện▁trong▁thư▁viện▁sau▁khi▁kết▁nối. Playback▁yêu▁cầu internet. Aura▁yêu▁thích,▁đánh▁giá▁và▁danh▁sách▁nhạc▁vẫn▁còn▁cục▁bộ;▁thư▁viện▁máy▁phục▁vụ▁không▁thay▁đổi.",
-  "uiConnectToNavidrome": "▁Kết▁nối▁tới Navidrome",
-  "uiSourceName": "▁Tên▁nguồn",
-  "uiServerURL": "▁Máy▁phục▁vụ URL",
-  "uiUsername": "▁Tên▁người▁dùng",
-  "uiPassword": "▁Mật▁khẩu",
-  "uiCredentialsAreSavedInTheDevicesSecure": "▁Giấy▁chứng▁nhận▁được▁lưu▁trữ▁trong▁kho▁bảo▁mật▁của▁thiết▁bị▁này.",
-  "uiConnect": "▁Kết▁nối",
-  "uiListeningHistory": "▁Lắng▁nghe▁lịch▁sử",
-  "uiClearHistory": "▁Xóa▁lịch▁sử",
-  "uiClearHistory262": "▁Xóa▁lịch▁sử?",
-  "uiTracksFavoritesAndPlaylistsWillStaySaved": "▁Các▁bài▁hát,▁bài▁yêu▁thích▁và▁danh▁sách▁nhạc▁sẽ▁được▁lưu▁lại.",
+  "uiDisconnect": "Ngắt kết nối",
+  "uiSourceDisconnected": "Nguồn không hoạt động.",
+  "uiNavidromeSources": "Navidrome Nguồn",
+  "uiConnectYourLibraryFromANavidromeServer": "Kết nối thư viện của bạn từ máy chủ Navidrome trên HTTPS.",
+  "uiLoadingTheServerLibrary": "Đang nạp thư viện máy phục vụ...",
+  "uiReloadSources": "Nguồn tải lại",
+  "uiLibraryUpdated": "Thư viện đã cập nhật.",
+  "uiRefresh": "Cập nhật",
+  "uiReconnect": "& Kết nối",
+  "uiAddNavidromeServer": "Thêm Navidrome máy phục vụ",
+  "uiTracksAppearInLibraryAfterConnectingPlayback": "Các dấu vết xuất hiện trong thư viện sau khi kết nối. Playback yêu cầu internet. Aura yêu thích, đánh giá và danh sách nhạc vẫn còn cục bộ; thư viện máy phục vụ không thay đổi.",
+  "uiConnectToNavidrome": "Kết nối tới Navidrome",
+  "uiSourceName": "Tên nguồn",
+  "uiServerURL": "Máy phục vụ URL",
+  "uiUsername": "Tên người dùng",
+  "uiPassword": "Mật khẩu",
+  "uiCredentialsAreSavedInTheDevicesSecure": "Giấy chứng nhận được lưu trữ trong kho bảo mật của thiết bị này.",
+  "uiConnect": "Kết nối",
+  "uiListeningHistory": "Lắng nghe lịch sử",
+  "uiClearHistory": "Xóa lịch sử",
+  "uiClearHistory262": "Xóa lịch sử?",
+  "uiTracksFavoritesAndPlaylistsWillStaySaved": "Các bài hát, bài yêu thích và danh sách nhạc sẽ được lưu lại.",
   "uiDelete": "Xóa",
-  "uiPlayedTracksWillAppearHere": "▁Những▁dấu▁vết▁sẽ▁xuất▁hiện▁ở▁đây.",
-  "uiTracksInYourHistoryAreHiddenBy": "▁Các▁dấu▁vết▁trong▁lịch▁sử▁của▁bạn▁bị▁ẩn▁bởi▁bộ▁lọc▁hiện▁thời▁hoặc▁không▁còn▁sẵn▁có.",
-  "uiLibraryFilters": "▁Lọc▁thư▁viện",
-  "uiMinimumDuration": "▁Khoảng▁thời▁gian▁tối▁thiểu",
-  "uiAllDurations": "▁Tất▁cả▁các▁khoảng▁cách",
-  "ui10Seconds": "0▁giây",
-  "ui30Seconds": "0▁giây",
-  "ui1Minute": "1▁phút",
-  "uiTracksWithUnknownDurationStayVisible": "▁Dấu▁vết▁với▁khoảng▁thời▁gian▁chưa▁xác▁định▁vẫn▁hiện▁hữu.",
-  "uiHideWhatsAppAndTelegram": "▁Ẩn WhatsApp▁và Telegram",
-  "uiHidesFilesFromTheseAppsFolders": "▁Giấu▁tập tin▁trong▁thư▁mục▁của▁ứng▁dụng▁này.",
-  "uiFiltersOnlyChangeWhatAppearsInYour": "▁Bộ▁lọc▁chỉ▁thay▁đổi▁những▁gì▁xuất▁hiện▁trong▁thư▁viện▁của▁bạn.▁Tập tin,▁danh▁sách▁phát▁và▁hàng▁đợi▁hiện▁thời▁được▁lưu.",
-  "uiSaving": "▁Đang▁lưu...",
-  "uiSaveFilters": "▁Lưu▁bộ▁lọc",
-  "uiRepeatOff": "▁Lặp▁lại",
-  "uiRepeatEntireQueue": "▁Toàn▁bộ▁hàng▁đợi▁lặp▁lại",
-  "uiRepeatCurrentTrack": "▁Lặp▁lại▁theo▁dõi▁hiện▁tại",
-  "uiShuffleOn": "▁Bắt▁đầu",
-  "uiShuffleOff": "▁Bắt▁đầu",
-  "uiCloseQueue": "▁Đóng▁hàng▁đợi",
-  "uiShuffledOrderTurnOffShuffleToReorder": "▁Thứ▁tự rùng▁mình.▁Tắt▁xáo▁trộn▁để▁sắp▁xếp▁lại.",
-  "uiDragTheHandleToChangeTheOrder": "▁Kéo▁tay▁cầm▁để▁thay▁đổi▁thứ▁tự.",
-  "uiCouldNotUpdatePlaybackTryAgain": "▁Không▁thể▁cập▁nhật▁bản▁phát▁lại.▁Hãy▁thử▁lại.",
-  "uiAtTheEndOfTheTrack": "▁Ở▁cuối▁đường▁đua",
-  "uiSleepTimer": "▁Đồng▁hồ▁hẹn▁giờ▁ngủ",
-  "uiCloseSleepTimer": "▁Đến▁giờ▁ngủ▁rồi",
-  "uiFinishTheCurrentTrack": "▁Kết▁thúc▁theo▁dõi▁hiện▁thời",
-  "uiWhenTheTimerEndsWaitForThe": "▁Khi▁thời▁gian▁kết▁thúc,▁hãy▁đợi▁đường ray▁kết▁thúc▁trước▁khi▁dừng▁lại.",
-  "uiStartSleepTimer": "▁Bắt▁đầu▁hẹn▁giờ▁ngủ",
-  "uiStopAtTheEndOfThisTrack": "▁Dừng▁ở▁cuối▁đường▁đua",
-  "uiCancelSleepTimer": "▁Hủy▁hẹn▁giờ▁giấc▁ngủ",
-  "uiPlaybackSettings": "▁Thiết▁lập▁phát▁lại",
-  "uiOutputSettings": "▁Thiết▁lập▁xuất",
-  "uiPlayback": "▁Phát",
-  "uiAutomaticActions": "▁Hành▁động▁tự▁động",
-  "uiAudioOutput": "▁Xuất▁âm▁thanh",
-  "uiOnlyAppliesInAuraSeparatelyFromYour": "▁Chỉ▁áp▁dụng▁vào▁năm Aura,▁tách▁biệt▁khỏi▁điện▁thoại▁hoặc PC▁quyển.",
-  "uiTimer": "▁Đồng▁hồ▁hẹn▁giờ",
-  "uiAudioOptions": "▁Tùy▁chọn▁âm▁thanh",
+  "uiPlayedTracksWillAppearHere": "Những dấu vết sẽ xuất hiện ở đây.",
+  "uiTracksInYourHistoryAreHiddenBy": "Các dấu vết trong lịch sử của bạn bị ẩn bởi bộ lọc hiện thời hoặc không còn sẵn có.",
+  "uiLibraryFilters": "Lọc thư viện",
+  "uiMinimumDuration": "Khoảng thời gian tối thiểu",
+  "uiAllDurations": "Tất cả các khoảng cách",
+  "ui10Seconds": "0 giây",
+  "ui30Seconds": "0 giây",
+  "ui1Minute": "1 phút",
+  "uiTracksWithUnknownDurationStayVisible": "Dấu vết với khoảng thời gian chưa xác định vẫn hiện hữu.",
+  "uiHideWhatsAppAndTelegram": "Ẩn WhatsApp và Telegram",
+  "uiHidesFilesFromTheseAppsFolders": "Giấu tập tin trong thư mục của ứng dụng này.",
+  "uiFiltersOnlyChangeWhatAppearsInYour": "Bộ lọc chỉ thay đổi những gì xuất hiện trong thư viện của bạn. Tập tin, danh sách phát và hàng đợi hiện thời được lưu.",
+  "uiSaving": "Đang lưu...",
+  "uiSaveFilters": "Lưu bộ lọc",
+  "uiRepeatOff": "Lặp lại",
+  "uiRepeatEntireQueue": "Toàn bộ hàng đợi lặp lại",
+  "uiRepeatCurrentTrack": "Lặp lại theo dõi hiện tại",
+  "uiShuffleOn": "Bắt đầu",
+  "uiShuffleOff": "Bắt đầu",
+  "uiCloseQueue": "Đóng hàng đợi",
+  "uiShuffledOrderTurnOffShuffleToReorder": "Thứ tự rùng mình. Tắt xáo trộn để sắp xếp lại.",
+  "uiDragTheHandleToChangeTheOrder": "Kéo tay cầm để thay đổi thứ tự.",
+  "uiCouldNotUpdatePlaybackTryAgain": "Không thể cập nhật bản phát lại. Hãy thử lại.",
+  "uiAtTheEndOfTheTrack": "Ở cuối đường đua",
+  "uiSleepTimer": "Đồng hồ hẹn giờ ngủ",
+  "uiCloseSleepTimer": "Đến giờ ngủ rồi",
+  "uiFinishTheCurrentTrack": "Kết thúc theo dõi hiện thời",
+  "uiWhenTheTimerEndsWaitForThe": "Khi thời gian kết thúc, hãy đợi đường ray kết thúc trước khi dừng lại.",
+  "uiStartSleepTimer": "Bắt đầu hẹn giờ ngủ",
+  "uiStopAtTheEndOfThisTrack": "Dừng ở cuối đường đua",
+  "uiCancelSleepTimer": "Hủy hẹn giờ giấc ngủ",
+  "uiPlaybackSettings": "Thiết lập phát lại",
+  "uiOutputSettings": "Thiết lập xuất",
+  "uiPlayback": "Phát",
+  "uiAutomaticActions": "Hành động tự động",
+  "uiAudioOutput": "Xuất âm thanh",
+  "uiOnlyAppliesInAuraSeparatelyFromYour": "Chỉ áp dụng vào năm Aura, tách biệt khỏi điện thoại hoặc PC quyển.",
+  "uiTimer": "Đồng hồ hẹn giờ",
+  "uiAudioOptions": "Tùy chọn âm thanh",
   "uiCrossfadeAndPlaypauseFades": "Comment",
-  "uiFrequencyBandsAndPresets": "▁Chuỗi▁tần▁số▁và▁định▁sẵn",
-  "uiAvailableOnAndroid": "▁Có▁trên▁số Android",
-  "uiNotificationLockScreenAndHeadset": "▁Thông▁báo▁Hệ▁thốngName",
-  "uiRestoreDefaultSpeedAndVolume": "▁Phục▁hồi▁tốc▁độ▁và▁âm▁lượng▁mặc▁định",
-  "uiSpeedAndVolumeAreSavedOnThis": "▁Tốc▁độ▁và▁âm▁lượng▁được▁lưu▁trên▁thiết▁bị▁này.▁Bộ▁đếm▁thời▁gian▁bị▁hủy▁bỏ▁khi▁ứng▁dụng▁này▁đóng▁hoàn▁toàn.",
-  "uiSleep": "▁Ngủ",
-  "uiUnrated": "▁Chưa▁sửa",
-  "uiSwipeToRate": "▁Hiệu▁ứng▁Quét▁Trang▁trình▁diễn",
-  "uiGive1Star": "Cho 1▁sao",
-  "uiClearRating": "▁Xoá▁đánh▁giá",
-  "uiStarSize": "▁Kích▁cỡ▁Sao",
-  "uiSmall": "▁Nhỏ",
-  "uiMedium": "▁Vừa",
-  "uiLarge": "▁Lớn",
-  "uiSwipeAcrossTheStarsToRateIn": "▁Băng qua▁các▁vì▁sao▁với▁tốc▁độ▁nửa▁sao.",
-  "uiFilterByRating": "▁Bộ▁lọc▁theo▁đánh▁giá",
-  "uiAllRatings": "▁Mọi▁đánh▁giá",
-  "uiOnly5Stars": "▁Chỉ 5▁sao",
-  "uiSortByRating": "▁Sắp▁xếp▁theo▁đánh▁giá",
-  "uiDefaultOrder": "▁Thứ▁tự▁mặc▁định",
-  "uiHighestRatingFirst": "▁Đánh▁giá▁cao▁nhất▁trước",
-  "uiLowestRatingFirst": "▁Đánh▁giá▁thấp▁nhất▁trước",
-  "uiCouldNotSaveTheChangeTryAgain": "▁Không▁thể▁lưu▁sự▁thay▁đổi.▁Hãy▁thử▁lại.",
-  "uiNewPlaylist": "▁Danh▁sách▁nhạc▁mới",
-  "uiRenamePlaylist": "▁Thay▁tên▁danh▁sách▁nhạc",
-  "uiPlaylistName": "▁Tên▁danh▁sách▁phát",
+  "uiFrequencyBandsAndPresets": "Chuỗi tần số và định sẵn",
+  "uiAvailableOnAndroid": "Có trên số Android",
+  "uiNotificationLockScreenAndHeadset": "Thông báo Hệ thốngName",
+  "uiRestoreDefaultSpeedAndVolume": "Phục hồi tốc độ và âm lượng mặc định",
+  "uiSpeedAndVolumeAreSavedOnThis": "Tốc độ và âm lượng được lưu trên thiết bị này. Bộ đếm thời gian bị hủy bỏ khi ứng dụng này đóng hoàn toàn.",
+  "uiSleep": "Ngủ",
+  "uiUnrated": "Chưa sửa",
+  "uiSwipeToRate": "Hiệu ứng Quét Trang trình diễn",
+  "uiGive1Star": "Cho 1 sao",
+  "uiClearRating": "Xoá đánh giá",
+  "uiStarSize": "Kích cỡ Sao",
+  "uiSmall": "Nhỏ",
+  "uiMedium": "Vừa",
+  "uiLarge": "Lớn",
+  "uiSwipeAcrossTheStarsToRateIn": "Băng qua các vì sao với tốc độ nửa sao.",
+  "uiFilterByRating": "Bộ lọc theo đánh giá",
+  "uiAllRatings": "Mọi đánh giá",
+  "uiOnly5Stars": "Chỉ 5 sao",
+  "uiSortByRating": "Sắp xếp theo đánh giá",
+  "uiDefaultOrder": "Thứ tự mặc định",
+  "uiHighestRatingFirst": "Đánh giá cao nhất trước",
+  "uiLowestRatingFirst": "Đánh giá thấp nhất trước",
+  "uiCouldNotSaveTheChangeTryAgain": "Không thể lưu sự thay đổi. Hãy thử lại.",
+  "uiNewPlaylist": "Danh sách nhạc mới",
+  "uiRenamePlaylist": "Thay tên danh sách nhạc",
+  "uiPlaylistName": "Tên danh sách phát",
   "uiSave": "Lưu",
-  "uiRemoveFromFavorites": "Gỡ▁bỏ▁mục▁ưa▁thích",
-  "uiAddToFavorites": "▁Thêm▁vào▁danh▁sách▁yêu▁thích",
-  "uiAddToPlaylist": "▁Thêm▁vào▁danh▁sách▁nhạc",
-  "uiTrackIsAlreadyInThisPlaylist": "Theo▁dõi▁đã▁có▁trong▁danh▁sách▁nhạc▁này",
-  "uiTrackAddedToPlaylist": "Theo▁dõi▁được▁thêm▁vào▁danh▁sách▁nhạc.",
-  "uiCouldNotLoadFavoritesAndPlaylists": "▁Không▁thể▁nạp▁các▁mục▁ưa▁thích▁và▁danh▁sách▁phát.",
-  "uiTryAgain": "▁Thử▁lại▁đi.",
-  "uiBackToPlaylists": "▁Về▁danh▁sách▁nhạc",
-  "uiPlaylistOptions": "▁Tùy▁chọn▁danh▁sách▁nhạc",
-  "uiDeletePlaylist": "▁Xóa▁danh▁sách▁nhạc?",
-  "uiAudioFilesStayOnThePhone": "▁Tập tin▁âm▁thanh▁vẫn▁còn▁trên▁điện▁thoại.",
-  "uiRename": "▁Thay▁tên",
-  "uiDeletePlaylist363": "▁Xoá▁danh▁sách▁nhạc",
-  "uiCreateYourFirstPlaylistWithOrFrom": "▁Tạo▁danh▁sách▁nhạc▁đầu▁tiên▁với +▁hoặc▁từ▁trình▁đơn▁của▁đường ray.",
-  "uiAddTracks": "▁Thêm▁vết",
-  "uiATrackIsOutsideTheSelectedFolders": "▁Một▁đường▁dẫn▁nằm▁ngoài▁danh▁sách▁các▁thư▁mục▁đã▁chọn▁hoặc▁không▁còn▁sẵn▁có.",
-  "uiPlayAll": "▁Phát▁tất▁cả",
-  "uiTapATracksHeartToSaveIt": "▁Hãy▁đập▁quả▁tim▁để▁cứu▁nó.",
-  "uiAddTracksToThisPlaylist": "▁Thêm▁dấu▁vết▁vào▁danh▁sách▁nhạc▁này.",
-  "uiRemoveFromPlaylist": "Gỡ▁bỏ▁khỏi▁danh▁sách▁nhạc",
-  "uiSearchForATrack": "▁Tìm▁kiếm▁một▁đường",
-  "uiTitle": "▁Tựa",
-  "uiSearchYourMusic": "▁Tìm▁nhạc▁của▁bạn",
-  "uiClearSearch": "▁Xoá▁tìm▁kiếm",
-  "uiFavoritesOnly": "▁Chỉ▁yêu▁thích",
-  "uiYOURLIBRARYISEMPTY": "NHỮNG CÂU▁HỎI▁CỦA▁BẠN▁LÀ NHỮNG THỂ TRONG▁SỰ TRONG▁SỰ HIỆN",
-  "uiAddMusic": "▁Thêm▁âm▁nhạc",
-  "uiAddASourceToSearchYourCollection": "▁Thêm▁nguồn▁để▁tìm▁kiếm▁bộ▁sưu▁tập▁của▁bạn.",
-  "uiRecentSearches": "▁Tìm▁kiếm▁gần▁đây",
-  "uiSearchForATitleArtistOrAlbum": "▁Tìm▁kiếm▁tiêu▁đề,▁họa▁sĩ hay▁tập▁ảnh.▁Đã▁gửi▁tìm▁kiếm▁ở▁đây cho▁phiên▁chạy▁này.",
-  "uiNoResultsMatchTheSelectedFilters": "▁Không▁có▁kết▁quả▁khớp▁với▁bộ▁lọc▁đã▁chọn.",
-  "uiAuraSettings": "▁Thiết▁lập Aura",
-  "uiOptionsMarkedComingSoonAreNotAvailable": "▁Tùy▁chọn▁có▁ghi: “Không▁có▁khả▁năng▁giao▁tiếp▁nhanh.▁Thiết▁lập▁hoạt▁động▁được▁lưu▁trên▁thiết▁bị▁này.▁Quản▁lý▁kết▁nối▁máy▁phục▁vụ▁trong▁nguồn Media.",
-  "uiGotIt": "▁Hiểu▁rồi.",
+  "uiRemoveFromFavorites": "Gỡ bỏ mục ưa thích",
+  "uiAddToFavorites": "Thêm vào danh sách yêu thích",
+  "uiAddToPlaylist": "Thêm vào danh sách nhạc",
+  "uiTrackIsAlreadyInThisPlaylist": "Theo dõi đã có trong danh sách nhạc này",
+  "uiTrackAddedToPlaylist": "Theo dõi được thêm vào danh sách nhạc.",
+  "uiCouldNotLoadFavoritesAndPlaylists": "Không thể nạp các mục ưa thích và danh sách phát.",
+  "uiTryAgain": "Thử lại đi.",
+  "uiBackToPlaylists": "Về danh sách nhạc",
+  "uiPlaylistOptions": "Tùy chọn danh sách nhạc",
+  "uiDeletePlaylist": "Xóa danh sách nhạc?",
+  "uiAudioFilesStayOnThePhone": "Tập tin âm thanh vẫn còn trên điện thoại.",
+  "uiRename": "Thay tên",
+  "uiDeletePlaylist363": "Xoá danh sách nhạc",
+  "uiCreateYourFirstPlaylistWithOrFrom": "Tạo danh sách nhạc đầu tiên với + hoặc từ trình đơn của đường ray.",
+  "uiAddTracks": "Thêm vết",
+  "uiATrackIsOutsideTheSelectedFolders": "Một đường dẫn nằm ngoài danh sách các thư mục đã chọn hoặc không còn sẵn có.",
+  "uiPlayAll": "Phát tất cả",
+  "uiTapATracksHeartToSaveIt": "Hãy đập quả tim để cứu nó.",
+  "uiAddTracksToThisPlaylist": "Thêm dấu vết vào danh sách nhạc này.",
+  "uiRemoveFromPlaylist": "Gỡ bỏ khỏi danh sách nhạc",
+  "uiSearchForATrack": "Tìm kiếm một đường",
+  "uiTitle": "Tựa",
+  "uiSearchYourMusic": "Tìm nhạc của bạn",
+  "uiClearSearch": "Xoá tìm kiếm",
+  "uiFavoritesOnly": "Chỉ yêu thích",
+  "uiYOURLIBRARYISEMPTY": "NHỮNG CÂU HỎI CỦA BẠN LÀ NHỮNG THỂ TRONG SỰ TRONG SỰ HIỆN",
+  "uiAddMusic": "Thêm âm nhạc",
+  "uiAddASourceToSearchYourCollection": "Thêm nguồn để tìm kiếm bộ sưu tập của bạn.",
+  "uiRecentSearches": "Tìm kiếm gần đây",
+  "uiSearchForATitleArtistOrAlbum": "Tìm kiếm tiêu đề, họa sĩ hay tập ảnh. Đã gửi tìm kiếm ở đây cho phiên chạy này.",
+  "uiNoResultsMatchTheSelectedFilters": "Không có kết quả khớp với bộ lọc đã chọn.",
+  "uiAuraSettings": "Thiết lập Aura",
+  "uiOptionsMarkedComingSoonAreNotAvailable": "Tùy chọn có ghi: “Không có khả năng giao tiếp nhanh. Thiết lập hoạt động được lưu trên thiết bị này. Quản lý kết nối máy phục vụ trong nguồn Media.",
+  "uiGotIt": "Hiểu rồi.",
   "uiHelp": "Trợ giúp",
   "uiInterface": "Giao diện",
-  "uiInterfaceSettings": "▁Thiết▁lập▁giao▁diện",
-  "uiApplicationStyle": "▁Kiểu▁ứng▁dụng",
+  "uiInterfaceSettings": "Thiết lập giao diện",
+  "uiApplicationStyle": "Kiểu ứng dụng",
   "uiGeneral": "Chung",
-  "uiMediaLists": "▁Danh▁sách▁phương▁tiện",
-  "uiNowPlayingScreens": "▁Bây▁giờ▁chơi▁màn▁hình",
-  "uiNowPlayingScreen": "▁Bây▁giờ▁chơi▁màn▁hình",
-  "uiTrackRatings": "▁Đánh▁giá",
-  "uiSwipeAcrossTheStarsToRateIn399": "▁Xoay qua▁các▁ngôi▁sao▁với▁tốc▁độ▁theo▁bước▁nửa▁sao.▁Kích▁cỡ▁áp▁dụng cho▁người▁chơi▁và▁theo▁dõi▁thông tin.",
-  "uiPageSettings": "▁Thiết▁lập▁trang",
-  "uiHomePage": "▁Nhà",
-  "uiGenrePage": "▁Trang Genre",
-  "uiPlaylistPage": "▁Trang▁danh▁sách▁chơi",
-  "uiSearchPage": "▁Tìm▁kiếm▁trang",
+  "uiMediaLists": "Danh sách phương tiện",
+  "uiNowPlayingScreens": "Bây giờ chơi màn hình",
+  "uiNowPlayingScreen": "Bây giờ chơi màn hình",
+  "uiTrackRatings": "Đánh giá",
+  "uiSwipeAcrossTheStarsToRateIn399": "Xoay qua các ngôi sao với tốc độ theo bước nửa sao. Kích cỡ áp dụng cho người chơi và theo dõi thông tin.",
+  "uiPageSettings": "Thiết lập trang",
+  "uiHomePage": "Nhà",
+  "uiGenrePage": "Trang Genre",
+  "uiPlaylistPage": "Trang danh sách chơi",
+  "uiSearchPage": "Tìm kiếm trang",
   "uiAdvanced": "Nâng cao",
-  "uiAdvancedInterfaceSettings": "▁Thiết▁lập▁giao▁diện▁nâng▁cao",
-  "uiDecodingAndTranscoding": "▁Giải▁mã▁và▁chuyển▁hóa",
-  "uiAudioFocus": "▁Tiêu▁điểm▁Âm▁thanh",
+  "uiAdvancedInterfaceSettings": "Thiết lập giao diện nâng cao",
+  "uiDecodingAndTranscoding": "Giải mã và chuyển hóa",
+  "uiAudioFocus": "Tiêu điểm Âm thanh",
   "uiNotificationAndMediaSessionButtons": "Name",
-  "uiAdvancedPlaybackSettings": "▁Thiết▁lập▁phát▁lại▁cấp▁cao",
+  "uiAdvancedPlaybackSettings": "Thiết lập phát lại cấp cao",
   "uiOfflineCacheAndDownloads": "Comment",
-  "uiMedia": "▁Vật▁chứa",
-  "uiOfflineServerPlayback": "▁Phát▁lại▁máy▁phục▁vụ▁ngoại▁tuyến",
-  "uiImages": "▁Ảnh",
-  "uiLocalTracksWorkWithoutInternetServerDownloads": "▁Máy▁chủ▁tải▁về▁và▁quản▁lý▁bộ▁nhớ▁tạm▁sẽ▁sớm▁đến.",
-  "uiAdvancedSettings": "▁Thiết▁lập▁cấp▁cao",
-  "uiMiscellaneous": "▁Linh▁tinh",
-  "uiMediaSources": "▁Nguồn▁phương▁tiện",
-  "uiSyncManager": "▁Đồng▁bộ▁hoá▁bộ▁quản▁lý",
-  "uiUpdating": "▁Đang▁cập▁nhật...",
-  "uiRefreshLibrary": "▁Thư▁viện▁cập▁nhật",
-  "uiRefreshNavidromeSources": "▁Cập▁nhật Navidrome▁nguồn",
-  "uiOfflineFiles": "▁Tập tin▁ngoại▁tuyến",
-  "uiGeneratedFiles": "▁Tạo▁tập tin",
+  "uiMedia": "Vật chứa",
+  "uiOfflineServerPlayback": "Phát lại máy phục vụ ngoại tuyến",
+  "uiImages": "Ảnh",
+  "uiLocalTracksWorkWithoutInternetServerDownloads": "Máy chủ tải về và quản lý bộ nhớ tạm sẽ sớm đến.",
+  "uiAdvancedSettings": "Thiết lập cấp cao",
+  "uiMiscellaneous": "Linh tinh",
+  "uiMediaSources": "Nguồn phương tiện",
+  "uiSyncManager": "Đồng bộ hoá bộ quản lý",
+  "uiUpdating": "Đang cập nhật...",
+  "uiRefreshLibrary": "Thư viện cập nhật",
+  "uiRefreshNavidromeSources": "Cập nhật Navidrome nguồn",
+  "uiOfflineFiles": "Tập tin ngoại tuyến",
+  "uiGeneratedFiles": "Tạo tập tin",
   "uiLanguages": "Ngôn ngữ",
   "uiAbout": "Giới thiệu",
-  "uiRateTheApp": "▁Tốc▁độ▁ứng▁dụng",
-  "uiContactSupport": "▁Hỗ▁trợ▁liên▁lạc",
-  "uiWhatsNew": "▁Điều▁gì▁mới",
-  "uiWhatsNewInAura": "▁Điều▁gì▁mới▁vào▁năm Aura",
-  "uiLocalAndNavidromeLibrariesHalfstarRatingsHistory": "▁Cục▁bộ▁và Navidrome ▁Thư▁viện▁•▁Đánh▁giá▁nửa▁sao▁•▁Lịch▁sử,▁danh▁sách▁nhạc▁và▁yêu▁thích▁•▁Đối▁xứng,▁giờ▁ngủ▁và Android ▁bình▁phương▁•▁Hiển▁thị▁đến 144 Hz",
-  "uiAboutAura": "▁Khoảng Aura",
-  "uiAPlayerForYourLocalMusicAnd": "▁Một▁người▁chơi cho▁âm▁nhạc▁địa▁phương▁và▁thư▁viện Navidrome.",
+  "uiRateTheApp": "Tốc độ ứng dụng",
+  "uiContactSupport": "Hỗ trợ liên lạc",
+  "uiWhatsNew": "Điều gì mới",
+  "uiWhatsNewInAura": "Điều gì mới vào năm Aura",
+  "uiLocalAndNavidromeLibrariesHalfstarRatingsHistory": "Cục bộ và Navidrome Thư viện • Đánh giá nửa sao • Lịch sử, danh sách nhạc và yêu thích • Đối xứng, giờ ngủ và Android bình phương • Hiển thị đến 144 Hz",
+  "uiAboutAura": "Khoảng Aura",
+  "uiAPlayerForYourLocalMusicAnd": "Một người chơi cho âm nhạc địa phương và thư viện Navidrome.",
   "uiComingSoon": "Sắp ra mắt",
-  "uiMusicFolders": "▁Thư▁mục▁âm▁nhạc",
-  "uiChooseMusicFoldersOnlyFoldersWhereThe": "▁Chọn▁thư▁mục▁âm▁nhạc.▁Chỉ▁có▁thư▁mục▁tìm▁tập tin▁âm▁thanh▁được▁hiển▁thị.",
-  "uiAllFolders": "▁Mọi▁thư▁mục",
-  "uiAutomaticallyIncludesFoldersFoundInFutureScans": "▁Tự▁động▁bao▁gồm▁thư▁mục▁tìm▁thấy▁trong▁các▁bản▁quét▁tiếp▁theo.",
-  "uiNoTracksFoundInTheLastScan": "▁Không▁tìm▁thấy▁dấu▁vết▁nào▁trong▁lần▁quét▁cuối",
-  "uiYourLibraryWillStayEmptyUntilYou": "▁Thư▁viện▁của▁bạn▁sẽ▁trống▁không cho▁đến▁khi▁bạn▁chọn▁thư▁mục.",
-  "uiSaveSelection": "▁Lưu▁vùng▁chọn",
-  "secondsValue": "{count, plural, one{1▁giây} other{{count}▁giây}}",
+  "uiMusicFolders": "Thư mục âm nhạc",
+  "uiChooseMusicFoldersOnlyFoldersWhereThe": "Chọn thư mục âm nhạc. Chỉ có thư mục tìm tập tin âm thanh được hiển thị.",
+  "uiAllFolders": "Mọi thư mục",
+  "uiAutomaticallyIncludesFoldersFoundInFutureScans": "Tự động bao gồm thư mục tìm thấy trong các bản quét tiếp theo.",
+  "uiNoTracksFoundInTheLastScan": "Không tìm thấy dấu vết nào trong lần quét cuối",
+  "uiYourLibraryWillStayEmptyUntilYou": "Thư viện của bạn sẽ trống không cho đến khi bạn chọn thư mục.",
+  "uiSaveSelection": "Lưu vùng chọn",
+  "secondsValue": "{count, plural, one{1 giây} other{{count} giây}}",
   "@secondsValue": {
     "placeholders": {
       "count": {
@@ -433,7 +433,7 @@
       }
     }
   },
-  "restoreConfirmation": "{change}\n\n{settings}\n\n▁Phát▁lại▁sẽ▁dừng▁và▁đồng▁hồ▁ngủ▁sẽ▁bị▁hủy▁bỏ.▁Hàng▁đợi▁hiện▁thời▁của▁bạn▁sẽ▁được▁giữ▁lại.",
+  "restoreConfirmation": "{change}\n\n{settings}\n\n Phát lại sẽ dừng và đồng hồ ngủ sẽ bị hủy bỏ. Hàng đợi hiện thời của bạn sẽ được giữ lại.",
   "@restoreConfirmation": {
     "placeholders": {
       "change": {
@@ -444,7 +444,7 @@
       }
     }
   },
-  "backupCreated": "▁Tạo: {date}",
+  "backupCreated": "Tạo: {date}",
   "@backupCreated": {
     "placeholders": {
       "date": {
@@ -452,7 +452,7 @@
       }
     }
   },
-  "backupStats": "▁Những▁người▁yêu▁thích: {favorites} · Ratings: {ratings}\nlists: {playlists} ·Lịch▁sử: {history}",
+  "backupStats": "Những người yêu thích: {favorites} · Ratings: {ratings}\nlists: {playlists} ·Lịch sử: {history}",
   "@backupStats": {
     "placeholders": {
       "favorites": {
@@ -469,7 +469,7 @@
       }
     }
   },
-  "backupMatches": "▁Nhận ra: {matched} · Remaped: {remapped}\n Unavailable▁hoặc▁mơ▁hồ: {unavailable}",
+  "backupMatches": "Nhận ra: {matched} · Remaped: {remapped}\n Unavailable hoặc mơ hồ: {unavailable}",
   "@backupMatches": {
     "placeholders": {
       "matched": {
@@ -483,7 +483,7 @@
       }
     }
   },
-  "tracksInLibrary": "{count, plural, one{1▁dấu▁vết▁trong▁thư▁viện.} other{{count}▁đường ray▁trong▁thư▁viện▁của▁bạn.}}",
+  "tracksInLibrary": "{count, plural, one{1 dấu vết trong thư viện.} other{{count} đường ray trong thư viện của bạn.}}",
   "@tracksInLibrary": {
     "placeholders": {
       "count": {
@@ -491,7 +491,7 @@
       }
     }
   },
-  "sourcesSaved": "▁Đã▁lưu▁nguồn. {count, plural, one{1▁dấu▁vết▁trong▁thư▁viện.} other{{count}▁đường ray▁trong▁thư▁viện▁của▁bạn.}}",
+  "sourcesSaved": "Đã lưu nguồn. {count, plural, one{1 dấu vết trong thư viện.} other{{count} đường ray trong thư viện của bạn.}}",
   "@sourcesSaved": {
     "placeholders": {
       "count": {
@@ -499,7 +499,7 @@
       }
     }
   },
-  "tracksInFolders": "{count, plural, one{1▁theo▁dõi▁trong▁các▁thư▁mục▁đã▁chọn.} other{{count}▁dấu▁vết▁trong▁các▁thư▁mục▁đã▁chọn.}}",
+  "tracksInFolders": "{count, plural, one{1 theo dõi trong các thư mục đã chọn.} other{{count} dấu vết trong các thư mục đã chọn.}}",
   "@tracksInFolders": {
     "placeholders": {
       "count": {
@@ -507,7 +507,7 @@
       }
     }
   },
-  "allFoldersSummary": "▁Mọi▁thư▁mục · Theo▁dõi: {count}",
+  "allFoldersSummary": "Mọi thư mục · Theo dõi: {count}",
   "@allFoldersSummary": {
     "placeholders": {
       "count": {
@@ -515,7 +515,7 @@
       }
     }
   },
-  "selectedFoldersSummary": "▁Thư▁mục▁đã▁chọn: {folders} · Theo▁dõi: {tracks}",
+  "selectedFoldersSummary": "Thư mục đã chọn: {folders} · Theo dõi: {tracks}",
   "@selectedFoldersSummary": {
     "placeholders": {
       "folders": {
@@ -526,7 +526,7 @@
       }
     }
   },
-  "libraryRhythm": "{count}▁dấu▁chân,▁theo▁nhịp▁điệu▁của▁anh.",
+  "libraryRhythm": "{count} dấu chân, theo nhịp điệu của anh.",
   "@libraryRhythm": {
     "placeholders": {
       "count": {
@@ -534,7 +534,7 @@
       }
     }
   },
-  "libraryTrackCount": "▁Dấu▁vết▁trong▁thư▁viện: {count}",
+  "libraryTrackCount": "Dấu vết trong thư viện: {count}",
   "@libraryTrackCount": {
     "placeholders": {
       "count": {
@@ -542,7 +542,7 @@
       }
     }
   },
-  "backToPage": "▁Trở▁lại▁năm {page}",
+  "backToPage": "Trở lại năm {page}",
   "@backToPage": {
     "placeholders": {
       "page": {
@@ -550,7 +550,7 @@
       }
     }
   },
-  "groupCount": "{count, plural, one{1▁mục} other{{count} ▁mục}}",
+  "groupCount": "{count, plural, one{1 mục} other{{count} mục}}",
   "@groupCount": {
     "placeholders": {
       "count": {
@@ -558,7 +558,7 @@
       }
     }
   },
-  "foundTracks": "{count, plural, one{▁Tìm▁thấy 1} other{▁Tìm▁thấy▁các▁dấu▁vết {count}}}",
+  "foundTracks": "{count, plural, one{ Tìm thấy 1} other{ Tìm thấy các dấu vết {count}}}",
   "@foundTracks": {
     "placeholders": {
       "count": {
@@ -566,7 +566,7 @@
       }
     }
   },
-  "disconnectSource": "“{name}▁tiền▁lệ▁sẽ▁được▁gỡ▁bỏ▁từ Aura.",
+  "disconnectSource": "“{name} tiền lệ sẽ được gỡ bỏ từ Aura.",
   "@disconnectSource": {
     "placeholders": {
       "name": {
@@ -574,7 +574,7 @@
       }
     }
   },
-  "visibleTracks": "▁Hiện▁số {visible}▁của▁số {total}▁đường ray.",
+  "visibleTracks": "Hiện số {visible} của số {total} đường ray.",
   "@visibleTracks": {
     "placeholders": {
       "visible": {
@@ -585,7 +585,7 @@
       }
     }
   },
-  "queueCount": "▁Hàng▁đợi · {count}",
+  "queueCount": "Hàng đợi · {count}",
   "@queueCount": {
     "placeholders": {
       "count": {
@@ -593,7 +593,7 @@
       }
     }
   },
-  "playQueueCount": "▁Hàng▁đợi▁phát▁lại · {count}",
+  "playQueueCount": "Hàng đợi phát lại · {count}",
   "@playQueueCount": {
     "placeholders": {
       "count": {
@@ -601,7 +601,7 @@
       }
     }
   },
-  "currentTrackArtist": "Theo▁dõi▁hiện▁tại▁. {artist}",
+  "currentTrackArtist": "Theo dõi hiện tại . {artist}",
   "@currentTrackArtist": {
     "placeholders": {
       "artist": {
@@ -609,7 +609,7 @@
       }
     }
   },
-  "removeFromQueue": "▁Bỏ {title} ▁từ▁hàng▁đợi",
+  "removeFromQueue": "Bỏ {title} từ hàng đợi",
   "@removeFromQueue": {
     "placeholders": {
       "title": {
@@ -617,7 +617,7 @@
       }
     }
   },
-  "moveTrack": "▁Chuyển {title}",
+  "moveTrack": "Chuyển {title}",
   "@moveTrack": {
     "placeholders": {
       "title": {
@@ -625,7 +625,7 @@
       }
     }
   },
-  "activeTimer": "▁Hoạt▁động: {value}",
+  "activeTimer": "Hoạt động: {value}",
   "@activeTimer": {
     "placeholders": {
       "value": {
@@ -633,7 +633,7 @@
       }
     }
   },
-  "minutesValue": "{count, plural, one{1▁phút} other{{count} ▁phút}}",
+  "minutesValue": "{count, plural, one{1 phút} other{{count} phút}}",
   "@minutesValue": {
     "placeholders": {
       "count": {
@@ -641,7 +641,7 @@
       }
     }
   },
-  "minutesShort": "{count}▁phút",
+  "minutesShort": "{count} phút",
   "@minutesShort": {
     "placeholders": {
       "count": {
@@ -649,7 +649,7 @@
       }
     }
   },
-  "playerVolume": "▁âm▁lượng▁người▁chơi: {value}%",
+  "playerVolume": "âm lượng người chơi: {value}%",
   "@playerVolume": {
     "placeholders": {
       "value": {
@@ -657,7 +657,7 @@
       }
     }
   },
-  "playbackSpeed": "▁Tốc▁độ: {value}×",
+  "playbackSpeed": "Tốc độ: {value}×",
   "@playbackSpeed": {
     "placeholders": {
       "value": {
@@ -665,7 +665,7 @@
       }
     }
   },
-  "yourRating": "▁Đánh▁giá▁của▁bạn: {rating}▁trên 5",
+  "yourRating": "Đánh giá của bạn: {rating} trên 5",
   "@yourRating": {
     "placeholders": {
       "rating": {
@@ -673,7 +673,7 @@
       }
     }
   },
-  "ratingOutOfFive": "{rating}▁trong▁số 5",
+  "ratingOutOfFive": "{rating} trong số 5",
   "@ratingOutOfFive": {
     "placeholders": {
       "rating": {
@@ -681,7 +681,7 @@
       }
     }
   },
-  "giveStars": "{count, plural, one{Cho 1▁sao} other{▁Cung▁cấp cho {count}▁sao}}",
+  "giveStars": "{count, plural, one{Cho 1 sao} other{ Cung cấp cho {count} sao}}",
   "@giveStars": {
     "placeholders": {
       "count": {
@@ -689,7 +689,7 @@
       }
     }
   },
-  "ratingDescription": "▁Đánh▁giá: {rating}▁trong▁số 5",
+  "ratingDescription": "Đánh giá: {rating} trong số 5",
   "@ratingDescription": {
     "placeholders": {
       "rating": {
@@ -697,7 +697,7 @@
       }
     }
   },
-  "minimumStars": "▁Ít▁nhất là {rating}▁sao",
+  "minimumStars": "Ít nhất là {rating} sao",
   "@minimumStars": {
     "placeholders": {
       "rating": {
@@ -705,7 +705,7 @@
       }
     }
   },
-  "minimumRating": "▁Đánh▁giá {rating}",
+  "minimumRating": "Đánh giá {rating}",
   "@minimumRating": {
     "placeholders": {
       "rating": {
@@ -713,7 +713,7 @@
       }
     }
   },
-  "savedTrackCount": "{count, plural, one{1▁lưu▁theo▁dõi} other{{count}▁lần▁lưu▁dấu▁vết}}",
+  "savedTrackCount": "{count, plural, one{1 lưu theo dõi} other{{count} lần lưu dấu vết}}",
   "@savedTrackCount": {
     "placeholders": {
       "count": {
@@ -721,7 +721,7 @@
       }
     }
   },
-  "availableTrackCount": "{count, plural, one{▁Một▁đường▁dẫn▁sẵn▁sàng} other{{count}▁có▁thể▁theo▁dõi}}",
+  "availableTrackCount": "{count, plural, one{ Một đường dẫn sẵn sàng} other{{count} có thể theo dõi}}",
   "@availableTrackCount": {
     "placeholders": {
       "count": {
@@ -729,7 +729,7 @@
       }
     }
   },
-  "missingTrackCount": "▁Dấu▁vết▁không▁sẵn▁sàng: {count}.▁Chúng▁nằm▁bên▁ngoài▁các▁thư▁mục▁đã▁chọn▁hoặc▁không▁còn▁sẵn▁sàng.▁Các▁tài▁liệu▁tham▁khảo▁của▁chúng▁được▁lưu▁lại.",
+  "missingTrackCount": "Dấu vết không sẵn sàng: {count}. Chúng nằm bên ngoài các thư mục đã chọn hoặc không còn sẵn sàng. Các tài liệu tham khảo của chúng được lưu lại.",
   "@missingTrackCount": {
     "placeholders": {
       "count": {
@@ -737,7 +737,7 @@
       }
     }
   },
-  "selectedTrackCount": "{count, plural, one{1▁mục▁đã▁chọn} other{{count}▁dấu▁vết▁được▁chọn}}",
+  "selectedTrackCount": "{count, plural, one{1 mục đã chọn} other{{count} dấu vết được chọn}}",
   "@selectedTrackCount": {
     "placeholders": {
       "count": {
@@ -745,7 +745,7 @@
       }
     }
   },
-  "searchResultCount": "{count, plural, one{1▁kết▁quả} other{▁Kết▁quả {count}}}",
+  "searchResultCount": "{count, plural, one{1 kết quả} other{ Kết quả {count}}}",
   "@searchResultCount": {
     "placeholders": {
       "count": {
@@ -753,7 +753,7 @@
       }
     }
   },
-  "removeRecentSearch": "▁Xóa▁tìm▁kiếm {query}",
+  "removeRecentSearch": "Xóa tìm kiếm {query}",
   "@removeRecentSearch": {
     "placeholders": {
       "query": {
@@ -761,7 +761,7 @@
       }
     }
   },
-  "tracksInSelection": "{count, plural, one{1▁theo▁dõi▁trong▁phần▁chọn} other{{count} ▁theo▁dấu▁trong▁phần▁chọn}}",
+  "tracksInSelection": "{count, plural, one{1 theo dõi trong phần chọn} other{{count} theo dấu trong phần chọn}}",
   "@tracksInSelection": {
     "placeholders": {
       "count": {
@@ -771,10 +771,24 @@
   },
   "languageTitle": "Ngôn ngữ ứng dụng",
   "languageSystem": "Theo hệ thống",
-  "languageHelp": "▁Các▁ứng▁dụng▁ngay▁lập▁tức.",
-  "languageSaveError": "▁Không▁thể▁lưu▁ngôn▁ngữ.▁Lựa▁chọn▁trước▁của▁bạn▁đã▁được▁giữ.",
+  "languageHelp": "Các ứng dụng ngay lập tức.",
+  "languageSaveError": "Không thể lưu thay đổi ngôn ngữ. Vui lòng thử lại.",
   "uiBass": "Âm trầm",
   "mediaStop": "Dừng",
   "mediaSeekBack": "Lùi 10 giây",
-  "mediaSeekForward": "Tiến 10 giây"
+  "mediaSeekForward": "Tiến 10 giây",
+  "languageConfirmTitle": "Giữ ngôn ngữ này?",
+  "languageConfirmMessage": "Xác nhận trong {seconds} giây. Nếu không, tiếng mẹ đẻ của bạn sẽ tự động được khôi phục.",
+  "languageConfirmYes": "CÓ",
+  "languageConfirmNo": "KHÔNG",
+  "@languageConfirmMessage": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "nativeLanguageTitle": "Tiếng mẹ đẻ",
+  "nativeLanguageHelp": "Chọn ngôn ngữ bạn hiểu rõ nhất. Xác nhận và khôi phục tự động sẽ luôn dùng ngôn ngữ này.",
+  "nativeLanguageContinue": "Tiếp tục"
 }

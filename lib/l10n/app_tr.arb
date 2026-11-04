@@ -772,9 +772,23 @@
   "languageTitle": "Uygulama dili",
   "languageSystem": "Sistemi izle",
   "languageHelp": "Hemen uygulayın. Takipiniz, sanatçı, klasör ve liste isimleri tercüme edilmez.",
-  "languageSaveError": "Dili kurtaramazdım. Önceki seçiminiz tutulacaktı.",
+  "languageSaveError": "Dil değişikliği kaydedilemedi. Tekrar deneyin.",
   "uiBass": "Bas",
   "mediaStop": "Durdur",
   "mediaSeekBack": "10 saniye geri",
-  "mediaSeekForward": "10 saniye ileri"
+  "mediaSeekForward": "10 saniye ileri",
+  "languageConfirmTitle": "Bu dil korunsun mu?",
+  "languageConfirmMessage": "{seconds} sn içinde onaylayın. Aksi takdirde ana diliniz otomatik olarak geri yüklenecektir.",
+  "languageConfirmYes": "EVET",
+  "languageConfirmNo": "HAYIR",
+  "@languageConfirmMessage": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "nativeLanguageTitle": "Ana dil",
+  "nativeLanguageHelp": "En iyi anladığınız dili seçin. Onaylar ve otomatik geri dönüş her zaman bu dili kullanır.",
+  "nativeLanguageContinue": "Devam"
 }

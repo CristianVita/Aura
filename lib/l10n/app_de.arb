@@ -751,7 +751,7 @@
   "languageTitle": "App-Sprache",
   "languageSystem": "Systemeinstellung",
   "languageHelp": "Gilt sofort. Deine Titel-, Interpreten-, Ordner- und Playlist-Namen werden nicht übersetzt.",
-  "languageSaveError": "Sprache konnte nicht gespeichert werden. Deine bisherige Auswahl bleibt erhalten.",
+  "languageSaveError": "Die Sprachänderung konnte nicht gespeichert werden. Versuche es erneut.",
   "@percentValue": {
     "placeholders": {
       "value": {
@@ -776,5 +776,19 @@
   "uiBass": "Bässe",
   "mediaStop": "Stopp",
   "mediaSeekBack": "10 Sekunden zurück",
-  "mediaSeekForward": "10 Sekunden vor"
+  "mediaSeekForward": "10 Sekunden vor",
+  "languageConfirmTitle": "Diese Sprache beibehalten?",
+  "languageConfirmMessage": "Bestätige innerhalb von {seconds} s. Andernfalls wird deine Muttersprache automatisch wiederhergestellt.",
+  "languageConfirmYes": "JA",
+  "languageConfirmNo": "NEIN",
+  "@languageConfirmMessage": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "nativeLanguageTitle": "Muttersprache",
+  "nativeLanguageHelp": "Wähle die Sprache, die du am besten verstehst. Bestätigungen und die automatische Rückkehr verwenden immer diese Sprache.",
+  "nativeLanguageContinue": "Weiter"
 }

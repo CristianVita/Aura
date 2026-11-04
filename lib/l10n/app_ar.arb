@@ -772,9 +772,23 @@
   "languageTitle": "لغة التطبيق",
   "languageSystem": "حسب النظام",
   "languageHelp": "يبدو على الفور، مسارك، الفنان، الملف وأسماء القائمة لا تترجم",
-  "languageSaveError": "لا يمكن أن ينقذ اللغة لقد تم الاحتفاظ بخيارك السابق",
+  "languageSaveError": "تعذر حفظ تغيير اللغة. حاول مرة أخرى.",
   "uiBass": "جهير",
   "mediaStop": "إيقاف",
   "mediaSeekBack": "رجوع 10 ثوانٍ",
-  "mediaSeekForward": "تقديم 10 ثوانٍ"
+  "mediaSeekForward": "تقديم 10 ثوانٍ",
+  "languageConfirmTitle": "هل تريد الاحتفاظ بهذه اللغة؟",
+  "languageConfirmMessage": "أكّد خلال {seconds} ثوانٍ. وإلا ستتم استعادة لغتك الأم تلقائيًا.",
+  "languageConfirmYes": "نعم",
+  "languageConfirmNo": "لا",
+  "@languageConfirmMessage": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "nativeLanguageTitle": "اللغة الأم",
+  "nativeLanguageHelp": "اختر اللغة التي تفهمها أفضل. ستُستخدم هذه اللغة دائمًا للتأكيدات والعودة التلقائية.",
+  "nativeLanguageContinue": "متابعة"
 }

@@ -772,9 +772,23 @@
   "languageTitle": "App language",
   "languageSystem": "Follow system",
   "languageHelp": "Applies immediately. Your track, artist, folder and playlist names are not translated.",
-  "languageSaveError": "Could not save the language. Your previous choice was kept.",
+  "languageSaveError": "Could not save the language change. Try again.",
   "uiBass": "Bass",
   "mediaStop": "Stop",
   "mediaSeekBack": "Back 10 seconds",
-  "mediaSeekForward": "Forward 10 seconds"
+  "mediaSeekForward": "Forward 10 seconds",
+  "languageConfirmTitle": "Keep this language?",
+  "languageConfirmMessage": "Confirm within {seconds} s. Otherwise, your native language will be restored automatically.",
+  "languageConfirmYes": "YES",
+  "languageConfirmNo": "NO",
+  "@languageConfirmMessage": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "nativeLanguageTitle": "Native language",
+  "nativeLanguageHelp": "Choose the language you understand best. Confirmations and automatic reverts will always use this language.",
+  "nativeLanguageContinue": "Continue"
 }

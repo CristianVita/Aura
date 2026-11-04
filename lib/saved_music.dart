@@ -54,6 +54,7 @@ class SavedMusicData {
     this.playbackVolume = 1,
     this.appearance = const AppearancePreferences(),
     this.language = AppLanguage.system,
+    this.nativeLanguage = AppLanguage.system,
     NavigationPreferences? navigation,
     LibraryPagePreferences? libraryPages,
   }) : libraryPages = libraryPages ?? LibraryPagePreferences(),
@@ -74,6 +75,8 @@ class SavedMusicData {
   final double playbackVolume;
   final AppearancePreferences appearance;
   final AppLanguage language;
+  // system means the user has not chosen their native language yet.
+  final AppLanguage nativeLanguage;
   final NavigationPreferences navigation;
   final LibraryPagePreferences libraryPages;
   double ratingOf(String uri) => ratings[uri] ?? 0;
@@ -90,6 +93,7 @@ class SavedMusicData {
     double? playbackVolume,
     AppearancePreferences? appearance,
     AppLanguage? language,
+    AppLanguage? nativeLanguage,
     NavigationPreferences? navigation,
     LibraryPagePreferences? libraryPages,
   }) => SavedMusicData(
@@ -104,6 +108,7 @@ class SavedMusicData {
     playbackVolume: playbackVolume ?? this.playbackVolume,
     appearance: appearance ?? this.appearance,
     language: language ?? this.language,
+    nativeLanguage: nativeLanguage ?? this.nativeLanguage,
     navigation: navigation ?? this.navigation,
     libraryPages: libraryPages ?? this.libraryPages,
   );
@@ -142,6 +147,7 @@ class SavedMusicData {
     'playbackVolume': playbackVolume,
     'appearance': appearance.toJson(),
     'language': language.name,
+    'nativeLanguage': nativeLanguage.name,
     'navigation': navigation.toJson(),
     'libraryPages': libraryPages.toJson(),
   });
@@ -194,6 +200,10 @@ class SavedMusicData {
     }
     return SavedMusicData(
       language: AppLanguage.values.byName(root['language'] as String? ?? 'ro'),
+      nativeLanguage: AppLanguage.values.firstWhere(
+        (language) => language.name == root['nativeLanguage'],
+        orElse: () => AppLanguage.system,
+      ),
       libraryPages: LibraryPagePreferences.fromJson(
         root['libraryPages'] as Map<String, dynamic>? ?? {},
       ),
@@ -241,6 +251,15 @@ class SavedMusicStore extends ChangeNotifier {
   final SavedMusicStorage storage;
   SavedMusicData _data = SavedMusicData();
   SavedMusicData get data => _data;
+  AppLanguage? _languagePreview;
+  AppLanguage get effectiveLanguage => _languagePreview ?? _data.language;
+
+  // Previews never enter serialized data, including concurrent music edits.
+  void previewLanguage(AppLanguage? language) {
+    _languagePreview = language;
+    _notify();
+  }
+
   bool ready = false;
   bool loadFailed = false;
   bool _disposed = false;
@@ -316,6 +335,15 @@ class SavedMusicStore extends ChangeNotifier {
 
   Future<void> setLanguage(AppLanguage language) =>
       _update((data) => data.copy(language: language));
+
+  Future<void> setNativeLanguage(AppLanguage language) {
+    if (language == AppLanguage.system) {
+      throw ArgumentError('Native language must be explicit');
+    }
+    return _update(
+      (data) => data.copy(nativeLanguage: language, language: language),
+    );
+  }
 
   Future<void> setAppearance(AppearancePreferences preferences) =>
       _update((data) {

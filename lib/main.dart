@@ -145,7 +145,10 @@ class _SoundLibraryAppState extends State<SoundLibraryApp> {
 
   @override
   Widget build(BuildContext context) {
-    return AuraAppearanceApp(store: _savedMusic, home: const PlayerShell());
+    return AuraAppearanceApp(
+      store: _savedMusic,
+      home: const NativeLanguageGate(child: PlayerShell()),
+    );
   }
 }
 

@@ -772,9 +772,23 @@
   "languageTitle": "Язык приложения",
   "languageSystem": "Как в системе",
   "languageHelp": "Ваш трек, артист, папка и плейлист не переведены.",
-  "languageSaveError": "Я не смог спасти язык. Ваш предыдущий выбор был сохранен.",
+  "languageSaveError": "Не удалось сохранить изменение языка. Попробуйте ещё раз.",
   "uiBass": "Басы",
   "mediaStop": "Стоп",
   "mediaSeekBack": "Назад на 10 секунд",
-  "mediaSeekForward": "Вперёд на 10 секунд"
+  "mediaSeekForward": "Вперёд на 10 секунд",
+  "languageConfirmTitle": "Оставить этот язык?",
+  "languageConfirmMessage": "Подтвердите в течение {seconds} с. Иначе будет автоматически восстановлен ваш родной язык.",
+  "languageConfirmYes": "ДА",
+  "languageConfirmNo": "НЕТ",
+  "@languageConfirmMessage": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "nativeLanguageTitle": "Родной язык",
+  "nativeLanguageHelp": "Выберите язык, который вы понимаете лучше всего. Подтверждения и автоматический возврат всегда будут использовать этот язык.",
+  "nativeLanguageContinue": "Продолжить"
 }

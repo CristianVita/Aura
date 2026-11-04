@@ -622,7 +622,7 @@ class _PlayerShellState extends State<PlayerShell> {
           onTrackSelected: _playQueue,
         );
       default:
-        return _SettingsScreen(
+        return SettingsScreen(
           controls: _playbackSettings!,
           sourceSummary: _selectedFolders == null
               ? 'Toate folderele · ${_tracks.length} piese'

@@ -52,11 +52,11 @@ Run the tests:
 flutter test
 ```
 
-Sixty automated tests cover artwork, saved music, rating gestures and legacy-data migration, playback/session restoration, missing files, shuffle ordering, listening thresholds, library filters, concurrent writes, Windows scanning/storage, the Navidrome protocol, audio preferences, sleep-timer deadlines and UI flows. Android behavior is also checked on a OnePlus 8T running Android 14.
+Sixty-one automated tests cover artwork, saved music, rating gestures and legacy-data migration, playback/session restoration, missing files, shuffle ordering, listening thresholds, library filters, concurrent writes, Windows scanning/storage, the Navidrome protocol, audio preferences, sleep-timer deadlines and UI flows, including nested settings navigation on a narrow screen. Android behavior is also checked on a OnePlus 8T running Android 14.
 
 Rate a track using the five stars below its details in the full player, or long-press a collection/search track to open its information. Long-press a track in favorites or a playlist to open the rating dialog. The clear button removes the rating. Collection rating filters and sorting are saved locally; unrated tracks appear last when sorting by rating. These preferences do not change an existing playback queue, playlist order or audio-file tags. Ratings currently belong to each device and are not synchronized.
 
-Choose **Setări → Interfață → Dimensiunea stelelor → Mici / Medii / Mari** to change their size. Drag horizontally across the stars for 0.5-star steps; the preview changes while dragging and the final value is saved on release. Tapping a star still selects its whole-star value. Existing integer ratings remain valid.
+Choose **Setări → Interfață → Ecran de redare → Mici / Medii / Mari** to change their size. Drag horizontally across the stars for 0.5-star steps; the preview changes while dragging and the final value is saved on release. Tapping a star still selects its whole-star value. Existing integer ratings remain valid.
 
 Choose **Adaugă o sursă → Server Navidrome → Adaugă server Navidrome**. Enter the HTTPS server base URL (including a reverse-proxy subfolder, when applicable), username and password. Refresh or disconnect from the same source screen. Server tracks also appear in the collection and search. Refreshing a nonempty server collection updates its remote metadata; offline playback/downloads are not implemented.
 

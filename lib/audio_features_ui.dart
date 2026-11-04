@@ -1,6 +1,12 @@
 part of 'main.dart';
 
-enum _AudioFeaturePage { transitions, equalizer, commands }
+enum _AudioFeaturePage {
+  transitions,
+  equalizer,
+  commands,
+  headset,
+  notification,
+}
 
 class _AudioFeatureSettings extends StatefulWidget {
   const _AudioFeatureSettings({required this.page});
@@ -41,6 +47,8 @@ class _AudioFeatureSettingsState extends State<_AudioFeatureSettings> {
           _AudioFeaturePage.transitions => 'Tranziții',
           _AudioFeaturePage.equalizer => 'Egalizator',
           _AudioFeaturePage.commands => 'Comenzi media',
+          _AudioFeaturePage.headset => 'Butoanele căștilor',
+          _AudioFeaturePage.notification => 'Butoane notificare',
         }),
       ),
       body: ListView(
@@ -124,7 +132,8 @@ class _AudioFeatureSettingsState extends State<_AudioFeatureSettings> {
               ],
             ),
           ],
-          if (widget.page == _AudioFeaturePage.commands) ...[
+          if (widget.page == _AudioFeaturePage.commands ||
+              widget.page == _AudioFeaturePage.notification) ...[
             _SettingsGroup(
               title: 'Notificare și ecran blocat',
               children: [
@@ -148,6 +157,9 @@ class _AudioFeatureSettingsState extends State<_AudioFeatureSettings> {
               ],
             ),
             const SizedBox(height: 24),
+          ],
+          if (widget.page == _AudioFeaturePage.commands ||
+              widget.page == _AudioFeaturePage.headset) ...[
             _SettingsGroup(
               title: 'Căști și butoane media',
               children: [

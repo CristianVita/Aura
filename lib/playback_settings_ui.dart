@@ -128,9 +128,16 @@ class _SleepTimerSheetState extends State<_SleepTimerSheet> {
   );
 }
 
+enum PlaybackSettingsSection { all, output, playback, timer }
+
 class PlaybackSettingsScreen extends StatefulWidget {
-  const PlaybackSettingsScreen({super.key, required this.controls});
+  const PlaybackSettingsScreen({
+    super.key,
+    required this.controls,
+    this.section = PlaybackSettingsSection.all,
+  });
   final PlaybackSettingsController controls;
+  final PlaybackSettingsSection section;
   @override
   State<PlaybackSettingsScreen> createState() => _PlaybackSettingsScreenState();
 }
@@ -161,150 +168,166 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
     final enabled = store.ready && !_busy;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Setări de redare'),
+        title: Text(switch (widget.section) {
+          PlaybackSettingsSection.all => 'Setări de redare',
+          PlaybackSettingsSection.output => 'Setări de ieșire',
+          PlaybackSettingsSection.playback => 'Redare',
+          PlaybackSettingsSection.timer => 'Acțiuni automate',
+        }),
         backgroundColor: _background,
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          _SettingsGroup(
-            title: 'Ieșire audio',
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Volumul playerului: ${(volume * 100).round()}%'),
-                    const SizedBox(height: 6),
-                    const Text(
-                      'Se aplică doar în Aura, separat de volumul telefonului sau al PC-ului.',
-                      style: TextStyle(color: _muted, fontSize: 12),
-                    ),
-                    Slider(
-                      label: '${(volume * 100).round()}%',
-                      value: volume,
-                      divisions: 100,
-                      onChanged: enabled
-                          ? (value) => setState(() => _volume = value)
-                          : null,
-                      onChangeEnd: enabled
-                          ? (value) => _change(volume: value)
-                          : null,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 24),
-          _SettingsGroup(
-            title: 'Redare',
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Viteză: ${speed.toStringAsFixed(2)}×'),
-                    Slider(
-                      label: '${speed.toStringAsFixed(2)}×',
-                      min: .5,
-                      max: 2,
-                      divisions: 30,
-                      value: speed,
-                      onChanged: enabled
-                          ? (value) => setState(() => _speed = value)
-                          : null,
-                      onChangeEnd: enabled
-                          ? (value) => _change(speed: value)
-                          : null,
-                    ),
-                    Wrap(
-                      spacing: 8,
-                      children: [
-                        for (final value in [.75, 1.0, 1.25, 1.5, 2.0])
-                          ChoiceChip(
-                            label: Text('${value.toStringAsFixed(2)}×'),
-                            selected: (speed - value).abs() < .001,
-                            onSelected: enabled
-                                ? (_) => _change(speed: value)
-                                : null,
-                          ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 24),
-          ListenableBuilder(
-            listenable: widget.controls.sleep,
-            builder: (_, child) => _SettingsGroup(
-              title: 'Temporizator',
+          if (widget.section == PlaybackSettingsSection.all ||
+              widget.section == PlaybackSettingsSection.output)
+            _SettingsGroup(
+              title: 'Ieșire audio',
               children: [
-                _SettingsRow(
-                  icon: Icons.bedtime_outlined,
-                  title: 'Temporizator de oprire',
-                  subtitle: _sleepLabel(widget.controls.sleep),
-                  onTap: () => _showSleepTimer(context, widget.controls),
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Volumul playerului: ${(volume * 100).round()}%'),
+                      const SizedBox(height: 6),
+                      const Text(
+                        'Se aplică doar în Aura, separat de volumul telefonului sau al PC-ului.',
+                        style: TextStyle(color: _muted, fontSize: 12),
+                      ),
+                      Slider(
+                        label: '${(volume * 100).round()}%',
+                        value: volume,
+                        divisions: 100,
+                        onChanged: enabled
+                            ? (value) => setState(() => _volume = value)
+                            : null,
+                        onChangeEnd: enabled
+                            ? (value) => _change(volume: value)
+                            : null,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
-          ),
           const SizedBox(height: 24),
-          _SettingsGroup(
-            title: 'Opțiuni audio',
-            children: [
-              _SettingsRow(
-                icon: Icons.compare_arrows_rounded,
-                title: 'Tranziții',
-                subtitle: 'Crossfade și fade la pornire/pauză',
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute<void>(
-                    builder: (_) => const _AudioFeatureSettings(
-                      page: _AudioFeaturePage.transitions,
+          if (widget.section == PlaybackSettingsSection.all ||
+              widget.section == PlaybackSettingsSection.playback)
+            _SettingsGroup(
+              title: 'Redare',
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Viteză: ${speed.toStringAsFixed(2)}×'),
+                      Slider(
+                        label: '${speed.toStringAsFixed(2)}×',
+                        min: .5,
+                        max: 2,
+                        divisions: 30,
+                        value: speed,
+                        onChanged: enabled
+                            ? (value) => setState(() => _speed = value)
+                            : null,
+                        onChangeEnd: enabled
+                            ? (value) => _change(speed: value)
+                            : null,
+                      ),
+                      Wrap(
+                        spacing: 8,
+                        children: [
+                          for (final value in [.75, 1.0, 1.25, 1.5, 2.0])
+                            ChoiceChip(
+                              label: Text('${value.toStringAsFixed(2)}×'),
+                              selected: (speed - value).abs() < .001,
+                              onSelected: enabled
+                                  ? (_) => _change(speed: value)
+                                  : null,
+                            ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          const SizedBox(height: 24),
+          if (widget.section == PlaybackSettingsSection.all ||
+              widget.section == PlaybackSettingsSection.timer)
+            ListenableBuilder(
+              listenable: widget.controls.sleep,
+              builder: (_, child) => _SettingsGroup(
+                title: 'Temporizator',
+                children: [
+                  _SettingsRow(
+                    icon: Icons.bedtime_outlined,
+                    title: 'Temporizator de oprire',
+                    subtitle: _sleepLabel(widget.controls.sleep),
+                    onTap: () => _showSleepTimer(context, widget.controls),
+                  ),
+                ],
+              ),
+            ),
+          const SizedBox(height: 24),
+          if (widget.section == PlaybackSettingsSection.all ||
+              widget.section == PlaybackSettingsSection.output)
+            _SettingsGroup(
+              title: 'Opțiuni audio',
+              children: [
+                if (widget.section == PlaybackSettingsSection.all)
+                  _SettingsRow(
+                    icon: Icons.compare_arrows_rounded,
+                    title: 'Tranziții',
+                    subtitle: 'Crossfade și fade la pornire/pauză',
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (_) => const _AudioFeatureSettings(
+                          page: _AudioFeaturePage.transitions,
+                        ),
+                      ),
+                    ),
+                  ),
+                _SettingsRow(
+                  icon: Icons.equalizer_rounded,
+                  title: 'Egalizator',
+                  subtitle: Theme.of(context).platform == TargetPlatform.android
+                      ? 'Benzi de frecvență și preseturi'
+                      : 'Disponibil pe Android',
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (_) => const _AudioFeatureSettings(
+                        page: _AudioFeaturePage.equalizer,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              _SettingsRow(
-                icon: Icons.equalizer_rounded,
-                title: 'Egalizator',
-                subtitle: _audioRuntime.isAndroid
-                    ? 'Benzi de frecvență și preseturi'
-                    : 'Disponibil pe Android',
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute<void>(
-                    builder: (_) => const _AudioFeatureSettings(
-                      page: _AudioFeaturePage.equalizer,
+                if (widget.section == PlaybackSettingsSection.all)
+                  _SettingsRow(
+                    icon: Icons.headphones_outlined,
+                    title: 'Comenzi media',
+                    subtitle: 'Notificare, ecran blocat și căști',
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (_) => const _AudioFeatureSettings(
+                          page: _AudioFeaturePage.commands,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-              _SettingsRow(
-                icon: Icons.headphones_outlined,
-                title: 'Comenzi media',
-                subtitle: 'Notificare, ecran blocat și căști',
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute<void>(
-                    builder: (_) => const _AudioFeatureSettings(
-                      page: _AudioFeaturePage.commands,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+              ],
+            ),
           const SizedBox(height: 20),
-          TextButton(
-            onPressed: enabled ? () => _change(speed: 1, volume: 1) : null,
-            child: const Text('Restabilește viteza și volumul implicite'),
-          ),
+          if (widget.section == PlaybackSettingsSection.all)
+            TextButton(
+              onPressed: enabled ? () => _change(speed: 1, volume: 1) : null,
+              child: const Text('Restabilește viteza și volumul implicite'),
+            ),
           const SizedBox(height: 8),
           const Text(
             'Viteza și volumul sunt salvate pe acest dispozitiv. Temporizatorul se anulează la închiderea completă a aplicației.',

@@ -21,7 +21,7 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   final _controller = TextEditingController();
   final _localRecent = <String>[];
-  final _fields = <String>{'Titlu', 'Artist', 'Album'};
+  final _fields = <String>{'title', 'artist', 'album'};
   bool _favoritesOnly = false;
   List<String> get _recent => widget.recentQueries ?? _localRecent;
   @override
@@ -51,9 +51,9 @@ class _SearchScreenState extends State<SearchScreen> {
             return false;
           }
           return [
-            if (_fields.contains('Titlu')) track.title,
-            if (_fields.contains('Artist')) track.artist,
-            if (_fields.contains('Album')) track.album,
+            if (_fields.contains('title')) track.displayTitle,
+            if (_fields.contains('artist')) track.artist,
+            if (_fields.contains('album')) track.album,
           ].any((value) => value.toLowerCase().contains(query));
         })
         .toList(growable: false);
@@ -67,12 +67,12 @@ class _SearchScreenState extends State<SearchScreen> {
             onSubmitted: (_) => _remember(),
             textInputAction: TextInputAction.search,
             decoration: InputDecoration(
-              hintText: 'Caută în muzica ta',
+              hintText: context.appStrings.uiSearchYourMusic,
               prefixIcon: const Icon(Icons.search_rounded),
               suffixIcon: _controller.text.isEmpty
                   ? null
                   : IconButton(
-                      tooltip: 'Șterge căutarea',
+                      tooltip: context.appStrings.uiClearSearch,
                       icon: const Icon(Icons.close_rounded),
                       onPressed: () => setState(_controller.clear),
                     ),
@@ -94,18 +94,22 @@ class _SearchScreenState extends State<SearchScreen> {
               Padding(
                 padding: const EdgeInsets.only(right: 6),
                 child: FilterChip(
-                  label: const Text('Toate'),
+                  label: Text(context.appStrings.labelsAlways),
                   selected: _fields.length == 3,
                   onSelected: (_) => setState(() {
-                    _fields.addAll(['Titlu', 'Artist', 'Album']);
+                    _fields.addAll(['title', 'artist', 'album']);
                   }),
                 ),
               ),
-              for (final field in ['Titlu', 'Artist', 'Album'])
+              for (final field in ['title', 'artist', 'album'])
                 Padding(
                   padding: const EdgeInsets.only(right: 6),
                   child: FilterChip(
-                    label: Text(field),
+                    label: Text(switch (field) {
+                      'title' => context.appStrings.uiTitle,
+                      'artist' => context.appStrings.uiArtist,
+                      _ => context.appStrings.uiAlbum,
+                    }),
                     selected: _fields.contains(field),
                     onSelected: (selected) => setState(() {
                       if (selected) {
@@ -128,16 +132,16 @@ class _SearchScreenState extends State<SearchScreen> {
                 onChanged: (value) => setState(() => _favoritesOnly = value),
               ),
               const SizedBox(width: 8),
-              const Expanded(
+              Expanded(
                 child: Text(
-                  'Doar favorite',
+                  context.appStrings.uiFavoritesOnly,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
               if (query.isNotEmpty)
                 Text(
-                  '${matches.length} rezultate',
+                  context.appStrings.searchResultCount(matches.length),
                   style: TextStyle(color: context.auraMuted, fontSize: 12),
                 ),
             ],
@@ -147,22 +151,23 @@ class _SearchScreenState extends State<SearchScreen> {
         Expanded(
           child: widget.tracks.isEmpty
               ? _SimplePage(
-                  eyebrow: 'BIBLIOTECA ESTE GOALĂ',
-                  title: 'Adaugă muzica',
-                  message: 'Adaugă o sursă pentru a căuta în colecție.',
+                  eyebrow: context.appStrings.uiYOURLIBRARYISEMPTY,
+                  title: context.appStrings.uiAddMusic,
+                  message:
+                      context.appStrings.uiAddASourceToSearchYourCollection,
                   icon: Icons.library_music_outlined,
                   actionLabel: widget.isScanning
-                      ? 'Se scanează...'
-                      : 'Adaugă o sursă',
+                      ? context.appStrings.uiScanning
+                      : context.appStrings.uiAddASource,
                   onAction: widget.isScanning ? null : widget.onAddSource,
                 )
               : query.isEmpty
               ? ListView(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   children: [
-                    const Center(
+                    Center(
                       child: Text(
-                        'Căutări recente',
+                        context.appStrings.uiRecentSearches,
                         style: TextStyle(fontSize: 18),
                       ),
                     ),
@@ -171,7 +176,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       Padding(
                         padding: EdgeInsets.all(24),
                         child: Text(
-                          'Caută un titlu, artist sau album. Căutările confirmate rămân aici în această sesiune.',
+                          context.appStrings.uiSearchForATitleArtistOrAlbum,
                           textAlign: TextAlign.center,
                           style: TextStyle(color: context.auraMuted),
                         ),
@@ -182,7 +187,9 @@ class _SearchScreenState extends State<SearchScreen> {
                         title: Text(recent),
                         onTap: () => setState(() => _controller.text = recent),
                         trailing: IconButton(
-                          tooltip: 'Elimină căutarea $recent',
+                          tooltip: context.appStrings.removeRecentSearch(
+                            recent,
+                          ),
                           icon: const Icon(Icons.close_rounded, size: 20),
                           onPressed: () =>
                               setState(() => _recent.remove(recent)),
@@ -191,8 +198,10 @@ class _SearchScreenState extends State<SearchScreen> {
                   ],
                 )
               : matches.isEmpty
-              ? const Center(
-                  child: Text('Nu am găsit rezultate pentru filtrele alese.'),
+              ? Center(
+                  child: Text(
+                    context.appStrings.uiNoResultsMatchTheSelectedFilters,
+                  ),
                 )
               : ListView.separated(
                   padding: const EdgeInsets.fromLTRB(8, 8, 8, 18),

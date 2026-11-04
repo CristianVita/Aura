@@ -1,3 +1,5 @@
+import 'app_language.dart';
+
 import 'dart:async';
 import 'dart:math' as math;
 
@@ -10,6 +12,22 @@ import 'audio_features.dart';
 import 'audio_sources.dart';
 import 'audio_track.dart';
 import 'saved_music.dart';
+
+MediaControl localizedMediaControl(MediaControl control) {
+  final strings = AppText.current;
+  return control.copyWith(
+    label: switch (control.action) {
+      MediaAction.play => strings.previewButton,
+      MediaAction.pause => strings.uiPause,
+      MediaAction.stop => strings.mediaStop,
+      MediaAction.skipToPrevious => strings.uiPreviousTrack,
+      MediaAction.skipToNext => strings.uiNextTrack,
+      MediaAction.rewind => strings.mediaSeekBack,
+      MediaAction.fastForward => strings.mediaSeekForward,
+      _ => control.label,
+    },
+  );
+}
 
 /// The main queue remains authoritative; the second decoder renders the head
 /// of the next track during an overlap and hands it back at the same position.
@@ -51,6 +69,7 @@ class AuraAudioRuntime {
   late final AudioPlayer player;
   late final AndroidEqualizer? equalizer;
   AudioPlayer? _incoming;
+  AuraMediaHandler? _handler;
   AndroidEqualizer? _incomingEqualizer;
   final _subscriptions = <StreamSubscription<dynamic>>[];
   Timer? _ticker;
@@ -92,10 +111,10 @@ class AuraAudioRuntime {
         defaultTargetPlatform == TargetPlatform.iOS ||
         defaultTargetPlatform == TargetPlatform.macOS) {
       await AudioService.init<AuraMediaHandler>(
-        builder: () => AuraMediaHandler(this),
-        config: const AudioServiceConfig(
+        builder: () => _handler = AuraMediaHandler(this),
+        config: AudioServiceConfig(
           androidNotificationChannelId: 'com.example.symphonium_clone.playback',
-          androidNotificationChannelName: 'Redare audio',
+          androidNotificationChannelName: AppText.current.uiAudioPlayback,
           androidNotificationIcon: 'drawable/ic_stat_audio',
           androidNotificationOngoing: true,
           androidStopForegroundOnPause: true,
@@ -431,6 +450,7 @@ class AuraAudioRuntime {
 
   Future<void> dispose() async {
     _disposed = true;
+    _handler?.detachLocale();
     _generation++;
     _fadeGeneration++;
     _ticker?.cancel();
@@ -452,7 +472,7 @@ class AuraMediaHandler extends BaseAudioHandler {
           playbackState.value.copyWith(
             processingState: AudioProcessingState.error,
             errorCode: 1,
-            errorMessage: 'Redarea nu este disponibilă.',
+            errorMessage: AppText.current.uiPlaybackIsUnavailable,
           ),
         );
       },
@@ -460,9 +480,15 @@ class AuraMediaHandler extends BaseAudioHandler {
     runtime.player.playerStateStream.listen((_) => _broadcast());
     runtime.player.sequenceStateStream.listen((_) => _broadcast());
     runtime.store.addListener(_broadcast);
+    AppText.changes.addListener(_broadcast);
     _broadcast();
   }
   final AuraAudioRuntime runtime;
+  void detachLocale() {
+    AppText.changes.removeListener(_broadcast);
+    runtime.store.removeListener(_broadcast);
+  }
+
   AudioPlayer get player => runtime.player;
   void _broadcast() {
     final tracks = player.sequence
@@ -498,7 +524,7 @@ class AuraMediaHandler extends BaseAudioHandler {
     ];
     playbackState.add(
       playbackState.value.copyWith(
-        controls: controls,
+        controls: controls.map(localizedMediaControl).toList(growable: false),
         androidCompactActionIndices: List.generate(
           math.min(3, controls.length),
           (index) => index,

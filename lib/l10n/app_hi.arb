@@ -1,0 +1,780 @@
+{
+  "@@locale": "hi",
+  "appearanceTitle": "थीम, फ़ॉन्ट और रंग",
+  "themeLabel": "विषय",
+  "themeSystem": "सिस्टम के अनुसार",
+  "themeLight": "प्रकाश",
+  "themeDark": "अंधेरा",
+  "themeOled": "OLED काला",
+  "accentLabel": "रंग",
+  "accentMint": "मिंट",
+  "accentBlue": "नीला",
+  "accentViolet": "बैंगनी",
+  "accentRose": "गुलाब",
+  "accentAmber": "गोल्ड",
+  "accentTeal": "टेलर",
+  "fontLabel": "फ़ॉन्ट",
+  "fontSystem": "सिस्टम फ़ॉन्ट",
+  "fontSerif": "सेरिफ़",
+  "fontMonospace": "समान चौड़ाई",
+  "fontDescription": "फ़ॉन्ट्स डिवाइस पर उपलब्ध परिवारों का उपयोग करते हैं। उनकी उपस्थिति प्लेटफार्मों पर भिन्न हो सकती है।",
+  "textSizeLabel": "पाठ का आकार",
+  "textSizeDescription": "अपने डिवाइस सेटिंग्स में पाठ आकार के साथ संयुक्त।",
+  "previewLabel": "पूर्वावलोकन",
+  "previewTitle": "आपका संगीत, आपका ताल",
+  "previewSubtitle": "एल्बम, कलाकारों और प्लेलिस्ट",
+  "previewButton": "चलाएँ",
+  "resetAppearance": "डिफ़ॉल्ट उपस्थिति पुनर्स्थापित करें",
+  "appearanceSaveError": "आपकी पिछली सेटिंग्स को नहीं बचा सकती थी।",
+  "appearanceHelp": "जैसे ही वे सहेजे जाते हैं और बैकअप में शामिल होते हैं, परिवर्तन लागू होते हैं।",
+  "percentValue": "{value}%",
+  "@percentValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "navigationTitle": "नेविगेशन और प्रारंभ स्क्रीन",
+  "navigationOrder": "टैब ऑर्डर",
+  "navigationHelp": "फिर से व्यवस्थित टैब के लिए हैंडल खींचें। लाइब्रेरी और सेटिंग हमेशा सुलभ रहती हैं।",
+  "navigationHome": "होम",
+  "navigationLibrary": "लाइब्रेरी",
+  "navigationSearch": "खोजें",
+  "navigationSettings": "सेटिंग",
+  "navigationRequired": "आवश्यक टैब",
+  "navigationLabels": "टैब लेबल",
+  "labelsAdaptive": "अनुकूली",
+  "labelsHidden": "केवल प्रतीक",
+  "labelsSelected": "चयनित टैब",
+  "labelsAlways": "सब",
+  "labelsHelp": "अनुकूली: डेस्कटॉप साइडबार में एक फोन और लेबल पर आइकन।",
+  "navigationStart": "प्रारंभ स्क्रीन",
+  "navigationStartHelp": "अगली बार एप्लिकेशन शुरू होता है।",
+  "libraryLanding": "जब पुस्तकालय खोलने",
+  "landingCategories": "श्रेणियाँ",
+  "landingTracks": "ट्रैक",
+  "landingAlbums": "एल्बम",
+  "landingArtists": "कलाकार",
+  "landingPlaylists": "प्लेलिस्ट",
+  "landingFavorites": "पसंदीदा",
+  "resetNavigation": "डिफ़ॉल्ट नेविगेशन पुनर्स्थापित करें",
+  "navigationSaveError": "आपकी पिछली प्राथमिकताओं को नहीं बचा सकता था।",
+  "navigationPreview": "नेविगेशन पूर्वावलोकन",
+  "libraryPageTitle": "पुस्तकालय",
+  "albumPageTitle": "एल्बम पेज",
+  "artistPageTitle": "कलाकार पृष्ठ",
+  "categoryOrder": "श्रेणियाँ और आदेश",
+  "categoryHelp": "फिर से व्यवस्थित करने के लिए हैंडल खींचें। कम से कम एक श्रेणी को दिखाई दें। छुपाने की श्रेणियां संगीत को नहीं हटाती हैं।",
+  "pageColumns": "एक फोन पर कॉलम",
+  "pageColumnsHelp": "वाइडर स्क्रीन स्वचालित रूप से कॉलम जोड़ती है। बड़े पाठ पठनीयता के लिए कॉलम गिनती को कम कर सकते हैं।",
+  "pageLayout": "लेआउट",
+  "layoutList": "सूची",
+  "layoutGrid": "कवर ग्रिड",
+  "pageSort": "क्रम",
+  "sortName": "A-Z",
+  "sortNameDescending": "नाम Z-A",
+  "sortTrackCount": "ट्रैक गिनती",
+  "pageSummary": "खुले पृष्ठ पर कलाकृति और सारांश",
+  "pageSummaryHelp": "समूह में पहली ट्रैक के लिए उपलब्ध कलाकृति का उपयोग करता है।",
+  "pageReset": "इस पृष्ठ को रीसेट करें",
+  "pageSaveError": "पृष्ठ को नहीं बचा सकता। आपकी पिछली वरीयताओं को रखा गया था।",
+  "librarySources": "स्रोत",
+  "unknownGroup": "अज्ञात",
+  "groupTracks": "{count, plural, one{1 ट्रैक} other{{count} ट्रैक}}",
+  "groupMinutes": "कुल मिलाकर {minutes} मिनट",
+  "@groupTracks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@groupMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "uiTransitions": "संक्रमण",
+  "uiEqualizer": "इक्वलाइज़र",
+  "uiMediaControls": "मीडिया नियंत्रण",
+  "uiHeadsetButtons": "हेडसेट बटन",
+  "uiNotificationButtons": "अधिसूचना बटन",
+  "uiCrossfade": "क्रॉसफ़ेड",
+  "uiOff": "बंद",
+  "uiOverlapsTheEndOfATrackWith": "स्वचालित प्लेबैक के दौरान अगले की शुरुआत के साथ ट्रैक के अंत को ओवरलैप करता है। बहुत कम ट्रैक और एक ट्रैक को दोहराते हुए क्रॉसफ़ेड का उपयोग नहीं करते हैं।",
+  "uiPlayAndPause": "खेलें और रोकें",
+  "uiNoFade": "कोई फीका नहीं",
+  "uiNotificationAndLockScreen": "अधिसूचना और लॉक स्क्रीन",
+  "uiSeekButtons10Seconds": "10 सेकंड",
+  "uiReplacesPreviousnextWithSeekingInTheNotification": "अधिसूचना में मांगने के साथ पिछले / अगले स्थान को बदल देता है।",
+  "uiShowStopButton": "शो स्टॉप बटन",
+  "uiHeadsetAndMediaButtons": "हेडसेट और मीडिया बटन",
+  "uiSeek10SecondsFromHeadset": "हेडसेट से ± 10 सेकंड",
+  "uiPreviousnextButtonsSeekWithinTheCurrentTrack": "पिछला / अगले बटन वर्तमान ट्रैक के भीतर की तलाश करते हैं। केंद्र बटन प्ले / पास रखता है।",
+  "uiKeepPausedWhenChangingTracks": "ट्रैक बदलते समय रोकें",
+  "uiNotificationAndHeadsetControlsAreAvailableOn": "Android पर अधिसूचना और हेडसेट नियंत्रण उपलब्ध हैं।",
+  "uiTheEqualizerIsCurrentlyAvailableOnAndroid": "समतुल्यकारक वर्तमान में Android पर उपलब्ध है।",
+  "uiSelectATrackAndReopenTheEqualizer": "एक ट्रैक का चयन करें और तुल्यकारक को फिर से खोलें। यदि यह अभी भी अनुपलब्ध है, तो डिवाइस आवश्यक ऑडियो प्रभाव को उजागर नहीं करता है।",
+  "uiAndroidEqualizer": "Android तुल्यकारक",
+  "uiEnableEqualizer": "एनिमलाइज़र",
+  "uiFlat": "फ्लैट",
+  "uiVoice": "आवाज",
+  "uiWhenBoostingABandAuraAutomaticallyReduces": "बैंड को बढ़ावा देने के दौरान Aura स्वचालित रूप से हेडरूम छोड़ने और विरूपण को सीमित करने के लिए समग्र स्तर को कम करता है।",
+  "uiAudioPlayback": "ऑडियो प्लेबैक",
+  "uiPlaybackIsUnavailable": "प्लेबैक अनुपलब्ध है।",
+  "uiUnknownArtist": "अज्ञात कलाकार",
+  "uiUntitledTrack": "बिना शीर्षक वाला ट्रैक",
+  "uiTheFileIsNotAValidAura": "फ़ाइल वैध Aura बैकअप नहीं है या भ्रष्ट है।",
+  "uiChooseAnAuraBackup": "Aura बैकअप चुनें",
+  "uiSaveAuraBackup": "Aura बैकअप सेव करें",
+  "uiBackupSaved": "बैकअप बचाया।",
+  "uiCouldNotSaveTheBackupAuraData": "बैकअप को नहीं बचा सकता। Aura डेटा बदल नहीं गया था।",
+  "uiTheFileIsNotAValidAura82": "फ़ाइल वैध Aura बैकअप नहीं है, भ्रष्ट है या 4 एमबी से अधिक है।",
+  "uiRestoreBackup": "बैकअप पुनर्स्थापित करें?",
+  "uiYourCurrentFavoritesRatingsPlaylistsAndHistory": "आपकी वर्तमान फेवरिट्स, रेटिंग, प्लेलिस्ट और इतिहास को प्रतिस्थापित किया जाएगा।",
+  "uiDataWillBeMergedExistingRatingsAnd": "डेटा विलय हो जाएगा। मौजूदा रेटिंग और प्लेलिस्ट नाम प्राथमिकता लेते हैं।",
+  "uiSettingsWillAlsoBeImported": "सेटिंग्स को भी आयात किया जाएगा।",
+  "uiYourCurrentSettingsWillBeKept": "आपकी वर्तमान सेटिंग रखी जाएगी।",
+  "uiCancel": "रद्द करें",
+  "uiReplaceAndRestore": "बदलें और पुनर्स्थापित करें",
+  "uiRestore": "स्टोर",
+  "uiBackupRestoredUnavailableTracksAreKeptAs": "बैकअप बहाल किया गया। अनुपलब्ध ट्रैक्स को संदर्भ के रूप में रखा गया है।",
+  "uiDataRecoveryMustFinishBeforeContinuing": "डेटा रिकवरी जारी रहने से पहले समाप्त होना चाहिए।",
+  "uiRestoreFailedYourPreviousDataWasKept": "Restore विफल रहा। आपका पिछला डेटा रखा गया था।",
+  "uiPreviousDataRecovered": "पिछला डेटा ठीक हो गया।",
+  "uiCouldNotRecoverTheDataYetTry": "अभी तक डेटा को पुनर्प्राप्त नहीं कर सकता है। फिर से कोशिश करें या Aura को फिर से शुरू करें।",
+  "uiBackupAndRestore": "बैकअप और पुनर्स्थापित करें",
+  "uiDataRecoveryIsRequiredBeforeContinuingAura": "जारी रखने से पहले डेटा रिकवरी की आवश्यकता होती है। Aura ने पिछले राज्य को स्थानीय पत्रिका में रखा।",
+  "uiTryRecovery": "वसूली की कोशिश करो",
+  "uiKeepWhatYouHaveOrganized": "क्या आपने आयोजित किया है?",
+  "uiBackupsIncludeFavoritesRatingsPlaylistsHistoryPlayback": "बैकअप में पसंदीदा, रेटिंग, प्लेलिस्ट, इतिहास, प्लेबैक सेटिंग और लाइब्रेरी फिल्टर शामिल हैं। ऑडियो फाइलें, सूत्रों और चयनित फ़ोल्डरों को शामिल नहीं किया गया है और इसे अलग से कॉन्फ़िगर किया जाना चाहिए।",
+  "uiExportBackup": "बैकअप निर्यात करें",
+  "uiChooseABackupToRestore": "पुनर्स्थापित करने के लिए एक बैकअप चुनें",
+  "uiMissingReferencesAreKeptWithoutAssigningRatings": "मिसिंग संदर्भों को अन्य गीतों को रेटिंग दिए बिना रखा जाता है। आप मिलान स्रोतों को जोड़ने के बाद बैकअप को फिर से आयात कर सकते हैं।",
+  "uiReplaceCurrentData": "वर्तमान डेटा बदलें",
+  "uiOffMergeDataAndKeepExistingRatings": "ऑफ: डेटा मर्ज करें और मौजूदा रेटिंग को बनाए रखें।",
+  "uiRestoreSettingsToo": "सेटिंग्स को पुनर्स्थापित भी करें",
+  "uiReviewAndRestore": "समीक्षा और बहाल",
+  "uiHelloNightOwl": "नमस्ते, रात के उल्लू 🦉",
+  "uiGoodMorning": "सुप्रभात 🌅",
+  "uiGoodAfternoon": "शुभ दोपहर ☀️",
+  "uiGoodEvening": "शुभ संध्या 🌆",
+  "uiChooseYourMusicFolder": "अपने संगीत फ़ोल्डर चुनें",
+  "uiAuraCouldNotRecoverAnInterruptedRestore": "Aura एक बाधित बहाल को ठीक नहीं कर सकता है। आपका पिछला डेटा स्थानीय जर्नल में रखा गया है। फिर से प्रयास करने के लिए ऐप को बंद करें और फिर से खोलें।",
+  "uiCouldNotLoadOrSaveListeningHistory": "इतिहास और अंतिम प्लेबैक को लोड या सहेज नहीं सकता है।",
+  "uiCouldNotApplyPlaybackSettingsOrThe": "प्लेबैक सेटिंग्स या स्लीप टाइमर लागू नहीं हो सकता है।",
+  "uiCouldNotLoadTheLibraryScanYour": "पुस्तकालय को लोड नहीं कर सका। फिर से अपने संगीत को स्कैन करें।",
+  "uiMusicOnYourPC": "अपने PC पर संगीत",
+  "uiMusicOnYourPhone": "अपने फोन पर संगीत",
+  "uiNavidromeServer": "Navidrome सर्वर",
+  "uiURLAndUserAccount": "URL और उपयोगकर्ता खाता",
+  "uiCouldNotLoadMusicSources": "संगीत स्रोतों को लोड नहीं कर सका।",
+  "uiAddAFolderFromYourPC": "अपने PC से फ़ोल्डर जोड़ें",
+  "uiChooseVisibleFolders": "दृश्य फ़ोल्डर चुनें",
+  "uiRemoveAFolderFromTheLibrary": "लाइब्रेरी से एक फ़ोल्डर निकालें",
+  "uiFilesStayOnYourPC": "फ़ाइलें अपने PC पर रहती हैं।",
+  "uiYouHaveNotAddedAnyFoldersYet": "आपने अभी तक कोई फ़ोल्डर नहीं जोड़ा है।",
+  "uiRemoveFromLibrary": "लाइब्रेरी से निकालें",
+  "uiFolderRemovedFromTheLibraryFilesStayed": "फ़ोल्डर पुस्तकालय से हटा दिया। फ़ाइलें अपने PC पर बने रहे।",
+  "uiCouldNotRemoveTheFolderFromThe": "पुस्तकालय से फ़ोल्डर को दूर नहीं कर सका।",
+  "uiCouldNotReadTheFolderCheckThat": "फ़ोल्डर नहीं पढ़ा जा सकता है। जांचें कि यह उपलब्ध है।",
+  "uiCouldNotSaveSourcesTryAgain": "स्रोत नहीं बचा सकता। फिर से प्रयास करें।",
+  "uiCouldNotPlayTheTrackTryScanning": "ट्रैक नहीं खेल सकता। इसे फिर से स्कैन करने की कोशिश करें।",
+  "uiNoAudioFilesFoundOnTheDevice": "डिवाइस पर कोई ऑडियो फाइलें नहीं मिलीं।",
+  "uiAllowMusicAccessToScanYourLibrary": "अपनी लाइब्रेरी को स्कैन करने के लिए म्यूजिक एक्सेस की अनुमति दें।",
+  "uiCouldNotScanYourMusicTryAgain": "अपने संगीत को फिर से स्कैन नहीं कर सकता।",
+  "uiLibraryScanningIsCurrentlyAvailableOnAndroid": "लाइब्रेरी स्कैनिंग वर्तमान में Android पर उपलब्ध है।",
+  "uiAProblemOccurredWhileScanningMusic": "संगीत स्कैन करते समय एक समस्या हुई।",
+  "uiWhereIsYourMusic": "आपका संगीत कहां है?",
+  "uiFavoriteTracks": "पसंदीदा ट्रैक",
+  "uiAllFavorites": "सभी पसंदीदा",
+  "uiBrowse": "दृश्य",
+  "uiRecentlyPlayed": "हाल ही में खेला",
+  "uiSeeAll": "सब देखें",
+  "uiYourLibrary": "आपका पुस्तकालय",
+  "uiSTARTWITHASOURCE": "एक स्रोत के साथ शुरू",
+  "uiAddYourMusic": "संगीत जोड़ें",
+  "uiPCOrNavidromeServer": "PC या Navidrome सर्वर",
+  "uiPhoneOrNavidromeServer": "फ़ोन या Navidrome सर्वर",
+  "uiScanning": "स्कैनिंग ...",
+  "uiAddASource": "स्रोत जोड़ें",
+  "uiLibrary": "लाइब्रेरी",
+  "uiYourListeningHistoryWillAppearHere": "आपका इतिहास यहाँ दिखाई देगा।",
+  "uiYOURCOLLECTION": "आपका संग्रह",
+  "uiLibrary178": "लाइब्रेरी",
+  "uiNoTracksMatchTheSelectedFilters": "कोई ट्रैक चयनित फिल्टर से मेल नहीं खाते।",
+  "uiChooseMusicFoldersToSeeTracksIn": "अपने पुस्तकालय में ट्रैक देखने के लिए संगीत फ़ोल्डर चुनें।",
+  "uiChangeFilters": "फिल्टर बदलें",
+  "uiChooseFolders": "फ़ोल्डर चुनें",
+  "uiScanAgain": "फिर से स्कैन करें",
+  "uiNoTracksMatchTheSelectedRating": "कोई ट्रैक चयनित रेटिंग से मेल नहीं खाते।",
+  "uiCouldNotResumeTheTrackTrySelecting": "ट्रैक को फिर से शुरू नहीं कर सका। इसे फिर से चुनने की कोशिश करें।",
+  "uiUnknownDuration": "अज्ञात अवधि",
+  "uiTrackInformation": "ट्रैक जानकारी",
+  "uiClose": "बंद करें",
+  "uiArtist": "कलाकार",
+  "uiAlbum": "एल्बम",
+  "uiUnknownAlbum": "अज्ञात एल्बम",
+  "uiDuration": "अवधि",
+  "uiFolder": "फ़ोल्डर",
+  "uiUnknownFolder": "अज्ञात फ़ोल्डर",
+  "uiPause": "रोकें",
+  "uiNextTrack": "अगला ट्रैक",
+  "uiTheQueueIsEmpty": "कतार खाली है",
+  "uiPreviousTrack": "पिछला ट्रैक",
+  "uiEnterTheHTTPSServerAddressWithoutA": "उपयोगकर्ता नाम, पासवर्ड या URL पैरामीटर के बिना HTTPS सर्वर पता दर्ज करें।",
+  "uiEnterTheSourceNameUsernameAndPassword": "स्रोत नाम, उपयोगकर्ता नाम और पासवर्ड दर्ज करें।",
+  "uiTheServerDidNotRespondCorrectlyCheck": "सर्वर ने सही ढंग से जवाब नहीं दिया। पता और Navidrome पहुंच की जाँच करें।",
+  "uiTheServerResponseIsTooLarge": "सर्वर प्रतिक्रिया बहुत बड़ी है।",
+  "uiCouldNotReachTheServerCheckYour": "सर्वर तक नहीं पहुंच सका। अपने कनेक्शन, पते और HTTPS प्रमाणपत्र की जांच करें।",
+  "uiAuthenticationFailedCheckYourUsernameAndPassword": "प्रमाणीकरण विफल रहा। अपने उपयोगकर्ता नाम और पासवर्ड की जाँच करें।",
+  "uiNavidromeRejectedTheRequestCheckTheAccounts": "Navidrome ने अनुरोध को खारिज कर दिया। खाते की लाइब्रेरी एक्सेस की जांच करें।",
+  "uiTheAddressDidNotReturnAValid": "पता एक वैध Navidrome प्रतिक्रिया वापस नहीं आया था।",
+  "uiTheServerRepeatedAnAlbumPageYour": "सर्वर ने एल्बम पेज को दोहराया। आपकी पिछली लाइब्रेरी रखी गई थी।",
+  "uiInvalidServerTrack": "अमान्य सर्वर ट्रैक।",
+  "uiReconnectTheNavidromeSourceToPlayThis": "इस ट्रैक को खेलने के लिए Navidrome स्रोत को फिर से कनेक्ट करें।",
+  "uiCouldNotLoadSavedSourcesTryAgain": "बचाए गए स्रोतों को लोड नहीं कर सका। फिर से कोशिश करें।",
+  "uiCouldNotSaveTheSourceChangeTry": "स्रोत परिवर्तन को नहीं बचा सकता। फिर से कोशिश करें।",
+  "uiConnectedTheServerLibraryHasBeenLoaded": "कनेक्टेड. सर्वर पुस्तकालय लोड किया गया है।",
+  "uiDisconnectThisSource": "इस स्रोत को डिस्कनेक्ट करें?",
+  "uiCancel228": "रद्द करें",
+  "uiDisconnect": "डिस्कनेक्ट",
+  "uiSourceDisconnected": "स्रोत डिस्कनेक्ट हो गया।",
+  "uiNavidromeSources": "Navidrome स्रोतों",
+  "uiConnectYourLibraryFromANavidromeServer": "अपनी लाइब्रेरी को एक से कनेक्ट करें Navidrome सर्वर पर HTTPS.",
+  "uiLoadingTheServerLibrary": "सर्वर पुस्तकालय लोड हो रहा है...",
+  "uiReloadSources": "Reload सूत्र",
+  "uiLibraryUpdated": "पुस्तकालय अद्यतन",
+  "uiRefresh": "ताज़ा",
+  "uiReconnect": "रीकनेक्ट",
+  "uiAddNavidromeServer": "Navidrome सर्वर जोड़ें",
+  "uiTracksAppearInLibraryAfterConnectingPlayback": "कनेक्ट करने के बाद ट्रैक लाइब्रेरी में दिखाई देते हैं। प्लेबैक को इंटरनेट की आवश्यकता होती है। Aura पसंदीदा, रेटिंग और प्लेलिस्ट स्थानीय रहती हैं; सर्वर लाइब्रेरी बदल नहीं जाती है।",
+  "uiConnectToNavidrome": "Navidrome से कनेक्ट",
+  "uiSourceName": "स्रोत नाम",
+  "uiServerURL": "सर्वर URL",
+  "uiUsername": "उपयोगकर्ता नाम",
+  "uiPassword": "पासवर्ड",
+  "uiCredentialsAreSavedInTheDevicesSecure": "क्रेडेंशियल को डिवाइस के सुरक्षित भंडारण में बचाया जाता है।",
+  "uiConnect": "कनेक्ट",
+  "uiListeningHistory": "इतिहास सुनना",
+  "uiClearHistory": "इतिहास साफ़ करें",
+  "uiClearHistory262": "इतिहास साफ़ करें?",
+  "uiTracksFavoritesAndPlaylistsWillStaySaved": "ट्रैक्स, फेवरिट्स और प्लेलिस्ट बचे रहेंगे।",
+  "uiDelete": "हटाएँ",
+  "uiPlayedTracksWillAppearHere": "यहाँ ट्रैक दिखाई देंगे।",
+  "uiTracksInYourHistoryAreHiddenBy": "आपके इतिहास में ट्रैक वर्तमान फिल्टर द्वारा छिपे हुए हैं या अब उपलब्ध नहीं हैं।",
+  "uiLibraryFilters": "पुस्तकालय फिल्टर",
+  "uiMinimumDuration": "न्यूनतम अवधि",
+  "uiAllDurations": "सभी अवधि",
+  "ui10Seconds": "10 सेकंड",
+  "ui30Seconds": "30 सेकंड",
+  "ui1Minute": "1 मिनट",
+  "uiTracksWithUnknownDurationStayVisible": "अज्ञात अवधि के साथ ट्रैक दिखाई देते हैं।",
+  "uiHideWhatsAppAndTelegram": "WhatsApp और Telegram",
+  "uiHidesFilesFromTheseAppsFolders": "इन ऐप्स के फ़ोल्डर्स से फ़ाइलों को छुपाएं।",
+  "uiFiltersOnlyChangeWhatAppearsInYour": "फ़िल्टर केवल आपके पुस्तकालय में क्या दिखाई देता है। फ़ाइलें, प्लेलिस्ट और वर्तमान कतार रखी गई हैं।",
+  "uiSaving": "बचत",
+  "uiSaveFilters": "फ़िल्टर सहेजें",
+  "uiRepeatOff": "बंद करें",
+  "uiRepeatEntireQueue": "पूरे कतार को दोहराएं",
+  "uiRepeatCurrentTrack": "वर्तमान ट्रैक दोहराएँ",
+  "uiShuffleOn": "शफ़ल चालू",
+  "uiShuffleOff": "बंद",
+  "uiCloseQueue": "बंद कतार",
+  "uiShuffledOrderTurnOffShuffleToReorder": "क्रमश: क्रमश: क्रमश: बंद करने के लिए shuffle बारी।",
+  "uiDragTheHandleToChangeTheOrder": "आदेश बदलने के लिए हैंडल खींचें।",
+  "uiCouldNotUpdatePlaybackTryAgain": "प्लेबैक अपडेट नहीं किया जा सकता। फिर से प्रयास करें।",
+  "uiAtTheEndOfTheTrack": "ट्रैक के अंत में",
+  "uiSleepTimer": "स्लीप टाइमर",
+  "uiCloseSleepTimer": "बंद नींद टाइमर",
+  "uiFinishTheCurrentTrack": "वर्तमान ट्रैक खत्म",
+  "uiWhenTheTimerEndsWaitForThe": "जब टाइमर समाप्त हो जाता है, तो ध्यान देने से पहले ट्रैक को खत्म करने की प्रतीक्षा करें।",
+  "uiStartSleepTimer": "प्रारंभ नींद टाइमर",
+  "uiStopAtTheEndOfThisTrack": "इस ट्रैक के अंत में रुकें",
+  "uiCancelSleepTimer": "नींद टाइमर को रद्द करना",
+  "uiPlaybackSettings": "प्लेबैक सेटिंग",
+  "uiOutputSettings": "आउटपुट सेटिंग्स",
+  "uiPlayback": "प्लेबैक",
+  "uiAutomaticActions": "स्वचालित कार्रवाई",
+  "uiAudioOutput": "ऑडियो आउटपुट",
+  "uiOnlyAppliesInAuraSeparatelyFromYour": "केवल Aura में लागू होता है, अलग से अपने फोन या PC वॉल्यूम से।",
+  "uiTimer": "टाइमर",
+  "uiAudioOptions": "ऑडियो विकल्प",
+  "uiCrossfadeAndPlaypauseFades": "क्रॉसफ़ेड और प्ले / पॉज़ फीका",
+  "uiFrequencyBandsAndPresets": "आवृत्ति बैंड और प्रीसेट",
+  "uiAvailableOnAndroid": "Android पर उपलब्ध",
+  "uiNotificationLockScreenAndHeadset": "अधिसूचना, लॉक स्क्रीन और हेडसेट",
+  "uiRestoreDefaultSpeedAndVolume": "डिफ़ॉल्ट गति और मात्रा बहाल करें",
+  "uiSpeedAndVolumeAreSavedOnThis": "इस उपकरण पर स्पीड और वॉल्यूम को बचाया जाता है। ऐप पूरी तरह बंद होने पर टाइमर को रद्द कर दिया जाता है।",
+  "uiSleep": "नींद लेना",
+  "uiUnrated": "अनरेटेड",
+  "uiSwipeToRate": "रेटिंग देने के लिए स्वाइप करें",
+  "uiGive1Star": "1 स्टार",
+  "uiClearRating": "स्पष्ट रेटिंग",
+  "uiStarSize": "स्टार आकार",
+  "uiSmall": "छोटा",
+  "uiMedium": "मध्यम",
+  "uiLarge": "बड़ा",
+  "uiSwipeAcrossTheStarsToRateIn": "आधे स्टार चरणों में दर करने के लिए सितारों के पार स्वाइप करें।",
+  "uiFilterByRating": "रेटिंग द्वारा फ़िल्टर करें",
+  "uiAllRatings": "सभी रेटिंग",
+  "uiOnly5Stars": "केवल 5 सितारे",
+  "uiSortByRating": "रेटिंग द्वारा क्रमबद्ध",
+  "uiDefaultOrder": "डिफ़ॉल्ट आदेश",
+  "uiHighestRatingFirst": "सबसे पहले रेटिंग",
+  "uiLowestRatingFirst": "सबसे पहले रेटिंग",
+  "uiCouldNotSaveTheChangeTryAgain": "फिर से कोशिश करो।",
+  "uiNewPlaylist": "नई प्लेलिस्ट",
+  "uiRenamePlaylist": "प्लेलिस्ट का नाम बदलें",
+  "uiPlaylistName": "प्लेलिस्ट नाम",
+  "uiSave": "सहेजें",
+  "uiRemoveFromFavorites": "पसंदीदा से निकालें",
+  "uiAddToFavorites": "पसंदीदा जोड़ें",
+  "uiAddToPlaylist": "प्लेलिस्ट में जोड़ें",
+  "uiTrackIsAlreadyInThisPlaylist": "ट्रैक पहले से ही इस प्लेलिस्ट में है",
+  "uiTrackAddedToPlaylist": "ट्रैक प्लेलिस्ट में जुड़ गया।",
+  "uiCouldNotLoadFavoritesAndPlaylists": "पसंदीदा और प्लेलिस्ट लोड नहीं कर सका।",
+  "uiTryAgain": "फिर से कोशिश करो",
+  "uiBackToPlaylists": "बैक टू प्लेलिस्ट",
+  "uiPlaylistOptions": "प्लेलिस्ट विकल्प",
+  "uiDeletePlaylist": "प्लेलिस्ट हटाएं?",
+  "uiAudioFilesStayOnThePhone": "ऑडियो फाइलें फोन पर रहती हैं।",
+  "uiRename": "नाम बदलें",
+  "uiDeletePlaylist363": "प्लेलिस्ट हटाएं",
+  "uiCreateYourFirstPlaylistWithOrFrom": "अपनी पहली प्लेलिस्ट + या ट्रैक के मेनू से बनाएँ।",
+  "uiAddTracks": "ट्रैक जोड़ें",
+  "uiATrackIsOutsideTheSelectedFolders": "एक ट्रैक चयनित फ़ोल्डर के बाहर है या अब उपलब्ध नहीं है। इसका संदर्भ रखा गया है।",
+  "uiPlayAll": "सभी खेलें",
+  "uiTapATracksHeartToSaveIt": "यहां इसे बचाने के लिए ट्रैक के दिल को टैप करें।",
+  "uiAddTracksToThisPlaylist": "इस प्लेलिस्ट में ट्रैक जोड़ें।",
+  "uiRemoveFromPlaylist": "प्लेलिस्ट से निकालें",
+  "uiSearchForATrack": "एक ट्रैक के लिए खोज",
+  "uiTitle": "शीर्षक",
+  "uiSearchYourMusic": "अपने संगीत को खोजें",
+  "uiClearSearch": "स्पष्ट खोज",
+  "uiFavoritesOnly": "केवल पसंदीदा",
+  "uiYOURLIBRARYISEMPTY": "आपका पुस्तकालय है EMPTY",
+  "uiAddMusic": "संगीत जोड़ें",
+  "uiAddASourceToSearchYourCollection": "अपने संग्रह की खोज के लिए एक स्रोत जोड़ें।",
+  "uiRecentSearches": "हाल ही में खोज",
+  "uiSearchForATitleArtistOrAlbum": "एक शीर्षक, कलाकार या एल्बम के लिए खोजें। प्रस्तुत खोज इस सत्र के लिए यहां रहें।",
+  "uiNoResultsMatchTheSelectedFilters": "कोई परिणाम चयनित फिल्टर से मेल नहीं खाते।",
+  "uiAuraSettings": "Aura सेटिंग्स",
+  "uiOptionsMarkedComingSoonAreNotAvailable": "हालांकि, \"Coming soon\" को चिह्नित विकल्प अभी तक उपलब्ध नहीं हैं। इस उपकरण पर सक्रिय सेटिंग्स को बचाया जाता है। मीडिया स्रोतों में सर्वर कनेक्शन प्रबंधित करें।",
+  "uiGotIt": "यह",
+  "uiHelp": "सहायता",
+  "uiInterface": "इंटरफ़ेस",
+  "uiInterfaceSettings": "इंटरफ़ेस सेटिंग्स",
+  "uiApplicationStyle": "अनुप्रयोग शैली",
+  "uiGeneral": "सामान्य",
+  "uiMediaLists": "मीडिया सूची",
+  "uiNowPlayingScreens": "अब स्क्रीन बजाना",
+  "uiNowPlayingScreen": "अब स्क्रीन बजाना",
+  "uiTrackRatings": "ट्रैक रेटिंग",
+  "uiSwipeAcrossTheStarsToRateIn399": "आधे सितारा चरणों में दर करने के लिए सितारों के पार स्वाइप करें। आकार खिलाड़ी और ट्रैक जानकारी में लागू होता है।",
+  "uiPageSettings": "पृष्ठ सेटिंग",
+  "uiHomePage": "होम पेज",
+  "uiGenrePage": "शैली पृष्ठ",
+  "uiPlaylistPage": "प्लेलिस्ट पेज",
+  "uiSearchPage": "खोज पृष्ठ",
+  "uiAdvanced": "उन्नत",
+  "uiAdvancedInterfaceSettings": "उन्नत इंटरफ़ेस सेटिंग्स",
+  "uiDecodingAndTranscoding": "डिकोडिंग और ट्रांसकोडिंग",
+  "uiAudioFocus": "ऑडियो फोकस",
+  "uiNotificationAndMediaSessionButtons": "अधिसूचना और मीडिया सत्र बटन",
+  "uiAdvancedPlaybackSettings": "उन्नत प्लेबैक सेटिंग्स",
+  "uiOfflineCacheAndDownloads": "ऑफलाइन, कैश और डाउनलोड",
+  "uiMedia": "मीडिया",
+  "uiOfflineServerPlayback": "ऑफलाइन सर्वर प्लेबैक",
+  "uiImages": "चित्र",
+  "uiLocalTracksWorkWithoutInternetServerDownloads": "स्थानीय ट्रैक इंटरनेट के बिना काम करते हैं। सर्वर डाउनलोड और कैश प्रबंधन जल्द ही आ रहा है।",
+  "uiAdvancedSettings": "उन्नत सेटिंग्स",
+  "uiMiscellaneous": "अन्य",
+  "uiMediaSources": "मीडिया स्रोत",
+  "uiSyncManager": "सिंक मैनेजर",
+  "uiUpdating": "अद्यतन...",
+  "uiRefreshLibrary": "पुस्तकालय",
+  "uiRefreshNavidromeSources": "Refresh Navidrome स्रोतों",
+  "uiOfflineFiles": "ऑफलाइन फाइल",
+  "uiGeneratedFiles": "उत्पन्न फाइलें",
+  "uiLanguages": "भाषाएँ",
+  "uiAbout": "जानकारी",
+  "uiRateTheApp": "ऐप रेट करें",
+  "uiContactSupport": "संपर्क समर्थन",
+  "uiWhatsNew": "नया क्या है",
+  "uiWhatsNewInAura": "Aura में नया क्या है",
+  "uiLocalAndNavidromeLibrariesHalfstarRatingsHistory": "स्थानीय और Navidrome पुस्तकालयों • आधा सितारा रेटिंग • इतिहास, प्लेलिस्ट और फेवरिट्स • क्रॉसफेड, स्लीप टाइमर और Android समतुल्यकार • 144 हर्ट्ज तक प्रदर्शित करता है",
+  "uiAboutAura": "लगभग Aura",
+  "uiAPlayerForYourLocalMusicAnd": "अपने स्थानीय संगीत और Navidrome पुस्तकालय के लिए एक खिलाड़ी।",
+  "uiComingSoon": "जल्द आ रहा है",
+  "uiMusicFolders": "संगीत फ़ोल्डर",
+  "uiChooseMusicFoldersOnlyFoldersWhereThe": "संगीत फ़ोल्डर चुनें। केवल फ़ोल्डर जहां डिवाइस को ऑडियो फ़ाइलों को दिखाया गया है।",
+  "uiAllFolders": "सभी फ़ोल्डर",
+  "uiAutomaticallyIncludesFoldersFoundInFutureScans": "स्वचालित रूप से भविष्य में स्कैन में पाया फ़ोल्डर शामिल हैं।",
+  "uiNoTracksFoundInTheLastScan": "पिछले स्कैन में कोई ट्रैक नहीं मिला",
+  "uiYourLibraryWillStayEmptyUntilYou": "जब तक आप किसी फ़ोल्डर का चयन नहीं करते तब तक आपका पुस्तकालय खाली रहेगा।",
+  "uiSaveSelection": "चयन सहेजें",
+  "secondsValue": "{count, plural, one{दूसरा} other{{count} सेकंड}}",
+  "@secondsValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "secondsShort": "{value} एस",
+  "@secondsShort": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "restoreConfirmation": "{change}\n\n{settings}\n\nप्लेबैक ठहराए जाएंगे और नींद टाइमर को रद्द कर दिया जाएगा। आपका वर्तमान कुक रखा गया है।",
+  "@restoreConfirmation": {
+    "placeholders": {
+      "change": {
+        "type": "String"
+      },
+      "settings": {
+        "type": "String"
+      }
+    }
+  },
+  "backupCreated": "निर्मित: {date}",
+  "@backupCreated": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "backupStats": "पसंदीदा: {favorites} · रेटिंग: {ratings}\nPlaylists: {playlists} · इतिहास ट्रैक: {history}",
+  "@backupStats": {
+    "placeholders": {
+      "favorites": {
+        "type": "int"
+      },
+      "ratings": {
+        "type": "int"
+      },
+      "playlists": {
+        "type": "int"
+      },
+      "history": {
+        "type": "int"
+      }
+    }
+  },
+  "backupMatches": "मान्यता प्राप्त: {matched} · Remapped: {remapped}\nUnability or ambiguous: {unavailable}",
+  "@backupMatches": {
+    "placeholders": {
+      "matched": {
+        "type": "int"
+      },
+      "remapped": {
+        "type": "int"
+      },
+      "unavailable": {
+        "type": "int"
+      }
+    }
+  },
+  "tracksInLibrary": "{count, plural, one{1 अपने पुस्तकालय में ट्रैक करें।} other{अपने पुस्तकालय में {count} ट्रैक।}}",
+  "@tracksInLibrary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sourcesSaved": "स्रोत बचाया। {count, plural, one{1 अपने पुस्तकालय में ट्रैक करें।} other{अपने पुस्तकालय में {count} ट्रैक।}}",
+  "@sourcesSaved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tracksInFolders": "{count, plural, one{चयनित फ़ोल्डरों में 1 ट्रैक।} other{चयनित फ़ोल्डरों में {count} ट्रैक।}}",
+  "@tracksInFolders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "allFoldersSummary": "सभी फ़ोल्डर · ट्रैक: {count}",
+  "@allFoldersSummary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectedFoldersSummary": "चयनित फ़ोल्डर: {folders} · ट्रैक: {tracks}",
+  "@selectedFoldersSummary": {
+    "placeholders": {
+      "folders": {
+        "type": "int"
+      },
+      "tracks": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryRhythm": "{count} ट्रैक्स, आपकी लय पर।",
+  "@libraryRhythm": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryTrackCount": "लाइब्रेरी में ट्रैक: {count}",
+  "@libraryTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "backToPage": "वापस {page}",
+  "@backToPage": {
+    "placeholders": {
+      "page": {
+        "type": "String"
+      }
+    }
+  },
+  "groupCount": "{count, plural, one{1 आइटम} other{{count} आइटम}}",
+  "@groupCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "foundTracks": "{count, plural, one{1 ट्रैक पाया} other{{count} ट्रैक्स मिले}}",
+  "@foundTracks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "disconnectSource": "\"{name}\" को Aura से हटा दिया जाएगा। सर्वर पर फ़ाइलें रखी गई हैं।",
+  "@disconnectSource": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "visibleTracks": "{visible} का {total} ट्रैक दिखा रहा है।",
+  "@visibleTracks": {
+    "placeholders": {
+      "visible": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "queueCount": "कतार · {count}",
+  "@queueCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playQueueCount": "प्लेबैक कतार · {count}",
+  "@playQueueCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "currentTrackArtist": "वर्तमान ट्रैक · {artist}",
+  "@currentTrackArtist": {
+    "placeholders": {
+      "artist": {
+        "type": "String"
+      }
+    }
+  },
+  "removeFromQueue": "queue से {title} निकालें",
+  "@removeFromQueue": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "moveTrack": "{title}",
+  "@moveTrack": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "activeTimer": "सक्रिय: {value}",
+  "@activeTimer": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "minutesValue": "{count, plural, one{1 मिनट} other{{count} मिनट}}",
+  "@minutesValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "minutesShort": "{count} मिनट",
+  "@minutesShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playerVolume": "प्लेयर वॉल्यूम: {value}%",
+  "@playerVolume": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "playbackSpeed": "गति: {value} ×",
+  "@playbackSpeed": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "yourRating": "आपकी रेटिंग: 5 में से {rating}",
+  "@yourRating": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "ratingOutOfFive": "{rating} 5 में से",
+  "@ratingOutOfFive": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "giveStars": "{count, plural, one{1 स्टार} other{{count} सितारे}}",
+  "@giveStars": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ratingDescription": "रेटिंग: 5 में से {rating}",
+  "@ratingDescription": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumStars": "कम से कम {rating} सितारों",
+  "@minimumStars": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumRating": "रेटिंग ≥ {rating}",
+  "@minimumRating": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "savedTrackCount": "{count, plural, one{1 बचाया ट्रैक} other{{count} बचाया ट्रैक}}",
+  "@savedTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "availableTrackCount": "{count, plural, one{1 उपलब्ध ट्रैक} other{{count} उपलब्ध ट्रैक}}",
+  "@availableTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "missingTrackCount": "अनुपलब्ध ट्रैक: {count}। वे चयनित फ़ोल्डरों के बाहर हैं या अब उपलब्ध नहीं हैं। उनके संदर्भों को रखा जाता है।",
+  "@missingTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectedTrackCount": "{count, plural, one{1 चयनित ट्रैक} other{{count} चयनित ट्रैक}}",
+  "@selectedTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "searchResultCount": "{count, plural, one{1 परिणाम} other{{count} परिणाम}}",
+  "@searchResultCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "removeRecentSearch": "{query}",
+  "@removeRecentSearch": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "tracksInSelection": "{count, plural, one{चयन में 1 ट्रैक} other{{count} चयन में ट्रैक}}",
+  "@tracksInSelection": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "languageTitle": "ऐप की भाषा",
+  "languageSystem": "सिस्टम के अनुसार",
+  "languageHelp": "तुरंत लागू होता है। आपका ट्रैक, कलाकार, फ़ोल्डर और प्लेलिस्ट नामों का अनुवाद नहीं किया जाता है।",
+  "languageSaveError": "भाषा को नहीं बचा सकता। आपकी पिछली पसंद रखी गई थी।",
+  "uiBass": "बास",
+  "mediaStop": "बंद करें",
+  "mediaSeekBack": "10 सेकंड पीछे",
+  "mediaSeekForward": "10 सेकंड आगे"
+}

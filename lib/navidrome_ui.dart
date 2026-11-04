@@ -1,3 +1,4 @@
+import 'app_strings.dart';
 import 'app_theme.dart';
 
 import 'package:flutter/material.dart';
@@ -28,8 +29,8 @@ class _NavidromeSourcesScreenState extends State<NavidromeSourcesScreen> {
     } catch (_) {
       if (mounted) {
         setState(
-          () => _message =
-              'Nu am putut încărca sursele salvate. Încearcă din nou.',
+          () =>
+              _message = context.appStrings.uiCouldNotLoadSavedSourcesTryAgain,
         );
       }
     }
@@ -49,8 +50,7 @@ class _NavidromeSourcesScreenState extends State<NavidromeSourcesScreen> {
     } catch (_) {
       if (mounted) {
         setState(
-          () => _message =
-              'Nu am putut salva modificarea sursei. Încearcă din nou.',
+          () => _message = context.appStrings.uiCouldNotSaveTheSourceChangeTry,
         );
       }
     } finally {
@@ -66,7 +66,7 @@ class _NavidromeSourcesScreenState extends State<NavidromeSourcesScreen> {
     if (server == null || !mounted) return;
     await _run(
       () => widget.repository.connect(server),
-      'Conectat. Biblioteca serverului a fost încărcată.',
+      context.appStrings.uiConnectedTheServerLibraryHasBeenLoaded,
     );
   }
 
@@ -74,18 +74,16 @@ class _NavidromeSourcesScreenState extends State<NavidromeSourcesScreen> {
     final confirm = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Deconectezi sursa?'),
-        content: Text(
-          '„${server.name}” va fi eliminată din Aura. Fișierele de pe server rămân intacte.',
-        ),
+        title: Text(context.appStrings.uiDisconnectThisSource),
+        content: Text(context.appStrings.disconnectSource(server.name)),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Anulează'),
+            child: Text(context.appStrings.uiCancel228),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Deconectează'),
+            child: Text(context.appStrings.uiDisconnect),
           ),
         ],
       ),
@@ -93,7 +91,7 @@ class _NavidromeSourcesScreenState extends State<NavidromeSourcesScreen> {
     if (confirm == true && mounted) {
       await _run(
         () => widget.repository.remove(server.id),
-        'Sursă deconectată.',
+        context.appStrings.uiSourceDisconnected,
       );
     }
   }
@@ -103,15 +101,13 @@ class _NavidromeSourcesScreenState extends State<NavidromeSourcesScreen> {
     canPop: !_busy,
     child: Scaffold(
       appBar: AppBar(
-        title: const Text('Surse Navidrome'),
+        title: Text(context.appStrings.uiNavidromeSources),
         automaticallyImplyLeading: !_busy,
       ),
       body: ListView(
         padding: const EdgeInsets.all(20),
         children: [
-          const Text(
-            'Conectează biblioteca ta de pe un server Navidrome prin HTTPS.',
-          ),
+          Text(context.appStrings.uiConnectYourLibraryFromANavidromeServer),
           const SizedBox(height: 12),
           if (_message != null)
             Padding(
@@ -119,17 +115,17 @@ class _NavidromeSourcesScreenState extends State<NavidromeSourcesScreen> {
               child: Text(_message!),
             ),
           if (_busy)
-            const Column(
+            Column(
               children: [
                 LinearProgressIndicator(),
                 SizedBox(height: 12),
-                Text('Se încarcă biblioteca serverului…'),
+                Text(context.appStrings.uiLoadingTheServerLibrary),
               ],
             ),
           if (_servers == null && !_busy)
             TextButton(
               onPressed: _load,
-              child: const Text('Reîncarcă sursele'),
+              child: Text(context.appStrings.uiReloadSources),
             ),
           for (final server in _servers ?? <NavidromeServer>[])
             Card(
@@ -150,18 +146,18 @@ class _NavidromeSourcesScreenState extends State<NavidromeSourcesScreen> {
                               ? null
                               : () => _run(
                                   () => widget.repository.connect(server),
-                                  'Bibliotecă actualizată.',
+                                  context.appStrings.uiLibraryUpdated,
                                 ),
                           icon: const Icon(Icons.refresh),
-                          label: const Text('Actualizează'),
+                          label: Text(context.appStrings.uiRefresh),
                         ),
                         TextButton(
                           onPressed: _busy ? null : () => _add(server),
-                          child: const Text('Reconectează'),
+                          child: Text(context.appStrings.uiReconnect),
                         ),
                         TextButton(
                           onPressed: _busy ? null : () => _remove(server),
-                          child: const Text('Deconectează'),
+                          child: Text(context.appStrings.uiDisconnect),
                         ),
                       ],
                     ),
@@ -173,11 +169,11 @@ class _NavidromeSourcesScreenState extends State<NavidromeSourcesScreen> {
           FilledButton.icon(
             onPressed: _busy ? null : _add,
             icon: const Icon(Icons.add),
-            label: const Text('Adaugă server Navidrome'),
+            label: Text(context.appStrings.uiAddNavidromeServer),
           ),
           const SizedBox(height: 20),
           Text(
-            'Piesele apar în Colecție după conectare. Redarea necesită internet. Favoritele, ratingurile și playlisturile Aura rămân locale; nu modificăm biblioteca serverului.',
+            context.appStrings.uiTracksAppearInLibraryAfterConnectingPlayback,
             style: TextStyle(color: context.auraMuted),
           ),
         ],
@@ -228,7 +224,7 @@ class _ConnectionDialogState extends State<_ConnectionDialog> {
 
   @override
   Widget build(BuildContext context) => AlertDialog(
-    title: const Text('Conectare Navidrome'),
+    title: Text(context.appStrings.uiConnectToNavidrome),
     content: SizedBox(
       width: 420,
       child: SingleChildScrollView(
@@ -237,33 +233,39 @@ class _ConnectionDialogState extends State<_ConnectionDialog> {
           children: [
             TextField(
               controller: _name,
-              decoration: const InputDecoration(labelText: 'Numele sursei'),
+              decoration: InputDecoration(
+                labelText: context.appStrings.uiSourceName,
+              ),
             ),
             TextField(
               controller: _url,
               keyboardType: TextInputType.url,
               autocorrect: false,
-              decoration: const InputDecoration(
-                labelText: 'URL server',
+              decoration: InputDecoration(
+                labelText: context.appStrings.uiServerURL,
                 hintText: 'https://muzica.exemplu.ro',
               ),
             ),
             TextField(
               controller: _user,
               autocorrect: false,
-              decoration: const InputDecoration(labelText: 'Utilizator'),
+              decoration: InputDecoration(
+                labelText: context.appStrings.uiUsername,
+              ),
             ),
             TextField(
               controller: _password,
               obscureText: true,
               enableSuggestions: false,
               autocorrect: false,
-              decoration: const InputDecoration(labelText: 'Parolă'),
+              decoration: InputDecoration(
+                labelText: context.appStrings.uiPassword,
+              ),
               onSubmitted: (_) => _submit(),
             ),
             const SizedBox(height: 12),
             Text(
-              'Datele de conectare sunt salvate în stocarea securizată a dispozitivului.',
+              context.appStrings.uiCredentialsAreSavedInTheDevicesSecure,
               style: TextStyle(fontSize: 12, color: context.auraMuted),
             ),
             if (_error != null)
@@ -278,9 +280,12 @@ class _ConnectionDialogState extends State<_ConnectionDialog> {
     actions: [
       TextButton(
         onPressed: () => Navigator.pop(context),
-        child: const Text('Anulează'),
+        child: Text(context.appStrings.uiCancel228),
       ),
-      FilledButton(onPressed: _submit, child: const Text('Conectează')),
+      FilledButton(
+        onPressed: _submit,
+        child: Text(context.appStrings.uiConnect),
+      ),
     ],
   );
 }

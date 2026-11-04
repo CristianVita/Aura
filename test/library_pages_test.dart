@@ -199,6 +199,7 @@ void main() {
       await store.load();
       await tester.pumpWidget(
         AuraAppearanceApp(
+          locale: const Locale('ro'),
           store: store,
           home: const LibraryPageSettings(page: LibraryPageKind.library),
         ),

@@ -1,0 +1,780 @@
+{
+  "@@locale": "th",
+  "appearanceTitle": "ชุดตกแต่ง, แบบอักษรและสี",
+  "themeLabel": "ชุดตกแต่ง",
+  "themeSystem": "ตามระบบ",
+  "themeLight": "▁แสง",
+  "themeDark": "▁เข้ม",
+  "themeOled": "OLED สีดํา",
+  "accentLabel": "▁สี",
+  "accentMint": "มิ้นท์",
+  "accentBlue": "▁น้ําเงิน",
+  "accentViolet": "ไวโอเล็ต",
+  "accentRose": "▁โรส",
+  "accentAmber": "▁ทองคํา",
+  "accentTeal": "▁เทอัล",
+  "fontLabel": "แบบอักษร",
+  "fontSystem": "แบบอักษรของระบบ",
+  "fontSerif": "มีเชิง",
+  "fontMonospace": "ความกว้างคงที่",
+  "fontDescription": "แบบอักษร▁ใช้▁ครอบครัว▁ที่▁มี▁อยู่▁บน▁อุปกรณ์▁นี้.",
+  "textSizeLabel": "▁ขนาดข้อความ",
+  "textSizeDescription": "▁รวมเข้ากับขนาดข้อความในการตั้งค่าอุปกรณ์ของคุณ",
+  "previewLabel": "แสดงตัวอย่าง",
+  "previewTitle": "▁เพลงของคุณ▁จังหวะของคุณ",
+  "previewSubtitle": "▁อัลบั้ม,▁ศิลปิน▁และรายการเล่น",
+  "previewButton": "เล่น",
+  "resetAppearance": "เรียกคืนสถานะปริยาย",
+  "appearanceSaveError": "▁ไม่สามารถบันทึกภาพได้ การตั้งค่าก่อนหน้านี้ของคุณถูกเก็บ",
+  "appearanceHelp": "▁การเปลี่ยนแปลงจะนําไปใช้ทันทีที่มันบันทึกไว้▁และถูกรวมอยู่ในกองสํารอง",
+  "percentValue": "{value}%",
+  "@percentValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "navigationTitle": "▁การนําทางและเริ่มหน้าจอ",
+  "navigationOrder": "▁ลําดับแท็บ",
+  "navigationHelp": "▁ลากตัวจับเพื่อสั่งแท็บใหม่ ไลบรารีและการตั้งค่ายังคงเข้าถึงได้",
+  "navigationHome": "หน้าหลัก",
+  "navigationLibrary": "คลังเพลง",
+  "navigationSearch": "ค้นหา",
+  "navigationSettings": "การตั้งค่า",
+  "navigationRequired": "แท็บที่ต้องการ",
+  "navigationLabels": "▁ป้ายแท็บ",
+  "labelsAdaptive": "ปรับแก้:",
+  "labelsHidden": "ไอคอนเท่านั้น",
+  "labelsSelected": "แท็บที่เลือกไว้",
+  "labelsAlways": "▁ทั้งหมด",
+  "labelsHelp": "ปรับใช้: ไอคอนบนโทรศัพท์และป้ายบนแถบด้านข้างของพื้นที่ทํางาน",
+  "navigationStart": "▁เริ่มหน้าจอ",
+  "navigationStartHelp": "ปรับใช้ครั้งต่อไปที่โปรแกรมจะเริ่ม",
+  "libraryLanding": "▁เมื่อเปิดไลบรารี",
+  "landingCategories": "หมวดหมู่",
+  "landingTracks": "เพลง",
+  "landingAlbums": "อัลบั้ม",
+  "landingArtists": "ศิลปิน",
+  "landingPlaylists": "เพลย์ลิสต์",
+  "landingFavorites": "รายการโปรด",
+  "resetNavigation": "เรียกคืนการนําทางปริยาย",
+  "navigationSaveError": "▁ไม่สามารถบันทึกการนําทางได้▁การกําหนดก่อนหน้านี้ของคุณถูกคงไว้",
+  "navigationPreview": "แสดงตัวอย่างการนําทาง",
+  "libraryPageTitle": "▁หน้าไลบรารี",
+  "albumPageTitle": "▁หน้าอัลบั้ม",
+  "artistPageTitle": "▁หน้าศิลปิน",
+  "categoryOrder": "หมวดหมู่และลําดับ",
+  "categoryHelp": "▁ลากตัวจับเพื่อทําการเรียงลําดับใหม่▁ให้คงรุ่นที่มองเห็นได้อย่างน้อยหนึ่งประเภท▁การซ่อนหมวดหมู่ไม่ได้ลบเพลง",
+  "pageColumns": "▁คอลัมน์บนโทรศัพท์",
+  "pageColumnsHelp": "หน้าจอที่กว้างกว่าจะเพิ่มคอลัมน์ให้โดยอัตโนมัติ▁ข้อความขนาดใหญ่อาจลดจํานวนคอลัมน์ที่อ่านได้",
+  "pageLayout": "การจัดวาง",
+  "layoutList": "▁รายการ",
+  "layoutGrid": "▁เครื่องมือทาสี",
+  "pageSort": "เรียงลําดับ",
+  "sortName": "▁ชื่อ A-Z",
+  "sortNameDescending": "▁ชื่อ Z-A",
+  "sortTrackCount": "▁จํานวนเพลง",
+  "pageSummary": "▁งาน▁ศิลปะ▁และ▁การ▁สรุป▁หน้า▁เปิด",
+  "pageSummaryHelp": "▁ใช้งานศิลป์ที่มีอยู่สําหรับแทร็กแรกในกลุ่ม",
+  "pageReset": "▁ตั้งค่าหน้านี้ใหม่",
+  "pageSaveError": "▁ไม่สามารถบันทึกหน้าเว็บได้ จัดเก็บค่าก่อนหน้าของคุณ",
+  "librarySources": "▁แหล่ง",
+  "unknownGroup": "▁ไม่ทราบ",
+  "groupTracks": "{count, plural, one{1 แทร็ก} other{{count}▁เพลง}}",
+  "groupMinutes": "{minutes}▁นาทีในรวม",
+  "@groupTracks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@groupMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "uiTransitions": "การแปลง",
+  "uiEqualizer": "▁อิควอไลเซอร์",
+  "uiMediaControls": "▁ตัวควบคุมสื่อ",
+  "uiHeadsetButtons": "▁ปุ่มหัวเรื่อง",
+  "uiNotificationButtons": "▁ปุ่มแจ้งเตือน",
+  "uiCrossfade": "ครอสเฟด",
+  "uiOff": "ปิด",
+  "uiOverlapsTheEndOfATrackWith": "▁ปิดท้ายแทร็กเสียงด้วยการเริ่มต้นของเพลงถัดไประหว่างการเล่นอัตโนมัติ",
+  "uiPlayAndPause": "▁เล่นและหยุดชั่วคราว",
+  "uiNoFade": "▁ไม่ค่อย▁ๆ▁จางหาย",
+  "uiNotificationAndLockScreen": "การแจ้งให้ทราบและล็อคหน้าจอ",
+  "uiSeekButtons10Seconds": "▁ค้นหาปุ่ม EX10▁วินาที",
+  "uiReplacesPreviousnextWithSeekingInTheNotification": "▁แทนที่ส่วนก่อนหน้า/ next▁ด้วยการค้นหาในการแจ้งให้ทราบ",
+  "uiShowStopButton": "▁แสดงปุ่มหยุด",
+  "uiHeadsetAndMediaButtons": "▁ปุ่มหัวเรื่องและปุ่มสื่อ",
+  "uiSeek10SecondsFromHeadset": "▁ค้นหาจากหูฟัง 10▁วินาที",
+  "uiPreviousnextButtonsSeekWithinTheCurrentTrack": "▁ปุ่มก่อนหน้า/ next สืบค้นภายในแทร็กปัจจุบัน▁ปุ่มกลางยังคงเล่น/ pause",
+  "uiKeepPausedWhenChangingTracks": "▁ให้หยุดชั่วคราว▁เมื่อมีการเปลี่ยนเพลง",
+  "uiNotificationAndHeadsetControlsAreAvailableOn": "การแจ้งให้ทราบและควบคุมหูฟัง▁มีการใช้งานบนปุ่ม แจ้งเตือน Android▁ระบบบางระบบจะจัดเรียงใหม่",
+  "uiTheEqualizerIsCurrentlyAvailableOnAndroid": "▁ขณะนี้มีอิควอไลเซอร์อยู่ที่ Android",
+  "uiSelectATrackAndReopenTheEqualizer": "▁เลือกแทร็กเสียงและทําการเรียกคลื่นเสียงใหม่อีกครั้ง▁หากยังไม่สามารถใช้งานได้▁อุปกรณ์นี้ก็จะไม่เปิดเผยเสียงที่ต้องการ",
+  "uiAndroidEqualizer": "Android▁เครื่องขยายเสียง",
+  "uiEnableEqualizer": "เปิดใช้งานอิควอไลเซอร์",
+  "uiFlat": "▁แบน",
+  "uiVoice": "▁เสียง",
+  "uiWhenBoostingABandAuraAutomaticallyReduces": "▁เมื่อ▁ยก▁วง▁ขึ้น Aura▁โดย อัตโนมัติ▁จะ▁ลด▁ระดับ▁โดย▁ทั่ว▁ไป▁เพื่อ▁ออก▁จาก▁ห้อง▁ประชุม▁และ▁จํากัด▁การ▁บิดเบือน.",
+  "uiAudioPlayback": "เล่นเพลง",
+  "uiPlaybackIsUnavailable": "▁ไม่สามารถเล่นกลับได้",
+  "uiUnknownArtist": "ศิลปินที่ไม่รู้จัก",
+  "uiUntitledTrack": "เพลงไม่มีชื่อ",
+  "uiTheFileIsNotAValidAura": "▁แฟ้มนี้ไม่ใช่แฟ้มสํารองข้อมูลที่ใช้งานได้ Aura▁หรือเสียหาย",
+  "uiChooseAnAuraBackup": "▁เลือกสํารอง Aura",
+  "uiSaveAuraBackup": "▁บันทึก Aura สํารองข้อมูล",
+  "uiBackupSaved": "▁บันทึกการสํารองข้อมูล",
+  "uiCouldNotSaveTheBackupAuraData": "▁ไม่สามารถบันทึกแฟ้มสํารองข้อมูลได้ Aura▁ข้อมูลไม่ถูกเปลี่ยนแปลง",
+  "uiTheFileIsNotAValidAura82": "▁แฟ้มนี้ไม่ใช่แฟ้มสํารองข้อมูลที่ใช้งานได้ Aura, เสียหายหรือเกิน 4 MB",
+  "uiRestoreBackup": "สํารองข้อมูลหรือไม่?",
+  "uiYourCurrentFavoritesRatingsPlaylistsAndHistory": "▁รายการโปรดของคุณ, เรตติ้ง, รายการเล่นและประวัติของคุณจะถูกแทนที่",
+  "uiDataWillBeMergedExistingRatingsAnd": "▁ข้อมูลจะถูกรวมเข้าด้วยกัน▁การจัดอันดับและชื่อรายการเล่นที่สําคัญ",
+  "uiSettingsWillAlsoBeImported": "การตั้งค่าจะถูกนําเข้าด้วย",
+  "uiYourCurrentSettingsWillBeKept": "การตั้งค่าปัจจุบันของคุณจะถูกคงไว้",
+  "uiCancel": "ยกเลิก",
+  "uiReplaceAndRestore": "▁แทนที่และเรียกคืน",
+  "uiRestore": "เรียกคืน",
+  "uiBackupRestoredUnavailableTracksAreKeptAs": "▁กู้ข้อมูลการสํารองข้อมูลแล้ว▁และเก็บร่องเสียงที่ไม่สามารถเรียกข้อมูลได้▁เป็นส่วนที่อ้างถึง",
+  "uiDataRecoveryMustFinishBeforeContinuing": "▁การกู้ข้อมูลจะต้องเสร็จสิ้นก่อนจะทําต่อไป",
+  "uiRestoreFailedYourPreviousDataWasKept": "▁การเรียกคืนล้มเหลว▁ข้อมูลก่อนหน้านี้ของคุณถูกเก็บไว้",
+  "uiPreviousDataRecovered": "▁ข้อมูลก่อนหน้านี้ถูกค้นพบ",
+  "uiCouldNotRecoverTheDataYetTry": "▁ไม่สามารถกู้ข้อมูลคืนมาได้▁ลองใหม่หรือเริ่ม Aura",
+  "uiBackupAndRestore": "สํารองข้อมูลและเรียกคืนข้อมูล",
+  "uiDataRecoveryIsRequiredBeforeContinuingAura": "▁ต้องการการกู้ข้อมูลก่อนจะทําต่อ Aura▁เก็บสถานะเดิมไว้ในวารสารท้องถิ่น",
+  "uiTryRecovery": "▁ลอง▁ฟื้น▁ตัว",
+  "uiKeepWhatYouHaveOrganized": "▁จงรักษาบรรดาการงานไว้",
+  "uiBackupsIncludeFavoritesRatingsPlaylistsHistoryPlayback": "สํารองข้อมูลรวมถึงรายการโปรด, เรตติ้ง, รายการเล่น,▁ประวัติ, การตั้งค่าการเล่นเพลง▁และตัวกรองของไลบรารี▁แฟ้มเสียง,▁แหล่งข้อมูล▁และโฟลเดอร์ที่เลือก▁ยังไม่รวม▁และต้องตั้งค่าแยกต่างหาก",
+  "uiExportBackup": "▁ส่งออกเป็นแฟ้มสํารองข้อมูล",
+  "uiChooseABackupToRestore": "▁เลือกแฟ้มสํารองข้อมูลที่จะเรียกคืน",
+  "uiMissingReferencesAreKeptWithoutAssigningRatings": "▁มีรายการอ้างอิงสูญหายโดยไม่ต้องกําหนดระดับความชื่นชอบไปยังเพลงอื่น▁ๆ▁คุณสามารถนําเข้าแฟ้มสํารองข้อมูลได้หลังจากเพิ่มแหล่งที่เข้ากันได้แล้ว",
+  "uiReplaceCurrentData": "▁แทนที่ข้อมูลปัจจุบัน",
+  "uiOffMergeDataAndKeepExistingRatings": "▁ปิด: ผนวกข้อมูลและเก็บเรตติ้งที่มีอยู่",
+  "uiRestoreSettingsToo": "เรียกคืนค่าที่ตั้งไว้ด้วย",
+  "uiReviewAndRestore": "▁ทบทวน▁และ▁ฟื้นฟู",
+  "uiHelloNightOwl": "สวัสดีคนนอนดึก 🦉",
+  "uiGoodMorning": "อรุณสวัสดิ์ 🌅",
+  "uiGoodAfternoon": "สวัสดีตอนบ่าย ☀️",
+  "uiGoodEvening": "สวัสดีตอนเย็น 🌆",
+  "uiChooseYourMusicFolder": "▁เลือกโฟลเดอร์เพลงของคุณ",
+  "uiAuraCouldNotRecoverAnInterruptedRestore": "Aura▁ไม่สามารถกู้ข้อมูลการเรียกคืนได้▁โดยข้อมูลก่อนหน้าของคุณจะถูกเก็บไว้ในบันทึกประจําวันท้องถิ่น▁ปิดและเปิดโปรแกรมใหม่อีกครั้ง▁เพื่อลองอีกครั้ง",
+  "uiCouldNotLoadOrSaveListeningHistory": "▁ไม่สามารถเรียกใช้หรือบันทึกประวัติการรับและการเล่นล่าสุดได้",
+  "uiCouldNotApplyPlaybackSettingsOrThe": "▁ไม่สามารถปรับใช้การตั้งค่าการเล่นหรือตัวจับเวลาได้",
+  "uiCouldNotLoadTheLibraryScanYour": "▁ไม่สามารถโหลดไลบรารีได้▁โปรดสแกนเพลงของคุณอีกครั้ง",
+  "uiMusicOnYourPC": "▁เพลง PC ของคุณ",
+  "uiMusicOnYourPhone": "▁เพลงในโทรศัพท์ของคุณ",
+  "uiNavidromeServer": "Navidrome▁เซิร์ฟเวอร์",
+  "uiURLAndUserAccount": "URL▁และบัญชีผู้ใช้ของผู้ใช้▁พ.ศ.",
+  "uiCouldNotLoadMusicSources": "▁ไม่สามารถโหลดแหล่งเพลงได้",
+  "uiAddAFolderFromYourPC": "▁เพิ่มโฟลเดอร์จาก PC ของคุณ",
+  "uiChooseVisibleFolders": "▁เลือกโฟลเดอร์ที่มองเห็น",
+  "uiRemoveAFolderFromTheLibrary": "ลบโฟลเดอร์ออกจากไลบรารี",
+  "uiFilesStayOnYourPC": "▁แฟ้มยังอยู่บนของคุณ PC",
+  "uiYouHaveNotAddedAnyFoldersYet": "▁คุณยังไม่ได้เพิ่มโฟลเดอร์ใด▁ๆ▁เลย",
+  "uiRemoveFromLibrary": "▁ลบออกจากไลบรารี",
+  "uiFolderRemovedFromTheLibraryFilesStayed": "▁โฟลเดอร์ที่ถูกลบออกจากไลบรารี▁แฟ้มคงอยู่ที่ PC ของคุณ",
+  "uiCouldNotRemoveTheFolderFromThe": "▁ไม่สามารถลบโฟลเดอร์ออกจากไลบรารีได้",
+  "uiCouldNotReadTheFolderCheckThat": "▁ไม่สามารถอ่านโฟลเดอร์ได้▁โปรดตรวจสอบว่ามันมีอยู่หรือไม่",
+  "uiCouldNotSaveSourcesTryAgain": "▁ไม่สามารถบันทึกต้นทางได้▁โปรดลองใหม่อีกครั้ง",
+  "uiCouldNotPlayTheTrackTryScanning": "▁ไม่สามารถเล่นแทร็กได้▁ลองตรวจสอบอีกครั้ง",
+  "uiNoAudioFilesFoundOnTheDevice": "▁ไม่พบแฟ้มเสียงบนอุปกรณ์",
+  "uiAllowMusicAccessToScanYourLibrary": "อนุญาตให้เข้าถึงดนตรีในการค้นหาไลบรารีของคุณ",
+  "uiCouldNotScanYourMusicTryAgain": "▁ไม่สามารถสแกนเพลงของคุณได้▁โปรดลองใหม่อีกครั้ง",
+  "uiLibraryScanningIsCurrentlyAvailableOnAndroid": "▁ขณะนี้มีการสแกนห้องสมุดใน Android.",
+  "uiAProblemOccurredWhileScanningMusic": "เกิดปัญหาขึ้นในระหว่างการสแกนเพลง",
+  "uiWhereIsYourMusic": "▁ดนตรีคุณอยู่ไหน?",
+  "uiFavoriteTracks": "▁เพลงโปรด",
+  "uiAllFavorites": "▁ของโปรดทั้งหมด",
+  "uiBrowse": "▁เรียกดู",
+  "uiRecentlyPlayed": "▁เล่นเร็ว▁ๆ▁นี้",
+  "uiSeeAll": "▁ดูทั้งหมด",
+  "uiYourLibrary": "ไลบรารีของคุณ",
+  "uiSTARTWITHASOURCE": "▁เริ่ม▁ต้น▁ด้วย▁ข่าว▁ดี",
+  "uiAddYourMusic": "▁เพิ่มเพลงของคุณ",
+  "uiPCOrNavidromeServer": "PC ▁หรือ Navidrome ▁เซิร์ฟเวอร์",
+  "uiPhoneOrNavidromeServer": "▁โทรศัพท์หรือ Navidrome▁เซิร์ฟเวอร์",
+  "uiScanning": "▁กําลังตรวจหา...",
+  "uiAddASource": "▁เพิ่มแหล่ง",
+  "uiLibrary": "คลังเพลง",
+  "uiYourListeningHistoryWillAppearHere": "▁ประวัติการฟังของคุณ▁จะปรากฏขึ้นที่นี่",
+  "uiYOURCOLLECTION": "▁คุณสมบัติของคุณ",
+  "uiLibrary178": "คลังเพลง",
+  "uiNoTracksMatchTheSelectedFilters": "▁ไม่มีเพลงที่ตรงกับตัวกรองที่เลือกไว้",
+  "uiChooseMusicFoldersToSeeTracksIn": "▁เลือกโฟลเดอร์เพลงเพื่อดูร่องเพลงในไลบรารีของคุณ",
+  "uiChangeFilters": "▁เปลี่ยนตัวกรอง",
+  "uiChooseFolders": "▁เลือกโฟลเดอร์",
+  "uiScanAgain": "▁ค้นหาอีกครั้ง",
+  "uiNoTracksMatchTheSelectedRating": "▁ไม่มีเพลงที่ตรงกับการจัดอันดับที่เลือกไว้",
+  "uiCouldNotResumeTheTrackTrySelecting": "▁ไม่สามารถเรียกเพลงต่อได้▁ลองเลือกอีกครั้ง",
+  "uiUnknownDuration": "▁ไม่ทราบระยะเวลา",
+  "uiTrackInformation": "▁ข้อมูลเพลง",
+  "uiClose": "ปิด",
+  "uiArtist": "▁ศิลปิน",
+  "uiAlbum": "▁อัลบั้ม",
+  "uiUnknownAlbum": "▁ไม่ทราบอัลบั้ม",
+  "uiDuration": "▁ความยาว",
+  "uiFolder": "▁โฟลเดอร์",
+  "uiUnknownFolder": "▁ไม่รู้จักโฟลเดอร์",
+  "uiPause": "หยุดชั่วคราว",
+  "uiNextTrack": "▁เพลงถัดไป",
+  "uiTheQueueIsEmpty": "▁ไม่มีคิว",
+  "uiPreviousTrack": "▁เพลงก่อนหน้า",
+  "uiEnterTheHTTPSServerAddressWithoutA": "▁ป้อนที่อยู่เซิร์ฟเวอร์ HTTPS▁โดยไม่ต้องมีชื่อผู้ใช้,▁รหัสผ่าน▁หรือ URL พารามิเตอร์",
+  "uiEnterTheSourceNameUsernameAndPassword": "▁ป้อนชื่อแหล่ง, ชื่อผู้ใช้และรหัสผ่าน",
+  "uiTheServerDidNotRespondCorrectlyCheck": "▁เซิร์ฟเวอร์ไม่ตอบสนองอย่างถูกต้อง▁โปรดตรวจสอบที่อยู่และเข้าใช้ Navidrome",
+  "uiTheServerResponseIsTooLarge": "▁การตอบรับของแม่ข่ายมีขนาดใหญ่เกินไป",
+  "uiCouldNotReachTheServerCheckYour": "▁ไม่สามารถเข้าถึงเซิร์ฟเวอร์ได้▁โปรดตรวจสอบการเชื่อมต่อของคุณ,▁ที่อยู่▁และ HTTPS ใบรับรอง",
+  "uiAuthenticationFailedCheckYourUsernameAndPassword": "การตรวจสอบสิทธิ์ล้มเหลว▁โปรดตรวจสอบชื่อผู้ใช้และรหัสผ่านของคุณ",
+  "uiNavidromeRejectedTheRequestCheckTheAccounts": "Navidrome▁ปฏิเสธคําขอ▁ดูที่ห้องสมุดของบัญชีนี้",
+  "uiTheAddressDidNotReturnAValid": "▁ที่อยู่ไม่คืนค่าการตอบรับที่ Navidrome ที่ถูกต้อง",
+  "uiTheServerRepeatedAnAlbumPageYour": "▁เซิร์ฟเวอร์ทําหน้าอัลบั้มซ้ําแล้ว ไลบรารีก่อนหน้านี้ของคุณถูกเก็บ",
+  "uiInvalidServerTrack": "แทร็กของแม่ข่ายไม่ถูกต้อง",
+  "uiReconnectTheNavidromeSourceToPlayThis": "เชื่อมต่อแหล่ง Navidrome▁เพื่อเล่นแทร็กนี้อีกครั้ง",
+  "uiCouldNotLoadSavedSourcesTryAgain": "▁ไม่สามารถโหลดแหล่งที่บันทึกไว้ได้▁โปรดลองใหม่อีกครั้ง",
+  "uiCouldNotSaveTheSourceChangeTry": "▁ไม่สามารถบันทึกการเปลี่ยนแปลงของแหล่งได้▁ลองอีกครั้ง",
+  "uiConnectedTheServerLibraryHasBeenLoaded": "เชื่อมต่อแล้ว. ไลบรารีแม่ข่ายถูกโหลดแล้ว",
+  "uiDisconnectThisSource": "▁ยกเลิกการเชื่อมต่อแหล่งนี้หรือไม่?",
+  "uiCancel228": "ยกเลิก",
+  "uiDisconnect": "▁ยุติการเชื่อมต่อ",
+  "uiSourceDisconnected": "แหล่งข่าวไม่ติดต่อ",
+  "uiNavidromeSources": "Navidrome แหล่งที่มา",
+  "uiConnectYourLibraryFromANavidromeServer": "เชื่อมต่อห้องสมุดของคุณจากเซิร์ฟเวอร์ Navidrome▁กว่า HTTPS.",
+  "uiLoadingTheServerLibrary": "▁กําลังโหลดไลบรารีเซิร์ฟเวอร์...",
+  "uiReloadSources": "▁โหลดแหล่งใหม่",
+  "uiLibraryUpdated": "▁ปรับปรุงไลบรารี",
+  "uiRefresh": "▁ปรับปรุงใหม่",
+  "uiReconnect": "เชื่อมต่อใหม่",
+  "uiAddNavidromeServer": "▁เพิ่มเซิร์ฟเวอร์ Navidrome",
+  "uiTracksAppearInLibraryAfterConnectingPlayback": "แทร็กเสียงที่ปรากฏในไลบรารีหลังจากเชื่อมต่อแล้ว▁ต้องการอินเทอร์เน็ต Aura▁เพลงโปรด เรตติ้ง▁และรายการเล่นจะคงอยู่ในเครื่องของคุณ ไลบรารีเซิร์ฟเวอร์จะไม่ถูกเปลี่ยนแปลง",
+  "uiConnectToNavidrome": "เชื่อมต่อกับ Navidrome",
+  "uiSourceName": "▁ชื่อแหล่ง",
+  "uiServerURL": "▁เซิร์ฟเวอร์ URL",
+  "uiUsername": "ชื่อผู้ใช้",
+  "uiPassword": "▁รหัสผ่าน",
+  "uiCredentialsAreSavedInTheDevicesSecure": "▁เครื่อง▁มือ▁นี้▁เก็บ▁รักษา▁ไว้▁ใน▁ห้อง▁เก็บ▁ของ▁ที่▁ปลอด▁ภัย.",
+  "uiConnect": "เชื่อมต่อ",
+  "uiListeningHistory": "▁ประวัติการรับการเชื่อมต่อ",
+  "uiClearHistory": "▁ล้างประวัติ",
+  "uiClearHistory262": "▁ล้างประวัติ?",
+  "uiTracksFavoritesAndPlaylistsWillStaySaved": "แทร็กเสียง,▁รายการโปรดและรายการเล่นจะถูกบันทึก",
+  "uiDelete": "ลบ",
+  "uiPlayedTracksWillAppearHere": "แทร็กที่ถูกเล่นจะปรากฏขึ้นที่นี่",
+  "uiTracksInYourHistoryAreHiddenBy": "แทร็กต่าง▁ๆ▁ในประวัติของคุณ▁ถูกซ่อนโดยตัวกรองปัจจุบัน▁หรือไม่มีอยู่แล้ว",
+  "uiLibraryFilters": "ตัวกรองไลบรารี",
+  "uiMinimumDuration": "▁ช่วงเวลาน้อยที่สุด",
+  "uiAllDurations": "▁ช่วงเวลาทั้งหมด",
+  "ui10Seconds": "10▁วินาที",
+  "ui30Seconds": "30▁วินาที",
+  "ui1Minute": "1▁นาที",
+  "uiTracksWithUnknownDurationStayVisible": "แทร็กที่ไม่รู้ระยะเวลา มองเห็นได้",
+  "uiHideWhatsAppAndTelegram": "▁ซ่อน WhatsApp▁และ Telegram",
+  "uiHidesFilesFromTheseAppsFolders": "▁ซ่อนแฟ้มจากโฟลเดอร์โปรแกรมเหล่านี้",
+  "uiFiltersOnlyChangeWhatAppearsInYour": "ตัวกรองจะเปลี่ยนแปลงเฉพาะสิ่งที่ปรากฏในไลบรารีของคุณ▁แฟ้ม, รายการเล่น▁และคิวปัจจุบันจะถูกเก็บ",
+  "uiSaving": "▁กําลังบันทึก...",
+  "uiSaveFilters": "▁บันทึกตัวกรอง",
+  "uiRepeatOff": "ทําซ้ําปิด",
+  "uiRepeatEntireQueue": "▁เล่นซ้ําคิวทั้งหมด",
+  "uiRepeatCurrentTrack": "▁เล่นแทร็กปัจจุบันซ้ํา",
+  "uiShuffleOn": "สับปะรด",
+  "uiShuffleOff": "สับปะรด",
+  "uiCloseQueue": "▁ปิดคิว",
+  "uiShuffledOrderTurnOffShuffleToReorder": "▁ลําดับการสับปะรด▁ปิดการสับปะรด",
+  "uiDragTheHandleToChangeTheOrder": "▁ลากจับเพื่อเปลี่ยนลําดับ",
+  "uiCouldNotUpdatePlaybackTryAgain": "▁ไม่สามารถปรับปรุงการเล่นได้▁โปรดลองใหม่อีกครั้ง",
+  "uiAtTheEndOfTheTrack": "▁สุดทางแล้ว",
+  "uiSleepTimer": "▁ตัวจับเวลา",
+  "uiCloseSleepTimer": "▁ปิดเวลานอน",
+  "uiFinishTheCurrentTrack": "▁จบเพลงที่เล่นอยู่",
+  "uiWhenTheTimerEndsWaitForThe": "▁เมื่อ▁เวลา▁สิ้น▁สุด▁แล้ว▁ให้▁รอ▁ให้▁ราง▁รถไฟ▁เสร็จ▁ก่อน▁ที่▁จะ▁หยุด▁พัก.",
+  "uiStartSleepTimer": "▁เริ่มจับเวลา",
+  "uiStopAtTheEndOfThisTrack": "▁หยุดที่ท้ายแทร็กนี้",
+  "uiCancelSleepTimer": "▁ยกเลิกตัวจับเวลา",
+  "uiPlaybackSettings": "▁ตั้งค่าการเล่นกลับ",
+  "uiOutputSettings": "▁ตั้งค่าการแสดงผล",
+  "uiPlayback": "▁เล่นกลับ",
+  "uiAutomaticActions": "▁การกระทําอัตโนมัติ",
+  "uiAudioOutput": "การแสดงผลเสียง",
+  "uiOnlyAppliesInAuraSeparatelyFromYour": "▁ใช้เฉพาะใน Aura▁โดยแยกจากโทรศัพท์ของคุณ▁หรือ PC ปริมาตร",
+  "uiTimer": "▁ตัวจับเวลา",
+  "uiAudioOptions": "▁ตัวเลือกต่าง▁ๆ▁ของเสียง",
+  "uiCrossfadeAndPlaypauseFades": "▁การค่อย▁ๆ▁ลดเสียง/▁เพิ่มเสียงName",
+  "uiFrequencyBandsAndPresets": "▁แถบความถี่และชุดสําเร็จ",
+  "uiAvailableOnAndroid": "▁มี▁เมื่อ Android",
+  "uiNotificationLockScreenAndHeadset": "การแจ้งให้ทราบ, ล็อกหน้าจอและหูฟัง",
+  "uiRestoreDefaultSpeedAndVolume": "เรียกคืนค่าความเร็วและระดับเสียงปริยาย",
+  "uiSpeedAndVolumeAreSavedOnThis": "▁ความเร็วและระดับเสียงจะถูกบันทึกบนอุปกรณ์นี้▁ตัวจับเวลาจะถูกยกเลิกเมื่อโปรแกรมถูกปิดเรียบร้อยแล้ว",
+  "uiSleep": "▁นอน",
+  "uiUnrated": "▁ยังไม่ได้อ่าน",
+  "uiSwipeToRate": "▁ลดเสียงแหลม/▁เพิ่มเสียง",
+  "uiGive1Star": "▁ให้ 1▁ดาว",
+  "uiClearRating": "▁ล้างเรตติ้ง",
+  "uiStarSize": "▁ขนาดของดาว",
+  "uiSmall": "▁เล็ก",
+  "uiMedium": "▁สื่อ",
+  "uiLarge": "▁ใหญ่",
+  "uiSwipeAcrossTheStarsToRateIn": "โคจรรอบดาว▁เพื่อเพิ่มอัตราในขั้นตอนครึ่งดาว",
+  "uiFilterByRating": "▁กรองด้วยการจัดอันดับ",
+  "uiAllRatings": "เรตติ้งทั้งหมด",
+  "uiOnly5Stars": "5▁ดาวเท่านั้น",
+  "uiSortByRating": "เรียงลําดับตามเรตติ้ง",
+  "uiDefaultOrder": "▁ลําดับปริยาย",
+  "uiHighestRatingFirst": "▁จัดอันดับสูงสุดก่อน",
+  "uiLowestRatingFirst": "เรตติ้งต่ําสุดก่อน",
+  "uiCouldNotSaveTheChangeTryAgain": "▁ไม่สามารถบันทึกการเปลี่ยนแปลงได้▁โปรดลองใหม่อีกครั้ง",
+  "uiNewPlaylist": "รายการเล่นใหม่",
+  "uiRenamePlaylist": "▁เปลี่ยนชื่อรายการเล่น",
+  "uiPlaylistName": "▁ชื่อรายการเล่น",
+  "uiSave": "บันทึก",
+  "uiRemoveFromFavorites": "▁เอาออกจากรายการโปรด",
+  "uiAddToFavorites": "▁เพิ่มไปยังรายการโปรด",
+  "uiAddToPlaylist": "▁เพิ่มไปยังรายการเล่น",
+  "uiTrackIsAlreadyInThisPlaylist": "▁มีเพลงอยู่ในรายการเล่นนี้อยู่แล้ว",
+  "uiTrackAddedToPlaylist": "▁เพลงที่เพิ่มเข้าไปในรายการเล่น",
+  "uiCouldNotLoadFavoritesAndPlaylists": "▁ไม่สามารถโหลดรายการโปรดและรายการเล่นได้",
+  "uiTryAgain": "▁ลองอีกครั้ง",
+  "uiBackToPlaylists": "กลับไปยังรายการเล่น",
+  "uiPlaylistOptions": "▁ตัวเลือกของรายการเล่น",
+  "uiDeletePlaylist": "▁ลบรายการเล่นหรือไม่?",
+  "uiAudioFilesStayOnThePhone": "▁แฟ้มเสียงยังคงอยู่ในโทรศัพท์",
+  "uiRename": "▁เปลี่ยนชื่อ",
+  "uiDeletePlaylist363": "▁ลบรายการเล่น",
+  "uiCreateYourFirstPlaylistWithOrFrom": "▁สร้างรายการเล่นตัวแรกของคุณด้วย +▁หรือจากเมนูของแทร็ก",
+  "uiAddTracks": "▁เพิ่มเพลง",
+  "uiATrackIsOutsideTheSelectedFolders": "แทร็กเสียงอยู่นอกโฟลเดอร์ที่เลือก▁หรือไม่มีอยู่▁จะคงการอ้างอิงของมันไว้",
+  "uiPlayAll": "▁เล่นทั้งหมด",
+  "uiTapATracksHeartToSaveIt": "▁เคาะ▁หัวใจ▁ของ▁ราง▁เพื่อ▁เก็บ▁ไว้▁ที่▁นี่.",
+  "uiAddTracksToThisPlaylist": "▁เพิ่มเพลงในรายการเล่นนี้",
+  "uiRemoveFromPlaylist": "▁ลบออกจากรายการเล่น",
+  "uiSearchForATrack": "▁ค้นหาแทร็ก",
+  "uiTitle": "▁ชื่อ",
+  "uiSearchYourMusic": "▁ค้นหาเพลงของคุณ",
+  "uiClearSearch": "▁ล้างการค้นหา",
+  "uiFavoritesOnly": "▁รายการโปรดเท่านั้น",
+  "uiYOURLIBRARYISEMPTY": "▁ความ▁สามารถ▁ใน▁การ▁คิด▁ของ▁คุณ",
+  "uiAddMusic": "▁เพิ่มเพลง",
+  "uiAddASourceToSearchYourCollection": "▁เพิ่มแหล่งเพื่อค้นหาคลังสื่อของคุณ",
+  "uiRecentSearches": "การค้นหาล่าสุด",
+  "uiSearchForATitleArtistOrAlbum": "▁ค้นหาชื่อเพลง,▁ศิลปิน▁หรืออัลบั้ม▁การส่งการค้นหาจะยังคงอยู่สําหรับวาระการใช้งานนี้",
+  "uiNoResultsMatchTheSelectedFilters": "▁ไม่มีผลลัพธ์ที่ตรงกับตัวกรองที่เลือกไว้",
+  "uiAuraSettings": "Aura▁ตั้งค่า",
+  "uiOptionsMarkedComingSoonAreNotAvailable": "▁ตัวเลือกต่าง▁ๆ▁ที่ถูกทําเครื่องหมายว่า \"การเรียกใช้งานเร็ว▁ๆ▁นี้\"▁ยังยังไม่มีอยู่▁ค่าต่าง▁ๆ▁ที่ทํางานอยู่จะถูกบันทึกบนอุปกรณ์นี้▁จัดการการเชื่อมต่อเซิร์ฟเวอร์ในแหล่งสื่อ",
+  "uiGotIt": "▁ได้แล้ว",
+  "uiHelp": "ช่วยเหลือ",
+  "uiInterface": "ส่วนติดต่อ",
+  "uiInterfaceSettings": "▁ตั้งค่าอินเทอร์เฟส",
+  "uiApplicationStyle": "▁รูปแบบโปรแกรม",
+  "uiGeneral": "ทั่วไป",
+  "uiMediaLists": "▁รายการสื่อ",
+  "uiNowPlayingScreens": "กําลังเล่นหน้าจอ",
+  "uiNowPlayingScreen": "กําลังเล่นหน้าจอ",
+  "uiTrackRatings": "เรตติ้งของแทร็ก",
+  "uiSwipeAcrossTheStarsToRateIn399": "▁สลับผ่านดาวฤกษ์เพื่อจัดอันดับในขั้นครึ่งดาว▁ขนาดใช้ได้กับเครื่องเล่นและข้อมูลติดตาม",
+  "uiPageSettings": "▁ตั้งค่าหน้ากระดาษ",
+  "uiHomePage": "▁หน้าหลัก",
+  "uiGenrePage": "▁ประเภทหน้า",
+  "uiPlaylistPage": "▁หน้ารายการเล่น",
+  "uiSearchPage": "▁ค้นหาในหน้า",
+  "uiAdvanced": "ขั้นสูง",
+  "uiAdvancedInterfaceSettings": "▁ตั้งค่าส่วนติดต่อขั้นสูง",
+  "uiDecodingAndTranscoding": "▁การถอดรหัสและการแปลงภาพ",
+  "uiAudioFocus": "▁การโฟกัสเสียง",
+  "uiNotificationAndMediaSessionButtons": "การแจ้งให้ทราบและปุ่มวาระการใช้งานของสื่อ",
+  "uiAdvancedPlaybackSettings": "▁ตั้งค่าการเล่นเพลงขั้นสูง",
+  "uiOfflineCacheAndDownloads": "ออฟไลน์, แคชและดาวน์โหลด",
+  "uiMedia": "▁สื่อ",
+  "uiOfflineServerPlayback": "เล่นเพลงของเซิร์ฟเวอร์ออฟไลน์",
+  "uiImages": "▁รูปภาพ",
+  "uiLocalTracksWorkWithoutInternetServerDownloads": "▁เพลงท้องถิ่นทํางานโดยไม่มีอินเทอร์เน็ต▁เซิร์ฟเวอร์ดาวน์โหลดและการจัดการแคชกําลังจะมา",
+  "uiAdvancedSettings": "▁ตั้งค่าขั้นสูง",
+  "uiMiscellaneous": "เบ็ดเตล็ด",
+  "uiMediaSources": "▁แหล่งสื่อ",
+  "uiSyncManager": "▁ปรับเทียบข้อมูลตัวจัดการ",
+  "uiUpdating": "▁กําลังปรับปรุง...",
+  "uiRefreshLibrary": "▁ปรับปรุงไลบรารีใหม่",
+  "uiRefreshNavidromeSources": "▁ปรับปรุงข้อมูล Navidrome แหล่งที่มา",
+  "uiOfflineFiles": "▁แฟ้มออฟไลน์",
+  "uiGeneratedFiles": "แฟ้มที่ถูกสร้าง",
+  "uiLanguages": "ภาษา",
+  "uiAbout": "เกี่ยวกับ",
+  "uiRateTheApp": "▁จัดอันดับโปรแกรม",
+  "uiContactSupport": "รองรับที่อยู่ติดต่อ",
+  "uiWhatsNew": "▁อะไร▁ใหม่",
+  "uiWhatsNewInAura": "▁อะไร▁ใหม่▁ใน▁ปี Aura",
+  "uiLocalAndNavidromeLibrariesHalfstarRatingsHistory": "International, Navidrome ห้องสมุด • เรตติ้งครึ่งดาว •▁ประวัติศาสตร์ รายการเล่น▁และรายการโปรด • ครอสเฟด,▁เวลานอน▁และ Android▁คู่ขนาน •▁แสดงถึง 144 Hz",
+  "uiAboutAura": "▁ประมาณ Aura",
+  "uiAPlayerForYourLocalMusicAnd": "▁ผู้เล่นสําหรับดนตรีท้องถิ่น▁และห้องสมุด Navidrome",
+  "uiComingSoon": "เร็ว ๆ นี้",
+  "uiMusicFolders": "▁โฟลเดอร์เพลง",
+  "uiChooseMusicFoldersOnlyFoldersWhereThe": "▁เลือกโฟลเดอร์เพลง▁เพียงโฟลเดอร์ที่อุปกรณ์ที่พบแฟ้มเพลงจะแสดง",
+  "uiAllFolders": "▁โฟลเดอร์ทั้งหมด",
+  "uiAutomaticallyIncludesFoldersFoundInFutureScans": "▁รวมโฟลเดอร์โดยอัตโนมัติที่พบในการค้นหาในอนาคตด้วย",
+  "uiNoTracksFoundInTheLastScan": "▁ไม่พบแทร็กในการค้นหาล่าสุด",
+  "uiYourLibraryWillStayEmptyUntilYou": "ไลบรารีของคุณจะว่าง▁จนกว่าคุณจะเลือกโฟลเดอร์",
+  "uiSaveSelection": "▁บันทึกส่วนที่เลือก",
+  "secondsValue": "{count, plural, one{1▁วินาที} other{{count}▁วินาที}}",
+  "@secondsValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "secondsShort": "{value}▁วินาที",
+  "@secondsShort": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "restoreConfirmation": "{change}\n\n{settings}\n\n▁จะหยุดเล่นชั่วคราว▁และตัวจับเวลาจะถูกยกเลิกการทํางาน▁โดยคิวปัจจุบันของคุณจะถูกเก็บ",
+  "@restoreConfirmation": {
+    "placeholders": {
+      "change": {
+        "type": "String"
+      },
+      "settings": {
+        "type": "String"
+      }
+    }
+  },
+  "backupCreated": "▁สร้างเมื่อ {date}",
+  "@backupCreated": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "backupStats": "▁รายการโปรด: {favorites} เรตติ้ง: {ratings}\nรายการเล่น: {playlists} แทร็กประวัติของ eth: {history}",
+  "@backupStats": {
+    "placeholders": {
+      "favorites": {
+        "type": "int"
+      },
+      "ratings": {
+        "type": "int"
+      },
+      "playlists": {
+        "type": "int"
+      },
+      "history": {
+        "type": "int"
+      }
+    }
+  },
+  "backupMatches": "▁จํา: {matched} เกิดขึ้นอีก: {remapped}\n▁ไม่สามารถใช้ได้หรือคลุมเครือ: {unavailable}",
+  "@backupMatches": {
+    "placeholders": {
+      "matched": {
+        "type": "int"
+      },
+      "remapped": {
+        "type": "int"
+      },
+      "unavailable": {
+        "type": "int"
+      }
+    }
+  },
+  "tracksInLibrary": "{count, plural, one{1 แทร็กในห้องสมุดของคุณ} other{{count} แทร็กในห้องสมุดของคุณ}}",
+  "@tracksInLibrary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sourcesSaved": "แหล่งข่าวบันทึกไว้ {count, plural, one{1 แทร็กในห้องสมุดของคุณ} other{{count} แทร็กในห้องสมุดของคุณ}}",
+  "@sourcesSaved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tracksInFolders": "{count, plural, one{แทร็ก 1▁ในโฟลเดอร์ที่เลือก} other{{count} แทร็กในโฟลเดอร์ที่เลือก}}",
+  "@tracksInFolders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "allFoldersSummary": "▁โฟลเดอร์ทั้งหมด: {count}",
+  "@allFoldersSummary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectedFoldersSummary": "▁โฟลเดอร์ที่เลือก: {folders} แทร็ก: {tracks}",
+  "@selectedFoldersSummary": {
+    "placeholders": {
+      "folders": {
+        "type": "int"
+      },
+      "tracks": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryRhythm": "{count}▁สายที่จังหวะของคุณ.",
+  "@libraryRhythm": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryTrackCount": "แทร็กเสียงในห้องสมุด: {count}",
+  "@libraryTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "backToPage": "กลับไปยัง {page}",
+  "@backToPage": {
+    "placeholders": {
+      "page": {
+        "type": "String"
+      }
+    }
+  },
+  "groupCount": "{count, plural, one{1▁รายการ} other{{count}▁รายการ}}",
+  "@groupCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "foundTracks": "{count, plural, one{▁พบร่อง 1} other{▁พบร่องเสียง {count}}}",
+  "@foundTracks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "disconnectSource": "\"{name}\"▁จะถูกลบออกจาก Aura. จัดเก็บแฟ้มบนเซิร์ฟเวอร์",
+  "@disconnectSource": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "visibleTracks": "{visible}▁จาก {total} แทร็ค (พ.ศ.",
+  "@visibleTracks": {
+    "placeholders": {
+      "visible": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "queueCount": "▁คิว {count}",
+  "@queueCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playQueueCount": "▁เล่นกลับคิว {count}",
+  "@playQueueCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "currentTrackArtist": "▁เพลงปัจจุบัน {artist}",
+  "@currentTrackArtist": {
+    "placeholders": {
+      "artist": {
+        "type": "String"
+      }
+    }
+  },
+  "removeFromQueue": "▁ลบ {title}▁ออกจากคิว",
+  "@removeFromQueue": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "moveTrack": "▁ย้าย {title}",
+  "@moveTrack": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "activeTimer": "ใช้งาน: {value}",
+  "@activeTimer": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "minutesValue": "{count, plural, one{1▁นาที} other{{count}▁นาที}}",
+  "@minutesValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "minutesShort": "{count}▁นาที",
+  "@minutesShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playerVolume": "ระดับเสียงผู้เล่น: {value}%",
+  "@playerVolume": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "playbackSpeed": "▁ความเร็ว: {value}×",
+  "@playbackSpeed": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "yourRating": "เรตติ้งของคุณ {rating}▁จาก 5",
+  "@yourRating": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "ratingOutOfFive": "{rating}▁จาก 5",
+  "@ratingOutOfFive": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "giveStars": "{count, plural, one{▁ให้ 1▁ดาว} other{▁ให้ {count}▁ดาว}}",
+  "@giveStars": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ratingDescription": "▁คะแนนนิยม {rating}▁จาก 5",
+  "@ratingDescription": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumStars": "▁อย่างน้อย {rating}▁ดาว",
+  "@minimumStars": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumRating": "≥ {rating}",
+  "@minimumRating": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "savedTrackCount": "{count, plural, one{▁บันทึกร่อง 1} other{{count}▁เพลงบันทึกเพลง}}",
+  "@savedTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "availableTrackCount": "{count, plural, one{แทร็กที่มี} other{{count} แทร็กเสียงที่มีอยู่}}",
+  "@availableTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "missingTrackCount": "▁ไม่สามารถเรียกร่องเพลง: {count}▁ได้▁เนื่องจากมันอยู่นอกโฟลเดอร์ที่เลือก▁หรือไม่มีอยู่อีกต่อไป▁การอ้างอิงจะถูกเก็บ",
+  "@missingTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectedTrackCount": "{count, plural, one{▁เพลงที่เลือก 1▁เพลง} other{{count}▁เพลงที่เลือก}}",
+  "@selectedTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "searchResultCount": "{count, plural, one{▁ผลลัพธ์ 1} other{{count}▁ผล}}",
+  "@searchResultCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "removeRecentSearch": "▁ลบการค้นหา {query}",
+  "@removeRecentSearch": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "tracksInSelection": "{count, plural, one{1 แทร็กในการเลือก} other{{count} แทร็กในการเลือก}}",
+  "@tracksInSelection": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "languageTitle": "ภาษาของแอป",
+  "languageSystem": "ตามระบบ",
+  "languageHelp": "Apply▁ทันที. แทร็กของคุณ,▁ศิลปิน,▁โฟลเดอร์▁และชื่อรายการเล่นยังไม่ถูกแปล",
+  "languageSaveError": "▁ไม่สามารถบันทึกภาษาได้▁ตัวเลือกก่อนหน้าของคุณถูกเก็บไว้",
+  "uiBass": "เสียงทุ้ม",
+  "mediaStop": "หยุด",
+  "mediaSeekBack": "ย้อนกลับ 10 วินาที",
+  "mediaSeekForward": "ไปข้างหน้า 10 วินาที"
+}

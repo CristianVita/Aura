@@ -3,14 +3,12 @@ part of 'main.dart';
 void _settingsHelp(BuildContext context) => showDialog<void>(
   context: context,
   builder: (context) => AlertDialog(
-    title: const Text('Setările Aura'),
-    content: const Text(
-      'Opțiunile marcate „În pregătire” nu sunt încă disponibile. Setările active se salvează pe acest dispozitiv. Conexiunile la servere se gestionează din Surse media.',
-    ),
+    title: Text(context.appStrings.uiAuraSettings),
+    content: Text(context.appStrings.uiOptionsMarkedComingSoonAreNotAvailable),
     actions: [
       TextButton(
         onPressed: () => Navigator.pop(context),
-        child: const Text('Am înțeles'),
+        child: Text(context.appStrings.uiGotIt),
       ),
     ],
   ),
@@ -30,7 +28,7 @@ Future<void> _settingsPage(
         title: Text(title),
         actions: [
           IconButton(
-            tooltip: 'Ajutor',
+            tooltip: context.appStrings.uiHelp,
             onPressed: () => _settingsHelp(context),
             icon: const Icon(Icons.help_outline),
           ),
@@ -75,7 +73,7 @@ class SettingsScreen extends StatelessWidget {
             ),
           ),
           IconButton(
-            tooltip: 'Ajutor',
+            tooltip: context.appStrings.uiHelp,
             onPressed: () => _settingsHelp(context),
             icon: const Icon(Icons.help_outline),
           ),
@@ -83,17 +81,17 @@ class SettingsScreen extends StatelessWidget {
       ),
       const SizedBox(height: 20),
       _SettingsGroup(
-        title: 'Setări',
+        title: context.appStrings.navigationSettings,
         children: [
           _SettingsRow(
             icon: Icons.touch_app_outlined,
-            title: 'Interfață',
+            title: context.appStrings.uiInterface,
             onTap: () => _settingsPage(
               context,
-              'Setări de interfață',
+              context.appStrings.uiInterfaceSettings,
               (context) => [
                 _SettingsGroup(
-                  title: 'Stilul aplicației',
+                  title: context.appStrings.uiApplicationStyle,
                   collapsible: true,
                   children: [
                     _SettingsRow(
@@ -110,7 +108,7 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 _SettingsGroup(
-                  title: 'General',
+                  title: context.appStrings.uiGeneral,
                   collapsible: true,
                   children: [
                     _SettingsRow(
@@ -125,25 +123,25 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     _SettingsRow(
                       icon: Icons.view_list_outlined,
-                      title: 'Liste media',
+                      title: context.appStrings.uiMediaLists,
                       onTap: filtersReady ? onFilters : null,
                     ),
                   ],
                 ),
                 const SizedBox(height: 24),
                 _SettingsGroup(
-                  title: 'Ecrane de redare',
+                  title: context.appStrings.uiNowPlayingScreens,
                   collapsible: true,
                   children: [
                     _SettingsRow(
                       icon: Icons.play_circle_outline,
-                      title: 'Ecran de redare',
+                      title: context.appStrings.uiNowPlayingScreen,
                       onTap: () => _settingsPage(
                         context,
-                        'Ecran de redare',
+                        context.appStrings.uiNowPlayingScreen,
                         (context) => [
-                          const _SettingsGroup(
-                            title: 'Ratingul pieselor',
+                          _SettingsGroup(
+                            title: context.appStrings.uiTrackRatings,
                             children: [
                               Padding(
                                 padding: EdgeInsets.all(8),
@@ -153,7 +151,7 @@ class SettingsScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 16),
                           Text(
-                            'Glisează pe stele pentru rating în pași de jumătate de stea. Dimensiunea se aplică în player și în informațiile piesei.',
+                            context.appStrings.uiSwipeAcrossTheStarsToRateIn399,
                             style: TextStyle(
                               color: context.auraMuted,
                               height: 1.5,
@@ -166,12 +164,12 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 _SettingsGroup(
-                  title: 'Setări pagini',
+                  title: context.appStrings.uiPageSettings,
                   collapsible: true,
                   children: [
                     _SettingsRow(
                       icon: Icons.home_outlined,
-                      title: 'Pagina Acasă',
+                      title: context.appStrings.uiHomePage,
                       onTap: null,
                       pending: true,
                     ),
@@ -213,19 +211,19 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     _SettingsRow(
                       icon: Icons.style_outlined,
-                      title: 'Pagina Gen muzical',
+                      title: context.appStrings.uiGenrePage,
                       onTap: null,
                       pending: true,
                     ),
                     _SettingsRow(
                       icon: Icons.queue_music,
-                      title: 'Pagina Playlist',
+                      title: context.appStrings.uiPlaylistPage,
                       onTap: null,
                       pending: true,
                     ),
                     _SettingsRow(
                       icon: Icons.search,
-                      title: 'Pagina Căutare',
+                      title: context.appStrings.uiSearchPage,
                       onTap: null,
                       pending: true,
                     ),
@@ -233,12 +231,12 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 _SettingsGroup(
-                  title: 'Avansat',
+                  title: context.appStrings.uiAdvanced,
                   collapsible: true,
                   children: [
                     _SettingsRow(
                       icon: Icons.settings_outlined,
-                      title: 'Setări avansate de interfață',
+                      title: context.appStrings.uiAdvancedInterfaceSettings,
                       onTap: null,
                       pending: true,
                     ),
@@ -250,17 +248,17 @@ class SettingsScreen extends StatelessWidget {
           ),
           _SettingsRow(
             icon: Icons.radio_outlined,
-            title: 'Redare',
+            title: context.appStrings.uiPlayback,
             onTap: () => _settingsPage(
               context,
-              'Setări de redare',
+              context.appStrings.uiPlaybackSettings,
               (context) => [
                 _SettingsGroup(
                   title: '',
                   children: [
                     _SettingsRow(
                       icon: Icons.headphones_outlined,
-                      title: 'Setări de ieșire',
+                      title: context.appStrings.uiOutputSettings,
                       onTap: () => Navigator.push<void>(
                         context,
                         MaterialPageRoute(
@@ -273,7 +271,7 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     _SettingsRow(
                       icon: Icons.graphic_eq,
-                      title: 'Redare',
+                      title: context.appStrings.uiPlayback,
                       onTap: () => Navigator.push<void>(
                         context,
                         MaterialPageRoute(
@@ -286,7 +284,7 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     _SettingsRow(
                       icon: Icons.auto_awesome_outlined,
-                      title: 'Acțiuni automate',
+                      title: context.appStrings.uiAutomaticActions,
                       onTap: () => Navigator.push<void>(
                         context,
                         MaterialPageRoute(
@@ -299,13 +297,13 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     _SettingsRow(
                       icon: Icons.tune,
-                      title: 'Decodare și transcodare',
+                      title: context.appStrings.uiDecodingAndTranscoding,
                       onTap: null,
                       pending: true,
                     ),
                     _SettingsRow(
                       icon: Icons.compare_arrows,
-                      title: 'Tranziții',
+                      title: context.appStrings.uiTransitions,
                       onTap: () => Navigator.push<void>(
                         context,
                         MaterialPageRoute(
@@ -317,13 +315,13 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     _SettingsRow(
                       icon: Icons.info_outline,
-                      title: 'Focalizare audio',
+                      title: context.appStrings.uiAudioFocus,
                       onTap: null,
                       pending: true,
                     ),
                     _SettingsRow(
                       icon: Icons.headphones_outlined,
-                      title: 'Butoanele căștilor',
+                      title: context.appStrings.uiHeadsetButtons,
                       onTap: () => Navigator.push<void>(
                         context,
                         MaterialPageRoute(
@@ -335,7 +333,9 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     _SettingsRow(
                       icon: Icons.view_sidebar_outlined,
-                      title: 'Butoane notificare și sesiune media',
+                      title: context
+                          .appStrings
+                          .uiNotificationAndMediaSessionButtons,
                       onTap: () => Navigator.push<void>(
                         context,
                         MaterialPageRoute(
@@ -347,7 +347,7 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     _SettingsRow(
                       icon: Icons.settings_outlined,
-                      title: 'Setări avansate de redare',
+                      title: context.appStrings.uiAdvancedPlaybackSettings,
                       onTap: null,
                       pending: true,
                     ),
@@ -359,35 +359,35 @@ class SettingsScreen extends StatelessWidget {
           ),
           _SettingsRow(
             icon: Icons.download_outlined,
-            title: 'Offline, cache și descărcări',
+            title: context.appStrings.uiOfflineCacheAndDownloads,
             onTap: () => _settingsPage(
               context,
-              'Offline, cache și descărcări',
+              context.appStrings.uiOfflineCacheAndDownloads,
               (context) => [
                 _SettingsGroup(
                   title: '',
                   children: [
                     _SettingsRow(
                       icon: Icons.download_outlined,
-                      title: 'General',
+                      title: context.appStrings.uiGeneral,
                       onTap: null,
                       pending: true,
                     ),
                     _SettingsRow(
                       icon: Icons.music_note_outlined,
-                      title: 'Media',
+                      title: context.appStrings.uiMedia,
                       onTap: null,
                       pending: true,
                     ),
                     _SettingsRow(
                       icon: Icons.play_arrow_outlined,
-                      title: 'Redare offline de pe server',
+                      title: context.appStrings.uiOfflineServerPlayback,
                       onTap: null,
                       pending: true,
                     ),
                     _SettingsRow(
                       icon: Icons.image_outlined,
-                      title: 'Imagini',
+                      title: context.appStrings.uiImages,
                       onTap: null,
                       pending: true,
                     ),
@@ -395,7 +395,9 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 Text(
-                  'Piesele locale funcționează fără internet. Descărcarea pieselor de pe server și administrarea cache-ului sunt în pregătire.',
+                  context
+                      .appStrings
+                      .uiLocalTracksWorkWithoutInternetServerDownloads,
                   style: TextStyle(color: context.auraMuted, height: 1.5),
                 ),
               ],
@@ -409,17 +411,17 @@ class SettingsScreen extends StatelessWidget {
           ),
           _SettingsRow(
             icon: Icons.memory_outlined,
-            title: 'Avansat',
+            title: context.appStrings.uiAdvanced,
             onTap: () => _settingsPage(
               context,
-              'Setări avansate',
+              context.appStrings.uiAdvancedSettings,
               (context) => [
                 _SettingsGroup(
-                  title: 'Bibliotecă',
+                  title: context.appStrings.uiLibrary,
                   children: [
                     _SettingsRow(
                       icon: Icons.filter_alt_outlined,
-                      title: 'Filtre bibliotecă',
+                      title: context.appStrings.uiLibraryFilters,
                       onTap: filtersReady ? onFilters : null,
                     ),
                   ],
@@ -432,34 +434,34 @@ class SettingsScreen extends StatelessWidget {
       ),
       const SizedBox(height: 24),
       _SettingsGroup(
-        title: 'Diverse',
+        title: context.appStrings.uiMiscellaneous,
         children: [
           _SettingsRow(
             icon: Icons.devices_outlined,
-            title: 'Surse media',
+            title: context.appStrings.uiMediaSources,
             onTap: isScanning ? null : onManageSources,
           ),
           _SettingsRow(
             icon: Icons.sync,
-            title: 'Manager de sincronizare',
+            title: context.appStrings.uiSyncManager,
             onTap: () => _settingsPage(
               context,
-              'Manager de sincronizare',
+              context.appStrings.uiSyncManager,
               (context) => [
                 _SettingsGroup(
-                  title: 'Bibliotecă',
+                  title: context.appStrings.uiLibrary,
                   children: [
                     _SettingsRow(
                       icon: Icons.sync,
                       title: isScanning
-                          ? 'Se actualizează…'
-                          : 'Actualizează biblioteca',
+                          ? context.appStrings.uiUpdating
+                          : context.appStrings.uiRefreshLibrary,
                       subtitle: sourceSummary,
                       onTap: isScanning ? null : onScan,
                     ),
                     _SettingsRow(
                       icon: Icons.dns_outlined,
-                      title: 'Actualizează sursele Navidrome',
+                      title: context.appStrings.uiRefreshNavidromeSources,
                       onTap: isScanning ? null : onManageSources,
                     ),
                   ],
@@ -470,65 +472,69 @@ class SettingsScreen extends StatelessWidget {
           ),
           _SettingsRow(
             icon: Icons.download_done_outlined,
-            title: 'Fișiere offline',
+            title: context.appStrings.uiOfflineFiles,
             onTap: null,
             pending: true,
           ),
           _SettingsRow(
             icon: Icons.folder_copy_outlined,
-            title: 'Fișiere generate',
+            title: context.appStrings.uiGeneratedFiles,
             onTap: null,
             pending: true,
           ),
           _SettingsRow(
             icon: Icons.settings_backup_restore,
-            title: 'Backup și restaurare',
+            title: context.appStrings.uiBackupAndRestore,
             onTap: onBackup,
             pending: onBackup == null,
           ),
           _SettingsRow(
             icon: Icons.history,
-            title: 'Istoric de ascultare',
+            title: context.appStrings.uiListeningHistory,
             onTap: onHistory,
           ),
           _SettingsRow(
             icon: Icons.translate,
-            title: 'Traduceri',
-            onTap: null,
-            pending: true,
+            title: context.appStrings.uiLanguages,
+            onTap: () => Navigator.push<void>(
+              context,
+              MaterialPageRoute(builder: (_) => const LanguageSettingsScreen()),
+            ),
           ),
         ],
       ),
       const SizedBox(height: 24),
       _SettingsGroup(
-        title: 'Despre',
+        title: context.appStrings.uiAbout,
         children: [
           _SettingsRow(
             icon: Icons.star_border,
-            title: 'Evaluează aplicația',
+            title: context.appStrings.uiRateTheApp,
             onTap: null,
             pending: true,
           ),
           _SettingsRow(
             icon: Icons.help_outline,
-            title: 'Ajutor',
+            title: context.appStrings.uiHelp,
             onTap: () => _settingsHelp(context),
           ),
           _SettingsRow(
             icon: Icons.support_agent,
-            title: 'Contactează suportul',
+            title: context.appStrings.uiContactSupport,
             onTap: null,
             pending: true,
           ),
           _SettingsRow(
             icon: Icons.description_outlined,
-            title: 'Noutăți',
+            title: context.appStrings.uiWhatsNew,
             onTap: () => _settingsPage(
               context,
-              'Noutăți Aura',
+              context.appStrings.uiWhatsNewInAura,
               (context) => [
-                const Text(
-                  'Bibliotecă locală și Navidrome • Ratinguri în jumătăți de stea • Istoric, playlisturi și favorite • Crossfade, temporizator și egalizator Android • Ecrane de până la 144 Hz',
+                Text(
+                  context
+                      .appStrings
+                      .uiLocalAndNavidromeLibrariesHalfstarRatingsHistory,
                   style: TextStyle(height: 1.8),
                 ),
               ],
@@ -536,13 +542,13 @@ class SettingsScreen extends StatelessWidget {
           ),
           _SettingsRow(
             icon: Icons.info_outline,
-            title: 'Despre Aura',
+            title: context.appStrings.uiAboutAura,
             onTap: () => showAboutDialog(
               context: context,
               applicationName: 'Aura',
               applicationIcon: const AuraLogo(size: 48),
-              children: const [
-                Text('Player pentru muzica locală și biblioteca ta Navidrome.'),
+              children: [
+                Text(context.appStrings.uiAPlayerForYourLocalMusicAnd),
               ],
             ),
           ),
@@ -664,7 +670,7 @@ class _SettingsRow extends StatelessWidget {
     ),
     subtitle: pending
         ? Text(
-            'În pregătire',
+            context.appStrings.uiComingSoon,
             style: TextStyle(color: context.auraMuted, fontSize: 11),
           )
         : subtitle == null

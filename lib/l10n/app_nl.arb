@@ -1,0 +1,780 @@
+{
+  "@@locale": "nl",
+  "appearanceTitle": "Thema, lettertype en▁kleuren",
+  "themeLabel": "Thema",
+  "themeSystem": "Systeem volgen",
+  "themeLight": "▁Licht",
+  "themeDark": "Donker",
+  "themeOled": "OLED▁zwart",
+  "accentLabel": "Accentkleur",
+  "accentMint": "▁Munt",
+  "accentBlue": "▁Blauw",
+  "accentViolet": "Paars",
+  "accentRose": "Rozen",
+  "accentAmber": "▁Goud",
+  "accentTeal": "Blauwgroen",
+  "fontLabel": "Lettertype",
+  "fontSystem": "▁Systeemlettertype",
+  "fontSerif": "Met schreef",
+  "fontMonospace": "Monospace",
+  "fontDescription": "Lettertypen▁gebruiken families die▁beschikbaar▁zijn op▁het▁apparaat. Hun▁uiterlijk▁kan▁variëren▁tussen platforms.",
+  "textSizeLabel": "▁Tekstgrootte",
+  "textSizeDescription": "▁Gecombineerd met de▁tekstgrootte in▁uw▁apparaatinstellingen.",
+  "previewLabel": "▁Voorbeeld",
+  "previewTitle": "Je▁muziek, je ritme",
+  "previewSubtitle": "Albums,▁artiesten en▁afspeellijsten",
+  "previewButton": "Afspelen",
+  "resetAppearance": "▁Standaarduitstraling▁herstellen",
+  "appearanceSaveError": "Kon▁het▁uiterlijk▁niet▁opslaan.▁Uw▁vorige▁instellingen▁werden▁bewaard.",
+  "appearanceHelp": "▁Wijzigingen▁zijn van▁toepassing▁zodra▁ze▁zijn▁opgeslagen en▁zijn▁opgenomen in back-ups.",
+  "percentValue": "{value}%",
+  "@percentValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "navigationTitle": "Navigatie en startscherm",
+  "navigationOrder": "Tabvolgorde",
+  "navigationHelp": "Sleep▁het handvat om tabbladen te herschikken.▁Bibliotheek en▁instellingen▁blijven▁altijd▁toegankelijk.",
+  "navigationHome": "Start",
+  "navigationLibrary": "Bibliotheek",
+  "navigationSearch": "Zoeken",
+  "navigationSettings": "Instellingen",
+  "navigationRequired": "▁Vereist tabblad",
+  "navigationLabels": "Tabbladlabels",
+  "labelsAdaptive": "Adaptief",
+  "labelsHidden": "▁Alleen▁pictogrammen",
+  "labelsSelected": "Geselecteerd tabblad",
+  "labelsAlways": "▁Alles",
+  "labelsHelp": "Adaptive: iconen op▁een▁telefoon en labels in de▁zijbalk van▁het bureaublad.",
+  "navigationStart": "Startscherm",
+  "navigationStartHelp": "▁Toegepast de▁volgende▁keer▁dat de app▁begint.",
+  "libraryLanding": "▁Bij▁het▁openen van de▁bibliotheek",
+  "landingCategories": "▁Categorieën",
+  "landingTracks": "Nummers",
+  "landingAlbums": "Albums",
+  "landingArtists": "Artiesten",
+  "landingPlaylists": "Afspeellijsten",
+  "landingFavorites": "Favorieten",
+  "resetNavigation": "▁Standaardnavigatie▁herstellen",
+  "navigationSaveError": "Kon▁navigatie▁niet▁opslaan.▁Uw▁vorige▁voorkeuren▁werden▁bewaard.",
+  "navigationPreview": "Navigatievoorbeeld",
+  "libraryPageTitle": "▁Bibliotheekpagina",
+  "albumPageTitle": "Albumpagina",
+  "artistPageTitle": "Artiestpagina",
+  "categoryOrder": "▁Categorieën en▁volgorde",
+  "categoryHelp": "Sleep▁het handvat om te herschikken.▁Houd▁minstens▁één▁categorie▁zichtbaar. Verberg▁categorieën▁verwijdert▁geen▁muziek.",
+  "pageColumns": "▁Kolommen op▁een▁telefoon",
+  "pageColumnsHelp": "▁Grotere schermen▁voegen▁automatisch▁kolommen▁toe.▁Grote▁tekst▁kan▁het▁aantal▁kolommen voor▁leesbaarheid▁verminderen.",
+  "pageLayout": "▁Indeling",
+  "layoutList": "▁Lijst",
+  "layoutGrid": "Deknet",
+  "pageSort": "▁Volgorde▁sorteren",
+  "sortName": "▁Naam van de▁persoon",
+  "sortNameDescending": "▁Naam",
+  "sortTrackCount": "▁Aantal▁nummers",
+  "pageSummary": "▁Kunstwerk en▁samenvatting op de▁geopende▁pagina",
+  "pageSummaryHelp": "▁Gebruikt▁het▁beschikbare artwork voor de▁eerste track in de▁groep.",
+  "pageReset": "▁Deze▁pagina resetten",
+  "pageSaveError": "Kon de▁pagina▁niet▁opslaan.▁Uw▁vorige▁voorkeuren▁werden▁bewaard.",
+  "librarySources": "▁Bronnen",
+  "unknownGroup": "▁Onbekend",
+  "groupTracks": "{count, plural, one{1▁spoor} other{{count}▁sporen}}",
+  "groupMinutes": "{minutes} min in▁totaal",
+  "@groupTracks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@groupMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "uiTransitions": "Overgangen",
+  "uiEqualizer": "Equalizer",
+  "uiMediaControls": "Mediacontroles",
+  "uiHeadsetButtons": "▁koptelefoonknoppen",
+  "uiNotificationButtons": "▁Kennisgevingsknoppen",
+  "uiCrossfade": "Crossfade",
+  "uiOff": "Uit",
+  "uiOverlapsTheEndOfATrackWith": "Overlapt▁het▁einde van▁een track met▁het begin van de▁volgende▁tijdens▁automatische▁afspelen.▁Zeer▁korte tracks en▁het▁herhalen van▁een track▁gebruiken▁geen crossfade.",
+  "uiPlayAndPause": "Afspelen en pauzeren",
+  "uiNoFade": "▁Geen vervagen",
+  "uiNotificationAndLockScreen": "▁Kennisgeving en▁vergrendeling▁scherm",
+  "uiSeekButtons10Seconds": "Zoekknoppen ±10▁seconden",
+  "uiReplacesPreviousnextWithSeekingInTheNotification": "Vervangt▁vorige/volgende door in de▁aanmelding te▁zoeken.",
+  "uiShowStopButton": "Stopknop▁tonen",
+  "uiHeadsetAndMediaButtons": "headset- en mediaknoppen",
+  "uiSeek10SecondsFromHeadset": "Zoek ±10▁seconden▁vanaf de headset",
+  "uiPreviousnextButtonsSeekWithinTheCurrentTrack": "▁Vorige/volgende knoppen▁zoeken▁binnen▁het▁huidige▁nummer. De knop in▁het▁midden▁houdt Play/Pauze.",
+  "uiKeepPausedWhenChangingTracks": "Gepauzeerd▁blijven▁bij▁het▁veranderen van tracks",
+  "uiNotificationAndHeadsetControlsAreAvailableOn": "▁Kennisgeving en headset bedieningsorganen▁zijn▁beschikbaar op Android.▁Sommige▁systemen herschikken▁meldingsknoppen.",
+  "uiTheEqualizerIsCurrentlyAvailableOnAndroid": "De equalizer is▁momenteel▁beschikbaar op Android.",
+  "uiSelectATrackAndReopenTheEqualizer": "Selecteer▁een track en▁heropen de equalizer.▁Als▁het▁nog▁steeds▁niet▁beschikbaar is,▁stelt▁het▁apparaat▁het▁vereiste audio-effect▁niet▁bloot.",
+  "uiAndroidEqualizer": "Android-equalizer",
+  "uiEnableEqualizer": "Equalizer▁inschakelen",
+  "uiFlat": "▁Plat",
+  "uiVoice": "▁Stem",
+  "uiWhenBoostingABandAuraAutomaticallyReduces": "▁Bij▁het▁stimuleren van▁een band▁vermindert Aura▁automatisch▁het▁totale▁niveau om de▁kopruimte te▁verlaten en▁vervorming te▁beperken.",
+  "uiAudioPlayback": "Audioweergave",
+  "uiPlaybackIsUnavailable": "Afspelen is▁niet▁beschikbaar.",
+  "uiUnknownArtist": "Onbekende artiest",
+  "uiUntitledTrack": "Nummer zonder titel",
+  "uiTheFileIsNotAValidAura": "▁Het▁bestand is▁geen▁geldige Aura back-up of is▁beschadigd.",
+  "uiChooseAnAuraBackup": "Kies▁een Aura back-up",
+  "uiSaveAuraBackup": "Bespaar Aura back-up",
+  "uiBackupSaved": "Reservekopie▁opgeslagen.",
+  "uiCouldNotSaveTheBackupAuraData": "Kon de back-up▁niet▁opslaan. Aura▁gegevens▁zijn▁niet▁gewijzigd.",
+  "uiTheFileIsNotAValidAura82": "▁Het▁bestand is▁geen▁geldige Aura back-up, is▁beschadigd of▁groter▁dan 4 MB.",
+  "uiRestoreBackup": "▁Steun▁herstellen?",
+  "uiYourCurrentFavoritesRatingsPlaylistsAndHistory": "▁Uw▁huidige favorieten, ratings,▁afspeellijsten en▁geschiedenis▁worden▁vervangen.",
+  "uiDataWillBeMergedExistingRatingsAnd": "▁Gegevens▁worden▁samengevoegd.▁Bestaande ratings en▁afspeellijstnamen▁hebben▁prioriteit.",
+  "uiSettingsWillAlsoBeImported": "▁Instellingen▁worden▁ook▁geïmporteerd.",
+  "uiYourCurrentSettingsWillBeKept": "▁Uw▁huidige▁instellingen▁worden▁bewaard.",
+  "uiCancel": "Annuleren",
+  "uiReplaceAndRestore": "Vervangen en▁herstellen",
+  "uiRestore": "Herstellen",
+  "uiBackupRestoredUnavailableTracksAreKeptAs": "Reservekopie▁hersteld.▁Niet▁beschikbare▁nummers▁worden▁bewaard▁als▁referenties.",
+  "uiDataRecoveryMustFinishBeforeContinuing": "Data recovery▁moet▁eindigen voordat u▁verder▁gaat.",
+  "uiRestoreFailedYourPreviousDataWasKept": "Herstellen▁mislukt.▁Uw▁vorige▁gegevens▁werden▁bewaard.",
+  "uiPreviousDataRecovered": "▁Vorige▁gegevens▁hersteld.",
+  "uiCouldNotRecoverTheDataYetTry": "Kon de▁gegevens▁nog▁niet▁herstellen.▁Probeer▁opnieuw of herstart Aura.",
+  "uiBackupAndRestore": "Reservekopie en▁herstel",
+  "uiDataRecoveryIsRequiredBeforeContinuingAura": "▁Gegevensherstel is▁vereist voordat u doorgaat. Aura▁hield de▁vorige▁staat in▁een▁lokaal▁tijdschrift.",
+  "uiTryRecovery": "▁Probeer▁herstel",
+  "uiKeepWhatYouHaveOrganized": "Hou▁wat je▁hebt▁georganiseerd",
+  "uiBackupsIncludeFavoritesRatingsPlaylistsHistoryPlayback": "Backups▁omvatten favorieten, ratings,▁afspeellijsten,▁geschiedenis,▁afspeelinstellingen en▁bibliotheekfilters. Audiobestanden,▁bronnen en▁geselecteerde mappen▁zijn▁niet▁inbegrepen en▁moeten apart▁worden▁geconfigureerd.",
+  "uiExportBackup": "Reservekopie▁exporteren",
+  "uiChooseABackupToRestore": "Kies▁een reservekopie om te▁herstellen",
+  "uiMissingReferencesAreKeptWithoutAssigningRatings": "▁Ontbrekende▁referenties▁worden▁bewaard▁zonder ratings▁toe te▁wijzen▁aan▁andere▁nummers. U▁kunt de back-up▁opnieuw▁importeren na▁het▁toevoegen van de▁bijpassende▁bronnen.",
+  "uiReplaceCurrentData": "▁Huidige▁gegevens▁vervangen",
+  "uiOffMergeDataAndKeepExistingRatings": "▁Uit:▁gegevens▁samenvoegen en▁bestaande ratings▁behouden.",
+  "uiRestoreSettingsToo": "▁Instellingen▁ook▁herstellen",
+  "uiReviewAndRestore": "▁Evaluatie en▁herstel",
+  "uiHelloNightOwl": "Hallo, nachtuil 🦉",
+  "uiGoodMorning": "Goedemorgen 🌅",
+  "uiGoodAfternoon": "Goedemiddag ☀️",
+  "uiGoodEvening": "Goedenavond 🌆",
+  "uiChooseYourMusicFolder": "Kies▁uw▁muziekmap",
+  "uiAuraCouldNotRecoverAnInterruptedRestore": "Aura▁kon▁geen▁onderbroken▁herstel▁herstellen.▁Uw▁vorige▁gegevens▁worden▁bewaard in▁het▁lokale▁tijdschrift.▁Sluit en▁heropen de app om▁het▁opnieuw te▁proberen.",
+  "uiCouldNotLoadOrSaveListeningHistory": "Kon▁luistergeschiedenis en de▁laatste▁weergave▁niet laden of▁opslaan.",
+  "uiCouldNotApplyPlaybackSettingsOrThe": "Kan de▁afspeelinstellingen of de▁slaaptimer▁niet▁toepassen.",
+  "uiCouldNotLoadTheLibraryScanYour": "Kon de▁bibliotheek▁niet laden. Scan je▁muziek▁opnieuw.",
+  "uiMusicOnYourPC": "Muziek op je PC",
+  "uiMusicOnYourPhone": "Muziek op je▁telefoon",
+  "uiNavidromeServer": "Navidrome-server",
+  "uiURLAndUserAccount": "URL en▁gebruikersaccount",
+  "uiCouldNotLoadMusicSources": "Kon▁muziekbronnen▁niet laden.",
+  "uiAddAFolderFromYourPC": "▁Voeg▁een map▁toe▁uit▁uw PC",
+  "uiChooseVisibleFolders": "Kies▁zichtbare mappen",
+  "uiRemoveAFolderFromTheLibrary": "▁Een map▁uit de▁bibliotheek▁verwijderen",
+  "uiFilesStayOnYourPC": "▁Bestanden▁blijven op je PC.",
+  "uiYouHaveNotAddedAnyFoldersYet": "U▁heeft▁nog▁geen mappen▁toegevoegd.",
+  "uiRemoveFromLibrary": "▁Verwijderen▁uit▁bibliotheek",
+  "uiFolderRemovedFromTheLibraryFilesStayed": "Map▁verwijderd▁uit de▁bibliotheek.▁Bestanden▁verbleven op▁uw PC.",
+  "uiCouldNotRemoveTheFolderFromThe": "Kon de map▁niet▁uit de▁bibliotheek▁verwijderen.",
+  "uiCouldNotReadTheFolderCheckThat": "Kon de map▁niet▁lezen.▁Controleer of▁deze▁beschikbaar is.",
+  "uiCouldNotSaveSourcesTryAgain": "Kon▁bronnen▁niet▁opslaan.▁Probeer▁het▁opnieuw.",
+  "uiCouldNotPlayTheTrackTryScanning": "Kon▁het▁nummer▁niet▁afspelen.▁Probeer▁het▁opnieuw te scannen.",
+  "uiNoAudioFilesFoundOnTheDevice": "▁Geen audiobestanden▁gevonden op▁het▁apparaat.",
+  "uiAllowMusicAccessToScanYourLibrary": "▁Laat▁muziek▁toegang▁tot▁uw▁bibliotheek te scannen.",
+  "uiCouldNotScanYourMusicTryAgain": "Kon je▁muziek▁niet scannen.▁Probeer▁het▁opnieuw.",
+  "uiLibraryScanningIsCurrentlyAvailableOnAndroid": "▁Bibliotheek scannen is▁momenteel▁beschikbaar op Android.",
+  "uiAProblemOccurredWhileScanningMusic": "▁Een▁probleem▁deed▁zich voor▁tijdens▁het scannen van▁muziek.",
+  "uiWhereIsYourMusic": "▁Waar is je▁muziek?",
+  "uiFavoriteTracks": "Favoriete▁nummers",
+  "uiAllFavorites": "▁Alle favorieten",
+  "uiBrowse": "▁Bladeren",
+  "uiRecentlyPlayed": "Recent▁afgespeeld",
+  "uiSeeAll": "▁Alles▁zien",
+  "uiYourLibrary": "▁Uw▁bibliotheek",
+  "uiSTARTWITHASOURCE": "▁Begin met▁een▁bron",
+  "uiAddYourMusic": "Muziek▁toevoegen",
+  "uiPCOrNavidromeServer": "PC of Navidrome server",
+  "uiPhoneOrNavidromeServer": "▁Telefoon of Navidrome server",
+  "uiScanning": "Scannen...",
+  "uiAddASource": "▁Een▁bron▁toevoegen",
+  "uiLibrary": "Bibliotheek",
+  "uiYourListeningHistoryWillAppearHere": "Je▁luistergeschiedenis▁zal▁hier▁verschijnen.",
+  "uiYOURCOLLECTION": "UW VERZAMELING",
+  "uiLibrary178": "Bibliotheek",
+  "uiNoTracksMatchTheSelectedFilters": "▁Geen▁nummers die▁overeenkomen met de▁geselecteerde filters.",
+  "uiChooseMusicFoldersToSeeTracksIn": "Kies▁muziekmappen om▁nummers in▁uw▁bibliotheek te▁zien.",
+  "uiChangeFilters": "Filters▁wijzigen",
+  "uiChooseFolders": "Mappen▁kiezen",
+  "uiScanAgain": "Opnieuw scannen",
+  "uiNoTracksMatchTheSelectedRating": "▁Geen▁nummers die▁overeenkomen met de▁geselecteerde rating.",
+  "uiCouldNotResumeTheTrackTrySelecting": "Kon de track▁niet▁hervatten.▁Probeer▁het▁opnieuw te▁selecteren.",
+  "uiUnknownDuration": "▁Onbekende▁duur",
+  "uiTrackInformation": "▁Trackinformatie",
+  "uiClose": "Sluiten",
+  "uiArtist": "Artiest",
+  "uiAlbum": "Album",
+  "uiUnknownAlbum": "▁Onbekend album",
+  "uiDuration": "▁Duur",
+  "uiFolder": "Map",
+  "uiUnknownFolder": "▁Onbekende map",
+  "uiPause": "Pauze",
+  "uiNextTrack": "▁Volgende▁nummer",
+  "uiTheQueueIsEmpty": "De▁wachtrij is▁leeg",
+  "uiPreviousTrack": "▁Vorig▁nummer",
+  "uiEnterTheHTTPSServerAddressWithoutA": "Voer▁het HTTPS serveradres in▁zonder▁gebruikersnaam,▁wachtwoord of URL parameters.",
+  "uiEnterTheSourceNameUsernameAndPassword": "Voer de▁bronnaam,▁gebruikersnaam en▁wachtwoord in.",
+  "uiTheServerDidNotRespondCorrectlyCheck": "De server▁reageerde▁niet correct.▁Controleer▁het▁adres en Navidrome▁toegang.",
+  "uiTheServerResponseIsTooLarge": "▁Het▁antwoord van de server is te▁groot.",
+  "uiCouldNotReachTheServerCheckYour": "Kon de server▁niet▁bereiken.▁Controleer▁uw▁verbinding,▁adres en HTTPS▁certificaat.",
+  "uiAuthenticationFailedCheckYourUsernameAndPassword": "Authenticatie▁mislukt.▁Controleer▁uw▁gebruikersnaam en▁wachtwoord.",
+  "uiNavidromeRejectedTheRequestCheckTheAccounts": "Navidrome▁wees▁het▁verzoek▁af.▁Controleer de▁toegang▁tot de▁bibliotheek.",
+  "uiTheAddressDidNotReturnAValid": "▁Het▁adres▁gaf▁geen▁geldig▁antwoord van Navidrome.",
+  "uiTheServerRepeatedAnAlbumPageYour": "De server▁herhaalde▁een albumpagina.▁Uw▁vorige▁bibliotheek▁werd▁bewaard.",
+  "uiInvalidServerTrack": "Ongeldige servertrack.",
+  "uiReconnectTheNavidromeSourceToPlayThis": "Verbind de Navidrome▁bron om▁deze track te▁spelen.",
+  "uiCouldNotLoadSavedSourcesTryAgain": "Kon▁opgeslagen▁bronnen▁niet laden.▁Probeer▁het▁opnieuw.",
+  "uiCouldNotSaveTheSourceChangeTry": "Kon de▁bronwijziging▁niet▁opslaan.▁Probeer▁het▁opnieuw.",
+  "uiConnectedTheServerLibraryHasBeenLoaded": "▁Verbonden. De serverbibliotheek is▁geladen.",
+  "uiDisconnectThisSource": "Verbreek▁deze▁bron?",
+  "uiCancel228": "Annuleren",
+  "uiDisconnect": "Verbinding▁verbreken",
+  "uiSourceDisconnected": "▁Bron▁afgesloten.",
+  "uiNavidromeSources": "Navidrome▁bronnen",
+  "uiConnectYourLibraryFromANavidromeServer": "▁Sluit▁uw▁bibliotheek▁aan▁vanaf▁een Navidrome server▁boven HTTPS.",
+  "uiLoadingTheServerLibrary": "De serverbibliotheek▁wordt▁geladen...",
+  "uiReloadSources": "▁Bronnen herladen",
+  "uiLibraryUpdated": "▁Bibliotheek▁bijgewerkt.",
+  "uiRefresh": "Verversen",
+  "uiReconnect": "Herverbinden",
+  "uiAddNavidromeServer": "Navidrome server▁toevoegen",
+  "uiTracksAppearInLibraryAfterConnectingPlayback": "▁Tracks▁verschijnen in de▁bibliotheek na▁het▁verbinden. Afspelen▁vereist internet. Aura favorieten, ratings en▁afspeellijsten▁blijven▁lokaal; de serverbibliotheek▁wordt▁niet▁gewijzigd.",
+  "uiConnectToNavidrome": "Verbinding met Navidrome",
+  "uiSourceName": "▁Bronnaam",
+  "uiServerURL": "Server-URL",
+  "uiUsername": "▁Gebruikersnaam",
+  "uiPassword": "Wachtwoord",
+  "uiCredentialsAreSavedInTheDevicesSecure": "Ongevallen▁worden▁opgeslagen in de▁beveiligde▁opslag van▁het▁apparaat.",
+  "uiConnect": "Verbinden",
+  "uiListeningHistory": "Luistergeschiedenis",
+  "uiClearHistory": "Geschiedenis▁wissen",
+  "uiClearHistory262": "▁Duidelijke▁geschiedenis?",
+  "uiTracksFavoritesAndPlaylistsWillStaySaved": "▁Tracks, favorieten en▁afspeellijsten▁blijven▁opgeslagen.",
+  "uiDelete": "Verwijderen",
+  "uiPlayedTracksWillAppearHere": "Afgespeelde▁nummers▁zullen▁hier▁verschijnen.",
+  "uiTracksInYourHistoryAreHiddenBy": "▁Tracks in je▁geschiedenis▁worden▁verborgen door▁huidige filters of▁zijn▁niet▁meer▁beschikbaar.",
+  "uiLibraryFilters": "▁Bibliotheekfilters",
+  "uiMinimumDuration": "Minimumduur",
+  "uiAllDurations": "▁Alle▁duur",
+  "ui10Seconds": "10▁seconden",
+  "ui30Seconds": "30▁seconden",
+  "ui1Minute": "1▁minuut",
+  "uiTracksWithUnknownDurationStayVisible": "▁Tracks met▁onbekende▁duur▁blijven▁zichtbaar.",
+  "uiHideWhatsAppAndTelegram": "Verbergen WhatsApp en Telegram",
+  "uiHidesFilesFromTheseAppsFolders": "Verbergt▁bestanden▁uit▁deze apps.",
+  "uiFiltersOnlyChangeWhatAppearsInYour": "Filters▁veranderen▁alleen▁wat in▁uw▁bibliotheek▁verschijnt.▁Bestanden,▁afspeellijsten en de▁huidige▁wachtrij▁worden▁bewaard.",
+  "uiSaving": "Opslaan...",
+  "uiSaveFilters": "Filters▁opslaan",
+  "uiRepeatOff": "▁Herhaal",
+  "uiRepeatEntireQueue": "▁Volledige▁wachtrij▁herhalen",
+  "uiRepeatCurrentTrack": "▁Huidige track▁herhalen",
+  "uiShuffleOn": "▁Shuffle on",
+  "uiShuffleOff": "Schudden",
+  "uiCloseQueue": "Wachtrij▁sluiten",
+  "uiShuffledOrderTurnOffShuffleToReorder": "Schakel shuffle▁uit om te herschikken.",
+  "uiDragTheHandleToChangeTheOrder": "Sleep▁het handvat om de▁volgorde te▁wijzigen.",
+  "uiCouldNotUpdatePlaybackTryAgain": "Kon▁het▁afspelen▁niet▁bijwerken.▁Probeer▁het▁opnieuw.",
+  "uiAtTheEndOfTheTrack": "▁Aan▁het▁einde van de track",
+  "uiSleepTimer": "▁Slaaptijd",
+  "uiCloseSleepTimer": "▁Slaapklok▁dicht",
+  "uiFinishTheCurrentTrack": "▁Huidige track▁voltooien",
+  "uiWhenTheTimerEndsWaitForThe": "▁Als de timer ophoudt,▁wacht▁dan▁tot de track▁klaar is voordat je pauzeert.",
+  "uiStartSleepTimer": "▁Slaaptijd▁instellen",
+  "uiStopAtTheEndOfThisTrack": "Stop▁aan▁het▁einde van▁deze track",
+  "uiCancelSleepTimer": "▁Slaaptimer▁annuleren",
+  "uiPlaybackSettings": "Afspeelinstellingen",
+  "uiOutputSettings": "▁Uitvoerinstellingen",
+  "uiPlayback": "Afspelen",
+  "uiAutomaticActions": "▁Automatische▁acties",
+  "uiAudioOutput": "Audio-uitvoer",
+  "uiOnlyAppliesInAuraSeparatelyFromYour": "▁Alleen van▁toepassing in Aura, apart van▁uw▁telefoon of PC volume.",
+  "uiTimer": "Timer",
+  "uiAudioOptions": "▁Geluidsopties",
+  "uiCrossfadeAndPlaypauseFades": "Crossfade en play/pauze vervaagt",
+  "uiFrequencyBandsAndPresets": "▁Frequentiebanden en voorinstellingen",
+  "uiAvailableOnAndroid": "▁Beschikbaar op Android",
+  "uiNotificationLockScreenAndHeadset": "▁Kennisgeving,▁vergrendelingsscherm en headset",
+  "uiRestoreDefaultSpeedAndVolume": "▁Standaard▁snelheid en volume▁herstellen",
+  "uiSpeedAndVolumeAreSavedOnThis": "▁Snelheid en volume▁worden▁opgeslagen op▁dit▁apparaat. De timer▁wordt▁geannuleerd▁wanneer de app▁volledig is▁gesloten.",
+  "uiSleep": "▁Slaap",
+  "uiUnrated": "▁Niet▁gewaardeerd",
+  "uiSwipeToRate": "Veeg▁naar▁tarief",
+  "uiGive1Star": "▁Geef 1▁ster",
+  "uiClearRating": "Wis rating",
+  "uiStarSize": "▁Sterrengrootte",
+  "uiSmall": "▁Klein",
+  "uiMedium": "▁Middel",
+  "uiLarge": "▁Groot",
+  "uiSwipeAcrossTheStarsToRateIn": "Veeg over de▁sterren om te▁beoordelen in▁halve▁sterren▁stappen.",
+  "uiFilterByRating": "Filteren op▁waardering",
+  "uiAllRatings": "▁Alle ratings",
+  "uiOnly5Stars": "▁Slechts 5▁sterren",
+  "uiSortByRating": "Sorteer op▁waardering",
+  "uiDefaultOrder": "▁Standaardvolgorde",
+  "uiHighestRatingFirst": "▁Hoogste rating▁eerst",
+  "uiLowestRatingFirst": "Laagste▁waardering▁eerst",
+  "uiCouldNotSaveTheChangeTryAgain": "Kon de▁wijziging▁niet▁opslaan.▁Probeer▁het▁opnieuw.",
+  "uiNewPlaylist": "▁Nieuwe▁afspeellijst",
+  "uiRenamePlaylist": "Afspeellijst hernoemen",
+  "uiPlaylistName": "Afspeellijstnaam",
+  "uiSave": "Opslaan",
+  "uiRemoveFromFavorites": "▁Uit favorieten▁verwijderen",
+  "uiAddToFavorites": "▁Aan favorieten▁toevoegen",
+  "uiAddToPlaylist": "▁Aan▁afspeellijst▁toevoegen",
+  "uiTrackIsAlreadyInThisPlaylist": "▁Track▁staat al in▁deze▁afspeellijst",
+  "uiTrackAddedToPlaylist": "▁Nummer▁toegevoegd▁aan de▁afspeellijst.",
+  "uiCouldNotLoadFavoritesAndPlaylists": "Kon favorieten en▁afspeellijsten▁niet laden.",
+  "uiTryAgain": "▁Probeer▁opnieuw",
+  "uiBackToPlaylists": "▁Terug▁naar▁afspeellijsten",
+  "uiPlaylistOptions": "Afspeellijstopties",
+  "uiDeletePlaylist": "Afspeellijst▁verwijderen?",
+  "uiAudioFilesStayOnThePhone": "Audiobestanden▁blijven▁aan de▁telefoon.",
+  "uiRename": "Hernoemen",
+  "uiDeletePlaylist363": "Afspeellijst▁verwijderen",
+  "uiCreateYourFirstPlaylistWithOrFrom": "▁Maak▁uw▁eerste▁afspeellijst▁aan met + of▁vanuit▁een track.",
+  "uiAddTracks": "▁Tracks▁toevoegen",
+  "uiATrackIsOutsideTheSelectedFolders": "▁Een track▁staat▁buiten de▁geselecteerde mappen of is▁niet▁meer▁beschikbaar. De▁referentie▁wordt▁bewaard.",
+  "uiPlayAll": "▁Alles▁afspelen",
+  "uiTapATracksHeartToSaveIt": "Tik op▁het▁hart van▁een▁spoor om▁het▁hier te▁redden.",
+  "uiAddTracksToThisPlaylist": "▁Nummers▁toevoegen▁aan▁deze▁afspeellijst.",
+  "uiRemoveFromPlaylist": "▁Uit▁afspeellijst▁verwijderen",
+  "uiSearchForATrack": "Zoek▁naar▁een track",
+  "uiTitle": "▁Titel",
+  "uiSearchYourMusic": "Muziek doorzoeken",
+  "uiClearSearch": "Zoeken▁wissen",
+  "uiFavoritesOnly": "▁Alleen favorieten",
+  "uiYOURLIBRARYISEMPTY": "Jouw▁bibliotheek is▁leeg",
+  "uiAddMusic": "Muziek▁toevoegen",
+  "uiAddASourceToSearchYourCollection": "▁Voeg▁een▁bron▁toe om▁uw collectie te doorzoeken.",
+  "uiRecentSearches": "▁Recente▁zoekopdrachten",
+  "uiSearchForATitleArtistOrAlbum": "Zoek▁naar▁een▁titel,▁artiest of album. Ingediende▁zoekopdrachten▁blijven▁hier voor▁deze sessie.",
+  "uiNoResultsMatchTheSelectedFilters": "▁Geen▁resultaten met de▁geselecteerde filters.",
+  "uiAuraSettings": "Aura▁instellingen",
+  "uiOptionsMarkedComingSoonAreNotAvailable": "Opties met de▁vermelding \"Kom▁binnenkort\"▁zijn▁nog▁niet▁beschikbaar.▁Actieve▁instellingen▁worden op▁dit▁apparaat▁opgeslagen. Serververbindingen▁beheren in mediabronnen.",
+  "uiGotIt": "Begrepen.",
+  "uiHelp": "Help",
+  "uiInterface": "Interface",
+  "uiInterfaceSettings": "Interface-instellingen",
+  "uiApplicationStyle": "▁Toepassingsstijl",
+  "uiGeneral": "Algemeen",
+  "uiMediaLists": "Medialijsten",
+  "uiNowPlayingScreens": "Schermen▁afspelen",
+  "uiNowPlayingScreen": "Scherm▁afspelen",
+  "uiTrackRatings": "▁Track ratings",
+  "uiSwipeAcrossTheStarsToRateIn399": "Veeg over de▁sterren te▁beoordelen in half-sterren▁stappen.▁Grootte▁geldt in de▁speler en track▁informatie.",
+  "uiPageSettings": "Paginainstellingen",
+  "uiHomePage": "Startpagina",
+  "uiGenrePage": "Genre▁pagina",
+  "uiPlaylistPage": "Afspeellijstpagina",
+  "uiSearchPage": "Zoeken",
+  "uiAdvanced": "Geavanceerd",
+  "uiAdvancedInterfaceSettings": "Geavanceerde interface-instellingen",
+  "uiDecodingAndTranscoding": "Decoderen en transcoderen",
+  "uiAudioFocus": "▁Geluidsfocus",
+  "uiNotificationAndMediaSessionButtons": "Notificatie- en mediasessieknoppen",
+  "uiAdvancedPlaybackSettings": "Geavanceerde▁afspeelinstellingen",
+  "uiOfflineCacheAndDownloads": "Offline, cache en downloads",
+  "uiMedia": "Media",
+  "uiOfflineServerPlayback": "Offline▁afspelen van server",
+  "uiImages": "▁Afbeeldingen",
+  "uiLocalTracksWorkWithoutInternetServerDownloads": "▁Lokale tracks▁werken▁zonder internet. Serverdownloads en cachebeheer▁komen▁binnenkort.",
+  "uiAdvancedSettings": "Geavanceerde▁instellingen",
+  "uiMiscellaneous": "▁Diversen",
+  "uiMediaSources": "Mediabronnen",
+  "uiSyncManager": "Manager▁synchroniseren",
+  "uiUpdating": "▁Bijwerken...",
+  "uiRefreshLibrary": "▁Bibliotheek verversen",
+  "uiRefreshNavidromeSources": "Navidrome▁bronnen▁vernieuwen",
+  "uiOfflineFiles": "Offline-bestanden",
+  "uiGeneratedFiles": "Gegenereerde▁bestanden",
+  "uiLanguages": "Talen",
+  "uiAbout": "Over",
+  "uiRateTheApp": "Beoordeel de app",
+  "uiContactSupport": "Contact▁ondersteuning",
+  "uiWhatsNew": "▁Wat er▁nieuw is",
+  "uiWhatsNewInAura": "▁Nieuw in Aura",
+  "uiLocalAndNavidromeLibrariesHalfstarRatingsHistory": "▁Lokale en Navidrome▁bibliotheken • Halfsterrenwaarderingen • Geschiedenis,▁afspeellijsten en favorieten • Crossfade,▁slaaptimer en Android equalizer • Displays▁tot 144 Hz",
+  "uiAboutAura": "Over Aura",
+  "uiAPlayerForYourLocalMusicAnd": "▁Een▁speler voor▁uw▁lokale▁muziek en Navidrome▁bibliotheek.",
+  "uiComingSoon": "Binnenkort",
+  "uiMusicFolders": "Muziekmappen",
+  "uiChooseMusicFoldersOnlyFoldersWhereThe": "Kies▁muziekmappen.▁Alleen mappen▁waar▁het▁apparaat▁gevonden audiobestanden▁worden▁getoond.",
+  "uiAllFolders": "▁Alle mappen",
+  "uiAutomaticallyIncludesFoldersFoundInFutureScans": "Inclusief▁automatisch mappen▁gevonden in▁toekomstige scans.",
+  "uiNoTracksFoundInTheLastScan": "▁Geen▁sporen▁gevonden in de▁laatste scan",
+  "uiYourLibraryWillStayEmptyUntilYou": "▁Uw▁bibliotheek▁blijft▁leeg▁totdat u▁een map selecteert.",
+  "uiSaveSelection": "▁Selectie▁opslaan",
+  "secondsValue": "{count, plural, one{1▁seconde} other{{count}▁seconden}}",
+  "@secondsValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "secondsShort": "{value} s",
+  "@secondsShort": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "restoreConfirmation": "{change}\n\n{settings}\n\nPlayback▁zal pauzeren en de▁slaaptimer▁wordt▁geannuleerd.▁Uw▁huidige▁wachtrij▁wordt▁behouden.",
+  "@restoreConfirmation": {
+    "placeholders": {
+      "change": {
+        "type": "String"
+      },
+      "settings": {
+        "type": "String"
+      }
+    }
+  },
+  "backupCreated": "Geschreven: {date}",
+  "@backupCreated": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "backupStats": "Favorieten: {favorites} ·▁Beoordelingen: {ratings}\nPlaylisten: {playlists} · Geschiedenis▁sporen: {history}",
+  "@backupStats": {
+    "placeholders": {
+      "favorites": {
+        "type": "int"
+      },
+      "ratings": {
+        "type": "int"
+      },
+      "playlists": {
+        "type": "int"
+      },
+      "history": {
+        "type": "int"
+      }
+    }
+  },
+  "backupMatches": "Erkend: {matched} · Vernieuwd: {remapped}\nNiet▁beschikbaar of▁dubbelzinnig: {unavailable}",
+  "@backupMatches": {
+    "placeholders": {
+      "matched": {
+        "type": "int"
+      },
+      "remapped": {
+        "type": "int"
+      },
+      "unavailable": {
+        "type": "int"
+      }
+    }
+  },
+  "tracksInLibrary": "{count, plural, one{1 track in▁uw▁bibliotheek.} other{{count}▁sporen in▁uw▁bibliotheek.}}",
+  "@tracksInLibrary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sourcesSaved": "▁Bronnen▁opgeslagen. {count, plural, one{1 track in▁uw▁bibliotheek.} other{{count}▁sporen in▁uw▁bibliotheek.}}",
+  "@sourcesSaved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tracksInFolders": "{count, plural, one{1 track in de▁geselecteerde mappen.} other{{count}▁nummers in de▁geselecteerde mappen.}}",
+  "@tracksInFolders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "allFoldersSummary": "▁Alle mappen ·▁Tracks: {count}",
+  "@allFoldersSummary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectedFoldersSummary": "Geselecteerde mappen: {folders} ·▁Tracks: {tracks}",
+  "@selectedFoldersSummary": {
+    "placeholders": {
+      "folders": {
+        "type": "int"
+      },
+      "tracks": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryRhythm": "{count} tracks, op je ritme.",
+  "@libraryRhythm": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryTrackCount": "▁Tracks in de▁bibliotheek: {count}",
+  "@libraryTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "backToPage": "▁Terug▁naar {page}",
+  "@backToPage": {
+    "placeholders": {
+      "page": {
+        "type": "String"
+      }
+    }
+  },
+  "groupCount": "{count, plural, one{1 item} other{{count}▁posten}}",
+  "@groupCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "foundTracks": "{count, plural, one{1▁spoor▁gevonden} other{{count}▁sporen▁gevonden}}",
+  "@foundTracks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "disconnectSource": "“{name}” will be removed from Aura.▁Bestanden op de server▁worden▁bewaard.",
+  "@disconnectSource": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "visibleTracks": "Toont {visible} van {total}▁sporen.",
+  "@visibleTracks": {
+    "placeholders": {
+      "visible": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "queueCount": "Wachtrij · {count}",
+  "@queueCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playQueueCount": "Afspeelwachtrij · {count}",
+  "@playQueueCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "currentTrackArtist": "▁Huidige▁spoor · {artist}",
+  "@currentTrackArtist": {
+    "placeholders": {
+      "artist": {
+        "type": "String"
+      }
+    }
+  },
+  "removeFromQueue": "{title}▁uit de▁wachtrij▁verwijderen",
+  "@removeFromQueue": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "moveTrack": "▁Verplaatsen: {title}",
+  "@moveTrack": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "activeTimer": "▁Actief: {value}",
+  "@activeTimer": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "minutesValue": "{count, plural, one{1▁minuut} other{{count}▁minuten}}",
+  "@minutesValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "minutesShort": "min. {count}",
+  "@minutesShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playerVolume": "Spelervolume: {value}%",
+  "@playerVolume": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "playbackSpeed": "▁Snelheid: {value}×",
+  "@playbackSpeed": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "yourRating": "▁Uw▁beoordeling: {rating} van 5",
+  "@yourRating": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "ratingOutOfFive": "{rating} van 5",
+  "@ratingOutOfFive": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "giveStars": "{count, plural, one{▁Geef 1▁ster} other{▁Geef {count}▁sterren}}",
+  "@giveStars": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ratingDescription": "▁Waardering: {rating} van 5",
+  "@ratingDescription": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumStars": "▁minimaal {rating}▁sterren",
+  "@minimumStars": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumRating": "▁Waardering ≥ {rating}",
+  "@minimumRating": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "savedTrackCount": "{count, plural, one{1▁opgeslagen track} other{{count}▁opgeslagen▁nummers}}",
+  "@savedTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "availableTrackCount": "{count, plural, one{1▁beschikbare track} other{{count}▁beschikbare▁nummers}}",
+  "@availableTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "missingTrackCount": "▁Niet▁beschikbare▁nummers: {count}. Ze▁zijn▁buiten▁geselecteerde mappen of▁niet▁meer▁beschikbaar. Hun▁referenties▁worden▁bewaard.",
+  "@missingTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectedTrackCount": "{count, plural, one{1▁geselecteerde track} other{{count}▁geselecteerde▁nummers}}",
+  "@selectedTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "searchResultCount": "{count, plural, one{1▁resultaat} other{{count}▁resultaten}}",
+  "@searchResultCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "removeRecentSearch": "▁Verwijder▁zoekopdracht {query}",
+  "@removeRecentSearch": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "tracksInSelection": "{count, plural, one{1 track in▁selectie} other{{count}▁nummers in▁selectie}}",
+  "@tracksInSelection": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "languageTitle": "App-taal",
+  "languageSystem": "Systeem volgen",
+  "languageHelp": "▁Geldt▁onmiddellijk.▁Uw track,▁artiest, map en▁afspeellijst▁namen▁worden▁niet▁vertaald.",
+  "languageSaveError": "Kon de▁taal▁niet▁opslaan.▁Uw▁vorige▁keuze▁werd▁behouden.",
+  "uiBass": "Bas",
+  "mediaStop": "Stoppen",
+  "mediaSeekBack": "10 seconden terug",
+  "mediaSeekForward": "10 seconden vooruit"
+}

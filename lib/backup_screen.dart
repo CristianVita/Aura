@@ -1,3 +1,5 @@
+import 'app_strings.dart';
+
 import 'package:flutter/material.dart';
 
 import 'audio_track.dart';
@@ -37,6 +39,7 @@ class _BackupScreenState extends State<BackupScreen> {
 
   Future<void> _export() async {
     setState(() => _busy = true);
+    final strings = context.appStrings;
     try {
       await widget.saved.flush();
       await widget.memory.flush();
@@ -50,10 +53,10 @@ class _BackupScreenState extends State<BackupScreen> {
       final stamp =
           '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}_${now.hour.toString().padLeft(2, '0')}${now.minute.toString().padLeft(2, '0')}';
       if (await widget.files.save('Aura-backup-$stamp.json', bytes)) {
-        _message('Backupul a fost salvat.');
+        _message(strings.uiBackupSaved);
       }
     } catch (_) {
-      _message('Nu am putut salva backupul. Datele Aura nu au fost schimbate.');
+      _message(strings.uiCouldNotSaveTheBackupAuraData);
     } finally {
       if (mounted) setState(() => _busy = false);
     }
@@ -61,6 +64,7 @@ class _BackupScreenState extends State<BackupScreen> {
 
   Future<void> _pick() async {
     setState(() => _busy = true);
+    final strings = context.appStrings;
     try {
       final file = await widget.files.pick();
       if (file != null) {
@@ -75,35 +79,41 @@ class _BackupScreenState extends State<BackupScreen> {
         }
       }
     } catch (_) {
-      _message(
-        'Fișierul nu este un backup Aura valid, este deteriorat sau depășește 4 MB.',
-      );
+      _message(strings.uiTheFileIsNotAValidAura82);
     } finally {
       if (mounted) setState(() => _busy = false);
     }
   }
 
   Future<void> _restore() async {
+    final strings = context.appStrings;
     final plan = _plan;
     if (plan == null) return;
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Restaurare backup?'),
+        title: Text(strings.uiRestoreBackup),
         content: SingleChildScrollView(
           child: Text(
-            '${_replace ? 'Favoritele, ratingurile, playlisturile și istoricul actuale vor fi înlocuite.' : 'Datele vor fi combinate. Ratingurile și numele playlisturilor existente au prioritate.'}\n\n${_settings ? 'Vor fi importate și setările.' : 'Setările actuale rămân.'}\n\nRedarea va fi pusă pe pauză, iar temporizatorul va fi anulat. Coada curentă se păstrează.',
+            strings.restoreConfirmation(
+              _replace
+                  ? strings.uiYourCurrentFavoritesRatingsPlaylistsAndHistory
+                  : strings.uiDataWillBeMergedExistingRatingsAnd,
+              _settings
+                  ? strings.uiSettingsWillAlsoBeImported
+                  : strings.uiYourCurrentSettingsWillBeKept,
+            ),
           ),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Renunță'),
+            child: Text(strings.uiCancel),
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
             child: Text(
-              _replace ? 'Înlocuiește și restaurează' : 'Restaurează',
+              _replace ? strings.uiReplaceAndRestore : strings.uiRestore,
             ),
           ),
         ],
@@ -117,14 +127,12 @@ class _BackupScreenState extends State<BackupScreen> {
         replace: _replace,
         settings: _settings,
       );
-      _message(
-        'Backup restaurat. Piesele indisponibile rămân păstrate ca referințe.',
-      );
+      _message(strings.uiBackupRestoredUnavailableTracksAreKeptAs);
     } catch (_) {
       _message(
         widget.service.recoveryRequired
-            ? 'Recuperarea datelor trebuie încheiată înainte de a continua.'
-            : 'Restaurarea a eșuat. Datele anterioare au fost păstrate.',
+            ? strings.uiDataRecoveryMustFinishBeforeContinuing
+            : strings.uiRestoreFailedYourPreviousDataWasKept,
       );
     } finally {
       if (mounted) setState(() => _busy = false);
@@ -133,13 +141,12 @@ class _BackupScreenState extends State<BackupScreen> {
 
   Future<void> _recover() async {
     setState(() => _busy = true);
+    final strings = context.appStrings;
     try {
       await widget.service.recoverNow();
-      _message('Datele anterioare au fost recuperate.');
+      _message(strings.uiPreviousDataRecovered);
     } catch (_) {
-      _message(
-        'Nu am putut recupera încă datele. Poți încerca din nou sau reporni Aura.',
-      );
+      _message(strings.uiCouldNotRecoverTheDataYetTry);
     } finally {
       if (mounted) setState(() => _busy = false);
     }
@@ -153,7 +160,7 @@ class _BackupScreenState extends State<BackupScreen> {
       canPop: !_busy && !widget.service.recoveryRequired,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Backup și restaurare'),
+          title: Text(context.appStrings.uiBackupAndRestore),
           automaticallyImplyLeading: !_busy && !widget.service.recoveryRequired,
         ),
         body: widget.service.recoveryRequired
@@ -161,13 +168,15 @@ class _BackupScreenState extends State<BackupScreen> {
                 padding: const EdgeInsets.all(24),
                 child: Column(
                   children: [
-                    const Text(
-                      'Datele trebuie recuperate înainte de a continua. Aura a păstrat starea anterioară într-un jurnal local.',
+                    Text(
+                      context
+                          .appStrings
+                          .uiDataRecoveryIsRequiredBeforeContinuingAura,
                     ),
                     const SizedBox(height: 20),
                     FilledButton(
                       onPressed: _busy ? null : _recover,
-                      child: const Text('Încearcă recuperarea'),
+                      child: Text(context.appStrings.uiTryRecovery),
                     ),
                   ],
                 ),
@@ -175,25 +184,27 @@ class _BackupScreenState extends State<BackupScreen> {
             : ListView(
                 padding: const EdgeInsets.all(16),
                 children: [
-                  const Text(
-                    'Păstrează ce ai organizat',
+                  Text(
+                    context.appStrings.uiKeepWhatYouHaveOrganized,
                     style: TextStyle(fontSize: 23, fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(height: 10),
-                  const Text(
-                    'Backupul include favoritele, ratingurile, playlisturile, istoricul, setările de redare și filtrele bibliotecii. Fișierele audio, sursele și folderele selectate nu sunt incluse; acestea se configurează separat.',
+                  Text(
+                    context
+                        .appStrings
+                        .uiBackupsIncludeFavoritesRatingsPlaylistsHistoryPlayback,
                   ),
                   const SizedBox(height: 20),
                   FilledButton.icon(
                     onPressed: enabled ? _export : null,
                     icon: const Icon(Icons.file_upload_outlined),
-                    label: const Text('Exportă backup'),
+                    label: Text(context.appStrings.uiExportBackup),
                   ),
                   const SizedBox(height: 8),
                   OutlinedButton.icon(
                     onPressed: enabled ? _pick : null,
                     icon: const Icon(Icons.file_download_outlined),
-                    label: const Text('Alege un backup pentru restaurare'),
+                    label: Text(context.appStrings.uiChooseABackupToRestore),
                   ),
                   if (_busy)
                     const Padding(
@@ -216,21 +227,36 @@ class _BackupScreenState extends State<BackupScreen> {
                             ),
                             const SizedBox(height: 8),
                             Text(
-                              'Creat: ${plan.source.createdAt.toLocal().toString().split('.').first}',
+                              context.appStrings.backupCreated(
+                                context.dateTime(
+                                  plan.source.createdAt.toLocal(),
+                                ),
+                              ),
                             ),
                             const SizedBox(height: 12),
                             Text(
-                              '${plan.source.saved.favorites.length} favorite · ${plan.source.saved.ratings.length} ratinguri\n${plan.source.saved.playlists.length} playlisturi · ${plan.source.memory.history.length} piese în istoric',
+                              context.appStrings.backupStats(
+                                plan.source.saved.favorites.length,
+                                plan.source.saved.ratings.length,
+                                plan.source.saved.playlists.length,
+                                plan.source.memory.history.length,
+                              ),
                             ),
                             const SizedBox(height: 12),
                             Text(
-                              '${plan.matched} referințe recunoscute · ${plan.remapped} reasociate\n${plan.unavailable} indisponibile sau ambigue',
+                              context.appStrings.backupMatches(
+                                plan.matched,
+                                plan.remapped,
+                                plan.unavailable,
+                              ),
                             ),
                             if (plan.unavailable > 0)
-                              const Padding(
+                              Padding(
                                 padding: EdgeInsets.only(top: 8),
                                 child: Text(
-                                  'Referințele lipsă sunt păstrate, fără a lega ratinguri de alte melodii. Poți reimporta backupul după adăugarea surselor potrivite.',
+                                  context
+                                      .appStrings
+                                      .uiMissingReferencesAreKeptWithoutAssigningRatings,
                                 ),
                               ),
                           ],
@@ -239,9 +265,9 @@ class _BackupScreenState extends State<BackupScreen> {
                     ),
                     SwitchListTile(
                       contentPadding: EdgeInsets.zero,
-                      title: const Text('Înlocuiește datele actuale'),
-                      subtitle: const Text(
-                        'Oprit: combină datele și păstrează ratingurile existente.',
+                      title: Text(context.appStrings.uiReplaceCurrentData),
+                      subtitle: Text(
+                        context.appStrings.uiOffMergeDataAndKeepExistingRatings,
                       ),
                       value: _replace,
                       onChanged: enabled
@@ -250,7 +276,7 @@ class _BackupScreenState extends State<BackupScreen> {
                     ),
                     SwitchListTile(
                       contentPadding: EdgeInsets.zero,
-                      title: const Text('Restabilește și setările'),
+                      title: Text(context.appStrings.uiRestoreSettingsToo),
                       value: _settings,
                       onChanged: enabled
                           ? (value) => setState(() => _settings = value)
@@ -259,7 +285,7 @@ class _BackupScreenState extends State<BackupScreen> {
                     const SizedBox(height: 12),
                     FilledButton(
                       onPressed: enabled ? _restore : null,
-                      child: const Text('Verifică și restaurează'),
+                      child: Text(context.appStrings.uiReviewAndRestore),
                     ),
                   ],
                 ],

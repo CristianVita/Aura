@@ -1,3 +1,4 @@
+import 'package:aura/l10n/app_localizations.dart';
 import 'package:aura/audio_track.dart';
 import 'package:aura/playback_memory.dart';
 import 'package:aura/playback_memory_ui.dart';
@@ -56,6 +57,9 @@ void main() {
       await store.record('a', DateTime(2026));
       await tester.pumpWidget(
         MaterialApp(
+          locale: const Locale('ro'),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           home: Builder(
             builder: (context) => Scaffold(
               body: TextButton(
@@ -99,6 +103,9 @@ void main() {
       List<AudioTrack>? queue;
       await tester.pumpWidget(
         MaterialApp(
+          locale: const Locale('ro'),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           home: ListeningHistoryScreen(
             store: store,
             tracks: _tracks,

@@ -12,7 +12,9 @@ import 'support/memory_saved_music_storage.dart';
 
 void main() {
   test('legacy defaults, stable tab identities and final-index reordering', () {
-    final prefs = SavedMusicData.decode('{"version":1,"favorites":[],"playlists":[]}').navigation;
+    final prefs = SavedMusicData.decode(
+      '{"version":1,"favorites":[],"playlists":[]}',
+    ).navigation;
     expect(prefs.visible, AppTab.values);
     expect(prefs.start, AppTab.home);
     expect(prefs.move(0, 3).order, [
@@ -164,7 +166,11 @@ void main() {
       final store = SavedMusicStore(storage);
       await store.load();
       await tester.pumpWidget(
-        AuraAppearanceApp(store: store, home: const NavigationSettingsScreen()),
+        AuraAppearanceApp(
+          locale: const Locale('ro'),
+          store: store,
+          home: const NavigationSettingsScreen(),
+        ),
       );
       await tester.pumpAndSettle();
       await tester.tap(find.byKey(const ValueKey('visible-home')));

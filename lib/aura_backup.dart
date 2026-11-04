@@ -1,3 +1,5 @@
+import 'app_language.dart';
+
 import 'dart:convert';
 import 'dart:typed_data';
 
@@ -134,9 +136,7 @@ class AuraBackup {
       }
       return backup;
     } catch (_) {
-      throw const FormatException(
-        'Fișierul nu este un backup Aura valid sau este deteriorat.',
-      );
+      throw FormatException(AppText.current.uiTheFileIsNotAValidAura);
     }
   }
 }

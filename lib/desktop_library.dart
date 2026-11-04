@@ -1,3 +1,5 @@
+import 'app_language.dart';
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -16,7 +18,7 @@ class DesktopLibrary {
        _chooseDirectory =
            chooseDirectory ??
            (() => FilePicker.getDirectoryPath(
-             dialogTitle: 'Alege folderul cu muzică',
+             dialogTitle: AppText.current.uiChooseYourMusicFolder,
            ));
   final Directory? _providedDirectory;
   final Future<String?> Function() _chooseDirectory;

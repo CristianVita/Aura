@@ -1,3 +1,4 @@
+import 'app_strings.dart';
 import 'app_theme.dart';
 
 import 'package:flutter/material.dart';
@@ -28,10 +29,10 @@ class ListeningHistoryScreen extends StatelessWidget {
       final queue = entries.map((e) => byUri[e.uri]!).toList();
       return Scaffold(
         appBar: AppBar(
-          title: const Text('Istoric de ascultare'),
+          title: Text(context.appStrings.uiListeningHistory),
           actions: [
             IconButton(
-              tooltip: 'Șterge istoricul',
+              tooltip: context.appStrings.uiClearHistory,
               icon: const Icon(Icons.delete_outline),
               onPressed: store.data.history.isEmpty
                   ? null
@@ -39,18 +40,20 @@ class ListeningHistoryScreen extends StatelessWidget {
                       final confirmed = await showDialog<bool>(
                         context: context,
                         builder: (context) => AlertDialog(
-                          title: const Text('Ștergi istoricul?'),
-                          content: const Text(
-                            'Piesele, favoritele și playlisturile rămân salvate.',
+                          title: Text(context.appStrings.uiClearHistory262),
+                          content: Text(
+                            context
+                                .appStrings
+                                .uiTracksFavoritesAndPlaylistsWillStaySaved,
                           ),
                           actions: [
                             TextButton(
                               onPressed: () => Navigator.pop(context, false),
-                              child: const Text('Anulează'),
+                              child: Text(context.appStrings.uiCancel228),
                             ),
                             FilledButton(
                               onPressed: () => Navigator.pop(context, true),
-                              child: const Text('Șterge'),
+                              child: Text(context.appStrings.uiDelete),
                             ),
                           ],
                         ),
@@ -69,8 +72,8 @@ class ListeningHistoryScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(24),
                     child: Text(
                       store.data.history.isEmpty
-                          ? 'Piesele ascultate vor apărea aici.'
-                          : 'Piesele din istoric sunt ascunse de filtrele curente sau nu mai sunt disponibile.',
+                          ? context.appStrings.uiPlayedTracksWillAppearHere
+                          : context.appStrings.uiTracksInYourHistoryAreHiddenBy,
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -82,9 +85,7 @@ class ListeningHistoryScreen extends StatelessWidget {
                     final when = DateTime.fromMillisecondsSinceEpoch(
                       entries[index].lastPlayedMs,
                     );
-                    final stamp =
-                        '${when.day.toString().padLeft(2, '0')}.${when.month.toString().padLeft(2, '0')}.${when.year} · '
-                        '${when.hour.toString().padLeft(2, '0')}:${when.minute.toString().padLeft(2, '0')}';
+                    final stamp = context.dateTime(when);
                     return ListTile(
                       leading: TrackArtwork(
                         uri: track.artworkUri.toString(),
@@ -92,7 +93,7 @@ class ListeningHistoryScreen extends StatelessWidget {
                         size: 46,
                       ),
                       title: Text(
-                        track.title,
+                        track.displayTitle,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -131,24 +132,38 @@ class _LibraryFiltersScreenState extends State<LibraryFiltersScreen> {
     );
     final visible = widget.tracks.where(filters.includes).length;
     return Scaffold(
-      appBar: AppBar(title: const Text('Filtre bibliotecă')),
+      appBar: AppBar(title: Text(context.appStrings.uiLibraryFilters)),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.all(20),
           children: [
             Text(
-              '$visible din ${widget.tracks.length} piese vor fi afișate.',
+              context.appStrings.visibleTracks(visible, widget.tracks.length),
               style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: 24),
             DropdownButtonFormField<int>(
               initialValue: _minimum,
-              decoration: const InputDecoration(labelText: 'Durata minimă'),
-              items: const [
-                DropdownMenuItem(value: 0, child: Text('Toate duratele')),
-                DropdownMenuItem(value: 10, child: Text('10 secunde')),
-                DropdownMenuItem(value: 30, child: Text('30 de secunde')),
-                DropdownMenuItem(value: 60, child: Text('1 minut')),
+              decoration: InputDecoration(
+                labelText: context.appStrings.uiMinimumDuration,
+              ),
+              items: [
+                DropdownMenuItem(
+                  value: 0,
+                  child: Text(context.appStrings.uiAllDurations),
+                ),
+                DropdownMenuItem(
+                  value: 10,
+                  child: Text(context.appStrings.ui10Seconds),
+                ),
+                DropdownMenuItem(
+                  value: 30,
+                  child: Text(context.appStrings.ui30Seconds),
+                ),
+                DropdownMenuItem(
+                  value: 60,
+                  child: Text(context.appStrings.ui1Minute),
+                ),
               ],
               onChanged: _saving
                   ? null
@@ -157,15 +172,15 @@ class _LibraryFiltersScreenState extends State<LibraryFiltersScreen> {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 12),
               child: Text(
-                'Piesele cu durată necunoscută rămân vizibile.',
+                context.appStrings.uiTracksWithUnknownDurationStayVisible,
                 style: TextStyle(color: context.auraMuted, fontSize: 12),
               ),
             ),
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
-              title: const Text('Ascunde WhatsApp și Telegram'),
-              subtitle: const Text(
-                'Ascunde fișierele din folderele acestor aplicații.',
+              title: Text(context.appStrings.uiHideWhatsAppAndTelegram),
+              subtitle: Text(
+                context.appStrings.uiHidesFilesFromTheseAppsFolders,
               ),
               value: _hideMessaging,
               onChanged: _saving
@@ -173,9 +188,7 @@ class _LibraryFiltersScreenState extends State<LibraryFiltersScreen> {
                   : (value) => setState(() => _hideMessaging = value),
             ),
             const SizedBox(height: 20),
-            const Text(
-              'Filtrele schimbă doar ce vezi în bibliotecă. Fișierele, playlisturile și coada curentă sunt păstrate.',
-            ),
+            Text(context.appStrings.uiFiltersOnlyChangeWhatAppearsInYour),
             const SizedBox(height: 24),
             FilledButton(
               onPressed: _saving || !widget.store.ready
@@ -193,7 +206,11 @@ class _LibraryFiltersScreenState extends State<LibraryFiltersScreen> {
                         setState(() => _saving = false);
                       }
                     },
-              child: Text(_saving ? 'Se salvează...' : 'Salvează filtrele'),
+              child: Text(
+                _saving
+                    ? context.appStrings.uiSaving
+                    : context.appStrings.uiSaveFilters,
+              ),
             ),
           ],
         ),

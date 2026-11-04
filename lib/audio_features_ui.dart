@@ -44,11 +44,12 @@ class _AudioFeatureSettingsState extends State<_AudioFeatureSettings> {
       appBar: AppBar(
         backgroundColor: context.auraBackground,
         title: Text(switch (widget.page) {
-          _AudioFeaturePage.transitions => 'Tranziții',
-          _AudioFeaturePage.equalizer => 'Egalizator',
-          _AudioFeaturePage.commands => 'Comenzi media',
-          _AudioFeaturePage.headset => 'Butoanele căștilor',
-          _AudioFeaturePage.notification => 'Butoane notificare',
+          _AudioFeaturePage.transitions => context.appStrings.uiTransitions,
+          _AudioFeaturePage.equalizer => context.appStrings.uiEqualizer,
+          _AudioFeaturePage.commands => context.appStrings.uiMediaControls,
+          _AudioFeaturePage.headset => context.appStrings.uiHeadsetButtons,
+          _AudioFeaturePage.notification =>
+            context.appStrings.uiNotificationButtons,
         }),
       ),
       body: ListView(
@@ -56,7 +57,7 @@ class _AudioFeatureSettingsState extends State<_AudioFeatureSettings> {
         children: [
           if (widget.page == _AudioFeaturePage.transitions) ...[
             _SettingsGroup(
-              title: 'Crossfade',
+              title: context.appStrings.uiCrossfade,
               children: [
                 Padding(
                   padding: const EdgeInsets.all(16),
@@ -67,15 +68,22 @@ class _AudioFeatureSettingsState extends State<_AudioFeatureSettings> {
                         (_crossfadePreview ?? features.crossfadeSeconds)
                                     .round() ==
                                 0
-                            ? 'Oprit'
-                            : '${(_crossfadePreview ?? features.crossfadeSeconds).round()} secunde',
+                            ? context.appStrings.uiOff
+                            : context.appStrings.secondsValue(
+                                (_crossfadePreview ?? features.crossfadeSeconds)
+                                    .round(),
+                              ),
                       ),
                       Slider(
                         min: 0,
                         max: 10,
                         divisions: 10,
-                        label:
-                            '${(_crossfadePreview ?? features.crossfadeSeconds).round()} s',
+                        label: context.appStrings.secondsShort(
+                          context.number(
+                            (_crossfadePreview ?? features.crossfadeSeconds)
+                                .round(),
+                          ),
+                        ),
                         value:
                             _crossfadePreview ??
                             features.crossfadeSeconds.toDouble(),
@@ -90,7 +98,7 @@ class _AudioFeatureSettingsState extends State<_AudioFeatureSettings> {
                             : null,
                       ),
                       Text(
-                        'Suprapune sfârșitul piesei cu începutul următoarei la avansare automată. Piesele foarte scurte și repetarea unei singure piese nu folosesc crossfade.',
+                        context.appStrings.uiOverlapsTheEndOfATrackWith,
                         style: TextStyle(
                           color: context.auraMuted,
                           fontSize: 12,
@@ -104,7 +112,7 @@ class _AudioFeatureSettingsState extends State<_AudioFeatureSettings> {
             ),
             const SizedBox(height: 24),
             _SettingsGroup(
-              title: 'Pornire și pauză',
+              title: context.appStrings.uiPlayAndPause,
               children: [
                 Padding(
                   padding: const EdgeInsets.all(16),
@@ -116,8 +124,10 @@ class _AudioFeatureSettingsState extends State<_AudioFeatureSettings> {
                         ChoiceChip(
                           label: Text(
                             milliseconds == 0
-                                ? 'Fără fade'
-                                : '${milliseconds / 1000} s',
+                                ? context.appStrings.uiNoFade
+                                : context.appStrings.secondsShort(
+                                    context.number(milliseconds / 1000),
+                                  ),
                           ),
                           selected: features.fadeMilliseconds == milliseconds,
                           onSelected: enabled
@@ -135,12 +145,14 @@ class _AudioFeatureSettingsState extends State<_AudioFeatureSettings> {
           if (widget.page == _AudioFeaturePage.commands ||
               widget.page == _AudioFeaturePage.notification) ...[
             _SettingsGroup(
-              title: 'Notificare și ecran blocat',
+              title: context.appStrings.uiNotificationAndLockScreen,
               children: [
                 SwitchListTile(
-                  title: const Text('Butoane de salt ±10 secunde'),
-                  subtitle: const Text(
-                    'Înlocuiește anterior/următor cu derulare în notificare.',
+                  title: Text(context.appStrings.uiSeekButtons10Seconds),
+                  subtitle: Text(
+                    context
+                        .appStrings
+                        .uiReplacesPreviousnextWithSeekingInTheNotification,
                   ),
                   value: features.seekButtons,
                   onChanged: enabled
@@ -148,7 +160,7 @@ class _AudioFeatureSettingsState extends State<_AudioFeatureSettings> {
                       : null,
                 ),
                 SwitchListTile(
-                  title: const Text('Arată butonul Stop'),
+                  title: Text(context.appStrings.uiShowStopButton),
                   value: features.showStop,
                   onChanged: enabled
                       ? (value) => _save(features.copy(showStop: value))
@@ -161,12 +173,14 @@ class _AudioFeatureSettingsState extends State<_AudioFeatureSettings> {
           if (widget.page == _AudioFeaturePage.commands ||
               widget.page == _AudioFeaturePage.headset) ...[
             _SettingsGroup(
-              title: 'Căști și butoane media',
+              title: context.appStrings.uiHeadsetAndMediaButtons,
               children: [
                 SwitchListTile(
-                  title: const Text('Salt ±10 secunde din căști'),
-                  subtitle: const Text(
-                    'Butoanele anterior/următor derulează în piesa curentă. Butonul central păstrează Redă/Pauză.',
+                  title: Text(context.appStrings.uiSeek10SecondsFromHeadset),
+                  subtitle: Text(
+                    context
+                        .appStrings
+                        .uiPreviousnextButtonsSeekWithinTheCurrentTrack,
                   ),
                   value: features.headsetSeek,
                   onChanged: enabled
@@ -174,7 +188,9 @@ class _AudioFeatureSettingsState extends State<_AudioFeatureSettings> {
                       : null,
                 ),
                 SwitchListTile(
-                  title: const Text('Păstrează pauza la schimbarea piesei'),
+                  title: Text(
+                    context.appStrings.uiKeepPausedWhenChangingTracks,
+                  ),
                   value: features.keepPausedOnSkip,
                   onChanged: enabled
                       ? (value) => _save(features.copy(keepPausedOnSkip: value))
@@ -184,7 +200,7 @@ class _AudioFeatureSettingsState extends State<_AudioFeatureSettings> {
             ),
             const SizedBox(height: 16),
             Text(
-              'Comenzile din notificare și căști sunt disponibile pe Android. Unele sisteme rearanjează butoanele notificării.',
+              context.appStrings.uiNotificationAndHeadsetControlsAreAvailableOn,
               style: TextStyle(color: context.auraMuted, fontSize: 12),
             ),
           ],
@@ -193,8 +209,10 @@ class _AudioFeatureSettingsState extends State<_AudioFeatureSettings> {
               future: _parameters,
               builder: (context, snapshot) {
                 if (!_audioRuntime.isAndroid) {
-                  return const Text(
-                    'Egalizatorul este disponibil momentan pe Android.',
+                  return Text(
+                    context
+                        .appStrings
+                        .uiTheEqualizerIsCurrentlyAvailableOnAndroid,
                   );
                 }
                 if (snapshot.connectionState != ConnectionState.done) {
@@ -202,15 +220,15 @@ class _AudioFeatureSettingsState extends State<_AudioFeatureSettings> {
                 }
                 final parameters = snapshot.data;
                 if (parameters == null) {
-                  return const Text(
-                    'Selectează o piesă și redeschide egalizatorul. Dacă tot nu este disponibil, dispozitivul nu expune efectul audio necesar.',
+                  return Text(
+                    context.appStrings.uiSelectATrackAndReopenTheEqualizer,
                   );
                 }
                 return _SettingsGroup(
-                  title: 'Egalizator Android',
+                  title: context.appStrings.uiAndroidEqualizer,
                   children: [
                     SwitchListTile(
-                      title: const Text('Activează egalizatorul'),
+                      title: Text(context.appStrings.uiEnableEqualizer),
                       value: features.equalizerEnabled,
                       onChanged: enabled
                           ? (value) =>
@@ -222,20 +240,24 @@ class _AudioFeatureSettingsState extends State<_AudioFeatureSettings> {
                       child: Wrap(
                         spacing: 8,
                         children: [
-                          for (final preset in ['Plat', 'Bass', 'Voce'])
+                          for (final preset in [0, 1, 2])
                             ActionChip(
-                              label: Text(preset),
+                              label: Text(switch (preset) {
+                                1 => context.appStrings.uiBass,
+                                2 => context.appStrings.uiVoice,
+                                _ => context.appStrings.uiFlat,
+                              }),
                               onPressed: enabled
                                   ? () => _save(
                                       features.copy(
                                         bandGains: parameters.bands
                                             .map(
                                               (band) => switch (preset) {
-                                                'Bass' =>
+                                                1 =>
                                                   band.centerFrequency < 250
                                                       ? 4.0
                                                       : 0.0,
-                                                'Voce' =>
+                                                2 =>
                                                   band.centerFrequency >= 300 &&
                                                           band.centerFrequency <=
                                                               4000
@@ -305,7 +327,9 @@ class _AudioFeatureSettingsState extends State<_AudioFeatureSettings> {
                     Padding(
                       padding: EdgeInsets.all(16),
                       child: Text(
-                        'Când amplifici o bandă, Aura reduce automat nivelul general pentru a păstra rezervă de volum și a limita distorsiunea.',
+                        context
+                            .appStrings
+                            .uiWhenBoostingABandAuraAutomaticallyReduces,
                         style: TextStyle(
                           color: context.auraMuted,
                           fontSize: 12,

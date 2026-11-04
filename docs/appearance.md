@@ -9,7 +9,7 @@ Open **Setări → Interfață → Temă, font și culori**. Preferences are sav
 
 Main screens, settings, music/rating controls, search, queue, filters and Navidrome pages use semantic theme colors rather than fixed dark-background colors. The home source card grows with its content; library grid rows adapt to text scaling. Appearance settings are validated and serialized in saved music, so existing backup merge/replacement rules apply: import appearance only when restoring settings is explicitly selected. Older backups without this field retain the original defaults.
 
-New appearance text uses ARB resources in `lib/l10n/app_ro.arb` and `app_en.arb`. `flutter pub get` generates localizations using `l10n.yaml`. The app remains Romanian by default while older screens are migrated gradually; an English resource/test does not imply the entire existing app has been translated.
+Appearance text uses the same twenty ARB catalogs as the rest of the application. `flutter pub get` generates localizations using `l10n.yaml`. See [language selection and translation coverage](localization.md).
 
 Tests cover concurrent rating/appearance saves, failed writes, invalid fields, legacy data, backup settings opt-in, palette contrast, platform fonts, system brightness, nonlinear text scaling, route preservation and English/Romanian appearance controls on a narrow screen.
 

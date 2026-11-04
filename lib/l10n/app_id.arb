@@ -1,0 +1,780 @@
+{
+  "@@locale": "id",
+  "appearanceTitle": "Tema, fonta dan warna",
+  "themeLabel": "Tema",
+  "themeSystem": "Ikuti sistem",
+  "themeLight": "Cahaya",
+  "themeDark": "Gelap",
+  "themeOled": "OLED hitam",
+  "accentLabel": "Warna aksen",
+  "accentMint": "Hijau mint",
+  "accentBlue": "Biru",
+  "accentViolet": "Ungu",
+  "accentRose": "Merah muda",
+  "accentAmber": "Emas",
+  "accentTeal": "Toska",
+  "fontLabel": "Fonta",
+  "fontSystem": "Fonta sistem",
+  "fontSerif": "Serif",
+  "fontMonospace": "Lebar tetap",
+  "fontDescription": "Fonta menggunakan keluarga yang tersedia pada perangkat. Penampilan mereka mungkin bervariasi di seluruh platform.",
+  "textSizeLabel": "Ukuran teks",
+  "textSizeDescription": "Digabungkan dengan ukuran teks dalam pengaturan perangkat Anda.",
+  "previewLabel": "Pratilik",
+  "previewTitle": "Musikmu, iramamu",
+  "previewSubtitle": "Album, artis dan daftar putar",
+  "previewButton": "Putar",
+  "resetAppearance": "Kembalikan penampilan baku",
+  "appearanceSaveError": "Tak bisa menyimpan penampilan. Pengaturan sebelumnya disimpan.",
+  "appearanceHelp": "Perubahan diterapkan segera setelah disimpan dan dimasukkan dalam backup.",
+  "percentValue": "{value}%",
+  "@percentValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "navigationTitle": "Navigasi dan mulai layar",
+  "navigationOrder": "Urutan tab",
+  "navigationHelp": "Seret handle untuk menata ulang tab. Pustaka dan Pengaturan selalu dapat diakses.",
+  "navigationHome": "Beranda",
+  "navigationLibrary": "Pustaka",
+  "navigationSearch": "Cari",
+  "navigationSettings": "Pengaturan",
+  "navigationRequired": "Perlu tab",
+  "navigationLabels": "Label tab",
+  "labelsAdaptive": "Adaptif",
+  "labelsHidden": "Hanya icon",
+  "labelsSelected": "Tab yang dipilih",
+  "labelsAlways": "Semua",
+  "labelsHelp": "Adaptif: ikon pada telepon dan label di batang sisi desktop.",
+  "navigationStart": "Mulai layar",
+  "navigationStartHelp": "Applied waktu berikutnya aplikasi dimulai.",
+  "libraryLanding": "Ketika membuka pustaka",
+  "landingCategories": "Kategori",
+  "landingTracks": "Lagu",
+  "landingAlbums": "Album",
+  "landingArtists": "Artis",
+  "landingPlaylists": "Daftar putar",
+  "landingFavorites": "Favorit",
+  "resetNavigation": "Kembalikan navigasi baku",
+  "navigationSaveError": "Tak bisa menyimpan navigasi. preferensi Anda sebelumnya disimpan.",
+  "navigationPreview": "Pratinjau navigasi",
+  "libraryPageTitle": "Halaman pustaka",
+  "albumPageTitle": "Halaman album",
+  "artistPageTitle": "Halaman artis",
+  "categoryOrder": "Kategori dan ketertiban",
+  "categoryHelp": "Seret handle untuk memesan ulang. Jaga setidaknya satu kategori yang terlihat. Sembunyikan kategori tidak menghapus musik.",
+  "pageColumns": "Kolom di telepon",
+  "pageColumnsHelp": "Layar lebar secara otomatis menambahkan kolom. Teks besar dapat mengurangi jumlah kolom untuk ketersediaannya.",
+  "pageLayout": "Tata Letak",
+  "layoutList": "Daftar",
+  "layoutGrid": "Tutup kisi",
+  "pageSort": "Urutan pengurutan",
+  "sortName": "Nama A- Z",
+  "sortNameDescending": "Nama ZA",
+  "sortTrackCount": "Jumlah trek",
+  "pageSummary": "Karya seni dan ringkasan pada halaman yang dibuka",
+  "pageSummaryHelp": "Menggunakan karya seni yang tersedia untuk trek pertama dalam grup.",
+  "pageReset": "Reset halaman ini",
+  "pageSaveError": "Tak bisa menyimpan halaman. preferensi Anda sebelumnya disimpan.",
+  "librarySources": "Sumber",
+  "unknownGroup": "Tak dikenal",
+  "groupTracks": "{count, plural, one{Trek 1} other{{count} trek}}",
+  "groupMinutes": "{minutes} menit secara total",
+  "@groupTracks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@groupMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "uiTransitions": "Transisi",
+  "uiEqualizer": "Ekualiser",
+  "uiMediaControls": "Kontrol media",
+  "uiHeadsetButtons": "Tombol headset",
+  "uiNotificationButtons": "Tombol notifikasi",
+  "uiCrossfade": "Crossfade",
+  "uiOff": "Nonaktif",
+  "uiOverlapsTheEndOfATrackWith": "Overlap akhir trek dengan awal dari pemutaran otomatis berikutnya. Sangat pendek trek dan mengulangi satu trek jangan gunakan crossfade.",
+  "uiPlayAndPause": "Putar dan jeda",
+  "uiNoFade": "Tidak ada memudar",
+  "uiNotificationAndLockScreen": "Notifikasi dan kunci layar",
+  "uiSeekButtons10Seconds": "Seek buttons = 10 seconds",
+  "uiReplacesPreviousnextWithSeekingInTheNotification": "Mengganti sebelumnya / berikutnya dengan mencari dalam pemberitahuan.",
+  "uiShowStopButton": "Tampilkan tombol Stop",
+  "uiHeadsetAndMediaButtons": "Headset dan tombol media",
+  "uiSeek10SecondsFromHeadset": "Seek by 10 detik dari headset",
+  "uiPreviousnextButtonsSeekWithinTheCurrentTrack": "Awal / selanjutnya tombol mencari di dalam trek kini. Tombol tengah menyimpan Play / Pause.",
+  "uiKeepPausedWhenChangingTracks": "Pertahankan jeda ketika mengubah trek",
+  "uiNotificationAndHeadsetControlsAreAvailableOn": "Kontrol pemberitahuan dan headset tersedia pada Android. Beberapa sistem mengatur ulang tombol pemberitahuan.",
+  "uiTheEqualizerIsCurrentlyAvailableOnAndroid": "Equalizer saat ini tersedia pada Android.",
+  "uiSelectATrackAndReopenTheEqualizer": "Pilih suatu trek dan buka kembali equalizer. Jika masih tidak tersedia, perangkat tidak mengekspos efek audio yang diperlukan.",
+  "uiAndroidEqualizer": "Ekualiser Android",
+  "uiEnableEqualizer": "Aktifkan equalizer",
+  "uiFlat": "Datar",
+  "uiVoice": "Suara",
+  "uiWhenBoostingABandAuraAutomaticallyReduces": "Ketika meningkatkan sebuah band, Aura otomatis mengurangi tingkat keseluruhan untuk meninggalkan ruang kepala dan membatasi distorsi.",
+  "uiAudioPlayback": "Pemutaran audio",
+  "uiPlaybackIsUnavailable": "Playback tidak tersedia.",
+  "uiUnknownArtist": "Artis tidak dikenal",
+  "uiUntitledTrack": "Lagu tanpa judul",
+  "uiTheFileIsNotAValidAura": "Berkas ini tidak valid Aura cadangan atau rusak.",
+  "uiChooseAnAuraBackup": "Pilih cadangan Aura",
+  "uiSaveAuraBackup": "Simpan Aura cadangan",
+  "uiBackupSaved": "Bantuan disimpan.",
+  "uiCouldNotSaveTheBackupAuraData": "Tidak dapat menyimpan cadangan. Aura data tidak berubah.",
+  "uiTheFileIsNotAValidAura82": "Berkas ini tidak valid Aura cadangan, rusak atau melebihi 4 MB.",
+  "uiRestoreBackup": "Mengembalikan cadangan?",
+  "uiYourCurrentFavoritesRatingsPlaylistsAndHistory": "Favoritmu saat ini, peringkat, daftar putar dan sejarah akan diganti.",
+  "uiDataWillBeMergedExistingRatingsAnd": "Data akan digabung. Mengekspos peringkat dan nama daftar putar menjadi prioritas.",
+  "uiSettingsWillAlsoBeImported": "Pengaturan juga akan diimpor.",
+  "uiYourCurrentSettingsWillBeKept": "Pengaturan saat ini akan disimpan.",
+  "uiCancel": "Batal",
+  "uiReplaceAndRestore": "Ganti dan kembalikan",
+  "uiRestore": "Pulihkan",
+  "uiBackupRestoredUnavailableTracksAreKeptAs": "Backup dipulihkan. jejak tidak tersedia disimpan sebagai referensi.",
+  "uiDataRecoveryMustFinishBeforeContinuing": "Pemulihan data harus selesai sebelum melanjutkan.",
+  "uiRestoreFailedYourPreviousDataWasKept": "Pemulihan gagal. Data sebelumnya disimpan.",
+  "uiPreviousDataRecovered": "Data sebelumnya sudah ditemukan.",
+  "uiCouldNotRecoverTheDataYetTry": "Belum dapat memulihkan data. Coba lagi atau restart Aura.",
+  "uiBackupAndRestore": "Backup dan kembalikan",
+  "uiDataRecoveryIsRequiredBeforeContinuingAura": "Pemulihan data diperlukan sebelum melanjutkan. Aura terus negara sebelumnya dalam jurnal lokal.",
+  "uiTryRecovery": "Cobalah pemulihan",
+  "uiKeepWhatYouHaveOrganized": "Simpan apa yang telah Anda terorganisir",
+  "uiBackupsIncludeFavoritesRatingsPlaylistsHistoryPlayback": "Backup termasuk favorit, peringkat, daftar putar, sejarah, pengaturan putar dan penyaring pustaka. Berkas audio, sumber dan folder yang dipilih tidak disertakan dan harus dikonfigurasi secara terpisah.",
+  "uiExportBackup": "Ekspor cadangan",
+  "uiChooseABackupToRestore": "Pilih cadangan untuk dikembalikan",
+  "uiMissingReferencesAreKeptWithoutAssigningRatings": "Referensi yang hilang disimpan tanpa menassign peringkat ke lagu lain. Anda dapat mengimpor ulang backup setelah menambahkan sumber yang cocok.",
+  "uiReplaceCurrentData": "Ganti data kini",
+  "uiOffMergeDataAndKeepExistingRatings": "Matikan: gabungkan data dan jaga rating yang ada.",
+  "uiRestoreSettingsToo": "Pulihkan pengaturan terlalu",
+  "uiReviewAndRestore": "Tinjau dan kembalikan",
+  "uiHelloNightOwl": "Halo, burung hantu malam 🦉",
+  "uiGoodMorning": "Selamat pagi 🌅",
+  "uiGoodAfternoon": "Selamat siang ☀️",
+  "uiGoodEvening": "Selamat malam 🌆",
+  "uiChooseYourMusicFolder": "Pilih folder musik Anda",
+  "uiAuraCouldNotRecoverAnInterruptedRestore": "Aura tidak dapat memulihkan pemulangan interupsi. Data sebelumnya disimpan dalam jurnal lokal. Tutup dan buka kembali aplikasi untuk mencoba lagi.",
+  "uiCouldNotLoadOrSaveListeningHistory": "Tak bisa memuat atau menyimpan riwayat mendengarkan dan pemutaran terakhir.",
+  "uiCouldNotApplyPlaybackSettingsOrThe": "Tak bisa menerapkan pengaturan putar ulang atau timer tidur.",
+  "uiCouldNotLoadTheLibraryScanYour": "Tak bisa memuat pustaka. Pindai musik Anda lagi.",
+  "uiMusicOnYourPC": "Musik pada PC Anda",
+  "uiMusicOnYourPhone": "Musik di ponselmu",
+  "uiNavidromeServer": "Server Navidrome",
+  "uiURLAndUserAccount": "URL dan akun pengguna",
+  "uiCouldNotLoadMusicSources": "Tak dapat memuat sumber musik.",
+  "uiAddAFolderFromYourPC": "Tambahkan folder dari PC Anda",
+  "uiChooseVisibleFolders": "Pilih folder yang tampak",
+  "uiRemoveAFolderFromTheLibrary": "Menghapus folder dari pustaka",
+  "uiFilesStayOnYourPC": "File tetap pada PC Anda.",
+  "uiYouHaveNotAddedAnyFoldersYet": "Anda belum menambahkan folder apapun.",
+  "uiRemoveFromLibrary": "Hapus dari pustaka",
+  "uiFolderRemovedFromTheLibraryFilesStayed": "Folder dihapus dari perpustakaan. Berkas tetap pada PC Anda.",
+  "uiCouldNotRemoveTheFolderFromThe": "Tak bisa menghapus folder dari pustaka.",
+  "uiCouldNotReadTheFolderCheckThat": "Tidak dapat membaca folder. Periksa apakah itu tersedia.",
+  "uiCouldNotSaveSourcesTryAgain": "Tak bisa menyimpan sumber. Coba lagi.",
+  "uiCouldNotPlayTheTrackTryScanning": "Tak bisa memutar trek. Coba pindai lagi.",
+  "uiNoAudioFilesFoundOnTheDevice": "Tak ada berkas audio yang ditemukan pada perangkat.",
+  "uiAllowMusicAccessToScanYourLibrary": "Memungkinkan akses musik untuk memindai pustaka Anda.",
+  "uiCouldNotScanYourMusicTryAgain": "Tak bisa memindai musikmu. Coba lagi.",
+  "uiLibraryScanningIsCurrentlyAvailableOnAndroid": "Pemindaian perpustakaan saat ini tersedia pada Android.",
+  "uiAProblemOccurredWhileScanningMusic": "Sebuah masalah terjadi saat memindai musik.",
+  "uiWhereIsYourMusic": "Dimana musikmu?",
+  "uiFavoriteTracks": "Trek favorit",
+  "uiAllFavorites": "Semua favorit",
+  "uiBrowse": "Ramban",
+  "uiRecentlyPlayed": "Baru-baru ini dimainkan",
+  "uiSeeAll": "Lihat semua",
+  "uiYourLibrary": "Pustaka Anda",
+  "uiSTARTWITHASOURCE": "MULAI DENGAN SUKA",
+  "uiAddYourMusic": "Tambahkan musik Anda",
+  "uiPCOrNavidromeServer": "PC atau Navidrome server",
+  "uiPhoneOrNavidromeServer": "Telepon atau server Navidrome",
+  "uiScanning": "Memindai...",
+  "uiAddASource": "Tambah sumber",
+  "uiLibrary": "Pustaka",
+  "uiYourListeningHistoryWillAppearHere": "Sejarah pendengaranmu akan muncul di sini.",
+  "uiYOURCOLLECTION": "COLLECTION ANDA",
+  "uiLibrary178": "Pustaka",
+  "uiNoTracksMatchTheSelectedFilters": "Tidak ada trek yang cocok dengan penyaring yang dipilih.",
+  "uiChooseMusicFoldersToSeeTracksIn": "Pilih folder musik untuk melihat trek di pustaka Anda.",
+  "uiChangeFilters": "Ubah filter",
+  "uiChooseFolders": "Pilih folder",
+  "uiScanAgain": "Pindai lagi",
+  "uiNoTracksMatchTheSelectedRating": "Tidak ada trek yang cocok dengan peringkat yang dipilih.",
+  "uiCouldNotResumeTheTrackTrySelecting": "Tak bisa melanjutkan trek. Coba pilih lagi.",
+  "uiUnknownDuration": "Durasi tak dikenal",
+  "uiTrackInformation": "Lacak informasi",
+  "uiClose": "Tutup",
+  "uiArtist": "Artis",
+  "uiAlbum": "Album",
+  "uiUnknownAlbum": "Album tak dikenal",
+  "uiDuration": "Durasi",
+  "uiFolder": "Folder",
+  "uiUnknownFolder": "Folder tak dikenal",
+  "uiPause": "Jeda",
+  "uiNextTrack": "Trek berikutnya",
+  "uiTheQueueIsEmpty": "Antrian kosong",
+  "uiPreviousTrack": "Trek sebelumnya",
+  "uiEnterTheHTTPSServerAddressWithoutA": "Masukkan alamat server HTTPS tanpa nama pengguna, kata sandi atau parameter URL.",
+  "uiEnterTheSourceNameUsernameAndPassword": "Masukkan nama sumber, nama pengguna, dan sandi.",
+  "uiTheServerDidNotRespondCorrectlyCheck": "Server tidak merespon dengan benar. Periksa alamat dan akses Navidrome.",
+  "uiTheServerResponseIsTooLarge": "Respon server terlalu besar.",
+  "uiCouldNotReachTheServerCheckYour": "Tak bisa mencapai server. Periksa alamat, koneksi Anda dan sertifikat HTTPS.",
+  "uiAuthenticationFailedCheckYourUsernameAndPassword": "Otentikasi gagal. Periksa nama pengguna dan sandi Anda.",
+  "uiNavidromeRejectedTheRequestCheckTheAccounts": "Navidrome menolak permintaan.",
+  "uiTheAddressDidNotReturnAValid": "Alamatnya tidak mengembalikan respon yang valid Navidrome.",
+  "uiTheServerRepeatedAnAlbumPageYour": "Server mengulangi halaman album. Pustaka sebelumnya disimpan.",
+  "uiInvalidServerTrack": "Trek server tidak valid.",
+  "uiReconnectTheNavidromeSourceToPlayThis": "Rekonnect Navidrome sumber untuk memainkan trek ini.",
+  "uiCouldNotLoadSavedSourcesTryAgain": "Tak bisa memuat sumber yang disimpan. Coba lagi.",
+  "uiCouldNotSaveTheSourceChangeTry": "Tak bisa menyimpan perubahan sumber. Coba lagi.",
+  "uiConnectedTheServerLibraryHasBeenLoaded": "Perpustakaan server telah dimuat.",
+  "uiDisconnectThisSource": "Putuskan sumber ini?",
+  "uiCancel228": "Batal",
+  "uiDisconnect": "Putuskan",
+  "uiSourceDisconnected": "Sumber terputus.",
+  "uiNavidromeSources": "Navidrome sumber",
+  "uiConnectYourLibraryFromANavidromeServer": "Hubungkan pustaka Anda dari Navidrome server selesai HTTPS.",
+  "uiLoadingTheServerLibrary": "Memuat pustaka server...",
+  "uiReloadSources": "Muat ulang sumber",
+  "uiLibraryUpdated": "Perpustakaan diperbarui.",
+  "uiRefresh": "Segarkan",
+  "uiReconnect": "Rekonnect",
+  "uiAddNavidromeServer": "Tambahkan Navidrome server",
+  "uiTracksAppearInLibraryAfterConnectingPlayback": "Trek muncul di Pustaka setelah menyambung. Playback membutuhkan internet. Aura favorit, peringkat, dan daftar putar tetap lokal; pustaka server tidak berubah.",
+  "uiConnectToNavidrome": "Hubungkan ke Navidrome",
+  "uiSourceName": "Nama sumber",
+  "uiServerURL": "URL server",
+  "uiUsername": "Nama pengguna",
+  "uiPassword": "Sandi",
+  "uiCredentialsAreSavedInTheDevicesSecure": "Kredensial disimpan dalam perangkat penyimpanan aman.",
+  "uiConnect": "Sambung",
+  "uiListeningHistory": "Mendengarkan riwayat",
+  "uiClearHistory": "Hapus riwayat",
+  "uiClearHistory262": "Jelas sejarah?",
+  "uiTracksFavoritesAndPlaylistsWillStaySaved": "Trek, favorit dan daftar putar akan tetap disimpan.",
+  "uiDelete": "Hapus",
+  "uiPlayedTracksWillAppearHere": "Putar trek akan muncul di sini.",
+  "uiTracksInYourHistoryAreHiddenBy": "Trek dalam sejarah Anda disembunyikan oleh filter saat ini atau tidak lagi tersedia.",
+  "uiLibraryFilters": "Filter pustaka",
+  "uiMinimumDuration": "Durasi minimum",
+  "uiAllDurations": "Semua durasi",
+  "ui10Seconds": "10 detik",
+  "ui30Seconds": "30 detik",
+  "ui1Minute": "1 menit",
+  "uiTracksWithUnknownDurationStayVisible": "Trek dengan durasi yang tidak diketahui tetap terlihat.",
+  "uiHideWhatsAppAndTelegram": "Sembunyikan WhatsApp dan Telegram",
+  "uiHidesFilesFromTheseAppsFolders": "Menyembunyikan berkas dari folder aplikasi ini.",
+  "uiFiltersOnlyChangeWhatAppearsInYour": "Penyaring hanya mengubah apa yang muncul di pustaka Anda. Berkas, daftar putar dan antrian saat ini disimpan.",
+  "uiSaving": "Menyimpan...",
+  "uiSaveFilters": "Simpan penyaring",
+  "uiRepeatOff": "Ulangi",
+  "uiRepeatEntireQueue": "Ulangi seluruh antrian",
+  "uiRepeatCurrentTrack": "Ulangi trek kini",
+  "uiShuffleOn": "Kocok pada",
+  "uiShuffleOff": "Kocok off",
+  "uiCloseQueue": "Tutup antrian",
+  "uiShuffledOrderTurnOffShuffleToReorder": "Perintah diam-diam.",
+  "uiDragTheHandleToChangeTheOrder": "Tarik pegangannya untuk mengubah perintahnya.",
+  "uiCouldNotUpdatePlaybackTryAgain": "Tak bisa memutakhirkan pemutaran. Coba lagi.",
+  "uiAtTheEndOfTheTrack": "Pada akhir trek",
+  "uiSleepTimer": "Pengatur waktu tidur",
+  "uiCloseSleepTimer": "Tutup timer tidur",
+  "uiFinishTheCurrentTrack": "Selesaikan trek kini",
+  "uiWhenTheTimerEndsWaitForThe": "Ketika timer berakhir, tunggu sampai trek selesai sebelum berhenti.",
+  "uiStartSleepTimer": "Mulai timer tidur",
+  "uiStopAtTheEndOfThisTrack": "Berhenti di ujung trek ini",
+  "uiCancelSleepTimer": "Batalkan timer tidur",
+  "uiPlaybackSettings": "Tatanan putar",
+  "uiOutputSettings": "Pengaturan keluaran",
+  "uiPlayback": "Putar",
+  "uiAutomaticActions": "Aksi otomatis",
+  "uiAudioOutput": "Keluaran audio",
+  "uiOnlyAppliesInAuraSeparatelyFromYour": "Hanya berlaku pada Aura, terpisah dari volume ponsel Anda atau PC.",
+  "uiTimer": "Penghitung",
+  "uiAudioOptions": "Opsi audio",
+  "uiCrossfadeAndPlaypauseFades": "Crossfade dan play / pause memudar",
+  "uiFrequencyBandsAndPresets": "Frekuensi band dan presets",
+  "uiAvailableOnAndroid": "Tersedia pada Android",
+  "uiNotificationLockScreenAndHeadset": "Notifikasi, kunci layar dan headset",
+  "uiRestoreDefaultSpeedAndVolume": "Kembalikan kecepatan baku dan volume",
+  "uiSpeedAndVolumeAreSavedOnThis": "Kecepatan dan volume disimpan pada perangkat ini. Penghitung waktu dibatalkan ketika app ditutup penuh.",
+  "uiSleep": "Tidur",
+  "uiUnrated": "Tanpa peringkat",
+  "uiSwipeToRate": "Pindah ke tingkat",
+  "uiGive1Star": "Berikan 1 bintang",
+  "uiClearRating": "Hapus peringkat",
+  "uiStarSize": "Ukuran bintang",
+  "uiSmall": "Kecil",
+  "uiMedium": "Sedang",
+  "uiLarge": "Besar",
+  "uiSwipeAcrossTheStarsToRateIn": "Swipe melintasi bintang-bintang untuk menilai di langkah setengah bintang.",
+  "uiFilterByRating": "Filter berdasarkan peringkat",
+  "uiAllRatings": "Semua peringkat",
+  "uiOnly5Stars": "Hanya 5 bintang",
+  "uiSortByRating": "Urutkan menurut peringkat",
+  "uiDefaultOrder": "Urutan baku",
+  "uiHighestRatingFirst": "Rating tertinggi pertama",
+  "uiLowestRatingFirst": "Rating terendah pertama",
+  "uiCouldNotSaveTheChangeTryAgain": "Tak bisa menyimpan perubahan. Coba lagi.",
+  "uiNewPlaylist": "Daftar putar baru",
+  "uiRenamePlaylist": "Ubah nama daftar putar",
+  "uiPlaylistName": "Nama daftar putar",
+  "uiSave": "Simpan",
+  "uiRemoveFromFavorites": "Hapus dari favorit",
+  "uiAddToFavorites": "Tambahkan ke favorit",
+  "uiAddToPlaylist": "Tambahkan ke daftar main",
+  "uiTrackIsAlreadyInThisPlaylist": "Trek telah ada dalam daftar putar ini",
+  "uiTrackAddedToPlaylist": "Trek ditambahkan ke daftar putar.",
+  "uiCouldNotLoadFavoritesAndPlaylists": "Tidak dapat memuat favorit dan daftar putar.",
+  "uiTryAgain": "Coba lagi",
+  "uiBackToPlaylists": "Kembali ke daftar putar",
+  "uiPlaylistOptions": "Opsi daftar putar",
+  "uiDeletePlaylist": "Hapus daftar putar?",
+  "uiAudioFilesStayOnThePhone": "Berkas audio tetap di telepon.",
+  "uiRename": "Ganti Nama",
+  "uiDeletePlaylist363": "Hapus daftar putar",
+  "uiCreateYourFirstPlaylistWithOrFrom": "Buat daftar putar pertama Anda dengan + atau dari menu trek.",
+  "uiAddTracks": "Tambah trek",
+  "uiATrackIsOutsideTheSelectedFolders": "Trek ini berada di luar folder yang dipilih atau tidak lagi tersedia. Referensinya disimpan.",
+  "uiPlayAll": "Putar semua",
+  "uiTapATracksHeartToSaveIt": "Sentuh jantung trek untuk menyimpannya di sini.",
+  "uiAddTracksToThisPlaylist": "Tambahkan trek ke daftar putar ini.",
+  "uiRemoveFromPlaylist": "Hapus dari daftar main",
+  "uiSearchForATrack": "Cari suatu trek",
+  "uiTitle": "Judul",
+  "uiSearchYourMusic": "Cari musik Anda",
+  "uiClearSearch": "Bersihkan pencarian",
+  "uiFavoritesOnly": "Favorit saja",
+  "uiYOURLIBRARYISEMPTY": "KEPALA ANDA ADALAH EMPTY",
+  "uiAddMusic": "Tambah musik",
+  "uiAddASourceToSearchYourCollection": "Tambahkan sumber untuk mencari koleksi Anda.",
+  "uiRecentSearches": "Pencarian terkini",
+  "uiSearchForATitleArtistOrAlbum": "Cari judul, artis, atau album. Pencarian yang diberikan tetap di sini untuk sesi ini.",
+  "uiNoResultsMatchTheSelectedFilters": "Tak ada hasil yang cocok dengan penyaring yang dipilih.",
+  "uiAuraSettings": "Pengaturan Aura",
+  "uiOptionsMarkedComingSoonAreNotAvailable": "Opsi yang ditandai \"Segera Datang\" belum tersedia. Pengaturan aktif disimpan di perangkat ini. Mengelola koneksi server di sumber Media.",
+  "uiGotIt": "Mengerti",
+  "uiHelp": "Bantuan",
+  "uiInterface": "Antarmuka",
+  "uiInterfaceSettings": "Pengaturan antar muka",
+  "uiApplicationStyle": "Gaya aplikasi",
+  "uiGeneral": "Umum",
+  "uiMediaLists": "Daftar media",
+  "uiNowPlayingScreens": "Sekarang memutar layar",
+  "uiNowPlayingScreen": "Sekarang memutar layar",
+  "uiTrackRatings": "Rating trek",
+  "uiSwipeAcrossTheStarsToRateIn399": "Swipe melintasi bintang-bintang untuk menilai dalam langkah-langkah setengah bintang. Ukuran berlaku dalam pemain dan informasi trek.",
+  "uiPageSettings": "Pengaturan halaman",
+  "uiHomePage": "Laman",
+  "uiGenrePage": "Halaman genre",
+  "uiPlaylistPage": "Halaman daftar putar",
+  "uiSearchPage": "Cari halaman",
+  "uiAdvanced": "Lanjutan",
+  "uiAdvancedInterfaceSettings": "Pengaturan antar muka tingkat lanjut",
+  "uiDecodingAndTranscoding": "Decoding dan transkode",
+  "uiAudioFocus": "Fokus audio",
+  "uiNotificationAndMediaSessionButtons": "Tombol pemberitahuan dan sesi media",
+  "uiAdvancedPlaybackSettings": "Pengaturan putar lanjutan",
+  "uiOfflineCacheAndDownloads": "Luring, cache, dan pengunduhan",
+  "uiMedia": "Media",
+  "uiOfflineServerPlayback": "Pemutaran server offline",
+  "uiImages": "Gambar",
+  "uiLocalTracksWorkWithoutInternetServerDownloads": "Trek lokal bekerja tanpa internet. Pengunduhan server dan manajemen cache akan segera datang.",
+  "uiAdvancedSettings": "Pengaturan tingkat lanjut",
+  "uiMiscellaneous": "Lain-lain",
+  "uiMediaSources": "Sumber media",
+  "uiSyncManager": "Manajer penyelarasan",
+  "uiUpdating": "Memperbarui...",
+  "uiRefreshLibrary": "Segarkan pustaka",
+  "uiRefreshNavidromeSources": "Refresh Navidrome sumber",
+  "uiOfflineFiles": "Berkas offline",
+  "uiGeneratedFiles": "Berkas yang dihasilkan",
+  "uiLanguages": "Bahasa",
+  "uiAbout": "Tentang",
+  "uiRateTheApp": "Laju aplikasi",
+  "uiContactSupport": "Dukungan kontak",
+  "uiWhatsNew": "Apa yang baru",
+  "uiWhatsNewInAura": "Apa yang baru di Aura",
+  "uiLocalAndNavidromeLibrariesHalfstarRatingsHistory": "Lokal dan Navidrome perpustakaan-Half-star peringkat meragukan sejarah, daftar putar, dan favorit, karya Crossfade, timer tidur, dan Android equalizer × Tampilkan hingga 144 Hz",
+  "uiAboutAura": "Sekitar Aura",
+  "uiAPlayerForYourLocalMusicAnd": "Seorang pemain untuk musik lokal Anda dan Navidrome perpustakaan.",
+  "uiComingSoon": "Segera hadir",
+  "uiMusicFolders": "Folder musik",
+  "uiChooseMusicFoldersOnlyFoldersWhereThe": "Pilih folder musik. Hanya folder tempat berkas audio ditemukan.",
+  "uiAllFolders": "Semua folder",
+  "uiAutomaticallyIncludesFoldersFoundInFutureScans": "Otomatis menyertakan folder yang ditemukan dalam pemindaian di masa depan.",
+  "uiNoTracksFoundInTheLastScan": "Tak ditemukan trek pada pemindaian terakhir",
+  "uiYourLibraryWillStayEmptyUntilYou": "Pustaka Anda akan tetap kosong sampai Anda memilih folder.",
+  "uiSaveSelection": "Simpan pilihan",
+  "secondsValue": "{count, plural, one{1 detik} other{{count} detik}}",
+  "@secondsValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "secondsShort": "{value} s",
+  "@secondsShort": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "restoreConfirmation": "{change}\n\n{settings}\n\nPutar ulang akan jeda dan timer tidur akan dibatalkan. Antrian saat ini disimpan.",
+  "@restoreConfirmation": {
+    "placeholders": {
+      "change": {
+        "type": "String"
+      },
+      "settings": {
+        "type": "String"
+      }
+    }
+  },
+  "backupCreated": "Dibuat: {date}",
+  "@backupCreated": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "backupStats": "Favorit: {favorites} Rating: {ratings}\nPlaylist: {playlists} Trek sejarah: {history}",
+  "@backupStats": {
+    "placeholders": {
+      "favorites": {
+        "type": "int"
+      },
+      "ratings": {
+        "type": "int"
+      },
+      "playlists": {
+        "type": "int"
+      },
+      "history": {
+        "type": "int"
+      }
+    }
+  },
+  "backupMatches": "Dikenal: {matched} Dipetakan ulang: {remapped}\nTidak tersedia atau ambigu: {unavailable}",
+  "@backupMatches": {
+    "placeholders": {
+      "matched": {
+        "type": "int"
+      },
+      "remapped": {
+        "type": "int"
+      },
+      "unavailable": {
+        "type": "int"
+      }
+    }
+  },
+  "tracksInLibrary": "{count, plural, one{1 lagu di perpustakaan Anda.} other{{count} trek di perpustakaan Anda.}}",
+  "@tracksInLibrary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sourcesSaved": "Sumber disimpan. {count, plural, one{1 lagu di perpustakaan Anda.} other{{count} trek di perpustakaan Anda.}}",
+  "@sourcesSaved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tracksInFolders": "{count, plural, one{1 trek dalam folder yang dipilih.} other{{count} trek dalam folder yang dipilih.}}",
+  "@tracksInFolders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "allFoldersSummary": "Semua folder {count}",
+  "@allFoldersSummary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectedFoldersSummary": "Folder yang dipilih: {folders} Trek: {tracks}",
+  "@selectedFoldersSummary": {
+    "placeholders": {
+      "folders": {
+        "type": "int"
+      },
+      "tracks": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryRhythm": "{count} trek, pada irama Anda.",
+  "@libraryRhythm": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryTrackCount": "Trek di perpustakaan: {count}",
+  "@libraryTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "backToPage": "Kembali ke {page}",
+  "@backToPage": {
+    "placeholders": {
+      "page": {
+        "type": "String"
+      }
+    }
+  },
+  "groupCount": "{count, plural, one{1 butir} other{{count} item}}",
+  "@groupCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "foundTracks": "{count, plural, one{1 trek ditemukan} other{trek {count} ditemukan}}",
+  "@foundTracks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "disconnectSource": "“{name}\"akan dihapus dari AuraBerkas di server disimpan.",
+  "@disconnectSource": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "visibleTracks": "Menampilkan {visible} dari {total} Jejak.",
+  "@visibleTracks": {
+    "placeholders": {
+      "visible": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "queueCount": "Antrian {count}",
+  "@queueCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playQueueCount": "Antrian putar {count}",
+  "@playQueueCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "currentTrackArtist": "Trek saat ini {artist}",
+  "@currentTrackArtist": {
+    "placeholders": {
+      "artist": {
+        "type": "String"
+      }
+    }
+  },
+  "removeFromQueue": "Hapus {title} dari antrian",
+  "@removeFromQueue": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "moveTrack": "Bergerak {title}",
+  "@moveTrack": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "activeTimer": "Aktif: {value}",
+  "@activeTimer": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "minutesValue": "{count, plural, one{1 menit} other{{count} menit}}",
+  "@minutesValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "minutesShort": "{count} menit",
+  "@minutesShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playerVolume": "Volume pemutar: {value}%",
+  "@playerVolume": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "playbackSpeed": "Kecepatan: {value} ×",
+  "@playbackSpeed": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "yourRating": "Peringkat Anda: {rating} dari 5",
+  "@yourRating": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "ratingOutOfFive": "{rating} dari 5",
+  "@ratingOutOfFive": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "giveStars": "{count, plural, one{Berikan 1 bintang} other{Berikan {count} bintang}}",
+  "@giveStars": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ratingDescription": "Peringkat: {rating} dari 5",
+  "@ratingDescription": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumStars": "Setidaknya {rating} bintang",
+  "@minimumStars": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumRating": "Peringkat {rating}",
+  "@minimumRating": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "savedTrackCount": "{count, plural, one{Trek tersimpan 1} other{{count} menyimpan trek}}",
+  "@savedTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "availableTrackCount": "{count, plural, one{Trek 1 tersedia} other{{count} trek tersedia}}",
+  "@availableTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "missingTrackCount": "Trek tidak tersedia: {count}. Mereka berada di luar folder yang dipilih atau tidak lagi tersedia. Referensi mereka disimpan.",
+  "@missingTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectedTrackCount": "{count, plural, one{Satu trek yang dipilih} other{{count} trek yang dipilih}}",
+  "@selectedTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "searchResultCount": "{count, plural, one{1 hasil} other{{count} hasil}}",
+  "@searchResultCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "removeRecentSearch": "Hapus pencarian {query}",
+  "@removeRecentSearch": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "tracksInSelection": "{count, plural, one{1 trek dalam pemilihan} other{{count} trek dalam pilihan}}",
+  "@tracksInSelection": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "languageTitle": "Bahasa aplikasi",
+  "languageSystem": "Ikuti sistem",
+  "languageHelp": "Applies segera. Anda trek, artis, folder dan nama daftar putar tidak diterjemahkan.",
+  "languageSaveError": "Tidak dapat menyimpan bahasa. pilihan sebelumnya disimpan.",
+  "uiBass": "Bas",
+  "mediaStop": "Hentikan",
+  "mediaSeekBack": "Mundur 10 detik",
+  "mediaSeekForward": "Maju 10 detik"
+}

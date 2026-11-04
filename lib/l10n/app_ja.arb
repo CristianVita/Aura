@@ -1,0 +1,780 @@
+{
+  "@@locale": "ja",
+  "appearanceTitle": "テーマ、フォント、色",
+  "themeLabel": "テーマ",
+  "themeSystem": "システムに従う",
+  "themeLight": "ライトライト",
+  "themeDark": "ダーク",
+  "themeOled": "OLED 黒",
+  "accentLabel": "アクセントカラー",
+  "accentMint": "ミント",
+  "accentBlue": "ブルージュ",
+  "accentViolet": "バイオレット",
+  "accentRose": "ローズ",
+  "accentAmber": "ゴールド",
+  "accentTeal": "テール",
+  "fontLabel": "トピックス",
+  "fontSystem": "システムフォント",
+  "fontSerif": "セリフ",
+  "fontMonospace": "等幅",
+  "fontDescription": "フォントは、デバイスで利用可能な家族を使用します。 彼らの外観はプラットフォーム間で異なる場合があります。",
+  "textSizeLabel": "テキストサイズ",
+  "textSizeDescription": "デバイス設定のテキストサイズと組み合わせます。",
+  "previewLabel": "プレビュー",
+  "previewTitle": "あなたの音楽、あなたのリズム",
+  "previewSubtitle": "アルバム、アーティスト、プレイリスト",
+  "previewButton": "再生",
+  "resetAppearance": "デフォルトの外観を復元する",
+  "appearanceSaveError": "外観を保存できませんでした。以前の設定は保存されていました。",
+  "appearanceHelp": "変更は保存され、バックアップに含まれているとすぐに適用されます。",
+  "percentValue": "{value}%",
+  "@percentValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "navigationTitle": "ナビゲーションとスタート画面",
+  "navigationOrder": "タブ注文",
+  "navigationHelp": "ハンドルをドラッグしてタブを並べ替えます。ライブラリと設定は常にアクセス可能です。",
+  "navigationHome": "ホーム",
+  "navigationLibrary": "ライブラリ",
+  "navigationSearch": "検索",
+  "navigationSettings": "設定",
+  "navigationRequired": "必須タブ",
+  "navigationLabels": "タブラベル",
+  "labelsAdaptive": "適応性",
+  "labelsHidden": "アイコンだけ",
+  "labelsSelected": "選択されたタブ",
+  "labelsAlways": "すべて",
+  "labelsHelp": "適応:デスクトップサイドバーの電話とラベルのアイコン。",
+  "navigationStart": "スタート画面",
+  "navigationStartHelp": "アプリが起動する次の時間を適用します。",
+  "libraryLanding": "ライブラリを開くとき",
+  "landingCategories": "カテゴリー",
+  "landingTracks": "曲",
+  "landingAlbums": "アルバム",
+  "landingArtists": "アーティスト",
+  "landingPlaylists": "プレイリスト",
+  "landingFavorites": "お気に入り",
+  "resetNavigation": "デフォルトのナビゲーションを復元する",
+  "navigationSaveError": "ナビゲーションを保存できません。以前の設定は保存されていました。",
+  "navigationPreview": "ナビゲーションプレビュー",
+  "libraryPageTitle": "図書館ページ",
+  "albumPageTitle": "アルバムページ",
+  "artistPageTitle": "アーティストページ",
+  "categoryOrder": "カテゴリーと注文",
+  "categoryHelp": "ハンドルをドラッグして並べ替えます。 少なくとも1つのカテゴリが表示されます。 非表示カテゴリは音楽を削除しません。",
+  "pageColumns": "携帯電話上のコラム",
+  "pageColumnsHelp": "より広い画面が自動的に列を追加します。大きなテキストは、読みやすさの列数を減らすことができます。",
+  "pageLayout": "レイアウト",
+  "layoutList": "プロフィール",
+  "layoutGrid": "カバー格子",
+  "pageSort": "順序を分類して下さい",
+  "sortName": "名称 A-Z",
+  "sortNameDescending": "名称 Z-A",
+  "sortTrackCount": "追跡カウント",
+  "pageSummary": "開幕したページのアートワークと要約",
+  "pageSummaryHelp": "グループで最初のトラックの利用可能なアートワークを使用します。",
+  "pageReset": "このページをリセットする",
+  "pageSaveError": "ページの保存はできません。以前の設定は保存されていました。",
+  "librarySources": "ソース",
+  "unknownGroup": "未知の",
+  "groupTracks": "{count, plural, one{1 トラック} other{{count} トラック}}",
+  "groupMinutes": "合計{minutes}分",
+  "@groupTracks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@groupMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "uiTransitions": "トランジション",
+  "uiEqualizer": "エクアライザー",
+  "uiMediaControls": "メディアコントロール",
+  "uiHeadsetButtons": "ヘッドセットボタン",
+  "uiNotificationButtons": "通知ボタン",
+  "uiCrossfade": "クロスフェード",
+  "uiOff": "オフ",
+  "uiOverlapsTheEndOfATrackWith": "自動再生中に次のスタートでトラックの終了をオーバーラップします。非常に短いトラックと1つのトラックを繰り返すと、クロスフェードを使用しません。",
+  "uiPlayAndPause": "遊びと一時停止",
+  "uiNoFade": "フェードなし",
+  "uiNotificationAndLockScreen": "通知およびロック スクリーン",
+  "uiSeekButtons10Seconds": "Seekボタン ±10秒",
+  "uiReplacesPreviousnextWithSeekingInTheNotification": "前/次を通知で探して置き換えます。",
+  "uiShowStopButton": "停止ボタンを表示する",
+  "uiHeadsetAndMediaButtons": "ヘッドセットとメディアボタン",
+  "uiSeek10SecondsFromHeadset": "ヘッドセットから±10秒",
+  "uiPreviousnextButtonsSeekWithinTheCurrentTrack": "前の/次のボタンは、現在のトラック内で検索します。 センターボタンは再生/マウスを保持します。",
+  "uiKeepPausedWhenChangingTracks": "トラック交換時にパユースをキープ",
+  "uiNotificationAndHeadsetControlsAreAvailableOn": "通知およびヘッドセット制御はAndroidで利用できます。システムによっては通知ボタンを並べ替えます。",
+  "uiTheEqualizerIsCurrentlyAvailableOnAndroid": "現在、イコライザーはAndroidで利用可能です。",
+  "uiSelectATrackAndReopenTheEqualizer": "トラックを選択し、イコライザーを再オープンします。まだ使用できない場合は、デバイスは必要なオーディオ効果を露出しません。",
+  "uiAndroidEqualizer": "Androidイコライザー",
+  "uiEnableEqualizer": "イコライザーを有効にする",
+  "uiFlat": "フラット",
+  "uiVoice": "ボイス",
+  "uiWhenBoostingABandAuraAutomaticallyReduces": "バンドを後押しすると、Auraはヘッドルームを離れ、歪みを制限する全体的なレベルを自動的に減らします。",
+  "uiAudioPlayback": "オーディオ再生",
+  "uiPlaybackIsUnavailable": "再生は利用できません。",
+  "uiUnknownArtist": "不明なアーティスト",
+  "uiUntitledTrack": "タイトルなしの曲",
+  "uiTheFileIsNotAValidAura": "ファイルが有効なAuraバックアップまたは破損していません。",
+  "uiChooseAnAuraBackup": "Auraバックアップを選択します",
+  "uiSaveAuraBackup": "保存 Aura バックアップ",
+  "uiBackupSaved": "バックアップ保存。",
+  "uiCouldNotSaveTheBackupAuraData": "バックアップを保存できませんでした。Auraデータは変更できませんでした。",
+  "uiTheFileIsNotAValidAura82": "ファイルが有効なAuraバックアップではなく、破損または4 MBを超える。",
+  "uiRestoreBackup": "バックアップを復元する?",
+  "uiYourCurrentFavoritesRatingsPlaylistsAndHistory": "現在のお気に入り、評価、プレイリスト、履歴が置換されます。",
+  "uiDataWillBeMergedExistingRatingsAnd": "データはマージされます。評価とプレイリストの名前は優先されます。",
+  "uiSettingsWillAlsoBeImported": "設定もインポートされます。",
+  "uiYourCurrentSettingsWillBeKept": "現在の設定は保存されます。",
+  "uiCancel": "キャンセル",
+  "uiReplaceAndRestore": "置換と復元",
+  "uiRestore": "リストア",
+  "uiBackupRestoredUnavailableTracksAreKeptAs": "バックアップ復元。利用可能なトラックは参照として保持されます。",
+  "uiDataRecoveryMustFinishBeforeContinuing": "データの回復は続行する前に終了しなければなりません。",
+  "uiRestoreFailedYourPreviousDataWasKept": "復元が失敗しました。以前のデータが保存されました。",
+  "uiPreviousDataRecovered": "以前のデータが回復しました。",
+  "uiCouldNotRecoverTheDataYetTry": "まだデータを回復できません。 もう一度試して、Auraを再起動してください。",
+  "uiBackupAndRestore": "バックアップと復元",
+  "uiDataRecoveryIsRequiredBeforeContinuingAura": "継続する前にデータ復旧が必要です。 Auraは、ローカルジャーナルに以前の状態を保持しました。",
+  "uiTryRecovery": "回復を試みて下さい",
+  "uiKeepWhatYouHaveOrganized": "あなたが整理したことを保って下さい",
+  "uiBackupsIncludeFavoritesRatingsPlaylistsHistoryPlayback": "バックアップには、お気に入り、評価、プレイリスト、履歴、再生設定、ライブラリフィルタが含まれます。 オーディオファイル、ソース、選択したフォルダは含まれていません。",
+  "uiExportBackup": "エクスポートバックアップ",
+  "uiChooseABackupToRestore": "バックアップを選択して復元します",
+  "uiMissingReferencesAreKeptWithoutAssigningRatings": "参照を見逃すと、他の曲への評価を割り当てることなく保持されます。 マッチングソースを追加した後、バックアップを再インポートできます。",
+  "uiReplaceCurrentData": "現在のデータを置換する",
+  "uiOffMergeDataAndKeepExistingRatings": "オフ:データをマージし、既存の評価を保持します。",
+  "uiRestoreSettingsToo": "設定を復元する",
+  "uiReviewAndRestore": "レビューと復元",
+  "uiHelloNightOwl": "こんばんは、夜更かしさん 🦉",
+  "uiGoodMorning": "おはようございます 🌅",
+  "uiGoodAfternoon": "こんにちは ☀️",
+  "uiGoodEvening": "こんばんは 🌆",
+  "uiChooseYourMusicFolder": "あなたの音楽フォルダを選択してください",
+  "uiAuraCouldNotRecoverAnInterruptedRestore": "Auraは、中断された復元を回復できませんでした。 以前のデータはローカルジャーナルに保存されています。 アプリを閉じて再度試してみてください。",
+  "uiCouldNotLoadOrSaveListeningHistory": "リスニング履歴と最後の再生をロードまたは保存することはできません。",
+  "uiCouldNotApplyPlaybackSettingsOrThe": "再生設定やスリープタイマーは適用できません。",
+  "uiCouldNotLoadTheLibraryScanYour": "ライブラリをロードできません。もう一度音楽をスキャンしてください。",
+  "uiMusicOnYourPC": "あなたの上の音楽 PC",
+  "uiMusicOnYourPhone": "あなたの携帯電話で音楽",
+  "uiNavidromeServer": "Navidrome サーバー",
+  "uiURLAndUserAccount": "URL ユーザーアカウント",
+  "uiCouldNotLoadMusicSources": "音楽ソースをロードできませんでした。",
+  "uiAddAFolderFromYourPC": "あなたのPCからフォルダを追加します",
+  "uiChooseVisibleFolders": "可視フォルダを選択する",
+  "uiRemoveAFolderFromTheLibrary": "ライブラリからフォルダーを削除します。",
+  "uiFilesStayOnYourPC": "ファイルがPCにとどまります。",
+  "uiYouHaveNotAddedAnyFoldersYet": "フォルダがまだ追加されていません。",
+  "uiRemoveFromLibrary": "ライブラリから削除",
+  "uiFolderRemovedFromTheLibraryFilesStayed": "ライブラリから削除されたフォルダ。 ファイルがPCに留まっています。",
+  "uiCouldNotRemoveTheFolderFromThe": "ライブラリからフォルダを削除できません。",
+  "uiCouldNotReadTheFolderCheckThat": "フォルダを読んでいない。 利用可能なことを確認してください。",
+  "uiCouldNotSaveSourcesTryAgain": "ソースを保存できません。もう一度お試しください。",
+  "uiCouldNotPlayTheTrackTryScanning": "トラックを再生できません。もう一度スキャンしてみてください。",
+  "uiNoAudioFilesFoundOnTheDevice": "デバイスに見られるオーディオファイルはありません。",
+  "uiAllowMusicAccessToScanYourLibrary": "ライブラリをスキャンする音楽アクセスを許可します。",
+  "uiCouldNotScanYourMusicTryAgain": "あなたの音楽をスキャンできませんでした。もう一度お試しください。",
+  "uiLibraryScanningIsCurrentlyAvailableOnAndroid": "ライブラリのスキャンは現在、Android で利用可能です。",
+  "uiAProblemOccurredWhileScanningMusic": "音楽をスキャンする際に問題が発生しました。",
+  "uiWhereIsYourMusic": "あなたの音楽はどこにありますか?",
+  "uiFavoriteTracks": "好きなトラック",
+  "uiAllFavorites": "すべてのお気に入り",
+  "uiBrowse": "サイトマップ",
+  "uiRecentlyPlayed": "最近プレイ",
+  "uiSeeAll": "すべてを見る",
+  "uiYourLibrary": "あなたのライブラリ",
+  "uiSTARTWITHASOURCE": "ソースから始める",
+  "uiAddYourMusic": "音楽を追加",
+  "uiPCOrNavidromeServer": "PCかNavidromeサーバー",
+  "uiPhoneOrNavidromeServer": "電話またはNavidromeサーバー",
+  "uiScanning": "スキャン...",
+  "uiAddASource": "ソースを追加する",
+  "uiLibrary": "ライブラリ",
+  "uiYourListeningHistoryWillAppearHere": "リスニング履歴がここに表示されます。",
+  "uiYOURCOLLECTION": "あなたのコレクション",
+  "uiLibrary178": "ライブラリ",
+  "uiNoTracksMatchTheSelectedFilters": "選択したフィルタに一致するトラックはありません。",
+  "uiChooseMusicFoldersToSeeTracksIn": "ライブラリ内のトラックを見るために音楽フォルダを選択します。",
+  "uiChangeFilters": "フィルターの変更",
+  "uiChooseFolders": "フォルダを選択",
+  "uiScanAgain": "再びスキャン",
+  "uiNoTracksMatchTheSelectedRating": "選択した評価に一致するトラックはありません。",
+  "uiCouldNotResumeTheTrackTrySelecting": "トラックを再開できません。もう一度選択してください。",
+  "uiUnknownDuration": "未知の持続期間",
+  "uiTrackInformation": "情報の追跡",
+  "uiClose": "閉じる",
+  "uiArtist": "アーティスト",
+  "uiAlbum": "アルバム",
+  "uiUnknownAlbum": "未知のアルバム",
+  "uiDuration": "スケジュール",
+  "uiFolder": "フォルダ",
+  "uiUnknownFolder": "未知のフォルダ",
+  "uiPause": "一時停止",
+  "uiNextTrack": "次のトラック",
+  "uiTheQueueIsEmpty": "キューは空です",
+  "uiPreviousTrack": "前のトラック",
+  "uiEnterTheHTTPSServerAddressWithoutA": "ユーザー名、パスワード、またはURLパラメータなしでHTTPSサーバーアドレスを入力します。",
+  "uiEnterTheSourceNameUsernameAndPassword": "ソース名、ユーザー名、パスワードを入力します。",
+  "uiTheServerDidNotRespondCorrectlyCheck": "サーバが正しく応答しませんでした。アドレスとNavidromeアクセスを確認してください。",
+  "uiTheServerResponseIsTooLarge": "サーバの応答が大きすぎます。",
+  "uiCouldNotReachTheServerCheckYour": "サーバに到達できません。接続、アドレス、HTTPS証明書をご確認ください。",
+  "uiAuthenticationFailedCheckYourUsernameAndPassword": "認証が失敗しました。ユーザー名とパスワードを確認してください。",
+  "uiNavidromeRejectedTheRequestCheckTheAccounts": "Navidrome リクエストを拒否しました。アカウントのライブラリアクセスを確認してください。",
+  "uiTheAddressDidNotReturnAValid": "アドレスが有効なNavidrome応答を返さなかった。",
+  "uiTheServerRepeatedAnAlbumPageYour": "サーバはアルバムページを繰り返しました。以前のライブラリは保存されていました。",
+  "uiInvalidServerTrack": "無効なサーバー トラック。",
+  "uiReconnectTheNavidromeSourceToPlayThis": "このトラックを再生するためにNavidromeソースを再接続します。",
+  "uiCouldNotLoadSavedSourcesTryAgain": "保存されたソースをロードできません。もう一度お試しください。",
+  "uiCouldNotSaveTheSourceChangeTry": "ソース変更を保存できません。もう一度お試しください。",
+  "uiConnectedTheServerLibraryHasBeenLoaded": "接続しました。サーバーライブラリは読み込まれています。",
+  "uiDisconnectThisSource": "このソースを切断しますか?",
+  "uiCancel228": "キャンセル",
+  "uiDisconnect": "接続解除",
+  "uiSourceDisconnected": "ソースが切断されました。",
+  "uiNavidromeSources": "Navidrome ソース",
+  "uiConnectYourLibraryFromANavidromeServer": "ライブラリをNavidromeサーバーからHTTPSに接続します。",
+  "uiLoadingTheServerLibrary": "サーバライブラリの読み込み",
+  "uiReloadSources": "リソースのリロード",
+  "uiLibraryUpdated": "図書館を更新しました。",
+  "uiRefresh": "リフレッシュ",
+  "uiReconnect": "再接続",
+  "uiAddNavidromeServer": "Navidrome サーバーを追加",
+  "uiTracksAppearInLibraryAfterConnectingPlayback": "接続後にライブラリにトラックが現れます。 再生にはインターネットが必要です。 Aura お気に入り、評価、プレイリストはローカルに滞在します。 サーバーライブラリは変更されません。",
+  "uiConnectToNavidrome": "Navidromeに接続する",
+  "uiSourceName": "ソース名",
+  "uiServerURL": "サーバー URL",
+  "uiUsername": "ユーザ名",
+  "uiPassword": "パスワード",
+  "uiCredentialsAreSavedInTheDevicesSecure": "デバイスの安全なストレージに保存されます。",
+  "uiConnect": "ログイン",
+  "uiListeningHistory": "リスニング履歴",
+  "uiClearHistory": "明確な歴史",
+  "uiClearHistory262": "明確な歴史?",
+  "uiTracksFavoritesAndPlaylistsWillStaySaved": "トラック、お気に入り、プレイリストを保存します。",
+  "uiDelete": "削除",
+  "uiPlayedTracksWillAppearHere": "再生されたトラックはここに表示されます。",
+  "uiTracksInYourHistoryAreHiddenBy": "履歴の追跡は、現在のフィルタによって隠されています。",
+  "uiLibraryFilters": "ライブラリフィルタ",
+  "uiMinimumDuration": "最小限の期間",
+  "uiAllDurations": "すべての期間",
+  "ui10Seconds": "10秒",
+  "ui30Seconds": "30秒",
+  "ui1Minute": "1分",
+  "uiTracksWithUnknownDurationStayVisible": "未知の滞在期間が見えるトラック。",
+  "uiHideWhatsAppAndTelegram": "隠す WhatsApp と Telegram",
+  "uiHidesFilesFromTheseAppsFolders": "これらのアプリのフォルダからファイルを隠します。",
+  "uiFiltersOnlyChangeWhatAppearsInYour": "ライブラリに表示されるものだけを変更します。ファイル、プレイリスト、現在のキューが保持されます。",
+  "uiSaving": "保存...",
+  "uiSaveFilters": "フィルターを保存",
+  "uiRepeatOff": "リピートオフ",
+  "uiRepeatEntireQueue": "キュー全体を繰り返す",
+  "uiRepeatCurrentTrack": "現在のトラックを繰り返して下さい",
+  "uiShuffleOn": "シャッフルオン",
+  "uiShuffleOff": "シャッフルオフ",
+  "uiCloseQueue": "キューを閉じる",
+  "uiShuffledOrderTurnOffShuffleToReorder": "シャッフルオーダー。シャッフルをオフにして注文します。",
+  "uiDragTheHandleToChangeTheOrder": "ハンドルをドラッグして注文を変更します。",
+  "uiCouldNotUpdatePlaybackTryAgain": "再生は更新できません。もう一度お試しください。",
+  "uiAtTheEndOfTheTrack": "トラックの最後に",
+  "uiSleepTimer": "睡眠タイマー",
+  "uiCloseSleepTimer": "眠りタイマーを閉じる",
+  "uiFinishTheCurrentTrack": "現在のトラックを終えて下さい",
+  "uiWhenTheTimerEndsWaitForThe": "タイマーが終了したら、トラックがパユース前に終了するのを待ちます。",
+  "uiStartSleepTimer": "睡眠タイマーの開始",
+  "uiStopAtTheEndOfThisTrack": "このトラックの最後に停止",
+  "uiCancelSleepTimer": "睡眠タイマーをキャンセル",
+  "uiPlaybackSettings": "プレイバックの設定",
+  "uiOutputSettings": "出力設定",
+  "uiPlayback": "プレイバック",
+  "uiAutomaticActions": "自動アクション",
+  "uiAudioOutput": "音声出力",
+  "uiOnlyAppliesInAuraSeparatelyFromYour": "お使いの携帯電話またはPCのボリュームとは別にAuraでのみ適用されます。",
+  "uiTimer": "タイマー",
+  "uiAudioOptions": "オーディオオプション",
+  "uiCrossfadeAndPlaypauseFades": "クロスフェードとプレイ/一時フェード",
+  "uiFrequencyBandsAndPresets": "周波数帯域およびプリセット",
+  "uiAvailableOnAndroid": "Androidで利用可能",
+  "uiNotificationLockScreenAndHeadset": "通知、ロック スクリーンおよびヘッドホーン",
+  "uiRestoreDefaultSpeedAndVolume": "デフォルト速度とボリュームの復元",
+  "uiSpeedAndVolumeAreSavedOnThis": "このデバイスで速度とボリュームが保存されます。アプリが完全に閉じられたときにタイマーはキャンセルされます。",
+  "uiSleep": "睡眠 睡眠",
+  "uiUnrated": "免責事項",
+  "uiSwipeToRate": "率へのスワイプ",
+  "uiGive1Star": "1スターを贈る",
+  "uiClearRating": "明確な評価",
+  "uiStarSize": "星のサイズ",
+  "uiSmall": "小さい",
+  "uiMedium": "ミディソン",
+  "uiLarge": "大きいサイズ",
+  "uiSwipeAcrossTheStarsToRateIn": "星を渡るスワイプして、半星のステップを率いましょう。",
+  "uiFilterByRating": "評価によるフィルタ",
+  "uiAllRatings": "すべての評価",
+  "uiOnly5Stars": "5つ星ホテル",
+  "uiSortByRating": "格付けでソート",
+  "uiDefaultOrder": "デフォルト注文",
+  "uiHighestRatingFirst": "最高評価 最初に",
+  "uiLowestRatingFirst": "最低評価 最初に",
+  "uiCouldNotSaveTheChangeTryAgain": "変更を保存できません。もう一度お試しください。",
+  "uiNewPlaylist": "新しいプレイリスト",
+  "uiRenamePlaylist": "プレイリストの名前を変更する",
+  "uiPlaylistName": "プレイリスト名",
+  "uiSave": "保存",
+  "uiRemoveFromFavorites": "お気に入りから削除する",
+  "uiAddToFavorites": "お気に入りに追加",
+  "uiAddToPlaylist": "プレイリストに追加",
+  "uiTrackIsAlreadyInThisPlaylist": "すでにこのプレイリストにトラックが",
+  "uiTrackAddedToPlaylist": "プレイリストに追加されるトラック。",
+  "uiCouldNotLoadFavoritesAndPlaylists": "お気に入りやプレイリストをロードできません。",
+  "uiTryAgain": "もう一度お試しください",
+  "uiBackToPlaylists": "プレイリストに戻る",
+  "uiPlaylistOptions": "プレイリストオプション",
+  "uiDeletePlaylist": "プレイリストを削除しますか?",
+  "uiAudioFilesStayOnThePhone": "音声ファイルは電話にとどまります。",
+  "uiRename": "リネーム",
+  "uiDeletePlaylist363": "プレイリストを削除",
+  "uiCreateYourFirstPlaylistWithOrFrom": "+ またはトラックのメニューから最初のプレイリストを作成します。",
+  "uiAddTracks": "トラックの追加",
+  "uiATrackIsOutsideTheSelectedFolders": "選択したフォルダの外にあるか、もう利用できません。その参照は保持されます。",
+  "uiPlayAll": "遊ぶ すべて",
+  "uiTapATracksHeartToSaveIt": "トラックの心をタップして、ここに保存します。",
+  "uiAddTracksToThisPlaylist": "このプレイリストにトラックを追加します。",
+  "uiRemoveFromPlaylist": "プレイリストから削除",
+  "uiSearchForATrack": "トラックを探す",
+  "uiTitle": "タイトル",
+  "uiSearchYourMusic": "あなたの音楽を検索",
+  "uiClearSearch": "明確な検索",
+  "uiFavoritesOnly": "お気に入り",
+  "uiYOURLIBRARYISEMPTY": "あなたの図書館はコミュニティです",
+  "uiAddMusic": "音楽を追加",
+  "uiAddASourceToSearchYourCollection": "コレクションを検索するソースを追加します。",
+  "uiRecentSearches": "最近の検索",
+  "uiSearchForATitleArtistOrAlbum": "タイトル、アーティスト、アルバムを検索します。 投稿された検索は、このセッションのためにここに滞在します。",
+  "uiNoResultsMatchTheSelectedFilters": "選択したフィルタに一致する結果はありません。",
+  "uiAuraSettings": "Aura 設定",
+  "uiOptionsMarkedComingSoonAreNotAvailable": "「近日公開」というオプションはまだ利用できません。このデバイスでアクティブ設定が保存されます。メディアソースのサーバー接続を管理します。",
+  "uiGotIt": "お問い合わせ",
+  "uiHelp": "ヘルプ",
+  "uiInterface": "表示",
+  "uiInterfaceSettings": "インターフェイスの設定",
+  "uiApplicationStyle": "応用様式",
+  "uiGeneral": "一般",
+  "uiMediaLists": "メディアリスト",
+  "uiNowPlayingScreens": "今すぐ画面を再生",
+  "uiNowPlayingScreen": "再生画面",
+  "uiTrackRatings": "トラックの評価",
+  "uiSwipeAcrossTheStarsToRateIn399": "星を渡るスワイプして半星のステップを率いましょう。 サイズはプレーヤーに適用され、情報を追跡します。",
+  "uiPageSettings": "ページ設定",
+  "uiHomePage": "サイトマップ",
+  "uiGenrePage": "ジャンルのページ",
+  "uiPlaylistPage": "プレイリストページ",
+  "uiSearchPage": "サイトマップ",
+  "uiAdvanced": "詳細設定",
+  "uiAdvancedInterfaceSettings": "高度なインターフェイス設定",
+  "uiDecodingAndTranscoding": "解読とトランスコーディング",
+  "uiAudioFocus": "オーディオフォーカス",
+  "uiNotificationAndMediaSessionButtons": "通知とメディアセッションボタン",
+  "uiAdvancedPlaybackSettings": "高度な再生設定",
+  "uiOfflineCacheAndDownloads": "オフライン、キャッシュ、ダウンロード",
+  "uiMedia": "メディア",
+  "uiOfflineServerPlayback": "オフラインサーバーの再生",
+  "uiImages": "イメージ",
+  "uiLocalTracksWorkWithoutInternetServerDownloads": "ローカルトラックはインターネットなしで動作します。 サーバーのダウンロードとキャッシュ管理がすぐに行われます。",
+  "uiAdvancedSettings": "高度な設定",
+  "uiMiscellaneous": "ツイート",
+  "uiMediaSources": "メディア情報",
+  "uiSyncManager": "シンクマネージャー",
+  "uiUpdating": "アップデート",
+  "uiRefreshLibrary": "リフレッシュライブラリ",
+  "uiRefreshNavidromeSources": "リフレッシュNavidromeソース",
+  "uiOfflineFiles": "オフラインファイル",
+  "uiGeneratedFiles": "生成されたファイル",
+  "uiLanguages": "言語",
+  "uiAbout": "このアプリについて",
+  "uiRateTheApp": "アプリの評価",
+  "uiContactSupport": "コンタクトサポート",
+  "uiWhatsNew": "新着情報",
+  "uiWhatsNewInAura": "Auraの新機能",
+  "uiLocalAndNavidromeLibrariesHalfstarRatingsHistory": "ローカルとNavidromeライブラリ • ハーフスターの評価 • 歴史, プレイリストとお気に入り • クロスフェード, 睡眠タイマーとAndroidイコライザ • 最大144 Hzを表示",
+  "uiAboutAura": "Auraについて",
+  "uiAPlayerForYourLocalMusicAnd": "ローカル音楽とNavidromeライブラリのプレーヤー。",
+  "uiComingSoon": "近日公開",
+  "uiMusicFolders": "音楽フォルダ",
+  "uiChooseMusicFoldersOnlyFoldersWhereThe": "音楽フォルダを選択します。 デバイスが見つかったオーディオファイルが表示されるフォルダのみ。",
+  "uiAllFolders": "すべてのフォルダ",
+  "uiAutomaticallyIncludesFoldersFoundInFutureScans": "将来のスキャンで見つかったフォルダを自動的に含んでいます。",
+  "uiNoTracksFoundInTheLastScan": "最後のスキャンで見つかったトラックなし",
+  "uiYourLibraryWillStayEmptyUntilYou": "フォルダを選択すると、ライブラリが空のままになります。",
+  "uiSaveSelection": "選択を保存",
+  "secondsValue": "{count, plural, one{1秒目} other{{count}秒}}",
+  "@secondsValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "secondsShort": "{value}のs",
+  "@secondsShort": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "restoreConfirmation": "{change}\n\n{settings}\n\nPlaybackは一時停止し、睡眠のタイマーはキャンセルされます。あなたの現在の列は保たれます。",
+  "@restoreConfirmation": {
+    "placeholders": {
+      "change": {
+        "type": "String"
+      },
+      "settings": {
+        "type": "String"
+      }
+    }
+  },
+  "backupCreated": "作成した: {date}",
+  "@backupCreated": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "backupStats": "お気に入り: {favorites} · 評価: {ratings}\n 再生リスト: {playlists} · 歴史トラック: {history}",
+  "@backupStats": {
+    "placeholders": {
+      "favorites": {
+        "type": "int"
+      },
+      "ratings": {
+        "type": "int"
+      },
+      "playlists": {
+        "type": "int"
+      },
+      "history": {
+        "type": "int"
+      }
+    }
+  },
+  "backupMatches": "認識される: {matched} · 反映される: {remapped}\nUnavailableかあいまい: {unavailable}",
+  "@backupMatches": {
+    "placeholders": {
+      "matched": {
+        "type": "int"
+      },
+      "remapped": {
+        "type": "int"
+      },
+      "unavailable": {
+        "type": "int"
+      }
+    }
+  },
+  "tracksInLibrary": "{count, plural, one{ライブラリの1トラック。} other{{count} はライブラリで追跡します。}}",
+  "@tracksInLibrary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sourcesSaved": "保存されたソース。 {count, plural, one{ライブラリの1トラック。} other{{count} はライブラリで追跡します。}}",
+  "@sourcesSaved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tracksInFolders": "{count, plural, one{選択したフォルダ内の1トラック。} other{{count}は選択したフォルダに追跡します。}}",
+  "@tracksInFolders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "allFoldersSummary": "すべてのフォルダ・トラック:{count}",
+  "@allFoldersSummary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectedFoldersSummary": "選択したフォルダー: {folders} ・ トラック: {tracks}",
+  "@selectedFoldersSummary": {
+    "placeholders": {
+      "folders": {
+        "type": "int"
+      },
+      "tracks": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryRhythm": "{count}トラック、リズムで。",
+  "@libraryRhythm": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryTrackCount": "ライブラリのトラック: {count}",
+  "@libraryTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "backToPage": "戻る {page}",
+  "@backToPage": {
+    "placeholders": {
+      "page": {
+        "type": "String"
+      }
+    }
+  },
+  "groupCount": "{count, plural, one{1 件} other{{count} アイテム}}",
+  "@groupCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "foundTracks": "{count, plural, one{見つかった1トラック} other{見つかった{count}トラック}}",
+  "@foundTracks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "disconnectSource": "「{name}」はAuraから削除されます。 サーバ上のファイルは保存されます。",
+  "@disconnectSource": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "visibleTracks": "{total}のトラックの{visible}を表示中。",
+  "@visibleTracks": {
+    "placeholders": {
+      "visible": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "queueCount": "キュー・{count}",
+  "@queueCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playQueueCount": "プレイバックキュー・{count}",
+  "@playQueueCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "currentTrackArtist": "現在のトラック・{artist}",
+  "@currentTrackArtist": {
+    "placeholders": {
+      "artist": {
+        "type": "String"
+      }
+    }
+  },
+  "removeFromQueue": "キューから{title}を削除",
+  "@removeFromQueue": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "moveTrack": "移動 {title}",
+  "@moveTrack": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "activeTimer": "アクティブ: {value}",
+  "@activeTimer": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "minutesValue": "{count, plural, one{1分} other{{count} 分}}",
+  "@minutesValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "minutesShort": "{count} 分",
+  "@minutesShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playerVolume": "プレーヤーの容積: {value}%",
+  "@playerVolume": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "playbackSpeed": "速度: {value}×",
+  "@playbackSpeed": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "yourRating": "あなたの評価: {rating} から 5",
+  "@yourRating": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "ratingOutOfFive": "{rating} から 5",
+  "@ratingOutOfFive": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "giveStars": "{count, plural, one{1スターを贈る} other{{count} つ星ホテル}}",
+  "@giveStars": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ratingDescription": "評価: {rating} 5のうち",
+  "@ratingDescription": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumStars": "少なくとも {rating} つ星ホテル",
+  "@minimumStars": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumRating": "評価 ≥ {rating}",
+  "@minimumRating": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "savedTrackCount": "{count, plural, one{1 保存されたトラック} other{{count} 保存トラック}}",
+  "@savedTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "availableTrackCount": "{count, plural, one{1つの利用できるトラック} other{{count}利用できるトラック}}",
+  "@availableTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "missingTrackCount": "利用できないトラック:{count}。それらは選択されたフォルダの外にあるか、または利用できなくなった。彼らの参照は保たれます。",
+  "@missingTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectedTrackCount": "{count, plural, one{1 選択したトラック} other{{count} 選択したトラック}}",
+  "@selectedTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "searchResultCount": "{count, plural, one{1 結果} other{{count} 結果}}",
+  "@searchResultCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "removeRecentSearch": "検索を削除します。 {query}",
+  "@removeRecentSearch": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "tracksInSelection": "{count, plural, one{選択の1トラック} other{{count}は選択のトラックを追跡します}}",
+  "@tracksInSelection": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "languageTitle": "アプリの言語",
+  "languageSystem": "システムに従う",
+  "languageHelp": "すぐに適用して下さい。あなたのトラック、芸術家、ホールダーおよびプレイリストの名前は翻訳されません。",
+  "languageSaveError": "言語を保存できません。以前の選択肢は保存されていました。",
+  "uiBass": "低音",
+  "mediaStop": "停止",
+  "mediaSeekBack": "10秒戻る",
+  "mediaSeekForward": "10秒進む"
+}

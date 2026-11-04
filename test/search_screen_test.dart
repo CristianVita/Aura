@@ -71,7 +71,7 @@ void main() {
       await tester.ensureVisible(find.widgetWithText(FilterChip, 'Artist'));
       await tester.tap(find.widgetWithText(FilterChip, 'Artist'));
       await tester.pumpAndSettle();
-      expect(find.text('1 rezultate'), findsOneWidget);
+      expect(find.text('1 rezultat'), findsOneWidget);
       expect(find.text('Mountain'), findsNothing);
       await tester.tap(find.byType(Switch));
       await tester.pumpAndSettle();

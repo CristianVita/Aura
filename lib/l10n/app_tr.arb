@@ -1,0 +1,780 @@
+{
+  "@@locale": "tr",
+  "appearanceTitle": "Tema, font ve renkler",
+  "themeLabel": "Tema",
+  "themeSystem": "Sistemi izle",
+  "themeLight": "Işık Işığı",
+  "themeDark": "Dark Dark",
+  "themeOled": "OLED siyah",
+  "accentLabel": "Acent renk",
+  "accentMint": "Nane yeşili",
+  "accentBlue": "Blue Blue Blue Blue",
+  "accentViolet": "Mor",
+  "accentRose": "Rose Rose",
+  "accentAmber": "Gold Gold Gold Gold",
+  "accentTeal": "Turkuaz",
+  "fontLabel": "Font Font Font",
+  "fontSystem": "Sistem tipi",
+  "fontSerif": "Serifli",
+  "fontMonospace": "Eş aralıklı",
+  "fontDescription": "Fonts, cihazda mevcut aileleri kullanır. görünüşleri platformlarda değişebilir.",
+  "textSizeLabel": "Metin büyüklüğü",
+  "textSizeDescription": "Cihazınızda metin büyüklüğü ile birlikte.",
+  "previewLabel": "Öpün",
+  "previewTitle": "Müzikiniz, ritminiz",
+  "previewSubtitle": "Albümler, sanatçılar ve listeler",
+  "previewButton": "Oynat",
+  "resetAppearance": "Geri yükleme varsayılan görünüm",
+  "appearanceSaveError": "Görünüşü kurtaramazdım. Önceki ayarlarınız tutulacaktı.",
+  "appearanceHelp": "Değişiklikler kurtarıldığı ve yedeklere dahil edildiği sürece uygulanır.",
+  "percentValue": "{value}%",
+  "@percentValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "navigationTitle": "Gezinme ve başlangıç ekranı",
+  "navigationOrder": "Tab sipariş",
+  "navigationHelp": "Yeniden sipariş sekmelerini yeniden sipariş etmeye çalışın. Kütüphane ve Ayarlar her zaman erişilebilir kalır.",
+  "navigationHome": "Ana sayfa",
+  "navigationLibrary": "Kitaplık",
+  "navigationSearch": "Ara",
+  "navigationSettings": "Ayarlar",
+  "navigationRequired": "Gerekli sekme",
+  "navigationLabels": "Tab etiketleri",
+  "labelsAdaptive": "Adaptif",
+  "labelsHidden": "Icons sadece",
+  "labelsSelected": "Seçilmiş sekme",
+  "labelsAlways": "Bütün Bütün Hepsi",
+  "labelsHelp": "Adaptif: masaüstü sidebar'daki bir telefon ve etiket üzerine ikonlar.",
+  "navigationStart": "Başlangıç ekranı",
+  "navigationStartHelp": "Bir dahaki sefere uygulama başlar.",
+  "libraryLanding": "Kütüphaneye açıldığında",
+  "landingCategories": "Kategoriler Kategoriler",
+  "landingTracks": "Parçalar",
+  "landingAlbums": "Albümler",
+  "landingArtists": "Sanatçılar",
+  "landingPlaylists": "Çalma listeleri",
+  "landingFavorites": "Favoriler",
+  "resetNavigation": "Geri yükleme varsayılan navigasyon",
+  "navigationSaveError": "navigasyonu kurtaramaz. Önceki tercihleriniz tutulacaktı.",
+  "navigationPreview": "Navigation önizleme",
+  "libraryPageTitle": "Kütüphane sayfası",
+  "albumPageTitle": "Albüm sayfası",
+  "artistPageTitle": "Sanatçı sayfası",
+  "categoryOrder": "Kategoriler ve sipariş",
+  "categoryHelp": "Yeniden sipariş etmeye çalışmayı bırakın. En azından bir kategori görünür tutun. Hiding kategorileri müzik silmiyor.",
+  "pageColumns": "Bir telefonda köşeler",
+  "pageColumnsHelp": "Wider ekranları otomatik olarak sütunlar ekleyebilir. Büyük metin, okunabilirlik için sütun sayısını azaltabilir.",
+  "pageLayout": "Layoutout",
+  "layoutList": "Liste Listesi",
+  "layoutGrid": "Kapak ızgara",
+  "pageSort": "Sort Order",
+  "sortName": "Ad A-Z",
+  "sortNameDescending": "Ad Z-A",
+  "sortTrackCount": "Parça sayısı",
+  "pageSummary": "Açılan sayfada kapak ve özet",
+  "pageSummaryHelp": "Gruptaki ilk pist için mevcut sanatları kullanın.",
+  "pageReset": "Bu sayfayı sıfırlama",
+  "pageSaveError": "Sayfayı kurtaramazdım. Önceki tercihleriniz tutulacaktı.",
+  "librarySources": "Kaynaklar",
+  "unknownGroup": "Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen",
+  "groupTracks": "{count, plural, one{1 track} other{{count} parçaları}}",
+  "groupMinutes": "{minutes} min toplam",
+  "@groupTracks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@groupMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "uiTransitions": "Geçişler",
+  "uiEqualizer": "Ekolayzer",
+  "uiMediaControls": "Medya kontrolleri",
+  "uiHeadsetButtons": "Headset düğmeleri",
+  "uiNotificationButtons": "Bildirim düğmeleri",
+  "uiCrossfade": "Çapraz geçiş",
+  "uiOff": "Kapalı",
+  "uiOverlapsTheEndOfATrackWith": "Bir sonraki otomatik oyun gerisi sırasında bir takipin sonu. Çok kısa parçalar ve tekrarlanan bir pist haç kullanmaz.",
+  "uiPlayAndPause": "Play and stop",
+  "uiNoFade": "Yok yok",
+  "uiNotificationAndLockScreen": "Bildirim ve kilit ekran ekranı",
+  "uiSeekButtons10Seconds": "Seek düğmeleri ±10 saniye",
+  "uiReplacesPreviousnextWithSeekingInTheNotification": "Bildirimde arama ile önceki / sonraki değiştirin.",
+  "uiShowStopButton": "Show Stop düğmesine",
+  "uiHeadsetAndMediaButtons": "Headset ve medya düğmeleri",
+  "uiSeek10SecondsFromHeadset": "Seek ±10 saniye kafasetten",
+  "uiPreviousnextButtonsSeekWithinTheCurrentTrack": "Önceki / sonraki düğmeler mevcut takip içinde arar. Merkez düğmesi Play/Pause tutar.",
+  "uiKeepPausedWhenChangingTracks": "Değişen parçaları değiştirirken duraklayın",
+  "uiNotificationAndHeadsetControlsAreAvailableOn": "Bildirim ve baş başlangıç kontrolleri Android'de mevcuttur. Bazı sistemler yeniden bildirim düğmeleri.",
+  "uiTheEqualizerIsCurrentlyAvailableOnAndroid": "Eşitleştirici şu anda Android'de mevcuttur.",
+  "uiSelectATrackAndReopenTheEqualizer": "Bir iz seçin ve eşitleyiciyi yeniden açın. Eğer hala mevcut değilse, cihaz gerekli ses etkisini açığa çıkarmaz.",
+  "uiAndroidEqualizer": "Android eşitleştirici",
+  "uiEnableEqualizer": "Enable eşitizer",
+  "uiFlat": "Flat Flat Flat",
+  "uiVoice": "Ses Ses",
+  "uiWhenBoostingABandAuraAutomaticallyReduces": "Bir grubu güçlendirdiğinde, Aura otomatik olarak baş oda ve limit bozulması bırakmak için genel seviyesini azaltır.",
+  "uiAudioPlayback": "Ses oynatma",
+  "uiPlaybackIsUnavailable": "Playback kullanılamaz.",
+  "uiUnknownArtist": "Bilinmeyen sanatçı",
+  "uiUntitledTrack": "Adsız parça",
+  "uiTheFileIsNotAValidAura": "Dosya geçerli bir Aura yedekleme değildir veya bozulmuştur.",
+  "uiChooseAnAuraBackup": "Aura yedekleme seçin",
+  "uiSaveAuraBackup": "Kaydet Aura yedekleme",
+  "uiBackupSaved": "Backup kurtarıldı.",
+  "uiCouldNotSaveTheBackupAuraData": "Yedekten tasarruf edemez. Aura verileri değişmedi.",
+  "uiTheFileIsNotAValidAura82": "Dosya geçerli bir Aura yedekleme değildir, bozulmuş veya 4 MB'yi aşıyor.",
+  "uiRestoreBackup": "Yedek geri yükleme?",
+  "uiYourCurrentFavoritesRatingsPlaylistsAndHistory": "Mevcut favorileriniz, notlar, listeler ve tarih değiştirilecektir.",
+  "uiDataWillBeMergedExistingRatingsAnd": "Veriler birleştirilecektir. Mevcut derecelendirmeler ve liste isimleri öncelik alır.",
+  "uiSettingsWillAlsoBeImported": "Ayarlar da ithal edilecek.",
+  "uiYourCurrentSettingsWillBeKept": "Mevcut ayarlarınız tutulacaktır.",
+  "uiCancel": "İptal",
+  "uiReplaceAndRestore": "Değişim ve geri yükleme",
+  "uiRestore": "geri yükleme geri yükleme",
+  "uiBackupRestoredUnavailableTracksAreKeptAs": "Backup restore edilmiştir. Mevcut olmayan parçalar referans olarak tutulur.",
+  "uiDataRecoveryMustFinishBeforeContinuing": "Data recovery devam etmeden önce bitirmelidir.",
+  "uiRestoreFailedYourPreviousDataWasKept": "Geri yükleme başarısız oldu. Önceki verileriniz tutulacaktı.",
+  "uiPreviousDataRecovered": "Önceki veriler geri alındı.",
+  "uiCouldNotRecoverTheDataYetTry": "Henüz verileri geri kazanamaz veya Aura'i yeniden başlatamaz.",
+  "uiBackupAndRestore": "Yedekleme ve geri yükleme",
+  "uiDataRecoveryIsRequiredBeforeContinuingAura": "Data recovery devam etmeden önce gereklidir. Aura yerel bir dergide önceki durumu tuttu.",
+  "uiTryRecovery": "Kurtarmayı deneyin",
+  "uiKeepWhatYouHaveOrganized": "Ne organize ettiğinizi tut",
+  "uiBackupsIncludeFavoritesRatingsPlaylistsHistoryPlayback": "Backups, favoriler, derecelendirmeler, listeler, tarih, oyun geri dönüşüm ayarları ve kütüphane filtreleri içerir. Audio dosyaları, kaynaklar ve seçilmiş klasörler dahil değildir ve ayrı ayrı ayrı yapılandırılmalıdır.",
+  "uiExportBackup": "İhracat yedekleme",
+  "uiChooseABackupToRestore": "restore etmek için bir yedekleme seçin",
+  "uiMissingReferencesAreKeptWithoutAssigningRatings": "Eksik referanslar diğer şarkılara not vermeden tutulurlar. Uygun kaynakları ekledikten sonra yedeklemeyi yeniden gönderebilirsiniz.",
+  "uiReplaceCurrentData": "Mevcut verileri değiştirmek",
+  "uiOffMergeDataAndKeepExistingRatings": "Off: veri birleştirir ve mevcut derecelendirmeleri tutar.",
+  "uiRestoreSettingsToo": "Geri yükleme ayarları da",
+  "uiReviewAndRestore": "İnceleme ve geri yükleme",
+  "uiHelloNightOwl": "Merhaba, gece kuşu 🦉",
+  "uiGoodMorning": "Günaydın 🌅",
+  "uiGoodAfternoon": "İyi günler ☀️",
+  "uiGoodEvening": "İyi akşamlar 🌆",
+  "uiChooseYourMusicFolder": "Müzik klasörünü seçin",
+  "uiAuraCouldNotRecoverAnInterruptedRestore": "Aura bir kesinti geri yükleme kurtaramadı. Önceki verileriniz yerel dergilerde tutulur. Yakın ve tekrar denemek için uygulamayı yeniden açın.",
+  "uiCouldNotLoadOrSaveListeningHistory": "Tarih ve son oyun geri yükleme veya kurtarmayabilir.",
+  "uiCouldNotApplyPlaybackSettingsOrThe": "Oyun geri yükleme ayarlarını veya uyku zamanlayıcısını uygulamayabilir.",
+  "uiCouldNotLoadTheLibraryScanYour": "Kütüphaneyi yükleyemez. Tekrar müziğinizi tarayabilirsiniz.",
+  "uiMusicOnYourPC": "Müzik PC",
+  "uiMusicOnYourPhone": "Telefonunuzda müzik",
+  "uiNavidromeServer": "Navidrome sunucusu",
+  "uiURLAndUserAccount": "URL ve kullanıcı hesabı",
+  "uiCouldNotLoadMusicSources": "Müzik kaynaklarını yükleyemez.",
+  "uiAddAFolderFromYourPC": "PC'inizden bir klasör ekleyin",
+  "uiChooseVisibleFolders": "görünür klasörleri seçin",
+  "uiRemoveAFolderFromTheLibrary": "Kütüphaneden bir klasör çıkarın",
+  "uiFilesStayOnYourPC": "Dosyalar PC'inizde kalıyor.",
+  "uiYouHaveNotAddedAnyFoldersYet": "Henüz herhangi bir klasör eklediniz.",
+  "uiRemoveFromLibrary": "Kütüphaneden Kaldırın",
+  "uiFolderRemovedFromTheLibraryFilesStayed": "Kater kütüphaneden kaldırıldı. dosyalar PC'inizde kaldı.",
+  "uiCouldNotRemoveTheFolderFromThe": "klasörü kütüphaneden kaldıramaz.",
+  "uiCouldNotReadTheFolderCheckThat": "klasörü okuyamazdı. Müsait olduğunu kontrol edin.",
+  "uiCouldNotSaveSourcesTryAgain": "Kaynakları kurtaramaz. Tekrar deneyin.",
+  "uiCouldNotPlayTheTrackTryScanning": "İzlemeyi oynayamadım. Tekrar taramaya çalış.",
+  "uiNoAudioFilesFoundOnTheDevice": "Cihazda bulunan ses dosyaları yok.",
+  "uiAllowMusicAccessToScanYourLibrary": "Müziğin kütüphanenizi taramasına izin verin.",
+  "uiCouldNotScanYourMusicTryAgain": "Müziğinizi tarayamaz. Tekrar deneyin.",
+  "uiLibraryScanningIsCurrentlyAvailableOnAndroid": "Kütüphane taraması şu anda Android'de mevcuttur.",
+  "uiAProblemOccurredWhileScanningMusic": "Bir problem müzik tararken meydana geldi.",
+  "uiWhereIsYourMusic": "Müzikiniz nerede?",
+  "uiFavoriteTracks": "Favori parçalar",
+  "uiAllFavorites": "Tüm favoriler",
+  "uiBrowse": "Göze Göz",
+  "uiRecentlyPlayed": "Son zamanlarda oynandı",
+  "uiSeeAll": "Hepsini gör",
+  "uiYourLibrary": "Kütüphaneniz",
+  "uiSTARTWITHASOURCE": "A SOURCE",
+  "uiAddYourMusic": "Müziğinizi ekleyin",
+  "uiPCOrNavidromeServer": "PC veya Navidrome sunucu",
+  "uiPhoneOrNavidromeServer": "Telefon veya Navidrome sunucu",
+  "uiScanning": "Taranıyor…",
+  "uiAddASource": "Bir kaynak ekleyin",
+  "uiLibrary": "Kitaplık",
+  "uiYourListeningHistoryWillAppearHere": "Dinlediğiniz tarih burada görünecektir.",
+  "uiYOURCOLLECTION": "Sizin COLLECTION",
+  "uiLibrary178": "Kitaplık",
+  "uiNoTracksMatchTheSelectedFilters": "Seçilen filtrelerle eşleşmeyin.",
+  "uiChooseMusicFoldersToSeeTracksIn": "Kütüphanenizde parçaları görmek için müzik klasörleri seçin.",
+  "uiChangeFilters": "Değişim filtreleri",
+  "uiChooseFolders": "klasörleri seçin",
+  "uiScanAgain": "Tekrar tekrar çek",
+  "uiNoTracksMatchTheSelectedRating": "Listeler seçilen derecelendirmeyi eşleşmez.",
+  "uiCouldNotResumeTheTrackTrySelecting": "İzlemeye devam edemezdi. Tekrar seçmeye çalış.",
+  "uiUnknownDuration": "Bilinmeyen süresi",
+  "uiTrackInformation": "Parça bilgileri",
+  "uiClose": "Kapat",
+  "uiArtist": "Sanatçı",
+  "uiAlbum": "Albüm Albüm Albüm",
+  "uiUnknownAlbum": "Bilinmeyen albüm",
+  "uiDuration": "Süre süresi",
+  "uiFolder": "Klasör",
+  "uiUnknownFolder": "Bilinmeyen klasör",
+  "uiPause": "Duraklat",
+  "uiNextTrack": "Sonraki takip",
+  "uiTheQueueIsEmpty": "kuyruk boş",
+  "uiPreviousTrack": "Önceki Takip",
+  "uiEnterTheHTTPSServerAddressWithoutA": "HTTPS sunucu adresi bir kullanıcı, şifre veya URL parametresi olmadan girin.",
+  "uiEnterTheSourceNameUsernameAndPassword": "Kaynak adı, kullanıcı adı ve şifre girin.",
+  "uiTheServerDidNotRespondCorrectlyCheck": "Sunucu doğru yanıt vermedi. adresi kontrol edin ve Navidrome erişim.",
+  "uiTheServerResponseIsTooLarge": "Sunucu cevabı çok büyük.",
+  "uiCouldNotReachTheServerCheckYour": "Sunucuya ulaşamadı. bağlantınızı, adresinizi ve HTTPS sertifikanızı kontrol edin.",
+  "uiAuthenticationFailedCheckYourUsernameAndPassword": "Kimlikleme başarısız oldu. Kullanıcı ve parolanızı kontrol edin.",
+  "uiNavidromeRejectedTheRequestCheckTheAccounts": "Navidrome isteği reddetti. Hesabın kütüphane erişimini kontrol edin.",
+  "uiTheAddressDidNotReturnAValid": "Adres geçerli bir Navidrome yanıt vermedi.",
+  "uiTheServerRepeatedAnAlbumPageYour": "Sunucu bir albüm sayfasını tekrarladı. Önceki kütüphaneniz kaldı.",
+  "uiInvalidServerTrack": "Geçersiz sunucu parçası.",
+  "uiReconnectTheNavidromeSourceToPlayThis": "Bu pisti oynamak için Navidrome kaynağını yeniden bağlayın.",
+  "uiCouldNotLoadSavedSourcesTryAgain": "Kurtarılan kaynakları yükleyemez. Tekrar deneyin.",
+  "uiCouldNotSaveTheSourceChangeTry": "Kaynak değişikliğini kurtaramaz. Tekrar deneyin.",
+  "uiConnectedTheServerLibraryHasBeenLoaded": "Connected. sunucu kütüphanesi yüklenmiştir.",
+  "uiDisconnectThisSource": "Bu kaynağı bozmak?",
+  "uiCancel228": "İptal",
+  "uiDisconnect": "Bağlantıyı kes",
+  "uiSourceDisconnected": "Kaynağın kapatılması.",
+  "uiNavidromeSources": "Navidrome kaynakları",
+  "uiConnectYourLibraryFromANavidromeServer": "Kütüphanenizi Navidrome sunucusundan HTTPS üzerinden bağlayın.",
+  "uiLoadingTheServerLibrary": "Sunucu kütüphanesini yükleyin...",
+  "uiReloadSources": "Reload kaynakları",
+  "uiLibraryUpdated": "Kütüphane güncellendi.",
+  "uiRefresh": "Yenileme",
+  "uiReconnect": "Yeniden bağlantı",
+  "uiAddNavidromeServer": "Navidrome sunucusu ekle",
+  "uiTracksAppearInLibraryAfterConnectingPlayback": "Tracks, bağlantıdan sonra kütüphanede görünür. Playback internet gerektirir. Aura favori, derecelendirmeler ve listeler yerel kalır; sunucu kütüphanesi değişmedi.",
+  "uiConnectToNavidrome": "Navidrome",
+  "uiSourceName": "Kaynak adı",
+  "uiServerURL": "Sunucu URL’si",
+  "uiUsername": "Kullanıcı adı",
+  "uiPassword": "Şifre Şifre",
+  "uiCredentialsAreSavedInTheDevicesSecure": "Credentials, cihazın güvenli depolamasında kaydedilir.",
+  "uiConnect": "Connect Connect Connect",
+  "uiListeningHistory": "Dinleme tarihi",
+  "uiClearHistory": "Clear History",
+  "uiClearHistory262": "Geçmiş silinsin mi?",
+  "uiTracksFavoritesAndPlaylistsWillStaySaved": "Tracks, favoriler ve listeler kurtarılacak.",
+  "uiDelete": "Sil",
+  "uiPlayedTracksWillAppearHere": "Sahneler burada görünecek.",
+  "uiTracksInYourHistoryAreHiddenBy": "Tarihinizde Tracks mevcut filtreler tarafından gizlidir veya artık mevcut değildir.",
+  "uiLibraryFilters": "Kütüphane filtreler",
+  "uiMinimumDuration": "Asgari süre süresi minimum",
+  "uiAllDurations": "Tüm süreler",
+  "ui10Seconds": "10 saniye",
+  "ui30Seconds": "30 saniye",
+  "ui1Minute": "1 dakika",
+  "uiTracksWithUnknownDurationStayVisible": "Bilinmeyen süre ile Tracks görünür.",
+  "uiHideWhatsAppAndTelegram": "Hide Hide Gizle WhatsApp ve Telegram",
+  "uiHidesFilesFromTheseAppsFolders": "Bu uygulamalardaki klasörlerden dosyalar.",
+  "uiFiltersOnlyChangeWhatAppearsInYour": "Filtreler sadece kütüphanenizde görünen şeyleri değiştirir. dosyalar, listeler ve mevcut kuyruklar tutulur.",
+  "uiSaving": "Tasarruf...",
+  "uiSaveFilters": "Kaydet filtreler",
+  "uiRepeatOff": "Tekrar tekrarlayın",
+  "uiRepeatEntireQueue": "Tüm kuyruğu tekrarlayın",
+  "uiRepeatCurrentTrack": "Tekrar güncel takip",
+  "uiShuffleOn": "Karışık çalma açık",
+  "uiShuffleOff": "Karışık çalma kapalı",
+  "uiCloseQueue": "Yakın kuyruk",
+  "uiShuffledOrderTurnOffShuffleToReorder": "Shuffled order. yeniden sipariş vermek için shuffle'i kapatın.",
+  "uiDragTheHandleToChangeTheOrder": "Siparişi değiştirmek için işi sürükleyin.",
+  "uiCouldNotUpdatePlaybackTryAgain": "Playback'i güncelleyemez. Tekrar deneyin.",
+  "uiAtTheEndOfTheTrack": "Takip sonunda",
+  "uiSleepTimer": "Uyku zamanı",
+  "uiCloseSleepTimer": "Yakın uyku zamanır",
+  "uiFinishTheCurrentTrack": "Mevcut pisti bitirin",
+  "uiWhenTheTimerEndsWaitForThe": "Zamanlayıcı sona erdiğinde, ısırmadan önce bitirmeyi bekleyin.",
+  "uiStartSleepTimer": "Uyku vaktine başlayın",
+  "uiStopAtTheEndOfThisTrack": "Bu yolun sonunda durun",
+  "uiCancelSleepTimer": "Cancel Sleep timer",
+  "uiPlaybackSettings": "Playback ayarları",
+  "uiOutputSettings": "Çıkış ayarları",
+  "uiPlayback": "Oynatma",
+  "uiAutomaticActions": "Otomatik eylemler",
+  "uiAudioOutput": "Ses çıktı",
+  "uiOnlyAppliesInAuraSeparatelyFromYour": "Sadece Aura'de, telefonunuzun veya PC hacminden ayrı olarak uygulanır.",
+  "uiTimer": "Zamanlayıcı",
+  "uiAudioOptions": "Ses seçenekleri",
+  "uiCrossfadeAndPlaypauseFades": "Crossfade ve oyun /pause kaybolur",
+  "uiFrequencyBandsAndPresets": "Frekans bantları ve presets",
+  "uiAvailableOnAndroid": "Android'de kullanılabilir",
+  "uiNotificationLockScreenAndHeadset": "Bildirim, kilit ekran ve başset",
+  "uiRestoreDefaultSpeedAndVolume": "Varsayılan hızı ve hacmi geri yükleme",
+  "uiSpeedAndVolumeAreSavedOnThis": "Hız ve hacim bu cihazda kurtarılır. Uygulama tamamen kapalı olduğunda zamanlayıcı iptal edilir.",
+  "uiSleep": "Uyku Uyku Uyku",
+  "uiUnrated": "Puanlanmamış",
+  "uiSwipeToRate": "Swipe oranına",
+  "uiGive1Star": "1 yıldız verin",
+  "uiClearRating": "Puanı temizle",
+  "uiStarSize": "Yıldız büyüklüğü",
+  "uiSmall": "Küçük Küçük Küçük Küçük Küçük",
+  "uiMedium": "Medium Medium Medium Medium Medium Medium",
+  "uiLarge": "Büyük Büyük Büyük Büyük",
+  "uiSwipeAcrossTheStarsToRateIn": "Yıldızlardaki Swipe yarı yıldızlı adımlarda hızlanıyor.",
+  "uiFilterByRating": "Not:",
+  "uiAllRatings": "Tüm Puanlar",
+  "uiOnly5Stars": "Sadece 5 yıldız",
+  "uiSortByRating": "Sort Tarafından Sort",
+  "uiDefaultOrder": "Varsayılan sipariş",
+  "uiHighestRatingFirst": "En yüksek derecelendirme ilk",
+  "uiLowestRatingFirst": "En düşük derecelendirme ilk",
+  "uiCouldNotSaveTheChangeTryAgain": "Değişimi kurtaramaz. Tekrar deneyin.",
+  "uiNewPlaylist": "Yeni Listeler",
+  "uiRenamePlaylist": "Rename Listesi",
+  "uiPlaylistName": "Playlist adı",
+  "uiSave": "Kaydet",
+  "uiRemoveFromFavorites": "Favorilerden Çıkarın",
+  "uiAddToFavorites": "Favorilere Ekle",
+  "uiAddToPlaylist": "Listeye Ekle",
+  "uiTrackIsAlreadyInThisPlaylist": "Track zaten bu listede",
+  "uiTrackAddedToPlaylist": "Track listeye eklendi.",
+  "uiCouldNotLoadFavoritesAndPlaylists": "Favorileri ve listeleri yükleyemez.",
+  "uiTryAgain": "Tekrar tekrar deneyin",
+  "uiBackToPlaylists": "Back to lists",
+  "uiPlaylistOptions": "Playlist seçenekler",
+  "uiDeletePlaylist": "Delete listesi?",
+  "uiAudioFilesStayOnThePhone": "Ses dosyaları telefonda kalır.",
+  "uiRename": "Yeniden adlandır",
+  "uiDeletePlaylist363": "Delete",
+  "uiCreateYourFirstPlaylistWithOrFrom": "İlk listelerinizi + veya bir pist menüsünden oluşturun.",
+  "uiAddTracks": "Ek parçalar ekle",
+  "uiATrackIsOutsideTheSelectedFolders": "Bir iz seçilmiş klasörler dışındadır veya artık mevcut değildir. referansı tutulur.",
+  "uiPlayAll": "Tüm Play all Play",
+  "uiTapATracksHeartToSaveIt": "Burada onu kurtarmak için bir pistin kalbi dokun.",
+  "uiAddTracksToThisPlaylist": "Bu listeye parçaları ekleyin.",
+  "uiRemoveFromPlaylist": "Listeden Çıkarın",
+  "uiSearchForATrack": "Bir iz için arama",
+  "uiTitle": "Başlık:",
+  "uiSearchYourMusic": "Müziğinizi Ara",
+  "uiClearSearch": "Clear arama",
+  "uiFavoritesOnly": "Favoriler sadece",
+  "uiYOURLIBRARYISEMPTY": "My LIBRARY IS EMPTY",
+  "uiAddMusic": "Müzik ekle",
+  "uiAddASourceToSearchYourCollection": "Koleksiyonunuzu aramak için bir kaynak ekleyin.",
+  "uiRecentSearches": "Son aramalar",
+  "uiSearchForATitleArtistOrAlbum": "Bir başlık, sanatçı veya albüm için arayın. Gönderilen aramalar burada bu seans için kalır.",
+  "uiNoResultsMatchTheSelectedFilters": "Hiçbir sonuç seçilen filtrelerle eşleşmez.",
+  "uiAuraSettings": "Aura ayarları",
+  "uiOptionsMarkedComingSoonAreNotAvailable": "“En kısa sürede” işaret eden seçenekler henüz mevcut değildir. Aktif ayarlar bu cihazda kaydedilir. Media sources.",
+  "uiGotIt": "Got it Got it",
+  "uiHelp": "Yardım",
+  "uiInterface": "Arayüz",
+  "uiInterfaceSettings": "Interface ayarları",
+  "uiApplicationStyle": "Uygulama stili",
+  "uiGeneral": "Genel",
+  "uiMediaLists": "Media listeleri",
+  "uiNowPlayingScreens": "Şimdi ekran oyunları oynayın",
+  "uiNowPlayingScreen": "Şimdi ekran görüntüsü oynuyor",
+  "uiTrackRatings": "Parça puanları",
+  "uiSwipeAcrossTheStarsToRateIn399": "Yıldızlardaki Swipe yarı yıldız adımlarında. Boyut oyuncuda uygulanır ve bilgi izler.",
+  "uiPageSettings": "Sayfa ayarları",
+  "uiHomePage": "Ana sayfa",
+  "uiGenrePage": "Tür sayfası",
+  "uiPlaylistPage": "Çalma listesi sayfası",
+  "uiSearchPage": "Arama sayfası",
+  "uiAdvanced": "Gelişmiş",
+  "uiAdvancedInterfaceSettings": "Gelişmiş arabirim ayarları",
+  "uiDecodingAndTranscoding": "Kod çözme ve dönüştürme",
+  "uiAudioFocus": "Ses odak noktası",
+  "uiNotificationAndMediaSessionButtons": "Bildirim ve medya seansı düğmeleri",
+  "uiAdvancedPlaybackSettings": "Gelişmiş playback ayarları",
+  "uiOfflineCacheAndDownloads": "Offline, önbellek ve indirmek",
+  "uiMedia": "Media Media Media",
+  "uiOfflineServerPlayback": "Çevrimdışı sunucu oynatımı",
+  "uiImages": "Fotoğraflar",
+  "uiLocalTracksWorkWithoutInternetServerDownloads": "Yerel parçalar internet olmadan çalışır. Server indirmeleri ve önbellek yönetimi yakında geliyor.",
+  "uiAdvancedSettings": "Gelişmiş ayarlar",
+  "uiMiscellaneous": "Diğer",
+  "uiMediaSources": "Medya kaynakları",
+  "uiSyncManager": "Sen yönetici",
+  "uiUpdating": "Updating...",
+  "uiRefreshLibrary": "Yeni kütüphane",
+  "uiRefreshNavidromeSources": "Navidrome kaynakları",
+  "uiOfflineFiles": "Offline dosyaları",
+  "uiGeneratedFiles": "Genrated dosyaları",
+  "uiLanguages": "Diller",
+  "uiAbout": "Hakkında",
+  "uiRateTheApp": "Uygulamayı paylaşın",
+  "uiContactSupport": "İletişim desteği",
+  "uiWhatsNew": "What's new",
+  "uiWhatsNewInAura": "Aura'de yeni olan nedir",
+  "uiLocalAndNavidromeLibrariesHalfstarRatingsHistory": "Yerel ve Navidrome kütüphaneler • Half-star Puanları • Tarih, listeler ve favoriler • Crossfade, uyku zamanlayıcı ve Android eşitleyici • 144 Hz",
+  "uiAboutAura": "Aura",
+  "uiAPlayerForYourLocalMusicAnd": "Yerel müziğiniz ve Navidrome kütüphanesiniz için bir oyuncu.",
+  "uiComingSoon": "Yakında",
+  "uiMusicFolders": "Müzik klasörleri",
+  "uiChooseMusicFoldersOnlyFoldersWhereThe": "Müzik klasörlerini seçin. Sadece cihazın ses dosyalarının gösterildiği klasörler gösterilir.",
+  "uiAllFolders": "Tüm klasörler",
+  "uiAutomaticallyIncludesFoldersFoundInFutureScans": "Otomatik olarak gelecekte bulunan klasörleri içerir.",
+  "uiNoTracksFoundInTheLastScan": "Son taramada bulunan hiçbir parça bulunamadı",
+  "uiYourLibraryWillStayEmptyUntilYou": "Kütüphaneniz bir klasör seçtiğinize kadar boş kalacaktır.",
+  "uiSaveSelection": "Kaydet",
+  "secondsValue": "{count, plural, one{1 ikinci} other{{count} saniye}}",
+  "@secondsValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "secondsShort": "{value}",
+  "@secondsShort": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "restoreConfirmation": "{change}\n\n{settings}\n\nPlayback duraklayacak ve uyku zamanı iptal edilecek. Mevcut kuyruğunuz tutulacak.",
+  "@restoreConfirmation": {
+    "placeholders": {
+      "change": {
+        "type": "String"
+      },
+      "settings": {
+        "type": "String"
+      }
+    }
+  },
+  "backupCreated": "Oluşturun: {date}",
+  "@backupCreated": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "backupStats": "Favoriler: {favorites} · Ratings: {ratings}\nPlaylists: {playlists} Tarih parçaları: {history}",
+  "@backupStats": {
+    "placeholders": {
+      "favorites": {
+        "type": "int"
+      },
+      "ratings": {
+        "type": "int"
+      },
+      "playlists": {
+        "type": "int"
+      },
+      "history": {
+        "type": "int"
+      }
+    }
+  },
+  "backupMatches": "Tanıdı: {matched} · Remapped: {remapped}\nYok veya belirsiz: {unavailable}",
+  "@backupMatches": {
+    "placeholders": {
+      "matched": {
+        "type": "int"
+      },
+      "remapped": {
+        "type": "int"
+      },
+      "unavailable": {
+        "type": "int"
+      }
+    }
+  },
+  "tracksInLibrary": "{count, plural, one{Kütüphanenizde 1 iz.} other{{count} kütüphanenizde izler.}}",
+  "@tracksInLibrary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sourcesSaved": "Kaynaklar kurtarıldı. {count, plural, one{Kütüphanenizde 1 iz.} other{{count} kütüphanenizde izler.}}",
+  "@sourcesSaved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tracksInFolders": "{count, plural, one{Seçilen klasörlerde 1 takip.} other{{count} seçilmiş klasörlerde izler.}}",
+  "@tracksInFolders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "allFoldersSummary": "Tüm klasörler · Tracks: {count}",
+  "@allFoldersSummary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectedFoldersSummary": "Seçilmiş klasörler: {folders} · Tracks: {tracks}",
+  "@selectedFoldersSummary": {
+    "placeholders": {
+      "folders": {
+        "type": "int"
+      },
+      "tracks": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryRhythm": "{count} parçaları, ritminizde.",
+  "@libraryRhythm": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryTrackCount": "Kütüphanede Tracks: {count}",
+  "@libraryTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "backToPage": "{page}",
+  "@backToPage": {
+    "placeholders": {
+      "page": {
+        "type": "String"
+      }
+    }
+  },
+  "groupCount": "{count, plural, one{1 item} other{{count} öğeleri}}",
+  "@groupCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "foundTracks": "{count, plural, one{1 iz bulundu} other{{count} parçaları bulundu}}",
+  "@foundTracks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "disconnectSource": "“{name}” Aura. sunucudaki dosyalar tutulacaktır.",
+  "@disconnectSource": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "visibleTracks": "{visible} {total} parçaları göstermek.",
+  "@visibleTracks": {
+    "placeholders": {
+      "visible": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "queueCount": "Kuyruk · {count}",
+  "@queueCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playQueueCount": "Playback kuyruğu · {count}",
+  "@playQueueCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "currentTrackArtist": "Şimdiki takip · {artist}",
+  "@currentTrackArtist": {
+    "placeholders": {
+      "artist": {
+        "type": "String"
+      }
+    }
+  },
+  "removeFromQueue": "{title} kuyruktan",
+  "@removeFromQueue": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "moveTrack": "{title} parçasını taşı",
+  "@moveTrack": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "activeTimer": "Aktif: {value}",
+  "@activeTimer": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "minutesValue": "{count, plural, one{1 dakika} other{{count} dakika}}",
+  "@minutesValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "minutesShort": "{count} dk",
+  "@minutesShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playerVolume": "Oyuncu hacmi: {value}%",
+  "@playerVolume": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "playbackSpeed": "Hız: {value}×",
+  "@playbackSpeed": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "yourRating": "Puanınız: {rating} 5",
+  "@yourRating": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "ratingOutOfFive": "{rating} 5",
+  "@ratingOutOfFive": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "giveStars": "{count, plural, one{1 yıldız verin} other{Give {count} stars}}",
+  "@giveStars": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ratingDescription": "Puan: 5 üzerinden {rating}",
+  "@ratingDescription": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumStars": "En az {rating} yıldız",
+  "@minimumStars": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumRating": "Puan ≥ {rating}",
+  "@minimumRating": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "savedTrackCount": "{count, plural, one{1 Kurtarılan track} other{{count} kurtarıldı}}",
+  "@savedTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "availableTrackCount": "{count, plural, one{1 available track} other{{count} mevcut parçalar}}",
+  "@availableTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "missingTrackCount": "Mevcut olmayan parçalar: {count}. Seçilmiş klasörler dışında veya artık mevcut değildir. referansları tutulur.",
+  "@missingTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectedTrackCount": "{count, plural, one{1 seçilmiş track} other{{count} seçilmiş parçalar}}",
+  "@selectedTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "searchResultCount": "{count, plural, one{1 sonuç} other{{count} sonuçları}}",
+  "@searchResultCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "removeRecentSearch": "Arama {query}",
+  "@removeRecentSearch": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "tracksInSelection": "{count, plural, one{1 track in Selection} other{{count} seçimi}}",
+  "@tracksInSelection": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "languageTitle": "Uygulama dili",
+  "languageSystem": "Sistemi izle",
+  "languageHelp": "Hemen uygulayın. Takipiniz, sanatçı, klasör ve liste isimleri tercüme edilmez.",
+  "languageSaveError": "Dili kurtaramazdım. Önceki seçiminiz tutulacaktı.",
+  "uiBass": "Bas",
+  "mediaStop": "Durdur",
+  "mediaSeekBack": "10 saniye geri",
+  "mediaSeekForward": "10 saniye ileri"
+}

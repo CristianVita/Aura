@@ -1,3 +1,4 @@
+import 'app_strings.dart';
 import 'app_theme.dart';
 
 import 'dart:async';
@@ -40,16 +41,16 @@ class _PlaybackOptionsState extends State<PlaybackOptions> {
       builder: (context, snapshot) {
         final state = snapshot.data!;
         final repeatLabel = switch (state.loopMode) {
-          LoopMode.off => 'Repeat oprit',
-          LoopMode.all => 'Repetă toată coada',
-          LoopMode.one => 'Repetă piesa curentă',
+          LoopMode.off => context.appStrings.uiRepeatOff,
+          LoopMode.all => context.appStrings.uiRepeatEntireQueue,
+          LoopMode.one => context.appStrings.uiRepeatCurrentTrack,
         };
         return Row(
           children: [
             IconButton(
               tooltip: state.shuffleModeEnabled
-                  ? 'Shuffle activ'
-                  : 'Shuffle oprit',
+                  ? context.appStrings.uiShuffleOn
+                  : context.appStrings.uiShuffleOff,
               isSelected: state.shuffleModeEnabled,
               selectedIcon: Icon(
                 Icons.shuffle_rounded,
@@ -67,7 +68,9 @@ class _PlaybackOptionsState extends State<PlaybackOptions> {
             Expanded(
               child: TextButton.icon(
                 icon: const Icon(Icons.queue_music_rounded),
-                label: Text('Coada · ${state.sequence.length}'),
+                label: Text(
+                  context.appStrings.queueCount(state.sequence.length),
+                ),
                 onPressed: () => showModalBottomSheet<void>(
                   context: context,
                   isScrollControlled: true,
@@ -164,7 +167,7 @@ class _PlaybackQueueSheetState extends State<PlaybackQueueSheet> {
                     children: [
                       Expanded(
                         child: Text(
-                          'Coada de redare · ${sources.length}',
+                          context.appStrings.playQueueCount(sources.length),
                           style: const TextStyle(
                             fontSize: 21,
                             fontWeight: FontWeight.w700,
@@ -172,7 +175,7 @@ class _PlaybackQueueSheetState extends State<PlaybackQueueSheet> {
                         ),
                       ),
                       IconButton(
-                        tooltip: 'Închide coada',
+                        tooltip: context.appStrings.uiCloseQueue,
                         onPressed: () => Navigator.pop(context),
                         icon: const Icon(Icons.close_rounded),
                       ),
@@ -183,14 +186,18 @@ class _PlaybackQueueSheetState extends State<PlaybackQueueSheet> {
                   padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
                   child: Text(
                     state.shuffleModeEnabled
-                        ? 'Ordine amestecată. Oprește shuffle pentru a reordona.'
-                        : 'Trage de mâner pentru a schimba ordinea.',
+                        ? context
+                              .appStrings
+                              .uiShuffledOrderTurnOffShuffleToReorder
+                        : context.appStrings.uiDragTheHandleToChangeTheOrder,
                     style: TextStyle(color: context.auraMuted, fontSize: 12),
                   ),
                 ),
                 Expanded(
                   child: sources.isEmpty
-                      ? const Center(child: Text('Coada este goală'))
+                      ? Center(
+                          child: Text(context.appStrings.uiTheQueueIsEmpty),
+                        )
                       : ReorderableListView.builder(
                           buildDefaultDragHandles: false,
                           padding: const EdgeInsets.only(bottom: 20),
@@ -230,13 +237,15 @@ class _PlaybackQueueSheetState extends State<PlaybackQueueSheet> {
                                 size: 42,
                               ),
                               title: Text(
-                                track.title,
+                                track.displayTitle,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),
                               subtitle: Text(
                                 current
-                                    ? 'Piesa curentă · ${track.artist}'
+                                    ? context.appStrings.currentTrackArtist(
+                                        track.artist,
+                                      )
                                     : track.artist,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
@@ -266,7 +275,9 @@ class _PlaybackQueueSheetState extends State<PlaybackQueueSheet> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   IconButton(
-                                    tooltip: 'Elimină ${track.title} din coadă',
+                                    tooltip: context.appStrings.removeFromQueue(
+                                      track.displayTitle,
+                                    ),
                                     icon: const Icon(
                                       Icons.remove_circle_outline_rounded,
                                       size: 21,
@@ -294,7 +305,9 @@ class _PlaybackQueueSheetState extends State<PlaybackQueueSheet> {
                                     ReorderableDragStartListener(
                                       index: index,
                                       child: Semantics(
-                                        label: 'Mută ${track.title}',
+                                        label: context.appStrings.moveTrack(
+                                          track.displayTitle,
+                                        ),
                                         child: Padding(
                                           padding: EdgeInsets.all(12),
                                           child: Icon(
@@ -323,8 +336,8 @@ class _PlaybackQueueSheetState extends State<PlaybackQueueSheet> {
 
 void _showError(BuildContext context) {
   ScaffoldMessenger.of(context).showSnackBar(
-    const SnackBar(
-      content: Text('Nu am putut actualiza redarea. Încearcă din nou.'),
+    SnackBar(
+      content: Text(context.appStrings.uiCouldNotUpdatePlaybackTryAgain),
     ),
   );
 }

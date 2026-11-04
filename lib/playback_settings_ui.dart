@@ -1,8 +1,8 @@
 part of 'main.dart';
 
-String _sleepLabel(SleepTimerController sleep) {
-  if (!sleep.active) return 'Oprit';
-  if (sleep.waitingForTrack) return 'La sfârșitul piesei';
+String _sleepLabel(BuildContext context, SleepTimerController sleep) {
+  if (!sleep.active) return context.appStrings.uiOff;
+  if (sleep.waitingForTrack) return context.appStrings.uiAtTheEndOfTheTrack;
   final seconds = sleep.remaining.inSeconds;
   return '${seconds ~/ 60}:${(seconds % 60).toString().padLeft(2, '0')}';
 }
@@ -36,14 +36,14 @@ class _SleepTimerSheetState extends State<_SleepTimerSheet> {
         children: [
           Row(
             children: [
-              const Expanded(
+              Expanded(
                 child: Text(
-                  'Temporizator de oprire',
+                  context.appStrings.uiSleepTimer,
                   style: TextStyle(fontSize: 21),
                 ),
               ),
               IconButton(
-                tooltip: 'Închide temporizatorul',
+                tooltip: context.appStrings.uiCloseSleepTimer,
                 onPressed: () => Navigator.pop(context),
                 icon: const Icon(Icons.close_rounded),
               ),
@@ -52,14 +52,19 @@ class _SleepTimerSheetState extends State<_SleepTimerSheet> {
           ListenableBuilder(
             listenable: widget.controls.sleep,
             builder: (_, child) => Text(
-              'Activ: ${_sleepLabel(widget.controls.sleep)}',
+              context.appStrings.activeTimer(
+                _sleepLabel(context, widget.controls.sleep),
+              ),
               style: TextStyle(color: context.auraAccent),
             ),
           ),
           const SizedBox(height: 20),
-          Text('$_minutes minute', style: const TextStyle(fontSize: 24)),
+          Text(
+            context.appStrings.minutesValue(_minutes),
+            style: const TextStyle(fontSize: 24),
+          ),
           Slider(
-            label: '$_minutes minute',
+            label: context.appStrings.minutesValue(_minutes),
             min: 5,
             max: 120,
             divisions: 23,
@@ -71,7 +76,7 @@ class _SleepTimerSheetState extends State<_SleepTimerSheet> {
             children: [
               for (final minutes in [5, 15, 30, 60])
                 ChoiceChip(
-                  label: Text('$minutes min'),
+                  label: Text(context.appStrings.minutesShort(minutes)),
                   selected: _minutes == minutes,
                   onSelected: (_) => setState(() => _minutes = minutes),
                 ),
@@ -79,10 +84,8 @@ class _SleepTimerSheetState extends State<_SleepTimerSheet> {
           ),
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
-            title: const Text('Termină piesa curentă'),
-            subtitle: const Text(
-              'La expirare, așteaptă sfârșitul piesei înainte de pauză.',
-            ),
+            title: Text(context.appStrings.uiFinishTheCurrentTrack),
+            subtitle: Text(context.appStrings.uiWhenTheTimerEndsWaitForThe),
             value: _finish,
             onChanged: (value) => setState(() => _finish = value),
           ),
@@ -91,7 +94,7 @@ class _SleepTimerSheetState extends State<_SleepTimerSheet> {
             width: double.infinity,
             child: FilledButton.icon(
               icon: const Icon(Icons.bedtime_outlined),
-              label: const Text('Pornește temporizatorul'),
+              label: Text(context.appStrings.uiStartSleepTimer),
               onPressed: () {
                 widget.controls.sleep.start(
                   Duration(minutes: _minutes),
@@ -108,7 +111,7 @@ class _SleepTimerSheetState extends State<_SleepTimerSheet> {
                     widget.controls.sleep.stopAfterTrack();
                     Navigator.pop(context);
                   },
-            child: const Text('Oprește la sfârșitul acestei piese'),
+            child: Text(context.appStrings.uiStopAtTheEndOfThisTrack),
           ),
           ListenableBuilder(
             listenable: widget.controls.sleep,
@@ -118,7 +121,7 @@ class _SleepTimerSheetState extends State<_SleepTimerSheet> {
                       widget.controls.sleep.cancel();
                       Navigator.pop(context);
                     },
-                    child: const Text('Anulează temporizatorul'),
+                    child: Text(context.appStrings.uiCancelSleepTimer),
                   )
                 : const SizedBox.shrink(),
           ),
@@ -169,10 +172,11 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(switch (widget.section) {
-          PlaybackSettingsSection.all => 'Setări de redare',
-          PlaybackSettingsSection.output => 'Setări de ieșire',
-          PlaybackSettingsSection.playback => 'Redare',
-          PlaybackSettingsSection.timer => 'Acțiuni automate',
+          PlaybackSettingsSection.all => context.appStrings.uiPlaybackSettings,
+          PlaybackSettingsSection.output => context.appStrings.uiOutputSettings,
+          PlaybackSettingsSection.playback => context.appStrings.uiPlayback,
+          PlaybackSettingsSection.timer =>
+            context.appStrings.uiAutomaticActions,
         }),
         backgroundColor: context.auraBackground,
       ),
@@ -182,24 +186,30 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
           if (widget.section == PlaybackSettingsSection.all ||
               widget.section == PlaybackSettingsSection.output)
             _SettingsGroup(
-              title: 'Ieșire audio',
+              title: context.appStrings.uiAudioOutput,
               children: [
                 Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Volumul playerului: ${(volume * 100).round()}%'),
+                      Text(
+                        context.appStrings.playerVolume((volume * 100).round()),
+                      ),
                       const SizedBox(height: 6),
                       Text(
-                        'Se aplică doar în Aura, separat de volumul telefonului sau al PC-ului.',
+                        context
+                            .appStrings
+                            .uiOnlyAppliesInAuraSeparatelyFromYour,
                         style: TextStyle(
                           color: context.auraMuted,
                           fontSize: 12,
                         ),
                       ),
                       Slider(
-                        label: '${(volume * 100).round()}%',
+                        label: context.appStrings.percentValue(
+                          (volume * 100).round(),
+                        ),
                         value: volume,
                         divisions: 100,
                         onChanged: enabled
@@ -218,16 +228,20 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
           if (widget.section == PlaybackSettingsSection.all ||
               widget.section == PlaybackSettingsSection.playback)
             _SettingsGroup(
-              title: 'Redare',
+              title: context.appStrings.uiPlayback,
               children: [
                 Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Viteză: ${speed.toStringAsFixed(2)}×'),
+                      Text(
+                        context.appStrings.playbackSpeed(
+                          context.number(speed, digits: 2),
+                        ),
+                      ),
                       Slider(
-                        label: '${speed.toStringAsFixed(2)}×',
+                        label: '${context.number(speed, digits: 2)}×',
                         min: .5,
                         max: 2,
                         divisions: 30,
@@ -244,7 +258,9 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
                         children: [
                           for (final value in [.75, 1.0, 1.25, 1.5, 2.0])
                             ChoiceChip(
-                              label: Text('${value.toStringAsFixed(2)}×'),
+                              label: Text(
+                                '${context.number(value, digits: 2)}×',
+                              ),
                               selected: (speed - value).abs() < .001,
                               onSelected: enabled
                                   ? (_) => _change(speed: value)
@@ -263,12 +279,12 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
             ListenableBuilder(
               listenable: widget.controls.sleep,
               builder: (_, child) => _SettingsGroup(
-                title: 'Temporizator',
+                title: context.appStrings.uiTimer,
                 children: [
                   _SettingsRow(
                     icon: Icons.bedtime_outlined,
-                    title: 'Temporizator de oprire',
-                    subtitle: _sleepLabel(widget.controls.sleep),
+                    title: context.appStrings.uiSleepTimer,
+                    subtitle: _sleepLabel(context, widget.controls.sleep),
                     onTap: () => _showSleepTimer(context, widget.controls),
                   ),
                 ],
@@ -278,13 +294,13 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
           if (widget.section == PlaybackSettingsSection.all ||
               widget.section == PlaybackSettingsSection.output)
             _SettingsGroup(
-              title: 'Opțiuni audio',
+              title: context.appStrings.uiAudioOptions,
               children: [
                 if (widget.section == PlaybackSettingsSection.all)
                   _SettingsRow(
                     icon: Icons.compare_arrows_rounded,
-                    title: 'Tranziții',
-                    subtitle: 'Crossfade și fade la pornire/pauză',
+                    title: context.appStrings.uiTransitions,
+                    subtitle: context.appStrings.uiCrossfadeAndPlaypauseFades,
                     onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute<void>(
@@ -296,10 +312,10 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
                   ),
                 _SettingsRow(
                   icon: Icons.equalizer_rounded,
-                  title: 'Egalizator',
+                  title: context.appStrings.uiEqualizer,
                   subtitle: Theme.of(context).platform == TargetPlatform.android
-                      ? 'Benzi de frecvență și preseturi'
-                      : 'Disponibil pe Android',
+                      ? context.appStrings.uiFrequencyBandsAndPresets
+                      : context.appStrings.uiAvailableOnAndroid,
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute<void>(
@@ -312,8 +328,9 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
                 if (widget.section == PlaybackSettingsSection.all)
                   _SettingsRow(
                     icon: Icons.headphones_outlined,
-                    title: 'Comenzi media',
-                    subtitle: 'Notificare, ecran blocat și căști',
+                    title: context.appStrings.uiMediaControls,
+                    subtitle:
+                        context.appStrings.uiNotificationLockScreenAndHeadset,
                     onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute<void>(
@@ -329,11 +346,11 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
           if (widget.section == PlaybackSettingsSection.all)
             TextButton(
               onPressed: enabled ? () => _change(speed: 1, volume: 1) : null,
-              child: const Text('Restabilește viteza și volumul implicite'),
+              child: Text(context.appStrings.uiRestoreDefaultSpeedAndVolume),
             ),
           const SizedBox(height: 8),
           Text(
-            'Viteza și volumul sunt salvate pe acest dispozitiv. Temporizatorul se anulează la închiderea completă a aplicației.',
+            context.appStrings.uiSpeedAndVolumeAreSavedOnThis,
             style: TextStyle(
               color: context.auraMuted,
               fontSize: 12,
@@ -363,7 +380,9 @@ class _PlaybackQuickSettings extends StatelessWidget {
                   : context.auraMuted,
             ),
             label: Text(
-              controls.sleep.active ? _sleepLabel(controls.sleep) : 'Somn',
+              controls.sleep.active
+                  ? _sleepLabel(context, controls.sleep)
+                  : context.appStrings.uiSleep,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -385,7 +404,7 @@ class _PlaybackQuickSettings extends StatelessWidget {
           ),
         ),
         IconButton(
-          tooltip: 'Egalizator',
+          tooltip: context.appStrings.uiEqualizer,
           icon: const Icon(Icons.equalizer_rounded),
           onPressed: () => Navigator.push(
             context,
@@ -397,7 +416,7 @@ class _PlaybackQuickSettings extends StatelessWidget {
           ),
         ),
         IconButton(
-          tooltip: 'Setări de redare',
+          tooltip: context.appStrings.uiPlaybackSettings,
           icon: const Icon(Icons.tune_rounded),
           onPressed: () => Navigator.push(
             context,

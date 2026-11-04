@@ -17,6 +17,7 @@ void main() {
       var starts = 0;
       await tester.pumpWidget(
         AuraAppearanceApp(
+          locale: const Locale('ro'),
           store: store,
           home: _Home(onStart: () => starts++),
         ),
@@ -69,7 +70,11 @@ void main() {
     final store = SavedMusicStore(storage);
     await store.load();
     await tester.pumpWidget(
-      AuraAppearanceApp(store: store, home: const AppearanceSettingsScreen()),
+      AuraAppearanceApp(
+        locale: const Locale('ro'),
+        store: store,
+        home: const AppearanceSettingsScreen(),
+      ),
     );
     await tester.pumpAndSettle();
     storage.failNextWrite = true;
@@ -108,7 +113,11 @@ void main() {
       tester.platformDispatcher.platformBrightnessTestValue = Brightness.light;
       addTearDown(tester.platformDispatcher.clearPlatformBrightnessTestValue);
       await tester.pumpWidget(
-        AuraAppearanceApp(store: store, home: const AppearanceSettingsScreen()),
+        AuraAppearanceApp(
+          locale: const Locale('ro'),
+          store: store,
+          home: const AppearanceSettingsScreen(),
+        ),
       );
       await tester.pumpAndSettle();
       BuildContext page() =>

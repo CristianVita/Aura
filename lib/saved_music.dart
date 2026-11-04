@@ -1,5 +1,8 @@
+import 'package:intl/intl.dart';
+
 import 'audio_features.dart';
 import 'appearance.dart';
+import 'app_language.dart';
 import 'navigation_preferences.dart';
 import 'library_preferences.dart';
 import 'audio_library.dart';
@@ -16,7 +19,7 @@ enum RatingStarSize { small, medium, large }
 
 String formatRating(num rating) => rating == rating.roundToDouble()
     ? rating.toInt().toString()
-    : rating.toString().replaceAll('.', ',');
+    : NumberFormat('0.#', AppText.localeCode).format(rating);
 
 bool _validRating(num value) =>
     value.isFinite && value >= 0 && value <= 5 && (value * 2) % 1 == 0;
@@ -50,6 +53,7 @@ class SavedMusicData {
     this.playbackSpeed = 1,
     this.playbackVolume = 1,
     this.appearance = const AppearancePreferences(),
+    this.language = AppLanguage.system,
     NavigationPreferences? navigation,
     LibraryPagePreferences? libraryPages,
   }) : libraryPages = libraryPages ?? LibraryPagePreferences(),
@@ -69,6 +73,7 @@ class SavedMusicData {
   final double playbackSpeed;
   final double playbackVolume;
   final AppearancePreferences appearance;
+  final AppLanguage language;
   final NavigationPreferences navigation;
   final LibraryPagePreferences libraryPages;
   double ratingOf(String uri) => ratings[uri] ?? 0;
@@ -84,6 +89,7 @@ class SavedMusicData {
     double? playbackSpeed,
     double? playbackVolume,
     AppearancePreferences? appearance,
+    AppLanguage? language,
     NavigationPreferences? navigation,
     LibraryPagePreferences? libraryPages,
   }) => SavedMusicData(
@@ -97,6 +103,7 @@ class SavedMusicData {
     playbackSpeed: playbackSpeed ?? this.playbackSpeed,
     playbackVolume: playbackVolume ?? this.playbackVolume,
     appearance: appearance ?? this.appearance,
+    language: language ?? this.language,
     navigation: navigation ?? this.navigation,
     libraryPages: libraryPages ?? this.libraryPages,
   );
@@ -134,6 +141,7 @@ class SavedMusicData {
     'playbackSpeed': playbackSpeed,
     'playbackVolume': playbackVolume,
     'appearance': appearance.toJson(),
+    'language': language.name,
     'navigation': navigation.toJson(),
     'libraryPages': libraryPages.toJson(),
   });
@@ -185,6 +193,7 @@ class SavedMusicData {
       throw const FormatException('Invalid playback preferences');
     }
     return SavedMusicData(
+      language: AppLanguage.values.byName(root['language'] as String? ?? 'ro'),
       libraryPages: LibraryPagePreferences.fromJson(
         root['libraryPages'] as Map<String, dynamic>? ?? {},
       ),
@@ -304,6 +313,9 @@ class SavedMusicStore extends ChangeNotifier {
 
   Future<void> setStarSize(RatingStarSize size) =>
       _update((data) => data.copy(starSize: size));
+
+  Future<void> setLanguage(AppLanguage language) =>
+      _update((data) => data.copy(language: language));
 
   Future<void> setAppearance(AppearancePreferences preferences) =>
       _update((data) {

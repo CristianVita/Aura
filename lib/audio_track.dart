@@ -1,3 +1,5 @@
+import 'app_language.dart';
+
 import 'package:just_audio/just_audio.dart';
 import 'package:audio_service/audio_service.dart';
 
@@ -23,6 +25,10 @@ class AudioTrack {
   final String folder;
   final int modifiedSeconds;
   final String coverId;
+  String get displayTitle =>
+      title.trim().isEmpty ? AppText.current.uiUntitledTrack : title;
+  String get displayArtist =>
+      artist.trim().isEmpty ? AppText.current.uiUnknownArtist : artist;
   String get artworkKey =>
       '$uri:$modifiedSeconds${coverId.isEmpty ? '' : ':$coverId'}';
   Uri get artworkUri => Uri.parse(uri).scheme == 'aura'
@@ -40,13 +46,15 @@ class AudioTrack {
 
   MediaItem toMediaItem() => MediaItem(
     id: uri,
-    title: title,
-    artist: artist.isEmpty ? 'Artist necunoscut' : artist,
+    title: displayTitle,
+    artist: displayArtist,
     album: album.isEmpty ? null : album,
     artUri: Uri.parse(uri).scheme == 'aura' ? null : artworkUri,
     duration: durationMs > 0 ? Duration(milliseconds: durationMs) : null,
     extras: {
       'trackId': id,
+      'originalTitle': title,
+      'originalArtist': artist,
       'folder': folder,
       'modifiedSeconds': modifiedSeconds,
       'coverId': coverId,
@@ -56,7 +64,7 @@ class AudioTrack {
   factory AudioTrack.fromMap(Map<Object?, Object?> map) {
     return AudioTrack(
       id: map['id']?.toString() ?? '',
-      title: map['title']?.toString() ?? 'Piesă fără titlu',
+      title: map['title']?.toString() ?? '',
       artist: map['artist']?.toString() ?? '',
       album: map['album']?.toString() ?? '',
       durationMs: (map['durationMs'] as num?)?.toInt() ?? 0,
@@ -75,8 +83,8 @@ AudioTrack? audioTrackOf(IndexedAudioSource? source) {
     id:
         item.extras?['trackId']?.toString() ??
         Uri.parse(item.id).pathSegments.last,
-    title: item.title,
-    artist: item.artist ?? '',
+    title: item.extras?['originalTitle'] as String? ?? item.title,
+    artist: item.extras?['originalArtist'] as String? ?? item.artist ?? '',
     album: item.album ?? '',
     durationMs: item.duration?.inMilliseconds ?? 0,
     uri: item.id,

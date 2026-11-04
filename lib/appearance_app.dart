@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'app_theme.dart';
 import 'appearance.dart';
+import 'app_language.dart';
 import 'l10n/app_localizations.dart';
 import 'saved_music.dart';
 
@@ -10,27 +11,33 @@ class AuraAppearanceApp extends StatefulWidget {
     super.key,
     required this.store,
     required this.home,
-    this.locale = const Locale('ro'),
+    this.locale,
   });
   final SavedMusicStore store;
   final Widget home;
-  final Locale locale;
+  final Locale? locale;
   @override
   State<AuraAppearanceApp> createState() => _AuraAppearanceAppState();
 }
 
 class _AuraAppearanceAppState extends State<AuraAppearanceApp> {
   late AppearancePreferences _appearance;
+  late AppLanguage _language;
   @override
   void initState() {
     super.initState();
     _appearance = widget.store.data.appearance;
+    _language = widget.store.data.language;
     widget.store.addListener(_changed);
   }
 
   void _changed() {
-    if (_appearance != widget.store.data.appearance) {
-      setState(() => _appearance = widget.store.data.appearance);
+    if (_appearance != widget.store.data.appearance ||
+        _language != widget.store.data.language) {
+      setState(() {
+        _appearance = widget.store.data.appearance;
+        _language = widget.store.data.language;
+      });
     }
   }
 
@@ -41,6 +48,7 @@ class _AuraAppearanceAppState extends State<AuraAppearanceApp> {
       oldWidget.store.removeListener(_changed);
       widget.store.addListener(_changed);
       _appearance = widget.store.data.appearance;
+      _language = widget.store.data.language;
     }
   }
 
@@ -56,13 +64,18 @@ class _AuraAppearanceAppState extends State<AuraAppearanceApp> {
     child: MaterialApp(
       title: 'Aura',
       debugShowCheckedModeBanner: false,
-      locale: widget.locale,
+      locale:
+          widget.locale ??
+          (_language == AppLanguage.system ? null : Locale(_language.name)),
+      localeListResolutionCallback: (locales, supported) =>
+          resolveAuraLocale(AppLanguage.system, locales ?? const []),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       theme: buildAuraTheme(_appearance, Brightness.light),
       darkTheme: buildAuraTheme(_appearance, Brightness.dark),
       themeMode: appearanceThemeMode(_appearance.mode),
       builder: (context, child) {
+        AppText.useLocale(Localizations.localeOf(context));
         final media = MediaQuery.of(context);
         return MediaQuery(
           data: media.copyWith(

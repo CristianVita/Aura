@@ -9,7 +9,7 @@ Open **Setări → Interfață → Setări pagini**. The Library, Album and Arti
 
 Artwork comes from the existing first-track artwork provider, with an icon fallback. Artist grids use representative track/album artwork, not downloaded artist portraits. Custom cover import remains separate future work. Group identity and playback queues retain existing behavior; sorting groups does not reorder a track queue or change ratings.
 
-Settings are validated and stored in saved music. Backup settings restoration includes them only when opted in; old saved data and backups receive defaults. Defaults are the six library categories in the existing order, three library columns, two group columns, list layout, alphabetical group order and enabled summaries. Labels for the new controls use Romanian/English ARB resources.
+Settings are validated and stored in saved music. Backup settings restoration includes them only when opted in; old saved data and backups receive defaults. Defaults are the six library categories in the existing order, three library columns, two group columns, list layout, alphabetical group order and enabled summaries. Labels use the application's twenty ARB language catalogs.
 
 Unit/widget tests cover legacy data, invalid settings, immutable category order, visibility constraints, deterministic sorting, stable group callbacks, large text/narrow grids, independent page reset, failed writes, concurrent rating edits and backup settings opt-in. Device tests never use live Android integration entrypoints.
 

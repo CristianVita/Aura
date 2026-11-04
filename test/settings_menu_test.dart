@@ -85,12 +85,12 @@ void main() {
       await tester.tap(find.text('Setări de ieșire'));
       await tester.pumpAndSettle();
       expect(find.text('Volumul playerului: 100%'), findsOneWidget);
-      expect(find.text('Viteză: 1.00×'), findsNothing);
+      expect(find.text('Viteză: 1,00×'), findsNothing);
       await tester.pageBack();
       await tester.pumpAndSettle();
       await tester.tap(find.text('Redare'));
       await tester.pumpAndSettle();
-      expect(find.text('Viteză: 1.00×'), findsOneWidget);
+      expect(find.text('Viteză: 1,00×'), findsOneWidget);
       expect(find.text('Volumul playerului: 100%'), findsNothing);
       await tester.pageBack();
       await tester.pumpAndSettle();

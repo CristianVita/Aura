@@ -1,0 +1,780 @@
+{
+  "@@locale": "pl",
+  "appearanceTitle": "Motyw, czcionka i kolory",
+  "themeLabel": "Motyw",
+  "themeSystem": "Zgodnie z systemem",
+  "themeLight": "Światło",
+  "themeDark": "Ciemny",
+  "themeOled": "OLED czarny",
+  "accentLabel": "Kolor Accent",
+  "accentMint": "Mięta",
+  "accentBlue": "Niebieski",
+  "accentViolet": "Fioletowy",
+  "accentRose": "Róża",
+  "accentAmber": "Złoto",
+  "accentTeal": "Morski",
+  "fontLabel": "Czcionka",
+  "fontSystem": "Czcionka systemowa",
+  "fontSerif": "Szeryfowa",
+  "fontMonospace": "Stała szerokość",
+  "fontDescription": "Czcionki wykorzystują rodziny dostępne na urządzeniu. Ich wygląd może różnić się w zależności od platformy.",
+  "textSizeLabel": "Rozmiar tekstu",
+  "textSizeDescription": "W połączeniu z rozmiarem tekstu w ustawieniach urządzenia.",
+  "previewLabel": "Podgląd",
+  "previewTitle": "Twoja muzyka, twój rytm",
+  "previewSubtitle": "Albumy, artyści i playlisty",
+  "previewButton": "Odtwórz",
+  "resetAppearance": "Przywróć domyślny wygląd",
+  "appearanceSaveError": "Nie można zapisać wyglądu. Poprzednie ustawienia zostały zachowane.",
+  "appearanceHelp": "Zmiany mają zastosowanie, gdy tylko zostaną zapisane i włączone do kopii zapasowych.",
+  "percentValue": "{value}%",
+  "@percentValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "navigationTitle": "Ekran nawigacyjny i startowy",
+  "navigationOrder": "Kolejność kart",
+  "navigationHelp": "Przeciągnij uchwyt, aby ponownie zamówić karty. Biblioteka i ustawienia zawsze pozostają dostępne.",
+  "navigationHome": "Główna",
+  "navigationLibrary": "Biblioteka",
+  "navigationSearch": "Szukaj",
+  "navigationSettings": "Ustawienia",
+  "navigationRequired": "Wymagana karta",
+  "navigationLabels": "Etykiety kart",
+  "labelsAdaptive": "Dostosowanie",
+  "labelsHidden": "Tylko ikony",
+  "labelsSelected": "Zaznaczona karta",
+  "labelsAlways": "Wszystkie",
+  "labelsHelp": "Adaptacyjne: ikony na telefonie i etykiety w pasku bocznym pulpitu.",
+  "navigationStart": "Ekran startowy",
+  "navigationStartHelp": "Zastosowanie przy następnym uruchomieniu aplikacji.",
+  "libraryLanding": "Podczas otwierania biblioteki",
+  "landingCategories": "Kategorie",
+  "landingTracks": "Utwory",
+  "landingAlbums": "Albumy",
+  "landingArtists": "Wykonawcy",
+  "landingPlaylists": "Playlisty",
+  "landingFavorites": "Ulubione",
+  "resetNavigation": "Przywróć domyślną nawigację",
+  "navigationSaveError": "Nie można zapisać nawigacji. Twoje wcześniejsze preferencje zostały zachowane.",
+  "navigationPreview": "Podgląd nawigacyjny",
+  "libraryPageTitle": "Strona biblioteki",
+  "albumPageTitle": "Strona albumu",
+  "artistPageTitle": "Strona artysty",
+  "categoryOrder": "Kategorie i porządek",
+  "categoryHelp": "Przeciągnij uchwyt, aby zmienić kolejność. Zachowaj widoczność co najmniej jednej kategorii. Ukrywanie kategorii nie usuwa muzyki.",
+  "pageColumns": "Kolumny na telefonie",
+  "pageColumnsHelp": "Szersze ekrany automatycznie dodają kolumny. Duży tekst może zmniejszyć liczbę kolumn dla czytelności.",
+  "pageLayout": "Układ",
+  "layoutList": "Lista",
+  "layoutGrid": "Sieć osłon",
+  "pageSort": "Sortuj kolejność",
+  "sortName": "Nazwa A- Z",
+  "sortNameDescending": "Nazwa Z-",
+  "sortTrackCount": "Liczba utworów",
+  "pageSummary": "Dzieła i podsumowanie na stronie otwartej",
+  "pageSummaryHelp": "Wykorzystuje dostępne prace graficzne dla pierwszego utworu w grupie.",
+  "pageReset": "Zresetuj tę stronę",
+  "pageSaveError": "Nie można zapisać strony. Poprzednie preferencje zostały zachowane.",
+  "librarySources": "Źródła",
+  "unknownGroup": "Nieznany",
+  "groupTracks": "{count, plural, one{{count} utwór} few{{count} utwory} many{{count} utworów} other{{count} utworu}}",
+  "groupMinutes": "{minutes} min łącznie",
+  "@groupTracks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@groupMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "uiTransitions": "Przejścia",
+  "uiEqualizer": "Korektor",
+  "uiMediaControls": "Kontrole mediów",
+  "uiHeadsetButtons": "Przyciski słuchawek",
+  "uiNotificationButtons": "Przyciski powiadomień",
+  "uiCrossfade": "Przenikanie",
+  "uiOff": "Wyłączone",
+  "uiOverlapsTheEndOfATrackWith": "Przekracza koniec utworu z początkiem następnego podczas automatycznego odtwarzania. Bardzo krótkie utwory i powtarzanie jednego utworu nie używają crossfade.",
+  "uiPlayAndPause": "Graj i zatrzymaj",
+  "uiNoFade": "Bez wyciszania",
+  "uiNotificationAndLockScreen": "Ekran powiadamiania i blokady",
+  "uiSeekButtons10Seconds": "Poszukaj przycisków ± 10 sekund",
+  "uiReplacesPreviousnextWithSeekingInTheNotification": "Zastępuje poprzednie / następne z poszukiwaniem w zgłoszeniu.",
+  "uiShowStopButton": "Pokaż przycisk Zatrzymaj",
+  "uiHeadsetAndMediaButtons": "Przyciski słuchawkowe i media",
+  "uiSeek10SecondsFromHeadset": "Poszukaj ± 10 sekund od słuchawki",
+  "uiPreviousnextButtonsSeekWithinTheCurrentTrack": "Poprzednie / następne przyciski szukają w bieżącym torze. Przycisk środkowy zachowuje funkcję Play / Pause.",
+  "uiKeepPausedWhenChangingTracks": "Zachowaj wstrzymanie podczas zmiany toru",
+  "uiNotificationAndHeadsetControlsAreAvailableOn": "Zawiadomienie i sterowanie słuchawkami dostępne są na Android. Niektóre systemy przestawiają przyciski powiadomień.",
+  "uiTheEqualizerIsCurrentlyAvailableOnAndroid": "Equalizer jest obecnie dostępny na Android.",
+  "uiSelectATrackAndReopenTheEqualizer": "Wybierz utwór i ponownie otwórz equalizer. Jeśli jest on nadal niedostępny, urządzenie nie ujawnia wymaganego efektu audio.",
+  "uiAndroidEqualizer": "Korektor Android",
+  "uiEnableEqualizer": "Włącz equalizer",
+  "uiFlat": "Płaski",
+  "uiVoice": "Głos",
+  "uiWhenBoostingABandAuraAutomaticallyReduces": "Przy wzmacnianiu pasma Aura automatycznie zmniejsza ogólny poziom, aby opuścić zagłówki i ograniczyć zniekształcenia.",
+  "uiAudioPlayback": "Odtwarzanie dźwięku",
+  "uiPlaybackIsUnavailable": "Odtwarzanie jest niedostępne.",
+  "uiUnknownArtist": "Nieznany wykonawca",
+  "uiUntitledTrack": "Utwór bez tytułu",
+  "uiTheFileIsNotAValidAura": "Plik nie jest prawidłowym backup Aura lub jest uszkodzony.",
+  "uiChooseAnAuraBackup": "Wybierz Aura kopii zapasowej",
+  "uiSaveAuraBackup": "Zapisz Aura kopii zapasowej",
+  "uiBackupSaved": "Wsparcie zachowane.",
+  "uiCouldNotSaveTheBackupAuraData": "Nie można zapisać kopii zapasowej. Dane Aura nie zostały zmienione.",
+  "uiTheFileIsNotAValidAura82": "Plik nie jest prawidłowym backup Aura, jest uszkodzony lub przekracza 4 MB.",
+  "uiRestoreBackup": "Przywrócić wsparcie?",
+  "uiYourCurrentFavoritesRatingsPlaylistsAndHistory": "Twoje aktualne ulubione, oceny, playlisty i historia zostaną zastąpione.",
+  "uiDataWillBeMergedExistingRatingsAnd": "Dane zostaną połączone. Istniejące ratingi i nazwy listy odtwarzania mają pierwszeństwo.",
+  "uiSettingsWillAlsoBeImported": "Ustawienia będą również importowane.",
+  "uiYourCurrentSettingsWillBeKept": "Twoje aktualne ustawienia zostaną zachowane.",
+  "uiCancel": "Anuluj",
+  "uiReplaceAndRestore": "Zastąp i przywróć",
+  "uiRestore": "Przywróć",
+  "uiBackupRestoredUnavailableTracksAreKeptAs": "Backup przywrócony. Niedostępne utwory są przechowywane jako referencje.",
+  "uiDataRecoveryMustFinishBeforeContinuing": "Odzyskanie danych musi zakończyć się przed kontynuowaniem.",
+  "uiRestoreFailedYourPreviousDataWasKept": "Przywracanie nie powiodło się.",
+  "uiPreviousDataRecovered": "Poprzednie dane odzyskano.",
+  "uiCouldNotRecoverTheDataYetTry": "Nie można jeszcze odzyskać danych. Spróbuj ponownie lub ponownie uruchomić Aura.",
+  "uiBackupAndRestore": "Backup i przywracanie",
+  "uiDataRecoveryIsRequiredBeforeContinuingAura": "Aura zachował poprzedni stan w lokalnym dzienniku.",
+  "uiTryRecovery": "Spróbuj odzyskać",
+  "uiKeepWhatYouHaveOrganized": "Zatrzymaj to, co zorganizowałeś.",
+  "uiBackupsIncludeFavoritesRatingsPlaylistsHistoryPlayback": "Kopie zapasowe zawierają ulubione, oceny, listy odtwarzania, historię, ustawienia odtwarzania i filtry bibliotek. Pliki audio, źródła i wybrane foldery nie są włączone i muszą być skonfigurowane oddzielnie.",
+  "uiExportBackup": "Eksportuj kopię zapasową",
+  "uiChooseABackupToRestore": "Wybierz kopię zapasową, aby przywrócić",
+  "uiMissingReferencesAreKeptWithoutAssigningRatings": "Brakujące referencje są przechowywane bez przypisywania ratingów do innych piosenek. Możesz ponownie zaimportować kopię zapasową po dodaniu pasujących źródeł.",
+  "uiReplaceCurrentData": "Zastąp bieżące dane",
+  "uiOffMergeDataAndKeepExistingRatings": "Wyłączone: połączenie danych i utrzymanie istniejących ratingów.",
+  "uiRestoreSettingsToo": "Przywróć ustawienia",
+  "uiReviewAndRestore": "Przegląd i przywrócenie",
+  "uiHelloNightOwl": "Witaj, nocny marku 🦉",
+  "uiGoodMorning": "Dzień dobry 🌅",
+  "uiGoodAfternoon": "Dzień dobry ☀️",
+  "uiGoodEvening": "Dobry wieczór 🌆",
+  "uiChooseYourMusicFolder": "Wybierz folder muzyczny",
+  "uiAuraCouldNotRecoverAnInterruptedRestore": "Aura nie mógł odzyskać przerwanego przywracania. Poprzednie dane są przechowywane w lokalnym dzienniku. Zamknij i ponownie otwórz aplikację, aby spróbować ponownie.",
+  "uiCouldNotLoadOrSaveListeningHistory": "Nie można wczytać ani zapisać historii słuchania i ostatniego odtwarzania.",
+  "uiCouldNotApplyPlaybackSettingsOrThe": "Nie można zastosować ustawień odtwarzania lub zegara snu.",
+  "uiCouldNotLoadTheLibraryScanYour": "Nie można załadować biblioteki. Przeskanuj ponownie muzykę.",
+  "uiMusicOnYourPC": "Muzyka na twoim PC",
+  "uiMusicOnYourPhone": "Muzyka na telefonie",
+  "uiNavidromeServer": "Navidrome serwer",
+  "uiURLAndUserAccount": "URL i konto użytkownika",
+  "uiCouldNotLoadMusicSources": "Nie można wczytać źródeł muzyki.",
+  "uiAddAFolderFromYourPC": "Dodaj folder ze swojego PC",
+  "uiChooseVisibleFolders": "Wybierz widoczne foldery",
+  "uiRemoveAFolderFromTheLibrary": "Usuń folder z biblioteki",
+  "uiFilesStayOnYourPC": "Pliki pozostają na twoim PC.",
+  "uiYouHaveNotAddedAnyFoldersYet": "Nie dodałeś jeszcze żadnych folderów.",
+  "uiRemoveFromLibrary": "Usuń z biblioteki",
+  "uiFolderRemovedFromTheLibraryFilesStayed": "Folder usunięty z biblioteki. Pliki pozostały na twoim PC.",
+  "uiCouldNotRemoveTheFolderFromThe": "Nie można usunąć folderu z biblioteki.",
+  "uiCouldNotReadTheFolderCheckThat": "Nie można odczytać folderu. Sprawdź, czy jest dostępny.",
+  "uiCouldNotSaveSourcesTryAgain": "Nie można zapisać źródeł. Spróbuj ponownie.",
+  "uiCouldNotPlayTheTrackTryScanning": "Nie można grać na torze. Spróbuj ponownie skanować.",
+  "uiNoAudioFilesFoundOnTheDevice": "Nie znaleziono żadnych plików audio na urządzeniu.",
+  "uiAllowMusicAccessToScanYourLibrary": "Pozwól muzyce na skanowanie biblioteki.",
+  "uiCouldNotScanYourMusicTryAgain": "Nie można skanować muzyki. Spróbuj ponownie.",
+  "uiLibraryScanningIsCurrentlyAvailableOnAndroid": "Skanowanie biblioteki jest obecnie dostępne na Android.",
+  "uiAProblemOccurredWhileScanningMusic": "Problem pojawił się podczas skanowania muzyki.",
+  "uiWhereIsYourMusic": "Gdzie twoja muzyka?",
+  "uiFavoriteTracks": "Ulubione utwory",
+  "uiAllFavorites": "Wszystkie ulubione",
+  "uiBrowse": "Przeglądaj",
+  "uiRecentlyPlayed": "Ostatnio rozegrane",
+  "uiSeeAll": "Zobacz wszystkie",
+  "uiYourLibrary": "Twoja biblioteka",
+  "uiSTARTWITHASOURCE": "WSTRZYMAĆ Z SOURCE",
+  "uiAddYourMusic": "Dodaj muzykę",
+  "uiPCOrNavidromeServer": "Serwer PC lub Navidrome",
+  "uiPhoneOrNavidromeServer": "Serwer telefonu lub Navidrome",
+  "uiScanning": "Skanuję...",
+  "uiAddASource": "Dodaj źródło",
+  "uiLibrary": "Biblioteka",
+  "uiYourListeningHistoryWillAppearHere": "Twoja historia słuchania pojawi się tutaj.",
+  "uiYOURCOLLECTION": "PANI ZBIÓR",
+  "uiLibrary178": "Biblioteka",
+  "uiNoTracksMatchTheSelectedFilters": "Brak śladów pasuje do wybranych filtrów.",
+  "uiChooseMusicFoldersToSeeTracksIn": "Wybierz foldery muzyczne, aby zobaczyć utwory w bibliotece.",
+  "uiChangeFilters": "Zmień filtry",
+  "uiChooseFolders": "Wybierz foldery",
+  "uiScanAgain": "Przeskanuj ponownie",
+  "uiNoTracksMatchTheSelectedRating": "Brak śladów pasuje do wybranej oceny.",
+  "uiCouldNotResumeTheTrackTrySelecting": "Nie można wznowić trasy. Spróbuj wybrać ją ponownie.",
+  "uiUnknownDuration": "Nieznany czas trwania",
+  "uiTrackInformation": "Informacje o torach",
+  "uiClose": "Zamknij",
+  "uiArtist": "Artysta",
+  "uiAlbum": "Album",
+  "uiUnknownAlbum": "Nieznany album",
+  "uiDuration": "Czas trwania",
+  "uiFolder": "Katalog",
+  "uiUnknownFolder": "Nieznany folder",
+  "uiPause": "Pauza",
+  "uiNextTrack": "Następny utwór",
+  "uiTheQueueIsEmpty": "Kolejka jest pusta",
+  "uiPreviousTrack": "Poprzedni utwór",
+  "uiEnterTheHTTPSServerAddressWithoutA": "Wprowadź adres serwera HTTPS bez nazwy użytkownika, hasła lub parametrów URL.",
+  "uiEnterTheSourceNameUsernameAndPassword": "Wprowadź nazwę źródła, nazwę użytkownika i hasło.",
+  "uiTheServerDidNotRespondCorrectlyCheck": "Serwer nie odpowiedział poprawnie. Sprawdź adres i dostęp Navidrome.",
+  "uiTheServerResponseIsTooLarge": "Odpowiedź serwera jest zbyt duża.",
+  "uiCouldNotReachTheServerCheckYour": "Nie można dotrzeć do serwera. Sprawdź połączenie, adres i certyfikat HTTPS.",
+  "uiAuthenticationFailedCheckYourUsernameAndPassword": "Uwierzytelnianie nie powiodło się. Sprawdź nazwę użytkownika i hasło.",
+  "uiNavidromeRejectedTheRequestCheckTheAccounts": "Navidrome odrzucił wniosek. Sprawdź dostęp do biblioteki konta.",
+  "uiTheAddressDidNotReturnAValid": "Adres nie zwrócił ważnej odpowiedzi Navidrome.",
+  "uiTheServerRepeatedAnAlbumPageYour": "Serwer powtórzył stronę albumu. Twoja poprzednia biblioteka została zachowana.",
+  "uiInvalidServerTrack": "Nieprawidłowy tor serwera.",
+  "uiReconnectTheNavidromeSourceToPlayThis": "Odtworzyć źródło Navidrome do gry na tym torze.",
+  "uiCouldNotLoadSavedSourcesTryAgain": "Nie można wczytać zapisanych źródeł. Spróbuj ponownie.",
+  "uiCouldNotSaveTheSourceChangeTry": "Nie można zapisać zmiany źródła. Spróbuj ponownie.",
+  "uiConnectedTheServerLibraryHasBeenLoaded": "Biblioteka serwerów została załadowana.",
+  "uiDisconnectThisSource": "Odłączyć to źródło?",
+  "uiCancel228": "Anuluj",
+  "uiDisconnect": "Rozłącz",
+  "uiSourceDisconnected": "Źródło odłączone.",
+  "uiNavidromeSources": "Navidrome źródeł",
+  "uiConnectYourLibraryFromANavidromeServer": "Połącz bibliotekę z serwera Navidrome nad HTTPS.",
+  "uiLoadingTheServerLibrary": "Wczytywanie biblioteki serwera...",
+  "uiReloadSources": "Przeładuj źródła",
+  "uiLibraryUpdated": "Biblioteka zaktualizowana.",
+  "uiRefresh": "Odśwież",
+  "uiReconnect": "Rozpuszczenie",
+  "uiAddNavidromeServer": "Dodaj serwer Navidrome",
+  "uiTracksAppearInLibraryAfterConnectingPlayback": "Tory pojawiają się w bibliotece po podłączeniu. Odtwarzanie wymaga internetu. Aura ulubionych, oceny i listy odtwarzania pozostają lokalne; biblioteka serwera nie jest zmieniana.",
+  "uiConnectToNavidrome": "Połącz z Navidrome",
+  "uiSourceName": "Nazwa źródła",
+  "uiServerURL": "Serwer URL",
+  "uiUsername": "Nazwa użytkownika",
+  "uiPassword": "Hasło",
+  "uiCredentialsAreSavedInTheDevicesSecure": "Fundamenty są zapisywane w bezpiecznym magazynie urządzenia.",
+  "uiConnect": "Połącz",
+  "uiListeningHistory": "Słuchanie historii",
+  "uiClearHistory": "Wyczyść historię",
+  "uiClearHistory262": "Czysta historia?",
+  "uiTracksFavoritesAndPlaylistsWillStaySaved": "Ślady, ulubione i listy odtwarzania pozostaną zapisane.",
+  "uiDelete": "Usuń",
+  "uiPlayedTracksWillAppearHere": "Grane utwory pojawią się tutaj.",
+  "uiTracksInYourHistoryAreHiddenBy": "Ślady w Twojej historii są ukryte przez obecne filtry lub nie są już dostępne.",
+  "uiLibraryFilters": "Filtry biblioteczne",
+  "uiMinimumDuration": "Minimalny czas trwania",
+  "uiAllDurations": "Wszystkie okresy",
+  "ui10Seconds": "10 sekund",
+  "ui30Seconds": "30 sekund",
+  "ui1Minute": "1 minuta",
+  "uiTracksWithUnknownDurationStayVisible": "Ślady o nieznanym czasie trwania pozostają widoczne.",
+  "uiHideWhatsAppAndTelegram": "Ukryj WhatsApp i Telegram",
+  "uiHidesFilesFromTheseAppsFolders": "Ukrywa pliki z folderów tych aplikacji.",
+  "uiFiltersOnlyChangeWhatAppearsInYour": "Filtry zmieniają tylko to, co pojawia się w bibliotece. Pliki, listy odtwarzania i bieżąca kolejka są przechowywane.",
+  "uiSaving": "Zapisywanie...",
+  "uiSaveFilters": "Zapisz filtry",
+  "uiRepeatOff": "Powtórz",
+  "uiRepeatEntireQueue": "Powtórz całą kolejkę",
+  "uiRepeatCurrentTrack": "Powtórz bieżącą ścieżkę",
+  "uiShuffleOn": "Losowanie włączone",
+  "uiShuffleOff": "Losowanie wyłączone",
+  "uiCloseQueue": "Zamknij kolejkę",
+  "uiShuffledOrderTurnOffShuffleToReorder": "Shuffled zamówienia. Wyłącz shuffle do ponownego zamówienia.",
+  "uiDragTheHandleToChangeTheOrder": "Przeciągnij uchwyt, aby zmienić zamówienie.",
+  "uiCouldNotUpdatePlaybackTryAgain": "Nie można zaktualizować odtwarzania. Spróbuj ponownie.",
+  "uiAtTheEndOfTheTrack": "Na końcu toru",
+  "uiSleepTimer": "Zegar snu",
+  "uiCloseSleepTimer": "Zegar snu",
+  "uiFinishTheCurrentTrack": "Zakończ bieżącą ścieżkę",
+  "uiWhenTheTimerEndsWaitForThe": "Kiedy zegar się skończy, poczekaj aż tor się skończy przed przerwaniem.",
+  "uiStartSleepTimer": "Rozpocznij czas snu",
+  "uiStopAtTheEndOfThisTrack": "Zatrzymaj się na końcu tego toru",
+  "uiCancelSleepTimer": "Anuluj zegar senny",
+  "uiPlaybackSettings": "Ustawienia odtwarzania",
+  "uiOutputSettings": "Ustawienia wyjścia",
+  "uiPlayback": "Odtwarzanie",
+  "uiAutomaticActions": "Automatyczne działania",
+  "uiAudioOutput": "Wyjście audio",
+  "uiOnlyAppliesInAuraSeparatelyFromYour": "Dotyczy tylko Aura, oddzielnie od telefonu lub PC objętości.",
+  "uiTimer": "Czas",
+  "uiAudioOptions": "Opcje audio",
+  "uiCrossfadeAndPlaypauseFades": "Crossfade i play / pauza znika",
+  "uiFrequencyBandsAndPresets": "Paski częstotliwości i zestawy",
+  "uiAvailableOnAndroid": "Dostępne pod adresem Android",
+  "uiNotificationLockScreenAndHeadset": "Zawiadomienie, ekran blokujący i zestaw słuchawkowy",
+  "uiRestoreDefaultSpeedAndVolume": "Przywróć domyślną prędkość i głośność",
+  "uiSpeedAndVolumeAreSavedOnThis": "Prędkość i głośność są zapisywane na tym urządzeniu. Zegar jest anulowany, gdy aplikacja jest całkowicie zamknięta.",
+  "uiSleep": "Śpij",
+  "uiUnrated": "Nieoceniona",
+  "uiSwipeToRate": "Przesuń do prędkości",
+  "uiGive1Star": "Daj 1 gwiazdę",
+  "uiClearRating": "Wyraźna ocena",
+  "uiStarSize": "Rozmiar gwiazdy",
+  "uiSmall": "Małe",
+  "uiMedium": "Średni",
+  "uiLarge": "Duże",
+  "uiSwipeAcrossTheStarsToRateIn": "Przesuń po gwiazdach, aby ocenić w półgwiazdkowych krokach.",
+  "uiFilterByRating": "Filtr według ratingu",
+  "uiAllRatings": "Wszystkie ratingi",
+  "uiOnly5Stars": "Tylko 5 gwiazd",
+  "uiSortByRating": "Sortuj według ratingu",
+  "uiDefaultOrder": "Domyślne zamówienie",
+  "uiHighestRatingFirst": "Najwyższa ocena pierwsza",
+  "uiLowestRatingFirst": "Najniższa ocena pierwsza",
+  "uiCouldNotSaveTheChangeTryAgain": "Nie można zapisać zmiany. Spróbuj ponownie.",
+  "uiNewPlaylist": "Nowa lista odtwarzania",
+  "uiRenamePlaylist": "Zmień nazwę listy odtwarzania",
+  "uiPlaylistName": "Nazwa listy odtwarzania",
+  "uiSave": "Zapisz",
+  "uiRemoveFromFavorites": "Usuń z ulubionych",
+  "uiAddToFavorites": "Dodaj do ulubionych",
+  "uiAddToPlaylist": "Dodaj do listy odtwarzania",
+  "uiTrackIsAlreadyInThisPlaylist": "Ścieżka jest już na tej liście odtwarzania",
+  "uiTrackAddedToPlaylist": "Ścieżka dodana do listy odtwarzania.",
+  "uiCouldNotLoadFavoritesAndPlaylists": "Nie można wczytać ulubionych i list odtwarzania.",
+  "uiTryAgain": "Spróbuj jeszcze raz",
+  "uiBackToPlaylists": "Wróć do listy odtwarzania",
+  "uiPlaylistOptions": "Opcje listy odtwarzania",
+  "uiDeletePlaylist": "Usuń playlistę?",
+  "uiAudioFilesStayOnThePhone": "Pliki audio pozostają na telefonie.",
+  "uiRename": "Zmień nazwę",
+  "uiDeletePlaylist363": "Usuń listę odtwarzania",
+  "uiCreateYourFirstPlaylistWithOrFrom": "Utwórz swoją pierwszą listę odtwarzania z + lub z menu utworu.",
+  "uiAddTracks": "Dodaj utwory",
+  "uiATrackIsOutsideTheSelectedFolders": "Ścieżka znajduje się poza wybranymi folderami lub nie jest już dostępna.",
+  "uiPlayAll": "Odtwórz wszystkie",
+  "uiTapATracksHeartToSaveIt": "Dotknij serca utworu, żeby go uratować.",
+  "uiAddTracksToThisPlaylist": "Dodaj utwory do tej listy odtwarzania.",
+  "uiRemoveFromPlaylist": "Usuń z listy odtwarzania",
+  "uiSearchForATrack": "Szukaj utworu",
+  "uiTitle": "Tytuł",
+  "uiSearchYourMusic": "Szukaj muzyki",
+  "uiClearSearch": "Wyczyść wyszukiwanie",
+  "uiFavoritesOnly": "Tylko ulubione",
+  "uiYOURLIBRARYISEMPTY": "Twoja biblioteka jest godna zaufania.",
+  "uiAddMusic": "Dodaj muzykę",
+  "uiAddASourceToSearchYourCollection": "Dodaj źródło do przeszukania kolekcji.",
+  "uiRecentSearches": "Ostatnie wyszukiwanie",
+  "uiSearchForATitleArtistOrAlbum": "Szukaj tytułu, artysty lub albumu. Zgłoszone wyszukiwanie pozostać tutaj dla tej sesji.",
+  "uiNoResultsMatchTheSelectedFilters": "Brak wyników pasuje do wybranych filtrów.",
+  "uiAuraSettings": "Aura ustawień",
+  "uiOptionsMarkedComingSoonAreNotAvailable": "Opcje oznaczone \"Wkrótce\" nie są jeszcze dostępne. Aktywne ustawienia są zapisywane na tym urządzeniu. Zarządzanie połączeniami z serwerami w źródłach mediów.",
+  "uiGotIt": "Rozumiem.",
+  "uiHelp": "Pomoc",
+  "uiInterface": "Interfejs",
+  "uiInterfaceSettings": "Ustawienia interfejsu",
+  "uiApplicationStyle": "Styl aplikacji",
+  "uiGeneral": "Ogólne",
+  "uiMediaLists": "Listy mediów",
+  "uiNowPlayingScreens": "Teraz odtwarzamy ekrany",
+  "uiNowPlayingScreen": "Teraz odtwarzanie ekranu",
+  "uiTrackRatings": "Ocena toru",
+  "uiSwipeAcrossTheStarsToRateIn399": "Przesuń po gwiazdach, aby ocenić w półgwiazdkowych krokach. Rozmiar odnosi się do gracza i informacji o torze.",
+  "uiPageSettings": "Ustawienia strony",
+  "uiHomePage": "Strona główna",
+  "uiGenrePage": "Rodzaj strony",
+  "uiPlaylistPage": "Strona listy odtwarzania",
+  "uiSearchPage": "Strona wyszukiwania",
+  "uiAdvanced": "Zaawansowane",
+  "uiAdvancedInterfaceSettings": "Zaawansowane ustawienia interfejsu",
+  "uiDecodingAndTranscoding": "Odkodowanie i transkodowanie",
+  "uiAudioFocus": "Koncentracja dźwięku",
+  "uiNotificationAndMediaSessionButtons": "Przyciski powiadamiania i sesji medialnej",
+  "uiAdvancedPlaybackSettings": "Zaawansowane ustawienia odtwarzania",
+  "uiOfflineCacheAndDownloads": "Offline, cache i pliki do pobrania",
+  "uiMedia": "Media",
+  "uiOfflineServerPlayback": "Odtwarzanie serwera offline",
+  "uiImages": "Obrazy",
+  "uiLocalTracksWorkWithoutInternetServerDownloads": "Lokalne utwory działają bez internetu. Serwery pobierają pliki i zarządzanie cache już wkrótce.",
+  "uiAdvancedSettings": "Ustawienia zaawansowane",
+  "uiMiscellaneous": "Różne",
+  "uiMediaSources": "Źródła mediów",
+  "uiSyncManager": "Menedżer synchronizacji",
+  "uiUpdating": "Aktualizacja...",
+  "uiRefreshLibrary": "Odśwież bibliotekę",
+  "uiRefreshNavidromeSources": "Odśwież Navidrome źródeł",
+  "uiOfflineFiles": "Pliki offline",
+  "uiGeneratedFiles": "Generowane pliki",
+  "uiLanguages": "Języki",
+  "uiAbout": "O aplikacji",
+  "uiRateTheApp": "Oceń aplikację",
+  "uiContactSupport": "Wsparcie kontaktów",
+  "uiWhatsNew": "Co nowego?",
+  "uiWhatsNewInAura": "Co nowego w Aura",
+  "uiLocalAndNavidromeLibrariesHalfstarRatingsHistory": "Biblioteki lokalne i Navidrome • Oceny półgwiazdkowe • Historia, listy odtwarzania i ulubione • Crossfade, zegar senny i Android equalizer • Wyświetla do 144 Hz",
+  "uiAboutAura": "Około Aura",
+  "uiAPlayerForYourLocalMusicAnd": "Gracz dla lokalnej muzyki i Navidrome biblioteki.",
+  "uiComingSoon": "Wkrótce",
+  "uiMusicFolders": "Foldery muzyczne",
+  "uiChooseMusicFoldersOnlyFoldersWhereThe": "Wybierz foldery muzyczne. Tylko foldery, w których urządzenie znalazło pliki audio są wyświetlane.",
+  "uiAllFolders": "Wszystkie foldery",
+  "uiAutomaticallyIncludesFoldersFoundInFutureScans": "Automatycznie zawiera foldery znalezione w przyszłych skanach.",
+  "uiNoTracksFoundInTheLastScan": "Nie znaleziono śladów w ostatnim skanowaniu.",
+  "uiYourLibraryWillStayEmptyUntilYou": "Twoja biblioteka pozostanie pusta, dopóki nie wybierzesz folderu.",
+  "uiSaveSelection": "Zapisz zaznaczenie",
+  "secondsValue": "{count, plural, one{{count} sekunda} few{{count} sekundy} many{{count} sekund} other{{count} sekundy}}",
+  "@secondsValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "secondsShort": "{value} s",
+  "@secondsShort": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "restoreConfirmation": "{change}\n\n{settings}\n\nPlayback będzie pauza i zegar snu zostanie anulowany. Twoja obecna kolejka jest zachowana.",
+  "@restoreConfirmation": {
+    "placeholders": {
+      "change": {
+        "type": "String"
+      },
+      "settings": {
+        "type": "String"
+      }
+    }
+  },
+  "backupCreated": "Utworzono: {date}",
+  "@backupCreated": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "backupStats": "Ulubione: {favorites} · Opinie: {ratings}\nLista utworów: {playlists} · Historia utworów: {history}",
+  "@backupStats": {
+    "placeholders": {
+      "favorites": {
+        "type": "int"
+      },
+      "ratings": {
+        "type": "int"
+      },
+      "playlists": {
+        "type": "int"
+      },
+      "history": {
+        "type": "int"
+      }
+    }
+  },
+  "backupMatches": "Uznane: {matched} · Zmienione: {remapped}\nNiedostępne lub niejednoznaczne: {unavailable}",
+  "@backupMatches": {
+    "placeholders": {
+      "matched": {
+        "type": "int"
+      },
+      "remapped": {
+        "type": "int"
+      },
+      "unavailable": {
+        "type": "int"
+      }
+    }
+  },
+  "tracksInLibrary": "{count, plural, one{1 utwór w bibliotece.} other{{count} utworów w bibliotece.}}",
+  "@tracksInLibrary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sourcesSaved": "Źródła ocalone. {count, plural, one{1 utwór w bibliotece.} other{{count} utworów w bibliotece.}}",
+  "@sourcesSaved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tracksInFolders": "{count, plural, one{1 utwór w wybranych folderach.} other{{count} utworów w wybranych folderach.}}",
+  "@tracksInFolders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "allFoldersSummary": "Wszystkie foldery · Ślady: {count}",
+  "@allFoldersSummary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectedFoldersSummary": "Wybrane foldery: {folders} · Ślady: {tracks}",
+  "@selectedFoldersSummary": {
+    "placeholders": {
+      "folders": {
+        "type": "int"
+      },
+      "tracks": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryRhythm": "{count} utworów, w rytm.",
+  "@libraryRhythm": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryTrackCount": "Ślady w bibliotece: {count}",
+  "@libraryTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "backToPage": "Powrót do {page}",
+  "@backToPage": {
+    "placeholders": {
+      "page": {
+        "type": "String"
+      }
+    }
+  },
+  "groupCount": "{count, plural, one{{count} element} few{{count} elementy} many{{count} elementów} other{{count} elementu}}",
+  "@groupCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "foundTracks": "{count, plural, one{1 znaleziony utwór} other{Znaleziono {count} utworów}}",
+  "@foundTracks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "disconnectSource": "\"{name}\" zostanie usunięty z Aura. Pliki na serwerze są przechowywane.",
+  "@disconnectSource": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "visibleTracks": "Pokazuję {visible} z {total} utworów.",
+  "@visibleTracks": {
+    "placeholders": {
+      "visible": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "queueCount": "Kolejka · {count}",
+  "@queueCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playQueueCount": "Kolejka odtwarzania · {count}",
+  "@playQueueCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "currentTrackArtist": "Bieżący utwór · {artist}",
+  "@currentTrackArtist": {
+    "placeholders": {
+      "artist": {
+        "type": "String"
+      }
+    }
+  },
+  "removeFromQueue": "Usuń {title} z kolejki",
+  "@removeFromQueue": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "moveTrack": "Przesuń {title}",
+  "@moveTrack": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "activeTimer": "Aktywny: {value}",
+  "@activeTimer": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "minutesValue": "{count, plural, one{{count} minuta} few{{count} minuty} many{{count} minut} other{{count} minuty}}",
+  "@minutesValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "minutesShort": "{count} min",
+  "@minutesShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playerVolume": "Objętość gracza: {value}%",
+  "@playerVolume": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "playbackSpeed": "Prędkość: {value} ×",
+  "@playbackSpeed": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "yourRating": "Twoja ocena: {rating} z 5",
+  "@yourRating": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "ratingOutOfFive": "{rating} z 5",
+  "@ratingOutOfFive": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "giveStars": "{count, plural, one{Daj 1 gwiazdę} other{Daj {count} gwiazd}}",
+  "@giveStars": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ratingDescription": "Ocena: {rating} z 5",
+  "@ratingDescription": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumStars": "Co najmniej {rating} gwiazd",
+  "@minimumStars": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumRating": "Ocena ≥ {rating}",
+  "@minimumRating": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "savedTrackCount": "{count, plural, one{1 zapisany utwór} other{{count} zapisanych utworów}}",
+  "@savedTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "availableTrackCount": "{count, plural, one{1 dostępny utwór} other{{count} dostępne utwory}}",
+  "@availableTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "missingTrackCount": "Niedostępne utwory: {count}. Są one poza wybranymi folderami lub nie są już dostępne.",
+  "@missingTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectedTrackCount": "{count, plural, one{1 wybrany utwór} other{{count} wybrane utwory}}",
+  "@selectedTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "searchResultCount": "{count, plural, one{{count} wynik} few{{count} wyniki} many{{count} wyników} other{{count} wyniku}}",
+  "@searchResultCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "removeRecentSearch": "Usuń wyszukiwanie {query}",
+  "@removeRecentSearch": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "tracksInSelection": "{count, plural, one{1 tor w wyborze} other{{count} utworów w selekcji}}",
+  "@tracksInSelection": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "languageTitle": "Język aplikacji",
+  "languageSystem": "Zgodnie z systemem",
+  "languageHelp": "Twoje nazwy utworu, artysty, folderu i listy odtwarzania nie są tłumaczone.",
+  "languageSaveError": "Nie można zapisać języka. Twój poprzedni wybór został zachowany.",
+  "uiBass": "Basy",
+  "mediaStop": "Zatrzymaj",
+  "mediaSeekBack": "Cofnij o 10 sekund",
+  "mediaSeekForward": "Przewiń o 10 sekund"
+}

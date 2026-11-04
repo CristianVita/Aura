@@ -1,0 +1,780 @@
+{
+  "@@locale": "uk",
+  "appearanceTitle": "Тема, шрифт і кольори",
+  "themeLabel": "Теґи",
+  "themeSystem": "Як у системі",
+  "themeLight": "Світло",
+  "themeDark": "Темний",
+  "themeOled": "OLED чорна",
+  "accentLabel": "Колір акценту",
+  "accentMint": "Мінуси",
+  "accentBlue": "Синій",
+  "accentViolet": "Віолет",
+  "accentRose": "Рожева",
+  "accentAmber": "Золота",
+  "accentTeal": "Теал",
+  "fontLabel": "Фокачча",
+  "fontSystem": "Системний шрифт",
+  "fontSerif": "Із засічками",
+  "fontMonospace": "Моноширинний",
+  "fontDescription": "Фонти використовують сім'ї, доступні на пристрої. Їх зовнішній вигляд може відрізнятися по всій платформах.",
+  "textSizeLabel": "Розмір тексту",
+  "textSizeDescription": "З'єднання з текстовим розміром в налаштуваннях вашого пристрою.",
+  "previewLabel": "Огляд",
+  "previewTitle": "Ваша музика, ваш ритм",
+  "previewSubtitle": "Фотоальбоми, артисти та списки відтворення",
+  "previewButton": "Відтворити",
+  "resetAppearance": "Відновити зовнішній вигляд за замовчуванням",
+  "appearanceSaveError": "Не вдалося зберегти зовнішній вигляд. Ваші попередні налаштування були збережені.",
+  "appearanceHelp": "Змінюється, як тільки вони зберігаються і включені в резервні копії.",
+  "percentValue": "{value}%",
+  "@percentValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "navigationTitle": "Навігація та запуск екрана",
+  "navigationOrder": "Замовити дзвінок",
+  "navigationHelp": "Перетягніть ручку, щоб змінити вкладки. Бібліотека та налаштування завжди залишаються доступними.",
+  "navigationHome": "Головна",
+  "navigationLibrary": "Бібліотека",
+  "navigationSearch": "Пошук",
+  "navigationSettings": "Налаштування",
+  "navigationRequired": "Потрібна вкладка",
+  "navigationLabels": "Вкладка етикеток",
+  "labelsAdaptive": "Адаптивний",
+  "labelsHidden": "Ікона тільки",
+  "labelsSelected": "Виберіть вкладку",
+  "labelsAlways": "Всі",
+  "labelsHelp": "Адаптивно: іконки на телефоні та етикетках в бічній панелі робочого столу.",
+  "navigationStart": "Початок екрана",
+  "navigationStartHelp": "Застосувати наступний раз додаток починається.",
+  "libraryLanding": "При відкритті бібліотеки",
+  "landingCategories": "Категорії",
+  "landingTracks": "Треки",
+  "landingAlbums": "Альбоми",
+  "landingArtists": "Виконавці",
+  "landingPlaylists": "Плейлисти",
+  "landingFavorites": "Улюблене",
+  "resetNavigation": "Відновлення навігації за замовчуванням",
+  "navigationSaveError": "Не вдалося зберегти навігацію. Ваші попередні налаштування були збережені.",
+  "navigationPreview": "Попередній перегляд",
+  "libraryPageTitle": "Сторінка бібліотеки",
+  "albumPageTitle": "Сторінка альбому",
+  "artistPageTitle": "Сторінка художника",
+  "categoryOrder": "Категорії та замовлення",
+  "categoryHelp": "Перетягніть ручку для повторення замовлення. Тримайте принаймні одну категорію видимими. Прихильники категорії не видаляють музику.",
+  "pageColumns": "Колонки на телефоні",
+  "pageColumnsHelp": "Перемикач екранів автоматично додано стовпчики. Великий текст може зменшити кількість стовпців для зчитування.",
+  "pageLayout": "Прованс",
+  "layoutList": "Список",
+  "layoutGrid": "Обкладинка сітки",
+  "pageSort": "Сортувати замовлення",
+  "sortName": "А–З",
+  "sortNameDescending": "Ім'я Z-A",
+  "sortTrackCount": "Кількість треків",
+  "pageSummary": "Мистецтво та резюме на відкритій сторінці",
+  "pageSummaryHelp": "Використовує наявну художню роботу для першої доріжки в групі.",
+  "pageReset": "Зареєструвати сторінку",
+  "pageSaveError": "Чи не вдалося зберегти сторінку. Ваші попередні налаштування були збережені.",
+  "librarySources": "Джерела",
+  "unknownGroup": "Невідомо",
+  "groupTracks": "{count, plural, one{{count} трек} few{{count} треки} many{{count} треків} other{{count} трека}}",
+  "groupMinutes": "{minutes} хв. всього",
+  "@groupTracks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@groupMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "uiTransitions": "Твитнуть",
+  "uiEqualizer": "Еквалайзер",
+  "uiMediaControls": "Контроль медіа",
+  "uiHeadsetButtons": "Кнопки заголовка",
+  "uiNotificationButtons": "Кнопки сповіщення",
+  "uiCrossfade": "Хрещатик",
+  "uiOff": "Вимкнено",
+  "uiOverlapsTheEndOfATrackWith": "Перекриває кінець доріжки з стартом наступного під час автоматичного відтворення. Дуже короткі треки і повторення однієї доріжки не використовують кросфеду.",
+  "uiPlayAndPause": "Грати і пауза",
+  "uiNoFade": "Ні фад",
+  "uiNotificationAndLockScreen": "Повідомлення та блокування екрана",
+  "uiSeekButtons10Seconds": "Кнопки Seek ±10 секунд",
+  "uiReplacesPreviousnextWithSeekingInTheNotification": "Замінює попередній/некст з пошуком повідомлення.",
+  "uiShowStopButton": "Показати кнопку Зупинити",
+  "uiHeadsetAndMediaButtons": "Заголовок та медіа кнопки",
+  "uiSeek10SecondsFromHeadset": "Seek ±10 секунд від гарнітура",
+  "uiPreviousnextButtonsSeekWithinTheCurrentTrack": "Натиснення кнопки \"Попередня сторінка\" знаходиться в поточному трекі. Кнопка центру зберігає гру/Пауза.",
+  "uiKeepPausedWhenChangingTracks": "Зберігати, коли зміни слідів",
+  "uiNotificationAndHeadsetControlsAreAvailableOn": "На Android доступні системи переадресації кнопки сповіщення.",
+  "uiTheEqualizerIsCurrentlyAvailableOnAndroid": "Еквалайзер в даний час доступний на Android.",
+  "uiSelectATrackAndReopenTheEqualizer": "Виберіть трек і відреагувати еквалайзер. Якщо він ще не доступний, пристрій не піддає необхідний звуковий ефект.",
+  "uiAndroidEqualizer": "Android еквалайзер",
+  "uiEnableEqualizer": "Увімкнути еквалайзер",
+  "uiFlat": "Плоскі",
+  "uiVoice": "Голосування",
+  "uiWhenBoostingABandAuraAutomaticallyReduces": "При підвищенні смуги Aura автоматично знижує загальний рівень, щоб залишити заголовок і обмежити спотворення.",
+  "uiAudioPlayback": "Аудіо відтворення",
+  "uiPlaybackIsUnavailable": "Без Презервативу 1.00.",
+  "uiUnknownArtist": "Невідомий виконавець",
+  "uiUntitledTrack": "Трек без назви",
+  "uiTheFileIsNotAValidAura": "Файл не є дійсним Aura резервне копіювання або пошкоджено.",
+  "uiChooseAnAuraBackup": "Виберіть резервну копію Aura",
+  "uiSaveAuraBackup": "Економія Aura резервне копіювання",
+  "uiBackupSaved": "Резервне копіювання збережено.",
+  "uiCouldNotSaveTheBackupAuraData": "Чи не вдалося зберегти резервну копію. Aura не змінено.",
+  "uiTheFileIsNotAValidAura82": "Файл не є дійсним Aura резервне копіювання, пошкоджений або перевищує 4 Мб.",
+  "uiRestoreBackup": "Відновлення резервної копії?",
+  "uiYourCurrentFavoritesRatingsPlaylistsAndHistory": "Ваш поточний улюблений, рейтинги, списки відтворення та історія будуть замінені.",
+  "uiDataWillBeMergedExistingRatingsAnd": "Дані будуть об'єднані. Виконуючи рейтинги та імена відтворення беруть пріоритет.",
+  "uiSettingsWillAlsoBeImported": "Також будуть імпортовані налаштування.",
+  "uiYourCurrentSettingsWillBeKept": "Ваші поточні налаштування будуть зберігатися.",
+  "uiCancel": "Скасувати",
+  "uiReplaceAndRestore": "Замінити і відновити",
+  "uiRestore": "Відновити",
+  "uiBackupRestoredUnavailableTracksAreKeptAs": "Резервне копіювання відновлено. Відреставровані треки не містять посилання.",
+  "uiDataRecoveryMustFinishBeforeContinuing": "Відновлення даних повинно закінчитися до продовження.",
+  "uiRestoreFailedYourPreviousDataWasKept": "Відновлення не вдалося. Ваші попередні дані зберігалися.",
+  "uiPreviousDataRecovered": "Попереднє відновлення даних.",
+  "uiCouldNotRecoverTheDataYetTry": "Не вдалося відновити дані ще. Спробуйте знову або перезапустіть Aura.",
+  "uiBackupAndRestore": "Резервне копіювання та відновлення",
+  "uiDataRecoveryIsRequiredBeforeContinuingAura": "Відновлення даних необхідно до продовження. Aura зберіг попередній стан у локальному журналі.",
+  "uiTryRecovery": "Спробуйте відновлення",
+  "uiKeepWhatYouHaveOrganized": "Зберігайте те, що ви організували",
+  "uiBackupsIncludeFavoritesRatingsPlaylistsHistoryPlayback": "Резервне копіювання включають фаворити, рейтинги, списки відтворення, історію, налаштування відтворення та бібліотечні фільтри. Аудіо файли, джерела та вибрані папки не включені і повинні бути налаштовані окремо.",
+  "uiExportBackup": "Експорт резервної копії",
+  "uiChooseABackupToRestore": "Виберіть резервну копію для відновлення",
+  "uiMissingReferencesAreKeptWithoutAssigningRatings": "Ви можете перевозити резервну копію після додавання джерел відповідності.",
+  "uiReplaceCurrentData": "Замінити поточні дані",
+  "uiOffMergeDataAndKeepExistingRatings": "Від: об'єднати дані і зберігати існуючі рейтинги.",
+  "uiRestoreSettingsToo": "Відновити налаштування занадто",
+  "uiReviewAndRestore": "Огляд і відновлення",
+  "uiHelloNightOwl": "Привіт, нічна сово 🦉",
+  "uiGoodMorning": "Доброго ранку 🌅",
+  "uiGoodAfternoon": "Добрий день ☀️",
+  "uiGoodEvening": "Добрий вечір 🌆",
+  "uiChooseYourMusicFolder": "Виберіть папку",
+  "uiAuraCouldNotRecoverAnInterruptedRestore": "Aura не вдалося відновити переривання відновлення. Ваші попередні дані зберігаються в локальному журналі. Закрийте і відкрийте додаток, щоб спробувати знову.",
+  "uiCouldNotLoadOrSaveListeningHistory": "Не завантажуйте або заощаджуйте історію прослуховування та останнє відтворення.",
+  "uiCouldNotApplyPlaybackSettingsOrThe": "Не застосовувати налаштування відтворення або таймер сну.",
+  "uiCouldNotLoadTheLibraryScanYour": "Не завантажуйте бібліотеку. Скануйте музику знову.",
+  "uiMusicOnYourPC": "Музика на вашому PC",
+  "uiMusicOnYourPhone": "Музика на телефоні",
+  "uiNavidromeServer": "Navidrome сервер",
+  "uiURLAndUserAccount": "URL та обліковий запис користувача",
+  "uiCouldNotLoadMusicSources": "Не навантажуйте музичні джерела.",
+  "uiAddAFolderFromYourPC": "Додати папку з вашого PC",
+  "uiChooseVisibleFolders": "Виберіть видимі папки",
+  "uiRemoveAFolderFromTheLibrary": "Видалення папки з бібліотеки",
+  "uiFilesStayOnYourPC": "Файли, що зберігаються на вашому PC.",
+  "uiYouHaveNotAddedAnyFoldersYet": "Ви ще не додали ніяких папок.",
+  "uiRemoveFromLibrary": "Видалення з бібліотеки",
+  "uiFolderRemovedFromTheLibraryFilesStayed": "Знімок видалено з бібліотеки. Файли, що зберігаються на вашому PC.",
+  "uiCouldNotRemoveTheFolderFromThe": "Не можна видалити папку з бібліотеки.",
+  "uiCouldNotReadTheFolderCheckThat": "Не можна прочитати папку. Перевірте, що він доступний.",
+  "uiCouldNotSaveSourcesTryAgain": "Не вдалося зберегти джерела. Спробуйте знову.",
+  "uiCouldNotPlayTheTrackTryScanning": "Не можна грати в трек. Спробуйте сканування його знову.",
+  "uiNoAudioFilesFoundOnTheDevice": "Не знайдено аудіо файлів на пристрої.",
+  "uiAllowMusicAccessToScanYourLibrary": "Дозволити доступ до музики для сканування бібліотеки.",
+  "uiCouldNotScanYourMusicTryAgain": "Не скануйте музику. Спробуйте ще раз.",
+  "uiLibraryScanningIsCurrentlyAvailableOnAndroid": "На даний момент доступ до бібліотеки на Android.",
+  "uiAProblemOccurredWhileScanningMusic": "Проблема виникла при скануванні музики.",
+  "uiWhereIsYourMusic": "Де ваша музика?",
+  "uiFavoriteTracks": "Улюблені композиції",
+  "uiAllFavorites": "Всі улюблені",
+  "uiBrowse": "Поза «Ложки»",
+  "uiRecentlyPlayed": "Останнім часом",
+  "uiSeeAll": "Переглянути всі",
+  "uiYourLibrary": "Бібліотека",
+  "uiSTARTWITHASOURCE": "СТАРТ З ЧАСОМ",
+  "uiAddYourMusic": "Додати музику",
+  "uiPCOrNavidromeServer": "PC або Navidrome сервер",
+  "uiPhoneOrNavidromeServer": "Телефон або Navidrome сервер",
+  "uiScanning": "Сканування ...",
+  "uiAddASource": "Додати джерело",
+  "uiLibrary": "Бібліотека",
+  "uiYourListeningHistoryWillAppearHere": "Історія вашого прослуховування з'явиться тут.",
+  "uiYOURCOLLECTION": "ВАША КОЛІКЦІЯ",
+  "uiLibrary178": "Бібліотека",
+  "uiNoTracksMatchTheSelectedFilters": "Немає треків, які відповідають вибраним фільтрам.",
+  "uiChooseMusicFoldersToSeeTracksIn": "Виберіть папки для перегляду треків у вашій бібліотеці.",
+  "uiChangeFilters": "Фільтри змінні",
+  "uiChooseFolders": "Виберіть папки",
+  "uiScanAgain": "Сканування знову",
+  "uiNoTracksMatchTheSelectedRating": "Немає треків, які відповідають вибраному рейтингу.",
+  "uiCouldNotResumeTheTrackTrySelecting": "Не вдалося відновити трек. Спробуйте вибрати його знову.",
+  "uiUnknownDuration": "Невідома тривалість",
+  "uiTrackInformation": "Відстеження інформації",
+  "uiClose": "Закрити",
+  "uiArtist": "Мистецтво",
+  "uiAlbum": "Відео",
+  "uiUnknownAlbum": "Невідомий альбом",
+  "uiDuration": "Тривалість",
+  "uiFolder": "Склад",
+  "uiUnknownFolder": "Невідомі папки",
+  "uiPause": "Пауза",
+  "uiNextTrack": "Наступний трек",
+  "uiTheQueueIsEmpty": "Порожня черга",
+  "uiPreviousTrack": "Попередній трек",
+  "uiEnterTheHTTPSServerAddressWithoutA": "Введіть адресу сервера HTTPS без імені користувача, пароля або URL.",
+  "uiEnterTheSourceNameUsernameAndPassword": "Введіть ім'я джерела, ім'я користувача та пароль.",
+  "uiTheServerDidNotRespondCorrectlyCheck": "Сервер не відповідав коректно. Перевірте адресу і Navidrome доступ.",
+  "uiTheServerResponseIsTooLarge": "Відповідність сервера занадто великий.",
+  "uiCouldNotReachTheServerCheckYour": "Не вдалося дістатися до сервера. Перевірте підключення, адресу та HTTPS сертифікат.",
+  "uiAuthenticationFailedCheckYourUsernameAndPassword": "Перевірити ім'я користувача та пароль.",
+  "uiNavidromeRejectedTheRequestCheckTheAccounts": "Navidrome відхилив запит. Перевірте доступ до бібліотеки облікового запису.",
+  "uiTheAddressDidNotReturnAValid": "Адреса не повернула чинну відповідь Navidrome.",
+  "uiTheServerRepeatedAnAlbumPageYour": "Сервер повторив сторінку альбома. Затриманий попередній бібліотечний сервер.",
+  "uiInvalidServerTrack": "Інвалідний трек сервера.",
+  "uiReconnectTheNavidromeSourceToPlayThis": "Відключіть джерело Navidrome для відтворення цього треку.",
+  "uiCouldNotLoadSavedSourcesTryAgain": "Не завантажуйте збережені джерела. Спробуйте знову.",
+  "uiCouldNotSaveTheSourceChangeTry": "Не вдалося зберегти зміни джерела. Спробуйте знову.",
+  "uiConnectedTheServerLibraryHasBeenLoaded": "Завантажено бібліотеку сервера.",
+  "uiDisconnectThisSource": "Від'єднати це джерело?",
+  "uiCancel228": "Скасувати",
+  "uiDisconnect": "Відключення",
+  "uiSourceDisconnected": "Джерело відключена.",
+  "uiNavidromeSources": "Navidrome джерела",
+  "uiConnectYourLibraryFromANavidromeServer": "Підключіть бібліотеку з сервера Navidrome на HTTPS.",
+  "uiLoadingTheServerLibrary": "Завантаження бібліотеки сервера...",
+  "uiReloadSources": "Джерела завантаження",
+  "uiLibraryUpdated": "Оновлення бібліотеки.",
+  "uiRefresh": "Реверс",
+  "uiReconnect": "Відправити",
+  "uiAddNavidromeServer": "Додати Navidrome сервер",
+  "uiTracksAppearInLibraryAfterConnectingPlayback": "Відстеження з'являються в бібліотеці після підключення. Відтворення вимагає інтернету. Aura фаворитів, рейтинги та списки відтворення локальних; Бібліотека сервера не змінюється.",
+  "uiConnectToNavidrome": "Підключення до Navidrome",
+  "uiSourceName": "Назва джерела",
+  "uiServerURL": "Сервер URL",
+  "uiUsername": "Ім'я користувача",
+  "uiPassword": "Логін",
+  "uiCredentialsAreSavedInTheDevicesSecure": "У безпечному зберіганні пристрою зберігаються почерговоні дані.",
+  "uiConnect": "Роз'єм",
+  "uiListeningHistory": "Історія",
+  "uiClearHistory": "Історія",
+  "uiClearHistory262": "Історія?",
+  "uiTracksFavoritesAndPlaylistsWillStaySaved": "Відстеження, улюблені та списки відтворення будуть збережені.",
+  "uiDelete": "Видалити",
+  "uiPlayedTracksWillAppearHere": "Зіграно треки з'являються тут.",
+  "uiTracksInYourHistoryAreHiddenBy": "Відстеження в історії приховані струмовими фільтрами або більше не доступні.",
+  "uiLibraryFilters": "Фільтри для бібліотеки",
+  "uiMinimumDuration": "Мінімальна тривалість",
+  "uiAllDurations": "Всі тривалості",
+  "ui10Seconds": "10 хв",
+  "ui30Seconds": "30 хв",
+  "ui1Minute": "1 час",
+  "uiTracksWithUnknownDurationStayVisible": "Відстеження з невідомою тривалістю перебування.",
+  "uiHideWhatsAppAndTelegram": "Приховати WhatsApp і Telegram",
+  "uiHidesFilesFromTheseAppsFolders": "Приховує файли з папок цих додатків.",
+  "uiFiltersOnlyChangeWhatAppearsInYour": "Файли, списки відтворення та поточна черга зберігаються.",
+  "uiSaving": "Збереження...",
+  "uiSaveFilters": "Зберегти фільтри",
+  "uiRepeatOff": "Повторити",
+  "uiRepeatEntireQueue": "Повторити всю чергу",
+  "uiRepeatCurrentTrack": "Повторити поточний трек",
+  "uiShuffleOn": "Шахфлі на",
+  "uiShuffleOff": "Згорнути",
+  "uiCloseQueue": "Закрита черга",
+  "uiShuffledOrderTurnOffShuffleToReorder": "Заглушене замовлення. Вимкніть шматочок для замовлення.",
+  "uiDragTheHandleToChangeTheOrder": "Перетягніть ручку для зміни замовлення.",
+  "uiCouldNotUpdatePlaybackTryAgain": "Не оновлюйте відтворення. Спробуйте знову.",
+  "uiAtTheEndOfTheTrack": "Наприкінці треку",
+  "uiSleepTimer": "Час сну",
+  "uiCloseSleepTimer": "Крупний таймер сну",
+  "uiFinishTheCurrentTrack": "Оздоблення поточного треку",
+  "uiWhenTheTimerEndsWaitForThe": "Коли таймер закінчиться, чекайте доріжок, щоб закінчити до паузи.",
+  "uiStartSleepTimer": "початок таймера сну",
+  "uiStopAtTheEndOfThisTrack": "Стоп в кінці цієї доріжки",
+  "uiCancelSleepTimer": "Скасувати таймер сну",
+  "uiPlaybackSettings": "Налаштування відтворення",
+  "uiOutputSettings": "Параметри виведення",
+  "uiPlayback": "Віджети",
+  "uiAutomaticActions": "Автоматичні дії",
+  "uiAudioOutput": "Аудіовихід",
+  "uiOnlyAppliesInAuraSeparatelyFromYour": "Тільки діє в Aura, окремо від телефону або PC.",
+  "uiTimer": "Таймер",
+  "uiAudioOptions": "Параметри аудіо",
+  "uiCrossfadeAndPlaypauseFades": "Crossfade і грати / пауза",
+  "uiFrequencyBandsAndPresets": "Частотні смуги і пресети",
+  "uiAvailableOnAndroid": "Всього Android",
+  "uiNotificationLockScreenAndHeadset": "Повідомлення, блокування екрана і гарнітура",
+  "uiRestoreDefaultSpeedAndVolume": "Відновити швидкість за замовчуванням і обсяг",
+  "uiSpeedAndVolumeAreSavedOnThis": "Швидкість і обсяг зберігаються на цьому пристрої. таймер скасовується, коли додаток повністю закритий.",
+  "uiSleep": "Сонце",
+  "uiUnrated": "Непристойна",
+  "uiSwipeToRate": "Передоплата",
+  "uiGive1Star": "Дати 1 зірка",
+  "uiClearRating": "Очистити рейтинг",
+  "uiStarSize": "Розмір зірки",
+  "uiSmall": "Мали",
+  "uiMedium": "Середній",
+  "uiLarge": "Великий",
+  "uiSwipeAcrossTheStarsToRateIn": "Пропустити через зірки, щоб оцінити півзірки.",
+  "uiFilterByRating": "Фільтр за рейтингом",
+  "uiAllRatings": "Всі рейтинги",
+  "uiOnly5Stars": "Тільки 5 зірок",
+  "uiSortByRating": "Сортувати за рейтингом",
+  "uiDefaultOrder": "Замовлення",
+  "uiHighestRatingFirst": "Найвищий рейтинг першого",
+  "uiLowestRatingFirst": "Найнижчий рейтинг",
+  "uiCouldNotSaveTheChangeTryAgain": "Не вдалося зберегти зміни. Спробуйте знову.",
+  "uiNewPlaylist": "Новий список відтворення",
+  "uiRenamePlaylist": "Список відтворення",
+  "uiPlaylistName": "Ім'я файлу",
+  "uiSave": "Зберегти",
+  "uiRemoveFromFavorites": "Видалити з улюблених",
+  "uiAddToFavorites": "Додати до обраного",
+  "uiAddToPlaylist": "Додати до списку відтворення",
+  "uiTrackIsAlreadyInThisPlaylist": "Відстеження вже в цьому списку відтворення",
+  "uiTrackAddedToPlaylist": "Відстежуйте до списку відтворення.",
+  "uiCouldNotLoadFavoritesAndPlaylists": "Чи не можна навантажувати фаворити і списки відтворення.",
+  "uiTryAgain": "Зареєструватися",
+  "uiBackToPlaylists": "Повернутися до списки відтворення",
+  "uiPlaylistOptions": "Параметри списку",
+  "uiDeletePlaylist": "Видалити список відтворення?",
+  "uiAudioFilesStayOnThePhone": "Проживання аудіо файлів на телефоні.",
+  "uiRename": "Ім'я",
+  "uiDeletePlaylist363": "Видалити список відтворення",
+  "uiCreateYourFirstPlaylistWithOrFrom": "Створіть свій перший список відтворення з меню трека.",
+  "uiAddTracks": "Додати треки",
+  "uiATrackIsOutsideTheSelectedFolders": "Відстеження за межами вибраних папок або більше немає. Його посилання зберігається.",
+  "uiPlayAll": "Грати все",
+  "uiTapATracksHeartToSaveIt": "Натисніть кнопку \"Тип\" для збереження його тут.",
+  "uiAddTracksToThisPlaylist": "Додайте треки до цього списку відтворення.",
+  "uiRemoveFromPlaylist": "Видалити з списку відтворення",
+  "uiSearchForATrack": "Пошук треку",
+  "uiTitle": "Головна",
+  "uiSearchYourMusic": "Пошук музики",
+  "uiClearSearch": "Очистити пошук",
+  "uiFavoritesOnly": "Вибрані тільки",
+  "uiYOURLIBRARYISEMPTY": "ВАША ЛІБРАРІЯ Є ЗДОРОВ'Я",
+  "uiAddMusic": "Додати музику",
+  "uiAddASourceToSearchYourCollection": "Додати джерело для пошуку вашої колекції.",
+  "uiRecentSearches": "Останні пошуки",
+  "uiSearchForATitleArtistOrAlbum": "Пошук заголовку, артиста або альбому. Надіслані пошуки залишаються тут для цієї сесії.",
+  "uiNoResultsMatchTheSelectedFilters": "Немає результатів, які відповідають вибраним фільтрам.",
+  "uiAuraSettings": "Aura налаштування",
+  "uiOptionsMarkedComingSoonAreNotAvailable": "Варіанти позначені «Знайди скоро» ще не доступні. Активні налаштування зберігаються на цьому пристрої. Керуйте підключенням сервера в джерелах медіа.",
+  "uiGotIt": "Про нас",
+  "uiHelp": "Довідка",
+  "uiInterface": "Інтерфейс",
+  "uiInterfaceSettings": "Налаштування інтерфейсу",
+  "uiApplicationStyle": "Стиль заявки",
+  "uiGeneral": "Загальні",
+  "uiMediaLists": "Списки ЗМІ",
+  "uiNowPlayingScreens": "Тепер граючи екрани",
+  "uiNowPlayingScreen": "Тепер грати екран",
+  "uiTrackRatings": "Рейтинги треків",
+  "uiSwipeAcrossTheStarsToRateIn399": "Покупка по зірках, щоб оцінити в пів-старих кроках. Розмір застосовується в плеєрі і треку інформації.",
+  "uiPageSettings": "Налаштування сторінки",
+  "uiHomePage": "Головна",
+  "uiGenrePage": "Історія",
+  "uiPlaylistPage": "Сторінка списку",
+  "uiSearchPage": "Пошук",
+  "uiAdvanced": "Додатково",
+  "uiAdvancedInterfaceSettings": "Розширені налаштування інтерфейсу",
+  "uiDecodingAndTranscoding": "Декодування та переробка",
+  "uiAudioFocus": "Аудіо фокус",
+  "uiNotificationAndMediaSessionButtons": "Нотифікаційні та медіа-сесії",
+  "uiAdvancedPlaybackSettings": "Розширені налаштування відтворення",
+  "uiOfflineCacheAndDownloads": "Оффлайн, кеш і завантаження",
+  "uiMedia": "Медіа",
+  "uiOfflineServerPlayback": "Офлайн сервер відтворення",
+  "uiImages": "Зображення",
+  "uiLocalTracksWorkWithoutInternetServerDownloads": "Локальні треки працюють без інтернету. Серверні завантаження та управління кешом найближчим часом.",
+  "uiAdvancedSettings": "Розширені налаштування",
+  "uiMiscellaneous": "Мапа",
+  "uiMediaSources": "Медіа",
+  "uiSyncManager": "Менеджер з синхронізації",
+  "uiUpdating": "Вгору...",
+  "uiRefreshLibrary": "Бібліотека Refresh",
+  "uiRefreshNavidromeSources": "Refresh Navidrome джерела",
+  "uiOfflineFiles": "Офлайн файли",
+  "uiGeneratedFiles": "Генеровані файли",
+  "uiLanguages": "Мови",
+  "uiAbout": "Про застосунок",
+  "uiRateTheApp": "Оцініть додаток",
+  "uiContactSupport": "Контакти",
+  "uiWhatsNew": "Що нового",
+  "uiWhatsNewInAura": "Що нового в Aura",
+  "uiLocalAndNavidromeLibrariesHalfstarRatingsHistory": "Місцеві Navidrome бібліотеки • Рейтинги півзіркових • Історія, списки відтворення та фаворити • Crossfade, таймер сну та Android еквалайзер • Дисплей до 144 Гц",
+  "uiAboutAura": "Про Aura",
+  "uiAPlayerForYourLocalMusicAnd": "Програвач для вашої локальної музики та бібліотеки Navidrome.",
+  "uiComingSoon": "Незабаром",
+  "uiMusicFolders": "Музичні папки",
+  "uiChooseMusicFoldersOnlyFoldersWhereThe": "Виберіть папки музики. Наведено лише папки, де показано пристрій, знайдені аудіо файли.",
+  "uiAllFolders": "Всі папки",
+  "uiAutomaticallyIncludesFoldersFoundInFutureScans": "Автоматично містить папки, знайдені в майбутніх скануваннях.",
+  "uiNoTracksFoundInTheLastScan": "Не знайдено треки в останньому скануванні",
+  "uiYourLibraryWillStayEmptyUntilYou": "Вашій бібліотеці буде залишатися порожнім до вибору папки.",
+  "uiSaveSelection": "Зберегти вибір",
+  "secondsValue": "{count, plural, one{{count} секунда} few{{count} секунди} many{{count} секунд} other{{count} секунди}}",
+  "@secondsValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "secondsShort": "{value} с",
+  "@secondsShort": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "restoreConfirmation": "{change}\n\n{settings}\n\nВідпустка буде призупинено і час сну. Ваша поточна черга зберігається.",
+  "@restoreConfirmation": {
+    "placeholders": {
+      "change": {
+        "type": "String"
+      },
+      "settings": {
+        "type": "String"
+      }
+    }
+  },
+  "backupCreated": "Створено: {date}",
+  "@backupCreated": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "backupStats": "Уподобання: {favorites} · Рейтинг: {ratings}\nPlaylists: {playlists} · Історія треків: {history}",
+  "@backupStats": {
+    "placeholders": {
+      "favorites": {
+        "type": "int"
+      },
+      "ratings": {
+        "type": "int"
+      },
+      "playlists": {
+        "type": "int"
+      },
+      "history": {
+        "type": "int"
+      }
+    }
+  },
+  "backupMatches": "Визначено: {matched} · Знімок: {remapped}\nНедоступний або неоднорідний: {unavailable}",
+  "@backupMatches": {
+    "placeholders": {
+      "matched": {
+        "type": "int"
+      },
+      "remapped": {
+        "type": "int"
+      },
+      "unavailable": {
+        "type": "int"
+      }
+    }
+  },
+  "tracksInLibrary": "{count, plural, one{1 трек у вашій бібліотеці.} other{{count} треки у вашій бібліотеці.}}",
+  "@tracksInLibrary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sourcesSaved": "Джерела збережені. {count, plural, one{1 трек у вашій бібліотеці.} other{{count} треки у вашій бібліотеці.}}",
+  "@sourcesSaved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tracksInFolders": "{count, plural, one{1 трек у вибраних папках.} other{{count} треки в вибраних папках.}}",
+  "@tracksInFolders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "allFoldersSummary": "Усі папки · Відстеження: {count}",
+  "@allFoldersSummary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectedFoldersSummary": "Вибрані папки: {folders} · Відстеження: {tracks}",
+  "@selectedFoldersSummary": {
+    "placeholders": {
+      "folders": {
+        "type": "int"
+      },
+      "tracks": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryRhythm": "{count} треки, на вашому ритмі.",
+  "@libraryRhythm": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryTrackCount": "Відстеження бібліотеки: {count}",
+  "@libraryTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "backToPage": "Назад до {page}",
+  "@backToPage": {
+    "placeholders": {
+      "page": {
+        "type": "String"
+      }
+    }
+  },
+  "groupCount": "{count, plural, one{{count} елемент} few{{count} елементи} many{{count} елементів} other{{count} елемента}}",
+  "@groupCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "foundTracks": "{count, plural, one{1 траса знайдено} other{{count} треки знайдено}}",
+  "@foundTracks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "disconnectSource": "“{name}” буде видалено з Aura. Файли на сервері зберігаються.",
+  "@disconnectSource": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "visibleTracks": "{visible} {total} доріжок.",
+  "@visibleTracks": {
+    "placeholders": {
+      "visible": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "queueCount": "Клей · {count}",
+  "@queueCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playQueueCount": "черга відтворення · {count}",
+  "@playQueueCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "currentTrackArtist": "Поточний трек · {artist}",
+  "@currentTrackArtist": {
+    "placeholders": {
+      "artist": {
+        "type": "String"
+      }
+    }
+  },
+  "removeFromQueue": "Видалити {title} з черги",
+  "@removeFromQueue": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "moveTrack": "Переміщення {title}",
+  "@moveTrack": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "activeTimer": "Активно: {value}",
+  "@activeTimer": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "minutesValue": "{count, plural, one{{count} хвилина} few{{count} хвилини} many{{count} хвилин} other{{count} хвилини}}",
+  "@minutesValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "minutesShort": "{count} хв",
+  "@minutesShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playerVolume": "Обсяг торгів: {value}%",
+  "@playerVolume": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "playbackSpeed": "Швидкість: {value}×",
+  "@playbackSpeed": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "yourRating": "Ваш рейтинг: {rating} з 5",
+  "@yourRating": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "ratingOutOfFive": "{rating} з 5",
+  "@ratingOutOfFive": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "giveStars": "{count, plural, one{Дати 1 зірка} other{Give {count} зірки}}",
+  "@giveStars": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ratingDescription": "Рейтинг: {rating} з 5",
+  "@ratingDescription": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumStars": "щонайменше {rating} зірки",
+  "@minimumStars": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumRating": "Рейтинг ≥ {rating}",
+  "@minimumRating": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "savedTrackCount": "{count, plural, one{1 збережений трек} other{{count} збережені доріжки}}",
+  "@savedTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "availableTrackCount": "{count, plural, one{1 доступний трек} other{{count} доступні доріжки}}",
+  "@availableTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "missingTrackCount": "Недоступні треки: {count}. Вони зовні вибрані папки або більше не доступні. Їх посилання зберігаються.",
+  "@missingTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectedTrackCount": "{count, plural, one{1 вибраний трек} other{{count} вибрані доріжки}}",
+  "@selectedTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "searchResultCount": "{count, plural, one{{count} результат} few{{count} результати} many{{count} результатів} other{{count} результату}}",
+  "@searchResultCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "removeRecentSearch": "Видалити пошук {query}",
+  "@removeRecentSearch": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "tracksInSelection": "{count, plural, one{1 траса в підборі} other{{count} треки в підборі}}",
+  "@tracksInSelection": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "languageTitle": "Мова застосунку",
+  "languageSystem": "Як у системі",
+  "languageHelp": "Відповіді відразу. Ваш трек, художник, папка і імена плейлистів не переведені.",
+  "languageSaveError": "Не вдалося зберегти мову. Ваш попередній вибір зберігався.",
+  "uiBass": "Баси",
+  "mediaStop": "Зупинити",
+  "mediaSeekBack": "Назад на 10 секунд",
+  "mediaSeekForward": "Уперед на 10 секунд"
+}

@@ -1,3 +1,5 @@
+import 'package:aura/l10n/app_localizations.dart';
+
 import 'dart:typed_data';
 
 import 'package:aura/audio_track.dart';
@@ -76,6 +78,9 @@ void main() {
     addTearDown(tester.view.resetDevicePixelRatio);
     await tester.pumpWidget(
       MaterialApp(
+        locale: const Locale('ro'),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         home: BackupScreen(
           saved: saved,
           memory: memory,

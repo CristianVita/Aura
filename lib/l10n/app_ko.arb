@@ -1,0 +1,780 @@
+{
+  "@@locale": "ko",
+  "appearanceTitle": "테마, 글꼴 및 색상",
+  "themeLabel": "(주)",
+  "themeSystem": "시스템 설정 따르기",
+  "themeLight": "제품 정보",
+  "themeDark": "한국어",
+  "themeOled": "OLED 검정",
+  "accentLabel": "Accent 색깔",
+  "accentMint": "사이트맵",
+  "accentBlue": "이름 *",
+  "accentViolet": "뚱 베어",
+  "accentRose": "으로",
+  "accentAmber": "골드",
+  "accentTeal": "팟캐스트",
+  "fontLabel": "(주)",
+  "fontSystem": "시스템 폰트",
+  "fontSerif": "세리프",
+  "fontMonospace": "고정폭",
+  "fontDescription": "폰트는 장치에서 사용할 수있는 가족을 사용합니다. 그들의 외관은 플랫폼에서 다를 수 있습니다.",
+  "textSizeLabel": "텍스트 크기",
+  "textSizeDescription": "장치 설정에 텍스트 크기와 결합.",
+  "previewLabel": "팟캐스트",
+  "previewTitle": "당신의 음악, 당신의 리듬",
+  "previewSubtitle": "앨범, 아티스트 및 재생목록",
+  "previewButton": "재생",
+  "resetAppearance": "Restore 기본 외관",
+  "appearanceSaveError": "외관을 저장할 수 없습니다. 이전 설정이 유지되었습니다.",
+  "appearanceHelp": "변경은 저장되어 백업에 포함되어 있습니다.",
+  "percentValue": "{value}%년",
+  "@percentValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "navigationTitle": "탐색 및 시작 화면",
+  "navigationOrder": "탭 주문",
+  "navigationHelp": "주문 탭에 핸들을 드래그하십시오. 라이브러리 및 설정은 항상 접근 할 수 있습니다.",
+  "navigationHome": "홈",
+  "navigationLibrary": "라이브러리",
+  "navigationSearch": "검색",
+  "navigationSettings": "설정",
+  "navigationRequired": "필수 탭",
+  "navigationLabels": "탭 라벨",
+  "labelsAdaptive": "지원하다",
+  "labelsHidden": "아이콘 만",
+  "labelsSelected": "선택 탭",
+  "labelsAlways": "(주)",
+  "labelsHelp": "Adaptive: 바탕 화면 사이드바의 전화 및 라벨에 아이콘.",
+  "navigationStart": "시작 화면",
+  "navigationStartHelp": "앱이 시작된 다음 시간 적용",
+  "libraryLanding": "도서관을 열 때",
+  "landingCategories": "1,900원",
+  "landingTracks": "곡",
+  "landingAlbums": "앨범",
+  "landingArtists": "아티스트",
+  "landingPlaylists": "재생목록",
+  "landingFavorites": "즐겨찾기",
+  "resetNavigation": "기본 탐색",
+  "navigationSaveError": "네비게이션을 저장할 수 없습니다. 이전의 선호도가 유지되었습니다.",
+  "navigationPreview": "탐색 미리보기",
+  "libraryPageTitle": "본문 바로가기",
+  "albumPageTitle": "앨범목록",
+  "artistPageTitle": "아티스트 페이지",
+  "categoryOrder": "카테고리 및 순서",
+  "categoryHelp": "주문할 수 있는 손잡이를 드래그하십시오. 적어도 1개의 종류를 눈에 유지하십시오. 제목은 음악을 삭제하지 않습니다.",
+  "pageColumns": "전화의 열",
+  "pageColumnsHelp": "Wider 스크린은 자동적으로 열을 추가합니다. 큰 원본은 읽을 수 있는 열 조사를 감소시킬지도 모릅니다.",
+  "pageLayout": "팟캐스트",
+  "layoutList": "이름 *",
+  "layoutGrid": "덮개 격자",
+  "pageSort": "정렬 순서",
+  "sortName": "이름 A-Z",
+  "sortNameDescending": "이름 Z–A",
+  "sortTrackCount": "트랙 수",
+  "pageSummary": "열린 페이지에 삽화와 요약",
+  "pageSummaryHelp": "그룹에 있는 첫번째 궤도를 위한 유효한 삽화를 사용하십시오.",
+  "pageReset": "이 페이지를 다시",
+  "pageSaveError": "페이지를 저장할 수 없습니다. 이전의 선호도가 유지되었습니다.",
+  "librarySources": "이름 *",
+  "unknownGroup": "이름 *",
+  "groupTracks": "{count, plural, one{1개의 궤도} other{{count} 궤도}}",
+  "groupMinutes": "{minutes} 전체 분",
+  "@groupTracks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@groupMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "uiTransitions": "관련 기사",
+  "uiEqualizer": "본부",
+  "uiMediaControls": "미디어 컨트롤",
+  "uiHeadsetButtons": "Headset 단추",
+  "uiNotificationButtons": "알림 버튼",
+  "uiCrossfade": "채용정보",
+  "uiOff": "꺼짐",
+  "uiOverlapsTheEndOfATrackWith": "자동 재생 중에 다음의 시작으로 트랙의 끝을 극복합니다. 매우 짧은 트랙과 하나의 트랙을 반복하는 크로스 페이드를 사용하지 않습니다.",
+  "uiPlayAndPause": "놀이 및 일시",
+  "uiNoFade": "파드 없음",
+  "uiNotificationAndLockScreen": "알림 및 잠금 화면",
+  "uiSeekButtons10Seconds": "시크 단추 ±10 초",
+  "uiReplacesPreviousnextWithSeekingInTheNotification": "이전/다음을 대신하여 알림을 추구합니다.",
+  "uiShowStopButton": "쇼 스톱 버튼",
+  "uiHeadsetAndMediaButtons": "Headset 및 미디어 버튼",
+  "uiSeek10SecondsFromHeadset": "Seek 헤드셋에서 ±10 초",
+  "uiPreviousnextButtonsSeekWithinTheCurrentTrack": "이전/다음 버튼은 현재 트랙에서 추구합니다. 중심 버튼은 Play/Pause를 유지합니다.",
+  "uiKeepPausedWhenChangingTracks": "트랙을 변경할 때 일시 중지",
+  "uiNotificationAndHeadsetControlsAreAvailableOn": "알림 및 헤드셋 컨트롤은 Android에서 사용할 수 있습니다. 일부 시스템 리어 레인지 알림 버튼.",
+  "uiTheEqualizerIsCurrentlyAvailableOnAndroid": "동등물은 현재 Android에 있습니다.",
+  "uiSelectATrackAndReopenTheEqualizer": "트랙을 선택하고 동등기를 다시 엽니다. 여전히 사용할 수없는 경우 장치는 필요한 오디오 효과를 노출하지 않습니다.",
+  "uiAndroidEqualizer": "Android 이퀄라이저",
+  "uiEnableEqualizer": "Enable 이퀄라이저",
+  "uiFlat": "뚱 베어",
+  "uiVoice": "- 연혁",
+  "uiWhenBoostingABandAuraAutomaticallyReduces": "밴드를 밀어 때, Aura는 헤드룸과 한계 왜곡을 떠나는 전반적인 수준을 자동적으로 감소시킵니다.",
+  "uiAudioPlayback": "오디오 재생",
+  "uiPlaybackIsUnavailable": "재생은 사용할 수 없습니다.",
+  "uiUnknownArtist": "알 수 없는 아티스트",
+  "uiUntitledTrack": "제목 없는 곡",
+  "uiTheFileIsNotAValidAura": "파일은 유효하지 않습니다 Aura 백업 또는 손상.",
+  "uiChooseAnAuraBackup": "Aura 백업 선택",
+  "uiSaveAuraBackup": "저장 Aura 백업",
+  "uiBackupSaved": "백업 저장.",
+  "uiCouldNotSaveTheBackupAuraData": "백업을 저장할 수 없습니다. Aura 데이터가 변경되지 않았습니다.",
+  "uiTheFileIsNotAValidAura82": "파일은 유효하지 않습니다 Aura 백업, 손상되거나 초과 4 MB.",
+  "uiRestoreBackup": "백업 복원?",
+  "uiYourCurrentFavoritesRatingsPlaylistsAndHistory": "현재 즐겨 찾기, 등급, 재생 목록 및 역사가 교체됩니다.",
+  "uiDataWillBeMergedExistingRatingsAnd": "데이터가 병합됩니다. 기존 등급과 재생 목록 이름은 우선 순위를 가지고 있습니다.",
+  "uiSettingsWillAlsoBeImported": "설정도 가능합니다.",
+  "uiYourCurrentSettingsWillBeKept": "현재 설정이 유지됩니다.",
+  "uiCancel": "취소",
+  "uiReplaceAndRestore": "교체 및 복원",
+  "uiRestore": "관련 상품",
+  "uiBackupRestoredUnavailableTracksAreKeptAs": "백업 복원. 사용 가능한 트랙은 참고로 유지됩니다.",
+  "uiDataRecoveryMustFinishBeforeContinuing": "데이터 복구는 계속하기 전에 완료해야합니다.",
+  "uiRestoreFailedYourPreviousDataWasKept": "복원 실패했습니다. 이전 데이터가 유지되었습니다.",
+  "uiPreviousDataRecovered": "이전 데이터 복구.",
+  "uiCouldNotRecoverTheDataYetTry": "아직 데이터를 복구 할 수 없습니다. 다시 시도하거나 다시 시작 Aura.",
+  "uiBackupAndRestore": "백업 및 복원",
+  "uiDataRecoveryIsRequiredBeforeContinuingAura": "데이터 복구는 계속하기 전에 필요합니다. Aura는 지역 저널의 이전 상태를 유지.",
+  "uiTryRecovery": "복구 시도",
+  "uiKeepWhatYouHaveOrganized": "당신이 조직 된 것을 계속",
+  "uiBackupsIncludeFavoritesRatingsPlaylistsHistoryPlayback": "백업에는 즐겨찾기, 등급, 재생 목록, 역사, 재생 설정 및 라이브러리 필터가 포함됩니다. 오디오 파일, 소스 및 선택한 폴더는 포함되지 않으며 별도로 구성해야합니다.",
+  "uiExportBackup": "수출 백업",
+  "uiChooseABackupToRestore": "백업을 선택하여 복원",
+  "uiMissingReferencesAreKeptWithoutAssigningRatings": "참조는 다른 곡에 등급을 할당하지 않고 유지됩니다. 일치하는 소스를 추가 한 후 백업을 다시 가져올 수 있습니다.",
+  "uiReplaceCurrentData": "현재 데이터를 대체",
+  "uiOffMergeDataAndKeepExistingRatings": "Off: 병합 데이터와 기존의 평가를 유지.",
+  "uiRestoreSettingsToo": "설정 복원",
+  "uiReviewAndRestore": "리뷰 및 복원",
+  "uiHelloNightOwl": "안녕하세요, 올빼미족 🦉",
+  "uiGoodMorning": "좋은 아침이에요 🌅",
+  "uiGoodAfternoon": "좋은 오후예요 ☀️",
+  "uiGoodEvening": "좋은 저녁이에요 🌆",
+  "uiChooseYourMusicFolder": "음악 폴더 선택",
+  "uiAuraCouldNotRecoverAnInterruptedRestore": "Aura는 중단 된 복원을 복구 할 수 없습니다. 이전 데이터는 로컬 저널에 보관됩니다. 앱을 닫고 다시 시도하십시오.",
+  "uiCouldNotLoadOrSaveListeningHistory": "기록과 마지막 재생을 듣거나 저장할 수 없습니다.",
+  "uiCouldNotApplyPlaybackSettingsOrThe": "재생 설정 또는 수면 타이머를 적용 할 수 없습니다.",
+  "uiCouldNotLoadTheLibraryScanYour": "라이브러리를로드 할 수 없습니다. 다시 음악을 스캔하십시오.",
+  "uiMusicOnYourPC": "음악에 당신의 PC",
+  "uiMusicOnYourPhone": "휴대폰에 음악",
+  "uiNavidromeServer": "Navidrome 서버",
+  "uiURLAndUserAccount": "URL 및 사용자 계정",
+  "uiCouldNotLoadMusicSources": "음악 소스를로드 할 수 없습니다.",
+  "uiAddAFolderFromYourPC": "PC 폴더 추가",
+  "uiChooseVisibleFolders": "눈에 보이는 폴더를 선택하십시오.",
+  "uiRemoveAFolderFromTheLibrary": "도서관에서 폴더 제거",
+  "uiFilesStayOnYourPC": "파일 체재에 당신의 PC.",
+  "uiYouHaveNotAddedAnyFoldersYet": "아직 폴더를 추가하지 않았습니다.",
+  "uiRemoveFromLibrary": "도서관에서 제거",
+  "uiFolderRemovedFromTheLibraryFilesStayed": "라이브러리에서 폴더 제거. 파일에 머물 PC.",
+  "uiCouldNotRemoveTheFolderFromThe": "라이브러리에서 폴더를 제거 할 수 없습니다.",
+  "uiCouldNotReadTheFolderCheckThat": "폴더를 읽을 수 없습니다. 그것을 사용할 수 있는지 확인하십시오.",
+  "uiCouldNotSaveSourcesTryAgain": "소스를 저장할 수 없습니다. 다시 시도하십시오.",
+  "uiCouldNotPlayTheTrackTryScanning": "트랙을 재생할 수 없습니다. 다시 스캔 시도하십시오.",
+  "uiNoAudioFilesFoundOnTheDevice": "기기에서 오디오 파일이 없습니다.",
+  "uiAllowMusicAccessToScanYourLibrary": "도서관을 스캔할 수 있는 음악 액세스를 허용한다.",
+  "uiCouldNotScanYourMusicTryAgain": "음악을 스캔 할 수 없습니다. 다시 시도하십시오.",
+  "uiLibraryScanningIsCurrentlyAvailableOnAndroid": "도서관 검사는 현재 Android에 유효합니다.",
+  "uiAProblemOccurredWhileScanningMusic": "음악을 스캔하면서 문제가 발생했습니다.",
+  "uiWhereIsYourMusic": "음악은 어디에 있습니까?",
+  "uiFavoriteTracks": "관련 상품",
+  "uiAllFavorites": "모든 즐겨 찾기",
+  "uiBrowse": "계정 만들기",
+  "uiRecentlyPlayed": "최근 재생",
+  "uiSeeAll": "모두 보기",
+  "uiYourLibrary": "당신의 도서관",
+  "uiSTARTWITHASOURCE": "자주 묻는 질문",
+  "uiAddYourMusic": "음악 추가",
+  "uiPCOrNavidromeServer": "PC 또는 Navidrome 서버",
+  "uiPhoneOrNavidromeServer": "전화 또는 Navidrome 서버",
+  "uiScanning": "스캔 ...",
+  "uiAddASource": "관련 기사",
+  "uiLibrary": "라이브러리",
+  "uiYourListeningHistoryWillAppearHere": "당신의 청취 역사가 여기에 나타날 것입니다.",
+  "uiYOURCOLLECTION": "당신의 선택",
+  "uiLibrary178": "라이브러리",
+  "uiNoTracksMatchTheSelectedFilters": "선택된 필터와 일치하지 않습니다.",
+  "uiChooseMusicFoldersToSeeTracksIn": "라이브러리에서 트랙을 볼 수있는 음악 폴더를 선택하십시오.",
+  "uiChangeFilters": "필터 변경",
+  "uiChooseFolders": "폴더 선택",
+  "uiScanAgain": "다시 스캔",
+  "uiNoTracksMatchTheSelectedRating": "선택된 평가와 일치하지 않습니다.",
+  "uiCouldNotResumeTheTrackTrySelecting": "트랙을 다시 시작할 수 없습니다. 다시 선택해보십시오.",
+  "uiUnknownDuration": "자주 묻는 질문",
+  "uiTrackInformation": "연락처",
+  "uiClose": "닫기",
+  "uiArtist": "(주)",
+  "uiAlbum": "(주)",
+  "uiUnknownAlbum": "알 수없는 앨범",
+  "uiDuration": "(주)",
+  "uiFolder": "한국어",
+  "uiUnknownFolder": "잘 알려진 폴더",
+  "uiPause": "일시 정지",
+  "uiNextTrack": "다음 트랙",
+  "uiTheQueueIsEmpty": "큐는 빈",
+  "uiPreviousTrack": "이전 트랙",
+  "uiEnterTheHTTPSServerAddressWithoutA": "사용자 이름, 암호 또는 URL 매개 변수없이 HTTPS 서버 주소를 입력하십시오.",
+  "uiEnterTheSourceNameUsernameAndPassword": "소스 이름, 사용자 이름 및 암호를 입력하십시오.",
+  "uiTheServerDidNotRespondCorrectlyCheck": "서버가 제대로 응답하지 않았습니다. 주소와 Navidrome 액세스를 확인하십시오.",
+  "uiTheServerResponseIsTooLarge": "서버 응답은 너무 크다.",
+  "uiCouldNotReachTheServerCheckYour": "서버에 도달 할 수 없습니다. 연결, 주소 및 HTTPS 인증서를 확인하십시오.",
+  "uiAuthenticationFailedCheckYourUsernameAndPassword": "인증 실패. 사용자 이름과 암호를 확인.",
+  "uiNavidromeRejectedTheRequestCheckTheAccounts": "Navidrome 요청을 거부했습니다. 계정의 라이브러리 액세스 확인.",
+  "uiTheAddressDidNotReturnAValid": "이 주소는 유효한 Navidrome 응답을 반환하지 않았습니다.",
+  "uiTheServerRepeatedAnAlbumPageYour": "서버는 앨범 페이지를 반복했습니다. 이전 라이브러리가 보관되었습니다.",
+  "uiInvalidServerTrack": "잘못된 서버 트랙.",
+  "uiReconnectTheNavidromeSourceToPlayThis": "Navidrome 소스를 다시 연결하여이 트랙을 재생합니다.",
+  "uiCouldNotLoadSavedSourcesTryAgain": "저장된 소스를로드 할 수 없습니다. 다시 시도하십시오.",
+  "uiCouldNotSaveTheSourceChangeTry": "소스 변경을 저장할 수 없습니다. 다시 시도하십시오.",
+  "uiConnectedTheServerLibraryHasBeenLoaded": "연결. 서버 라이브러리가 로드되었습니다.",
+  "uiDisconnectThisSource": "이 소스를 분리?",
+  "uiCancel228": "취소",
+  "uiDisconnect": "연결하기",
+  "uiSourceDisconnected": "소스 분리.",
+  "uiNavidromeSources": "Navidrome 소스",
+  "uiConnectYourLibraryFromANavidromeServer": "Navidrome 서버에서 라이브러리를 HTTPS 이상 연결하십시오.",
+  "uiLoadingTheServerLibrary": "서버 라이브러리 로딩...",
+  "uiReloadSources": "Reload 소스",
+  "uiLibraryUpdated": "업데이트.",
+  "uiRefresh": "지원하다",
+  "uiReconnect": "연결하기",
+  "uiAddNavidromeServer": "추가 Navidrome 서버",
+  "uiTracksAppearInLibraryAfterConnectingPlayback": "트랙은 연결 후 라이브러리에 나타납니다. 재생은 인터넷이 필요합니다. Aura 즐겨 찾기, 등급 및 재생 목록 로컬; 서버 라이브러리는 변경되지 않습니다.",
+  "uiConnectToNavidrome": "연결 Navidrome",
+  "uiSourceName": "소스 이름",
+  "uiServerURL": "서버 URL",
+  "uiUsername": "사용자 이름",
+  "uiPassword": "비밀번호",
+  "uiCredentialsAreSavedInTheDevicesSecure": "Credentials는 장치의 안전한 저장에서 저장됩니다.",
+  "uiConnect": "관련 링크",
+  "uiListeningHistory": "관련 기사",
+  "uiClearHistory": "관련 기사",
+  "uiClearHistory262": "명확한 역사?",
+  "uiTracksFavoritesAndPlaylistsWillStaySaved": "트랙, 즐겨 찾기 및 재생 목록은 저장됩니다.",
+  "uiDelete": "삭제",
+  "uiPlayedTracksWillAppearHere": "종료 트랙은 여기에 나타납니다.",
+  "uiTracksInYourHistoryAreHiddenBy": "당신의 역사에 있는 궤도는 현재 여과기에 의해 숨겨지거나 더 이상 유효하지 않습니다.",
+  "uiLibraryFilters": "Library 필터",
+  "uiMinimumDuration": "내구시간",
+  "uiAllDurations": "모든 기간",
+  "ui10Seconds": "10 초",
+  "ui30Seconds": "30 초",
+  "ui1Minute": "1 분",
+  "uiTracksWithUnknownDurationStayVisible": "알 수없는 기간을 가진 추적.",
+  "uiHideWhatsAppAndTelegram": "숨기기 WhatsApp 및 Telegram",
+  "uiHidesFilesFromTheseAppsFolders": "이 앱의 폴더에서 파일을 숨기기.",
+  "uiFiltersOnlyChangeWhatAppearsInYour": "필터는 라이브러리에 나타나는 것을 만 변경합니다. 파일, 재생 목록 및 현재 큐가 보관됩니다.",
+  "uiSaving": "저장...",
+  "uiSaveFilters": "필터 저장",
+  "uiRepeatOff": "자주 묻는 질문",
+  "uiRepeatEntireQueue": "전체 큐를 반복",
+  "uiRepeatCurrentTrack": "반복 현재 궤도",
+  "uiShuffleOn": "관련 기사",
+  "uiShuffleOff": "기타 제품",
+  "uiCloseQueue": "닫기 큐",
+  "uiShuffledOrderTurnOffShuffleToReorder": "Shuffled 순서. 주문에 shuffle를 끄십시오.",
+  "uiDragTheHandleToChangeTheOrder": "순서를 바꾸는 손잡이를 드래그하십시오.",
+  "uiCouldNotUpdatePlaybackTryAgain": "재생을 업데이트 할 수 없습니다. 다시 시도하십시오.",
+  "uiAtTheEndOfTheTrack": "트랙의 끝에서",
+  "uiSleepTimer": "잠 타이머",
+  "uiCloseSleepTimer": "닫기 잠 타이머",
+  "uiFinishTheCurrentTrack": "현재 궤도 끝",
+  "uiWhenTheTimerEndsWaitForThe": "타이머가 종료되면, 패싱하기 전에 끝을 기다리십시오.",
+  "uiStartSleepTimer": "잠 타이머 시작",
+  "uiStopAtTheEndOfThisTrack": "이 트랙의 끝에서 중지",
+  "uiCancelSleepTimer": "수면 타이머",
+  "uiPlaybackSettings": "Playback 설정",
+  "uiOutputSettings": "출력 설정",
+  "uiPlayback": "재생하기",
+  "uiAutomaticActions": "자동 작업",
+  "uiAudioOutput": "오디오 출력",
+  "uiOnlyAppliesInAuraSeparatelyFromYour": "휴대 전화 또는 PC 볼륨과 별도로 Aura 만 적용됩니다.",
+  "uiTimer": "시간",
+  "uiAudioOptions": "오디오 옵션",
+  "uiCrossfadeAndPlaypauseFades": "Crossfade 과 놀이/쉼 fades",
+  "uiFrequencyBandsAndPresets": "주파수 대와 presets",
+  "uiAvailableOnAndroid": "Android에 유효한",
+  "uiNotificationLockScreenAndHeadset": "알림, 잠금 화면 및 헤드셋",
+  "uiRestoreDefaultSpeedAndVolume": "기본 속도 및 볼륨 복원",
+  "uiSpeedAndVolumeAreSavedOnThis": "속도와 볼륨은이 장치에 저장됩니다. 타이머는 앱이 완전히 닫힐 때 취소됩니다.",
+  "uiSleep": "뚱 베어",
+  "uiUnrated": "평가 없음",
+  "uiSwipeToRate": "Swipe 환율",
+  "uiGive1Star": "1개의 별을 주기",
+  "uiClearRating": "구름 많음",
+  "uiStarSize": "별 크기",
+  "uiSmall": "제품정보",
+  "uiMedium": "주요 특징",
+  "uiLarge": "주요 특징",
+  "uiSwipeAcrossTheStarsToRateIn": "Swipe 주변 명소 보기",
+  "uiFilterByRating": "필터 등급",
+  "uiAllRatings": "모든 평가",
+  "uiOnly5Stars": "별 5개",
+  "uiSortByRating": "정렬 기준",
+  "uiDefaultOrder": "기본 주문",
+  "uiHighestRatingFirst": "가장 높은 평가 첫째",
+  "uiLowestRatingFirst": "가장 낮은 등급 첫째",
+  "uiCouldNotSaveTheChangeTryAgain": "변경을 저장할 수 없습니다. 다시 시도하십시오.",
+  "uiNewPlaylist": "새로운 재생 목록",
+  "uiRenamePlaylist": "이름 playlist",
+  "uiPlaylistName": "Playlist 이름",
+  "uiSave": "저장",
+  "uiRemoveFromFavorites": "자주 묻는 질문",
+  "uiAddToFavorites": "자주 묻는 질문",
+  "uiAddToPlaylist": "Playlist에 추가",
+  "uiTrackIsAlreadyInThisPlaylist": "트랙은 이미이 playlist에서",
+  "uiTrackAddedToPlaylist": "playlist에 추가된 트랙.",
+  "uiCouldNotLoadFavoritesAndPlaylists": "즐겨 찾기 및 재생 목록을로드 할 수 없습니다.",
+  "uiTryAgain": "다시 시도",
+  "uiBackToPlaylists": "재생 목록으로 돌아가기",
+  "uiPlaylistOptions": "Playlist 옵션",
+  "uiDeletePlaylist": "재생 목록 삭제?",
+  "uiAudioFilesStayOnThePhone": "오디오 파일은 전화에 머물.",
+  "uiRename": "이름 *",
+  "uiDeletePlaylist363": "재생 목록 삭제",
+  "uiCreateYourFirstPlaylistWithOrFrom": "+ 또는 트랙 메뉴에서 첫 번째 재생 목록을 만듭니다.",
+  "uiAddTracks": "트랙 추가",
+  "uiATrackIsOutsideTheSelectedFolders": "트랙은 선택된 폴더 밖에 없거나 더 이상 사용할 수 없습니다. 참조는 유지됩니다.",
+  "uiPlayAll": "모두 재생",
+  "uiTapATracksHeartToSaveIt": "트랙의 마음을 탭하여 여기에서 저장하십시오.",
+  "uiAddTracksToThisPlaylist": "이 재생 목록에 트랙을 추가합니다.",
+  "uiRemoveFromPlaylist": "playlist에서 제거",
+  "uiSearchForATrack": "트랙 검색",
+  "uiTitle": "이름 *",
+  "uiSearchYourMusic": "음악 감상",
+  "uiClearSearch": "자주 묻는 질문",
+  "uiFavoritesOnly": "즐겨찾기만",
+  "uiYOURLIBRARYISEMPTY": "당신의 의무는 EMPTY입니다",
+  "uiAddMusic": "음악 추가",
+  "uiAddASourceToSearchYourCollection": "수집을 검색하는 소스를 추가합니다.",
+  "uiRecentSearches": "최근 검색",
+  "uiSearchForATitleArtistOrAlbum": "제목, 아티스트 또는 앨범에 대한 검색. 이 세션에 대한 검색은 여기에 있습니다.",
+  "uiNoResultsMatchTheSelectedFilters": "결과가 선택된 필터와 일치하지 않습니다.",
+  "uiAuraSettings": "Aura 설정",
+  "uiOptionsMarkedComingSoonAreNotAvailable": "옵션 표시된 “곧 완료” 아직 사용할 수 없습니다. 활성 설정은이 장치에 저장됩니다. 미디어 소스에서 서버 연결을 관리합니다.",
+  "uiGotIt": "뚱 베어",
+  "uiHelp": "도움말",
+  "uiInterface": "인터페이스",
+  "uiInterfaceSettings": "인터페이스 설정",
+  "uiApplicationStyle": "신청 작풍",
+  "uiGeneral": "일반",
+  "uiMediaLists": "미디어 목록",
+  "uiNowPlayingScreens": "지금 재생 화면",
+  "uiNowPlayingScreen": "지금 재생 화면",
+  "uiTrackRatings": "트랙 등급",
+  "uiSwipeAcrossTheStarsToRateIn399": "Swipe는 별을 가로 질러냅니다. 크기는 플레이어 및 추적 정보에 적용됩니다.",
+  "uiPageSettings": "페이지 설정",
+  "uiHomePage": "홈 페이지",
+  "uiGenrePage": "Genre 페이지",
+  "uiPlaylistPage": "Playlist 페이지",
+  "uiSearchPage": "검색 페이지",
+  "uiAdvanced": "고급",
+  "uiAdvancedInterfaceSettings": "고급 인터페이스 설정",
+  "uiDecodingAndTranscoding": "해독과 transcoding",
+  "uiAudioFocus": "오디오 초점",
+  "uiNotificationAndMediaSessionButtons": "알림 및 미디어 세션 버튼",
+  "uiAdvancedPlaybackSettings": "고급 재생 설정",
+  "uiOfflineCacheAndDownloads": "오프라인, 캐시 및 다운로드",
+  "uiMedia": "(주)",
+  "uiOfflineServerPlayback": "Offline 서버 재생",
+  "uiImages": "이미지",
+  "uiLocalTracksWorkWithoutInternetServerDownloads": "로컬 트랙은 인터넷없이 작동합니다. 서버 다운로드 및 캐시 관리가 곧 출시됩니다.",
+  "uiAdvancedSettings": "고급 설정",
+  "uiMiscellaneous": "기타 제품",
+  "uiMediaSources": "미디어 소스",
+  "uiSyncManager": "Sync 매니저",
+  "uiUpdating": "업데이트",
+  "uiRefreshLibrary": "새로 고침",
+  "uiRefreshNavidromeSources": "새로 고침 Navidrome 소스",
+  "uiOfflineFiles": "Offline 파일",
+  "uiGeneratedFiles": "관련 파일",
+  "uiLanguages": "언어",
+  "uiAbout": "앱 정보",
+  "uiRateTheApp": "앱 평가",
+  "uiContactSupport": "연락처",
+  "uiWhatsNew": "새로운 소식",
+  "uiWhatsNewInAura": "Aura의 새로운 기능",
+  "uiLocalAndNavidromeLibrariesHalfstarRatingsHistory": "지역 및 Navidrome 라이브러리 • 반 스타 등급 • 역사, 재생 목록 및 즐겨찾기 • Crossfade, 수면 타이머 및 Android 이퀄라이저 • 144 Hz로 표시",
+  "uiAboutAura": "약 Aura",
+  "uiAPlayerForYourLocalMusicAnd": "로컬 음악과 Navidrome 라이브러리의 플레이어.",
+  "uiComingSoon": "출시 예정",
+  "uiMusicFolders": "음악 폴더",
+  "uiChooseMusicFoldersOnlyFoldersWhereThe": "음악 폴더를 선택하십시오. 장치가 오디오 파일을 찾을 수있는 폴더 만 표시됩니다.",
+  "uiAllFolders": "모든 폴더",
+  "uiAutomaticallyIncludesFoldersFoundInFutureScans": "자동적으로 미래의 스캔에서 발견 된 폴더를 포함합니다.",
+  "uiNoTracksFoundInTheLastScan": "마지막 스캔에서 찾을 수 없음",
+  "uiYourLibraryWillStayEmptyUntilYou": "라이브러리는 폴더를 선택할 때까지 빈 상태로 유지됩니다.",
+  "uiSaveSelection": "자주 묻는 질문",
+  "secondsValue": "{count, plural, one{1 초} other{{count} 초}}",
+  "@secondsValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "secondsShort": "{value} s의",
+  "@secondsShort": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "restoreConfirmation": "{change}\n\n{settings}\n\nPlayback는 일시 중지되고 잠 타이머는 취소될 것입니다. 현재 큐는 지켜집니다.",
+  "@restoreConfirmation": {
+    "placeholders": {
+      "change": {
+        "type": "String"
+      },
+      "settings": {
+        "type": "String"
+      }
+    }
+  },
+  "backupCreated": "만든: {date}",
+  "@backupCreated": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "backupStats": "마음에 드는: {favorites} · 등급: {ratings}\nPlaylists: {playlists} · 역사 궤도: {history}",
+  "@backupStats": {
+    "placeholders": {
+      "favorites": {
+        "type": "int"
+      },
+      "ratings": {
+        "type": "int"
+      },
+      "playlists": {
+        "type": "int"
+      },
+      "history": {
+        "type": "int"
+      }
+    }
+  },
+  "backupMatches": "인식: {matched} · 해결: {remapped}\n유효하거나 주변: {unavailable}",
+  "@backupMatches": {
+    "placeholders": {
+      "matched": {
+        "type": "int"
+      },
+      "remapped": {
+        "type": "int"
+      },
+      "unavailable": {
+        "type": "int"
+      }
+    }
+  },
+  "tracksInLibrary": "{count, plural, one{도서관에서 1 트랙.} other{{count} 라이브러리에 트랙.}}",
+  "@tracksInLibrary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sourcesSaved": "저장된 소스. {count, plural, one{도서관에서 1 트랙.} other{{count} 라이브러리에 트랙.}}",
+  "@sourcesSaved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tracksInFolders": "{count, plural, one{선택한 폴더의 1 트랙.} other{{count} 선택된 폴더에 트랙.}}",
+  "@tracksInFolders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "allFoldersSummary": "모든 폴더 · 트랙 : {count}",
+  "@allFoldersSummary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectedFoldersSummary": "선택된 폴더: {folders} · 트랙: {tracks}",
+  "@selectedFoldersSummary": {
+    "placeholders": {
+      "folders": {
+        "type": "int"
+      },
+      "tracks": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryRhythm": "{count} 트랙, 당신의 리듬에.",
+  "@libraryRhythm": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryTrackCount": "라이브러리의 트랙: {count}",
+  "@libraryTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "backToPage": "뒤에서 {page}",
+  "@backToPage": {
+    "placeholders": {
+      "page": {
+        "type": "String"
+      }
+    }
+  },
+  "groupCount": "{count, plural, one{1 항목} other{{count} 항목}}",
+  "@groupCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "foundTracks": "{count, plural, one{1 트랙 발견} other{조회수 {count}}}",
+  "@foundTracks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "disconnectSource": "“{name}”은 Aura에서 제거됩니다. 서버의 파일이 유지됩니다.",
+  "@disconnectSource": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "visibleTracks": "전시 {visible} 의 {total} 트랙.",
+  "@visibleTracks": {
+    "placeholders": {
+      "visible": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "queueCount": "· {count}",
+  "@queueCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playQueueCount": "재생 큐 · {count}",
+  "@playQueueCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "currentTrackArtist": "현재 트랙 · {artist}",
+  "@currentTrackArtist": {
+    "placeholders": {
+      "artist": {
+        "type": "String"
+      }
+    }
+  },
+  "removeFromQueue": "queue에서 {title} 제거",
+  "@removeFromQueue": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "moveTrack": "공격 {title}",
+  "@moveTrack": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "activeTimer": "활동: {value}",
+  "@activeTimer": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "minutesValue": "{count, plural, one{1 분} other{{count} 분}}",
+  "@minutesValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "minutesShort": "{count} 분",
+  "@minutesShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playerVolume": "선수 양: {value}%",
+  "@playerVolume": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "playbackSpeed": "속도: {value}×",
+  "@playbackSpeed": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "yourRating": "귀하의 등급: {rating} 5 중",
+  "@yourRating": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "ratingOutOfFive": "{rating} 밖으로 5",
+  "@ratingOutOfFive": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "giveStars": "{count, plural, one{1개의 별을 주기} other{{count} 별}}",
+  "@giveStars": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ratingDescription": "평가: {rating} 5 중",
+  "@ratingDescription": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumStars": "적어도 {rating} 별",
+  "@minimumStars": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumRating": "등급 ≥ {rating}",
+  "@minimumRating": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "savedTrackCount": "{count, plural, one{1개의 저장된 궤도} other{{count} 저장된 궤도}}",
+  "@savedTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "availableTrackCount": "{count, plural, one{1개의 유효한 궤도} other{{count} 유효한 궤도}}",
+  "@availableTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "missingTrackCount": "사용 가능한 트랙: {count}. 그들은 외부 선택된 폴더 또는 더 이상 사용할 수 없습니다. 그들의 참조는 유지.",
+  "@missingTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectedTrackCount": "{count, plural, one{1 선택된 트랙} other{{count} 선택된 트랙}}",
+  "@selectedTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "searchResultCount": "{count, plural, one{1 결과} other{{count} 결과}}",
+  "@searchResultCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "removeRecentSearch": "검색 제거 {query}",
+  "@removeRecentSearch": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "tracksInSelection": "{count, plural, one{선택 1개의 궤도} other{{count} 선택 트랙}}",
+  "@tracksInSelection": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "languageTitle": "앱 언어",
+  "languageSystem": "시스템 설정 따르기",
+  "languageHelp": "즉시 앱. 트랙, 아티스트, 폴더 및 재생 목록 이름은 번역되지 않습니다.",
+  "languageSaveError": "언어를 구할 수 없습니다. 이전 선택이 유지되었습니다.",
+  "uiBass": "저음",
+  "mediaStop": "정지",
+  "mediaSeekBack": "10초 뒤로",
+  "mediaSeekForward": "10초 앞으로"
+}

@@ -1,0 +1,780 @@
+{
+  "@@locale": "ar",
+  "appearanceTitle": "المظهر والخط والألوان",
+  "themeLabel": "الموضوع",
+  "themeSystem": "حسب النظام",
+  "themeLight": "الضوء",
+  "themeDark": "الظلام",
+  "themeOled": "OLED أسود",
+  "accentLabel": "اللون الراقص",
+  "accentMint": "نعناعي",
+  "accentBlue": "الأزرق",
+  "accentViolet": "بنفسجي",
+  "accentRose": "روز",
+  "accentAmber": "الذهب",
+  "accentTeal": "فيروزي",
+  "fontLabel": "الخط",
+  "fontSystem": "رمز النظام",
+  "fontSerif": "بزوائد",
+  "fontMonospace": "أحادي العرض",
+  "fontDescription": "ويستخدم الفونتات الأسر المتاحة على الجهاز، وقد يختلف ظهورها عبر المنصات.",
+  "textSizeLabel": "حجم النص",
+  "textSizeDescription": "مقترنة بحجم النص في جهازك",
+  "previewLabel": "معاينة",
+  "previewTitle": "موسيقاك، إيقاعك",
+  "previewSubtitle": "الألبوم والفنانين وقائمة اللعب",
+  "previewButton": "تشغيل",
+  "resetAppearance": "استعادة المظهر الافتراضي",
+  "appearanceSaveError": "لا يمكن أن ينقذ المظهر، لقد تم حفظ أطرك السابقة",
+  "appearanceHelp": "وتطبق التغييرات فور إنقاذها وتدرج في أشكال الدعم.",
+  "percentValue": "{value}%",
+  "@percentValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "navigationTitle": "الملاحة والشاشة",
+  "navigationOrder": "طابور",
+  "navigationHelp": "اسحبي المقبض لإعادة ترتيب الشرائط المكتبة و \"ستينغز\" دائماً ما تظل متاحة",
+  "navigationHome": "الرئيسية",
+  "navigationLibrary": "المكتبة",
+  "navigationSearch": "بحث",
+  "navigationSettings": "الإعدادات",
+  "navigationRequired": "المبلغ المطلوب(ب)",
+  "navigationLabels": "العلامات التجارية",
+  "labelsAdaptive": "التكيف",
+  "labelsHidden": "Icons فقط",
+  "labelsSelected": "جدول مختار",
+  "labelsAlways": "كل شيء",
+  "labelsHelp": "إيقونات على هاتف وعلامات في الجانب المكتبي",
+  "navigationStart": "الشاشة",
+  "navigationStartHelp": "تطبيق في المرة القادمة التي يبدأ فيها التطبيق.",
+  "libraryLanding": "عند فتح المكتبة",
+  "landingCategories": "فئات",
+  "landingTracks": "المقاطع",
+  "landingAlbums": "الألبومات",
+  "landingArtists": "الفنانون",
+  "landingPlaylists": "قوائم التشغيل",
+  "landingFavorites": "المفضلة",
+  "resetNavigation": "الملاحـة الافتراضيـة",
+  "navigationSaveError": "لا يمكن أن ينقذ الملاحه تم الحفاظ على أفضلياتك السابقة",
+  "navigationPreview": "استعراض مسبق للملاحة",
+  "libraryPageTitle": "صفحة المكتبة",
+  "albumPageTitle": "صفحة الألبوم",
+  "artistPageTitle": "صفحة الفنان",
+  "categoryOrder": "القرض والنظام",
+  "categoryHelp": "إسحب المقبض لإعادة ترتيبه و أبق على الأقل فئة واحدة مرئية فئات الإختفاء لا تحذف الموسيقى",
+  "pageColumns": "كولومنز على الهاتف",
+  "pageColumnsHelp": "وتضيف شاشات أوسع بصورة تلقائية الأعمدة، ويمكن للنص الكبير أن يقلل من عدد الأعمدة لقابلية القراءة.",
+  "pageLayout": "#",
+  "layoutList": "القائمة",
+  "layoutGrid": "شبكة التغطية",
+  "pageSort": "أمر من نوع ما",
+  "sortName": "الاسم ألف - ز",
+  "sortNameDescending": "الاسم Z-A",
+  "sortTrackCount": "عدد المسار",
+  "pageSummary": "الأعمال الفنية والموجز في الصفحة المفتوحة",
+  "pageSummaryHelp": "يستعمل الأعمال الفنية المتاحة للطريق الأول في المجموعة",
+  "pageReset": "إعادة ضبط هذه الصفحة",
+  "pageSaveError": "لم أستطع إنقاذ الصفحة، كانت أفضلياتك السابقة محتفظة",
+  "librarySources": "المصادر",
+  "unknownGroup": "غير معروف",
+  "groupTracks": "{count, plural, zero{لا مقاطع} one{مقطع واحد} two{مقطعان} few{{count} مقاطع} many{{count} مقطعًا} other{{count} مقطع}}",
+  "groupMinutes": "{minutes} دقيقة إجمالًا",
+  "@groupTracks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@groupMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "uiTransitions": "الانتقال",
+  "uiEqualizer": "معادل الصوت",
+  "uiMediaControls": "عناصر التحكم بالوسائط",
+  "uiHeadsetButtons": "أزرار الرأس",
+  "uiNotificationButtons": "أزرار الإخطار",
+  "uiCrossfade": "الصليب",
+  "uiOff": "متوقف",
+  "uiOverlapsTheEndOfATrackWith": "يتخطى نهاية المسار مع بداية العوده التلقائية",
+  "uiPlayAndPause": "اللعب والتوقف",
+  "uiNoFade": "لا تتلاشى",
+  "uiNotificationAndLockScreen": "الإخطار وشاشة القفل",
+  "uiSeekButtons10Seconds": "أزرار الساعات 10 ثواني",
+  "uiReplacesPreviousnextWithSeekingInTheNotification": "يستعاض عن النص السابق/الجديد بالتماسه في الإخطار.",
+  "uiShowStopButton": "اضغط زر",
+  "uiHeadsetAndMediaButtons": "أزرار الرأس ووسائط الإعلام",
+  "uiSeek10SecondsFromHeadset": "انظر 10 ثواني من الرأس",
+  "uiPreviousnextButtonsSeekWithinTheCurrentTrack": "الأزرار السابقة/الخارجية تبحث في المسار الحالي الزر المركزي يبقي (بلاي) و(باس)",
+  "uiKeepPausedWhenChangingTracks": "ابقوا متوقفين عند تغيير المسارات",
+  "uiNotificationAndHeadsetControlsAreAvailableOn": "وتتاح أجهزة الإخطار والتحكم في الرؤوس في Android، وتعيد بعض النظم ترتيب أزرار الإخطار.",
+  "uiTheEqualizerIsCurrentlyAvailableOnAndroid": "ويتاح حاليا المكافئ في Android.",
+  "uiSelectATrackAndReopenTheEqualizer": "اختيار المسار وإعادة فتح المكافئ إذا كان لا يزال غير متاح، فإن الجهاز لا يكشف الأثر الصوتي المطلوب.",
+  "uiAndroidEqualizer": "Android",
+  "uiEnableEqualizer": "المتساوية التمكينية",
+  "uiFlat": "محايد",
+  "uiVoice": "الصوت",
+  "uiWhenBoostingABandAuraAutomaticallyReduces": "عندما نعزز الفرقة Aura ويقلل تلقائياً المستوى العام لمغادرة القاعة ويحد من التشويه.",
+  "uiAudioPlayback": "تشغيل الصوت",
+  "uiPlaybackIsUnavailable": "التشغيل غير متاح.",
+  "uiUnknownArtist": "فنان غير معروف",
+  "uiUntitledTrack": "مقطع بلا عنوان",
+  "uiTheFileIsNotAValidAura": "الملف تالف أو ليس نسخة احتياطية صالحة من Aura.",
+  "uiChooseAnAuraBackup": "اختر نسخة احتياطية من Aura",
+  "uiSaveAuraBackup": "حفظ نسخة احتياطية من Aura",
+  "uiBackupSaved": "تم حفظ النسخة الاحتياطية.",
+  "uiCouldNotSaveTheBackupAuraData": "تعذر حفظ النسخة الاحتياطية. لم تتغير بيانات Aura.",
+  "uiTheFileIsNotAValidAura82": "الملف تالف، أو ليس نسخة احتياطية صالحة من Aura، أو يتجاوز حجمه 4 ميغابايت.",
+  "uiRestoreBackup": "استعادة النسخة الاحتياطية؟",
+  "uiYourCurrentFavoritesRatingsPlaylistsAndHistory": "سيتم استبدال المفضلة والتقييمات وقوائم التشغيل وسجل الاستماع الحالية.",
+  "uiDataWillBeMergedExistingRatingsAnd": "سيتم دمج البيانات. تكون الأولوية للتقييمات وأسماء قوائم التشغيل الحالية.",
+  "uiSettingsWillAlsoBeImported": "سيتم استيراد الإعدادات أيضًا.",
+  "uiYourCurrentSettingsWillBeKept": "سيتم الاحتفاظ بإعداداتك الحالية.",
+  "uiCancel": "إلغاء",
+  "uiReplaceAndRestore": "استبدال واستعادة",
+  "uiRestore": "استعادة",
+  "uiBackupRestoredUnavailableTracksAreKeptAs": "تمت استعادة النسخة الاحتياطية. تُحفظ مراجع المقاطع غير المتاحة.",
+  "uiDataRecoveryMustFinishBeforeContinuing": "يجب إكمال استرداد البيانات قبل المتابعة.",
+  "uiRestoreFailedYourPreviousDataWasKept": "فشلت الاستعادة. تم الاحتفاظ ببياناتك السابقة.",
+  "uiPreviousDataRecovered": "تم استرداد البيانات السابقة.",
+  "uiCouldNotRecoverTheDataYetTry": "تعذر استرداد البيانات بعد. حاول مجددًا أو أعد تشغيل Aura.",
+  "uiBackupAndRestore": "النسخ الاحتياطي والاستعادة",
+  "uiDataRecoveryIsRequiredBeforeContinuingAura": "يجب استرداد البيانات قبل المتابعة. احتفظ Aura بالحالة السابقة في سجل محلي.",
+  "uiTryRecovery": "محاولة الاسترداد",
+  "uiKeepWhatYouHaveOrganized": "احتفظ بمكتبتك المنظمة",
+  "uiBackupsIncludeFavoritesRatingsPlaylistsHistoryPlayback": "تشمل النسخ الاحتياطية المفضلة والتقييمات وقوائم التشغيل وسجل الاستماع وإعدادات التشغيل وفلاتر المكتبة. لا تشمل الملفات الصوتية والمصادر والمجلدات المختارة؛ يجب إعدادها بشكل منفصل.",
+  "uiExportBackup": "تصدير نسخة احتياطية",
+  "uiChooseABackupToRestore": "اختر نسخة احتياطية لاستعادتها",
+  "uiMissingReferencesAreKeptWithoutAssigningRatings": "الإشارات المفقودة مُحتفظ بها بدون تحديد درجات للأغاني الأخرى، يمكنك إعادة إرسال الدعم بعد إضافة مصادر المطابقة",
+  "uiReplaceCurrentData": "استبدال البيانات الحالية",
+  "uiOffMergeDataAndKeepExistingRatings": "عند الإيقاف: دمج البيانات والاحتفاظ بالتقييمات الحالية.",
+  "uiRestoreSettingsToo": "استعادة الإعدادات أيضًا",
+  "uiReviewAndRestore": "مراجعة واستعادة",
+  "uiHelloNightOwl": "مرحبًا يا بومة الليل 🦉",
+  "uiGoodMorning": "صباح الخير 🌅",
+  "uiGoodAfternoon": "طاب نهارك ☀️",
+  "uiGoodEvening": "مساء الخير 🌆",
+  "uiChooseYourMusicFolder": "اختر ملف الموسيقى الخاص بك",
+  "uiAuraCouldNotRecoverAnInterruptedRestore": "Aura لا يمكن أن تستعيد إعادة متوقفة بياناتك السابقة محتفظة في المجلة المحلية",
+  "uiCouldNotLoadOrSaveListeningHistory": "لا يمكن تحميل أو حفظ تاريخ الاستماع و آخر لاعب ظهر.",
+  "uiCouldNotApplyPlaybackSettingsOrThe": "لا يمكن أن تُطبّق حالات العزف أو موقّت النوم.",
+  "uiCouldNotLoadTheLibraryScanYour": "لا يمكن تحميل المكتبة مسح الموسيقى مرة أخرى",
+  "uiMusicOnYourPC": "الموسيقى PC",
+  "uiMusicOnYourPhone": "الموسيقى على هاتفك",
+  "uiNavidromeServer": "Navidrome خادم",
+  "uiURLAndUserAccount": "URL حساب المستخدم",
+  "uiCouldNotLoadMusicSources": "لا يمكن تحميل مصادر الموسيقى.",
+  "uiAddAFolderFromYourPC": "أضف ملفك من PC",
+  "uiChooseVisibleFolders": "اختيار الملفات المرئية",
+  "uiRemoveAFolderFromTheLibrary": "نقل ملف من المكتبة",
+  "uiFilesStayOnYourPC": "الملفات تبقى على PC.",
+  "uiYouHaveNotAddedAnyFoldersYet": "لم تضيف أي ملف بعد",
+  "uiRemoveFromLibrary": "نقل من المكتبة",
+  "uiFolderRemovedFromTheLibraryFilesStayed": "أزيلت (فلندر) من المكتبة، وبقيت الملفات على رقمك PC",
+  "uiCouldNotRemoveTheFolderFromThe": "لا يمكن إزالة الملف من المكتبة.",
+  "uiCouldNotReadTheFolderCheckThat": "لا يمكن قراءة الملف تأكد من أنه متاح",
+  "uiCouldNotSaveSourcesTryAgain": "لا يمكن إنقاذ المصادر حاول مرة أخرى",
+  "uiCouldNotPlayTheTrackTryScanning": "لا يمكن أن نلعب المسار حاول فحصه مرة أخرى",
+  "uiNoAudioFilesFoundOnTheDevice": "لا توجد ملفات صوتية على الجهاز",
+  "uiAllowMusicAccessToScanYourLibrary": "السماح للموسيقى الوصول إلى مسح مكتبتك.",
+  "uiCouldNotScanYourMusicTryAgain": "لا يمكن مسح موسيقاك حاول مرة أخرى",
+  "uiLibraryScanningIsCurrentlyAvailableOnAndroid": "ويتاح حاليا مسح المكتبة في Android.",
+  "uiAProblemOccurredWhileScanningMusic": "وحدثت مشكلة أثناء مسح الموسيقى",
+  "uiWhereIsYourMusic": "أين موسيقاك؟",
+  "uiFavoriteTracks": "المسارات المفضلة",
+  "uiAllFavorites": "جميع المفضّلات",
+  "uiBrowse": "تصفح",
+  "uiRecentlyPlayed": "لعبت مؤخرا",
+  "uiSeeAll": "شاهدْ كُلّ",
+  "uiYourLibrary": "مكتبتك",
+  "uiSTARTWITHASOURCE": "بدء مع المزرعة",
+  "uiAddYourMusic": "أضف موسيقاك",
+  "uiPCOrNavidromeServer": "PC أو Navidrome خادم",
+  "uiPhoneOrNavidromeServer": "الهاتف أو خادم Navidrome",
+  "uiScanning": "مسح...",
+  "uiAddASource": "يضاف مصدر",
+  "uiLibrary": "المكتبة",
+  "uiYourListeningHistoryWillAppearHere": "تاريخ الاستماع الخاص بك سوف تظهر هنا.",
+  "uiYOURCOLLECTION": "تواطؤك",
+  "uiLibrary178": "المكتبة",
+  "uiNoTracksMatchTheSelectedFilters": "لا توجد آثار تطابق مرشحين مختارين",
+  "uiChooseMusicFoldersToSeeTracksIn": "اختر مجلات الموسيقى لرؤية آثار في مكتبتك",
+  "uiChangeFilters": "تغيير مرشحات",
+  "uiChooseFolders": "ملفات الاختيار",
+  "uiScanAgain": "الشاشة مرة أخرى",
+  "uiNoTracksMatchTheSelectedRating": "لا أثر يطابق التقييم المختار",
+  "uiCouldNotResumeTheTrackTrySelecting": "لا يمكن استئناف المسار حاول إختياره مرة أخرى",
+  "uiUnknownDuration": "مدة غير معروفة",
+  "uiTrackInformation": "معلومات المسار",
+  "uiClose": "إغلاق",
+  "uiArtist": "الفنون",
+  "uiAlbum": "ألبوم",
+  "uiUnknownAlbum": "ألبوم غير معروف",
+  "uiDuration": "المدة",
+  "uiFolder": "مجلد",
+  "uiUnknownFolder": "ملف مجهول",
+  "uiPause": "إيقاف مؤقت",
+  "uiNextTrack": "المسار التالي",
+  "uiTheQueueIsEmpty": "\"السؤال فارغ\"",
+  "uiPreviousTrack": "المسار السابق",
+  "uiEnterTheHTTPSServerAddressWithoutA": "أدخل عنوان الخادم HTTPS دون اسم مستخدم أو كلمة سر أو URL بارامترات.",
+  "uiEnterTheSourceNameUsernameAndPassword": "أدخل اسم المصدر واسم المستخدم وكلمة السر",
+  "uiTheServerDidNotRespondCorrectlyCheck": "الخادم لم يرد بشكل صحيح تفقد العنوان و Navidrome",
+  "uiTheServerResponseIsTooLarge": "رد الخادم كبير جداً",
+  "uiCouldNotReachTheServerCheckYour": "لم أستطع الوصول إلى الخادم تحقق من إتصالك وعنوانك وشهادة HTTPS",
+  "uiAuthenticationFailedCheckYourUsernameAndPassword": "فشل التوثيق تحقق من اسم المستخدم وكلمة السر",
+  "uiNavidromeRejectedTheRequestCheckTheAccounts": "Navidrome ورفض الطلب، وتحقق من وصول مكتبة الحساب.",
+  "uiTheAddressDidNotReturnAValid": "لم يُرجع العنوان استجابة Navidrome صالحة.",
+  "uiTheServerRepeatedAnAlbumPageYour": "كرر الخادم صفحة الألبوم مكتبتك السابقة تم حفظها",
+  "uiInvalidServerTrack": "مسار الخادم الغير سليم",
+  "uiReconnectTheNavidromeSourceToPlayThis": "أعد توصيل مصدر Navidrome لتشغيل هذا المقطع.",
+  "uiCouldNotLoadSavedSourcesTryAgain": "لا يمكن تحميل المصادر المنقذة حاول مرة أخرى",
+  "uiCouldNotSaveTheSourceChangeTry": "لا يمكن أن ينقذ تغير المصدر حاول مرة أخرى",
+  "uiConnectedTheServerLibraryHasBeenLoaded": "متصل، تم تحميل مكتبة الخادم",
+  "uiDisconnectThisSource": "أقطع هذا المصدر؟",
+  "uiCancel228": "إلغاء",
+  "uiDisconnect": "الفصل",
+  "uiSourceDisconnected": "تم فصل المصدر",
+  "uiNavidromeSources": "Navidrome مصادر",
+  "uiConnectYourLibraryFromANavidromeServer": "اتصل بمكتبتك من خادم رقم Navidrome على HTTPS",
+  "uiLoadingTheServerLibrary": "وضع مكتبة الخادم",
+  "uiReloadSources": "إعادة تحميل المصادر",
+  "uiLibraryUpdated": "استكملت المكتبة",
+  "uiRefresh": "التجديد",
+  "uiReconnect": "الاتصال",
+  "uiAddNavidromeServer": "Add Navidrome",
+  "uiTracksAppearInLibraryAfterConnectingPlayback": "التتبعات تظهر في المكتبة بعد التواصل بلايباك يحتاج للإنترنت Aura والمفضلات والتقديرات وقائمة اللعب تبقى محلية؛ ولم تتغير مكتبة الخواديم.",
+  "uiConnectToNavidrome": "الاتصال بـ Navidrome",
+  "uiSourceName": "اسم المصدر",
+  "uiServerURL": "رابط الخادم",
+  "uiUsername": "المستعمل",
+  "uiPassword": "كلمة السر",
+  "uiCredentialsAreSavedInTheDevicesSecure": "ويتم توفير وثائق التفويض في المخزن الآمن للجهاز.",
+  "uiConnect": "اتصال",
+  "uiListeningHistory": "تاريخ الاستماع",
+  "uiClearHistory": "تاريخ واضح",
+  "uiClearHistory262": "تاريخ واضح؟",
+  "uiTracksFavoritesAndPlaylistsWillStaySaved": "الثكنات والمفضلات والمسرحيات ستبقى منقذة",
+  "uiDelete": "حذف",
+  "uiPlayedTracksWillAppearHere": "المسارات الملعبه ستظهر هنا",
+  "uiTracksInYourHistoryAreHiddenBy": "المسارات في تاريخك مخبأة بالمرشحات الحالية أو لم تعد متاحة",
+  "uiLibraryFilters": "مرشحات المكتبة",
+  "uiMinimumDuration": "الحد الأدنى",
+  "uiAllDurations": "جميع الفترات",
+  "ui10Seconds": "10 ثوان",
+  "ui30Seconds": "30 ثانية",
+  "ui1Minute": "دقيقة واحدة",
+  "uiTracksWithUnknownDurationStayVisible": "وتظل المسارات ذات المدة غير المعروفة مرئية.",
+  "uiHideWhatsAppAndTelegram": "إخفاء WhatsApp وTelegram",
+  "uiHidesFilesFromTheseAppsFolders": "ويحفظ ملفات هذه الملفات.",
+  "uiFiltersOnlyChangeWhatAppearsInYour": "المصورون يغيرون ما يظهر في مكتبتك الأفلام و قوائم اللعب و الطابور الحالية",
+  "uiSaving": "إنقاذ...",
+  "uiSaveFilters": "انقذوا المدافن",
+  "uiRepeatOff": "أكرر",
+  "uiRepeatEntireQueue": "أكرر جميع الأسئلة",
+  "uiRepeatCurrentTrack": "المسار الحالي",
+  "uiShuffleOn": "اشرب",
+  "uiShuffleOff": "اصرخ",
+  "uiCloseQueue": "اقترب",
+  "uiShuffledOrderTurnOffShuffleToReorder": "طلب مقزز، أطفئ الشوفان إلى إعادة التموين",
+  "uiDragTheHandleToChangeTheOrder": "اسحب المقبض لتغيير الطلب",
+  "uiCouldNotUpdatePlaybackTryAgain": "لا يمكن أن تستكمل العزف مرة أخرى",
+  "uiAtTheEndOfTheTrack": "في نهاية المسار",
+  "uiSleepTimer": "وقت النوم",
+  "uiCloseSleepTimer": "وقت النوم",
+  "uiFinishTheCurrentTrack": "أنهي المسار الحالي",
+  "uiWhenTheTimerEndsWaitForThe": "عندما ينتهي جهاز التوقيت، ننتظر أن ينتهي المسار قبل التوقف.",
+  "uiStartSleepTimer": "بدء النوم",
+  "uiStopAtTheEndOfThisTrack": "توقف عند نهاية هذا المسار",
+  "uiCancelSleepTimer": "وقت النوم",
+  "uiPlaybackSettings": "إعدادات التشغيل",
+  "uiOutputSettings": "إعدادات إخراج الصوت",
+  "uiPlayback": "التشغيل",
+  "uiAutomaticActions": "إجراءات تلقائية",
+  "uiAudioOutput": "إخراج الصوت",
+  "uiOnlyAppliesInAuraSeparatelyFromYour": "فقط ينطبق في Aura، منفصلة عن هاتفك أو PC الحجم.",
+  "uiTimer": "التوقيت",
+  "uiAudioOptions": "الخيارات السمعية",
+  "uiCrossfadeAndPlaypauseFades": "المعابر واللعب/التلاشي",
+  "uiFrequencyBandsAndPresets": "فرق الترددات والقبلات",
+  "uiAvailableOnAndroid": "متاح على Android",
+  "uiNotificationLockScreenAndHeadset": "الإخطار وشاشة القفل والرؤوس",
+  "uiRestoreDefaultSpeedAndVolume": "سرعة التخلف عن السداد وحجمه",
+  "uiSpeedAndVolumeAreSavedOnThis": "السرعة والحجم يُنقذان على هذا الجهاز.",
+  "uiSleep": "النوم",
+  "uiUnrated": "غير مرتبة",
+  "uiSwipeToRate": "اسحب للتقييم",
+  "uiGive1Star": "أعطنى نجمة",
+  "uiClearRating": "تقييم واضح",
+  "uiStarSize": "حجم النجوم",
+  "uiSmall": "صغيرة",
+  "uiMedium": "متوسطة",
+  "uiLarge": "رقيب",
+  "uiSwipeAcrossTheStarsToRateIn": "تَشْربُ عبر النجومِ لتَعَدُّل في خطواتِ نِصْف النجومِ.",
+  "uiFilterByRating": "ملء عن طريق التقييم",
+  "uiAllRatings": "جميع التقديرات",
+  "uiOnly5Stars": "فقط 5 نجوم",
+  "uiSortByRating": "نوعا ما بالتقدير",
+  "uiDefaultOrder": "أمر التقصير",
+  "uiHighestRatingFirst": "أعلى درجة أولا",
+  "uiLowestRatingFirst": "درجة منخفضة أولا",
+  "uiCouldNotSaveTheChangeTryAgain": "لا يمكن إنقاذ التغيير حاول مرة أخرى",
+  "uiNewPlaylist": "قائمة مسرحية جديدة",
+  "uiRenamePlaylist": "اسم مستعار",
+  "uiPlaylistName": "اسم مستعار",
+  "uiSave": "حفظ",
+  "uiRemoveFromFavorites": "إزالة من المفضّلات",
+  "uiAddToFavorites": "يضاف إلى المفضّلات",
+  "uiAddToPlaylist": "يضاف إلى القائمة",
+  "uiTrackIsAlreadyInThisPlaylist": "المسار موجود بالفعل في قائمة اللعب هذه",
+  "uiTrackAddedToPlaylist": "تراك أضاف إلى قائمة اللعب.",
+  "uiCouldNotLoadFavoritesAndPlaylists": "لا يمكن تحميل المفضّلات والألعاب.",
+  "uiTryAgain": "حاول مرة أخرى",
+  "uiBackToPlaylists": "العودة إلى قائمة اللعب",
+  "uiPlaylistOptions": "خيارات قائمة على أسماء المواقع",
+  "uiDeletePlaylist": "تحذف قائمة اللعب؟",
+  "uiAudioFilesStayOnThePhone": "الملفات الصوتية تبقى على الهاتف.",
+  "uiRename": "الاسم",
+  "uiDeletePlaylist363": "يحذف اسم الملعب",
+  "uiCreateYourFirstPlaylistWithOrFrom": "إنشاء أول قائمة مسرحية لك بقائمة + أو من قائمة المسار.",
+  "uiAddTracks": "أضف المسارات",
+  "uiATrackIsOutsideTheSelectedFolders": "ويخرج المسار من الملفات المختارة أو لم يعد متاحاً، ويُحتفظ بإشارة إليه.",
+  "uiPlayAll": "اعزفوا",
+  "uiTapATracksHeartToSaveIt": "حطم قلب المسار لإنقاذه هنا.",
+  "uiAddTracksToThisPlaylist": "أضف المسارات إلى هذه القائمة",
+  "uiRemoveFromPlaylist": "نقل من قائمة اللعب",
+  "uiSearchForATrack": "البحث عن المسار",
+  "uiTitle": "العنوان",
+  "uiSearchYourMusic": "ابحث عن موسيقاك",
+  "uiClearSearch": "البحث",
+  "uiFavoritesOnly": "المفضّلات فقط",
+  "uiYOURLIBRARYISEMPTY": "الليبراري الخاص بك هو منيع",
+  "uiAddMusic": "الموسيقى",
+  "uiAddASourceToSearchYourCollection": "إضافة مصدر لتفتيش مجموعتك",
+  "uiRecentSearches": "عمليات البحث الأخيرة",
+  "uiSearchForATitleArtistOrAlbum": "ابحثوا عن عنوان أو فنان أو ألبوم وبحثوا هنا لهذه الدورة",
+  "uiNoResultsMatchTheSelectedFilters": "لا توجد نتائج مطابقة للمرشحين المختارين",
+  "uiAuraSettings": "Aura",
+  "uiOptionsMarkedComingSoonAreNotAvailable": "ولم تتوفر بعد خيارات تحمل علامة &quot; مباشرة &quot; ، ويجري توفير أماكن نشطة على هذا الجهاز.",
+  "uiGotIt": "حصلت عليه",
+  "uiHelp": "مساعدة",
+  "uiInterface": "الواجهة",
+  "uiInterfaceSettings": "البيئات المتقاطعة",
+  "uiApplicationStyle": "أسلوب التطبيق",
+  "uiGeneral": "عام",
+  "uiMediaLists": "قوائم الوسائط",
+  "uiNowPlayingScreens": "الآن لعب الشاشات",
+  "uiNowPlayingScreen": "الآن شغل الشاشة",
+  "uiTrackRatings": "تقييم المسار",
+  "uiSwipeAcrossTheStarsToRateIn399": "تُسرّبُ عبر النجومِ لتَعَدُّل في خطواتِ نِصْفِ النجومِ.",
+  "uiPageSettings": "البيئات الصفحة",
+  "uiHomePage": "Page",
+  "uiGenrePage": "صفحة عامة",
+  "uiPlaylistPage": "صفحة قائمة التشغيل",
+  "uiSearchPage": "Page",
+  "uiAdvanced": "متقدم",
+  "uiAdvancedInterfaceSettings": "البيئات التفاعلية المتقدمة",
+  "uiDecodingAndTranscoding": "التخزين والتحويل",
+  "uiAudioFocus": "التركيز على المواد السمعية",
+  "uiNotificationAndMediaSessionButtons": "أزرار الإخطار ودورات وسائط الإعلام",
+  "uiAdvancedPlaybackSettings": "الظروف المتطورة للعزف",
+  "uiOfflineCacheAndDownloads": "بلا اتصال والتخزين المؤقت والتنزيلات",
+  "uiMedia": "الوسائط",
+  "uiOfflineServerPlayback": "تشغيل موسيقى الخادم بلا اتصال",
+  "uiImages": "الصور",
+  "uiLocalTracksWorkWithoutInternetServerDownloads": "تعمل المقاطع المحلية بلا إنترنت. تنزيلات الخادم وإدارة التخزين المؤقت قيد الإعداد.",
+  "uiAdvancedSettings": "البيئات المتقدمة",
+  "uiMiscellaneous": "متنوعة",
+  "uiMediaSources": "مصادر الوسائط",
+  "uiSyncManager": "مدير المزامنة",
+  "uiUpdating": "مستيقظ...",
+  "uiRefreshLibrary": "مكتبة التجديد",
+  "uiRefreshNavidromeSources": "المصادر Navidrome",
+  "uiOfflineFiles": "ملفات بلا اتصال",
+  "uiGeneratedFiles": "الملفات المُنشأة",
+  "uiLanguages": "اللغات",
+  "uiAbout": "حول",
+  "uiRateTheApp": "معدل التطبيق",
+  "uiContactSupport": "دعم الاتصال",
+  "uiWhatsNew": "ما الجديد",
+  "uiWhatsNewInAura": "ما الجديد في Aura",
+  "uiLocalAndNavidromeLibrariesHalfstarRatingsHistory": "المحلية Navidrome ● تقديرات نصف النجوم: التاريخ، وقوائم اللعب والمفضلات. Android المتساوية.",
+  "uiAboutAura": "حوالي Aura",
+  "uiAPlayerForYourLocalMusicAnd": "لاعب لموسيقىك المحلية ومكتبة Navidrome",
+  "uiComingSoon": "قريبًا",
+  "uiMusicFolders": "مجلدات الموسيقى",
+  "uiChooseMusicFoldersOnlyFoldersWhereThe": "اختر مجلدات الموسيقى فقط الملفات التي وجد فيها الجهاز الملفات الصوتية",
+  "uiAllFolders": "جميع الملفات",
+  "uiAutomaticallyIncludesFoldersFoundInFutureScans": "ويشمل تلقائيا الملفات التي عثر عليها في الفحوصات المستقبلية.",
+  "uiNoTracksFoundInTheLastScan": "لا توجد آثار في آخر مسح",
+  "uiYourLibraryWillStayEmptyUntilYou": "مكتبتك ستبقى فارغة حتى تختار ملف",
+  "uiSaveSelection": "الاختيار",
+  "secondsValue": "{count, plural, zero{0 ثانية} one{ثانية واحدة} two{ثانيتان} few{{count} ثوانٍ} many{{count} ثانية} other{{count} ثانية}}",
+  "@secondsValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "secondsShort": "{value}",
+  "@secondsShort": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "restoreConfirmation": "{change}\n\n{settings}\n\nPlayback will pause and the sleep timer will be repealed.",
+  "@restoreConfirmation": {
+    "placeholders": {
+      "change": {
+        "type": "String"
+      },
+      "settings": {
+        "type": "String"
+      }
+    }
+  },
+  "backupCreated": "تاريخ الإنشاء: {date}",
+  "@backupCreated": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "backupStats": "المفضلة: {favorites} · التقييمات: {ratings}\nقوائم التشغيل: {playlists} · مقاطع السجل: {history}",
+  "@backupStats": {
+    "placeholders": {
+      "favorites": {
+        "type": "int"
+      },
+      "ratings": {
+        "type": "int"
+      },
+      "playlists": {
+        "type": "int"
+      },
+      "history": {
+        "type": "int"
+      }
+    }
+  },
+  "backupMatches": "Remapped: {matched} · Remapped: {remapped}\nUnavailable or ambiguous: {unavailable}",
+  "@backupMatches": {
+    "placeholders": {
+      "matched": {
+        "type": "int"
+      },
+      "remapped": {
+        "type": "int"
+      },
+      "unavailable": {
+        "type": "int"
+      }
+    }
+  },
+  "tracksInLibrary": "{count, plural, one{مسار واحد في مكتبتك} other{{count} المسارات في مكتبتك}}",
+  "@tracksInLibrary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sourcesSaved": "تم إنقاذ المصادر {count, plural, one{مسار واحد في مكتبتك} other{{count} المسارات في مكتبتك}}",
+  "@sourcesSaved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tracksInFolders": "{count, plural, one{مسار واحد في الملفات المختارة} other{{count} المسارات في الملفات المختارة.}}",
+  "@tracksInFolders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "allFoldersSummary": "جميع الملفات؛ المسارات: {count}",
+  "@allFoldersSummary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectedFoldersSummary": "ملفات مختارة: {folders} · Tracks: {tracks}",
+  "@selectedFoldersSummary": {
+    "placeholders": {
+      "folders": {
+        "type": "int"
+      },
+      "tracks": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryRhythm": "{count} المسارات، في الإيقاع الخاص بك.",
+  "@libraryRhythm": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryTrackCount": "المسارات في المكتبة: {count}",
+  "@libraryTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "backToPage": "العودة إلى {page}",
+  "@backToPage": {
+    "placeholders": {
+      "page": {
+        "type": "String"
+      }
+    }
+  },
+  "groupCount": "{count, plural, one{بند واحد} other{البنود {count}}}",
+  "@groupCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "foundTracks": "{count, plural, one{عثر على مسار واحد} other{{count} المسارات وجدت}}",
+  "@foundTracks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "disconnectSource": "&quot; {name} &quot; ستحذف من Aura، وتحتفظ الملفات على الخادم.",
+  "@disconnectSource": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "visibleTracks": "تظهر {visible} من {total} المسارات.",
+  "@visibleTracks": {
+    "placeholders": {
+      "visible": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "queueCount": "قائمة الانتظار · {count}",
+  "@queueCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playQueueCount": "إجابة على الأسئلة {count}",
+  "@playQueueCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "currentTrackArtist": "المسار الحالي {artist}",
+  "@currentTrackArtist": {
+    "placeholders": {
+      "artist": {
+        "type": "String"
+      }
+    }
+  },
+  "removeFromQueue": "إزالة {title} من قائمة الانتظار",
+  "@removeFromQueue": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "moveTrack": "Transport {title}",
+  "@moveTrack": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "activeTimer": "نشط: {value}",
+  "@activeTimer": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "minutesValue": "{count, plural, zero{0 دقيقة} one{دقيقة واحدة} two{دقيقتان} few{{count} دقائق} many{{count} دقيقة} other{{count} دقيقة}}",
+  "@minutesValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "minutesShort": "{count} دقيقة",
+  "@minutesShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playerVolume": "مجلد اللاعبين: {value}%",
+  "@playerVolume": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "playbackSpeed": "Speed: {value}",
+  "@playbackSpeed": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "yourRating": "تقييمك: {rating} من 5",
+  "@yourRating": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "ratingOutOfFive": "{rating} من 5",
+  "@ratingOutOfFive": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "giveStars": "{count, plural, one{أعطنى نجمة} other{أعطِ {count} نجوم}}",
+  "@giveStars": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ratingDescription": "التقييم: {rating} من 5",
+  "@ratingDescription": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumStars": "على الأقل {rating} نجوم",
+  "@minimumStars": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumRating": "راتنج {rating}",
+  "@minimumRating": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "savedTrackCount": "{count, plural, one{1 انقذ المسار} other{{count}}}",
+  "@savedTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "availableTrackCount": "{count, plural, one{1 المسار المتاح} other{{count} المسارات المتاحة}}",
+  "@availableTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "missingTrackCount": "مسارات غير متاحة: {count}، وهي خارج ملفات مختارة أو لم تعد متاحة.",
+  "@missingTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectedTrackCount": "{count, plural, one{مسار واحد مختار} other{{count} مسارات مختارة}}",
+  "@selectedTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "searchResultCount": "{count, plural, one{نتيجة} other{{count} النتائج}}",
+  "@searchResultCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "removeRecentSearch": "البحث في إزالة الألغام {query}",
+  "@removeRecentSearch": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "tracksInSelection": "{count, plural, one{مسار واحد للاختيار} other{{count} المسارات في الاختيار}}",
+  "@tracksInSelection": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "languageTitle": "لغة التطبيق",
+  "languageSystem": "حسب النظام",
+  "languageHelp": "يبدو على الفور، مسارك، الفنان، الملف وأسماء القائمة لا تترجم",
+  "languageSaveError": "لا يمكن أن ينقذ اللغة لقد تم الاحتفاظ بخيارك السابق",
+  "uiBass": "جهير",
+  "mediaStop": "إيقاف",
+  "mediaSeekBack": "رجوع 10 ثوانٍ",
+  "mediaSeekForward": "تقديم 10 ثوانٍ"
+}

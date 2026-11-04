@@ -1,3 +1,5 @@
+import 'app_strings.dart';
+
 import 'package:flutter/material.dart';
 
 class SourceFolderSelection {
@@ -38,19 +40,21 @@ class _SourceFoldersScreenState extends State<SourceFoldersScreen> {
         .where((entry) => _allFolders || _selected.contains(entry.key))
         .fold<int>(0, (sum, entry) => sum + entry.value);
     return Scaffold(
-      appBar: AppBar(title: const Text('Foldere muzicale')),
+      appBar: AppBar(title: Text(context.appStrings.uiMusicFolders)),
       body: Column(
         children: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.fromLTRB(20, 10, 20, 12),
             child: Text(
-              'Alege folderele cu muzică. Sunt afișate folderele în care dispozitivul a găsit fișiere audio.',
+              context.appStrings.uiChooseMusicFoldersOnlyFoldersWhereThe,
             ),
           ),
           SwitchListTile(
-            title: const Text('Toate folderele'),
-            subtitle: const Text(
-              'Include automat și folderele găsite la scanările viitoare.',
+            title: Text(context.appStrings.uiAllFolders),
+            subtitle: Text(
+              context
+                  .appStrings
+                  .uiAutomaticallyIncludesFoldersFoundInFutureScans,
             ),
             value: _allFolders,
             onChanged: (value) => setState(() => _allFolders = value),
@@ -64,11 +68,15 @@ class _SourceFoldersScreenState extends State<SourceFoldersScreen> {
                 final total = widget.folderCounts[folder]!;
                 return CheckboxListTile(
                   secondary: const Icon(Icons.folder_rounded),
-                  title: Text(folder.isEmpty ? 'Folder necunoscut' : folder),
+                  title: Text(
+                    folder.isEmpty
+                        ? context.appStrings.uiUnknownFolder
+                        : folder,
+                  ),
                   subtitle: Text(
                     total == 0
-                        ? 'Nicio piesă găsită la ultima scanare'
-                        : '$total ${total == 1 ? 'piesă' : 'piese'}',
+                        ? context.appStrings.uiNoTracksFoundInTheLastScan
+                        : context.appStrings.groupTracks(total),
                   ),
                   value: _allFolders || _selected.contains(folder),
                   onChanged: _allFolders
@@ -93,14 +101,14 @@ class _SourceFoldersScreenState extends State<SourceFoldersScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    '$count ${count == 1 ? 'piesă' : 'piese'} în selecție',
+                    context.appStrings.tracksInSelection(count),
                     textAlign: TextAlign.center,
                   ),
                   if (!_allFolders && _selected.isEmpty)
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.only(top: 6),
                       child: Text(
-                        'Biblioteca va fi goală până alegi un folder.',
+                        context.appStrings.uiYourLibraryWillStayEmptyUntilYou,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -111,7 +119,7 @@ class _SourceFoldersScreenState extends State<SourceFoldersScreen> {
                       SourceFolderSelection(_allFolders ? null : _selected),
                     ),
                     icon: const Icon(Icons.check_rounded),
-                    label: const Text('Salvează selecția'),
+                    label: Text(context.appStrings.uiSaveSelection),
                   ),
                 ],
               ),

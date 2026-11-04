@@ -1,3 +1,5 @@
+import 'app_language.dart';
+
 import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
@@ -19,7 +21,7 @@ class DeviceBackupFiles implements BackupFiles {
   @override
   Future<PickedBackup?> pick() async {
     final files = await FilePicker.pickFiles(
-      dialogTitle: 'Alege un backup Aura',
+      dialogTitle: AppText.current.uiChooseAnAuraBackup,
       type: FileType.custom,
       allowedExtensions: ['json'],
     );
@@ -45,7 +47,7 @@ class DeviceBackupFiles implements BackupFiles {
         fileName: name,
         bytes: bytes,
         mimeType: 'application/json',
-        dialogTitle: 'Salvează backupul Aura',
+        dialogTitle: AppText.current.uiSaveAuraBackup,
       ) !=
       null;
 }

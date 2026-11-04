@@ -1,3 +1,5 @@
+import 'l10n/app_localizations.dart';
+import 'app_strings.dart';
 import 'audio_library.dart';
 
 import 'dart:async';
@@ -9,12 +11,13 @@ import 'package:just_audio/just_audio.dart';
 
 import 'audio_runtime.dart';
 import 'app_theme.dart';
+import 'app_language.dart';
+import 'language_settings_screen.dart';
 import 'aura_logo.dart';
 import 'library_preferences.dart';
 import 'library_page_settings.dart';
 import 'library_catalog.dart';
 import 'library_groups.dart';
-import 'app_strings.dart';
 import 'navigation_preferences.dart';
 import 'navigation_settings_screen.dart';
 import 'navigation_ui.dart';
@@ -49,12 +52,12 @@ const _audioLibraryChannel = AudioLibrary();
 enum _LibraryMode { songs, albums, artists, playlists, favorites }
 
 extension on _LibraryMode {
-  String get label => switch (this) {
-    _LibraryMode.songs => 'Piese',
-    _LibraryMode.albums => 'Albume',
-    _LibraryMode.artists => 'Artiști',
-    _LibraryMode.playlists => 'Playlisturi',
-    _LibraryMode.favorites => 'Favorite',
+  String label(BuildContext context) => switch (this) {
+    _LibraryMode.songs => context.appStrings.landingTracks,
+    _LibraryMode.albums => context.appStrings.landingAlbums,
+    _LibraryMode.artists => context.appStrings.landingArtists,
+    _LibraryMode.playlists => context.appStrings.landingPlaylists,
+    _LibraryMode.favorites => context.appStrings.landingFavorites,
   };
 
   IconData get icon => switch (this) {
@@ -75,6 +78,12 @@ late final AuraAudioRuntime _audioRuntime;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  AppText.useLocale(
+    resolveAuraLocale(
+      AppLanguage.system,
+      WidgetsBinding.instance.platformDispatcher.locales,
+    ),
+  );
   try {
     if (AudioLibrary.isWindows ||
         (!kIsWeb && defaultTargetPlatform == TargetPlatform.android)) {
@@ -86,14 +95,18 @@ Future<void> main() async {
     }
   } catch (_) {
     runApp(
-      const MaterialApp(
+      MaterialApp(
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        localeListResolutionCallback: (locales, _) =>
+            resolveAuraLocale(AppLanguage.system, locales ?? const []),
         home: Scaffold(
           body: SafeArea(
             child: Padding(
               padding: EdgeInsets.all(24),
               child: Center(
                 child: Text(
-                  'Aura nu a putut recupera o restaurare întreruptă. Datele anterioare sunt păstrate în jurnalul local. Închide și redeschide aplicația pentru a încerca din nou.',
+                  AppText.current.uiAuraCouldNotRecoverAnInterruptedRestore,
                 ),
               ),
             ),
@@ -105,6 +118,12 @@ Future<void> main() async {
   }
   final store = SavedMusicStore(DeviceSavedMusicStorage());
   await store.load();
+  AppText.useLocale(
+    resolveAuraLocale(
+      store.data.language,
+      WidgetsBinding.instance.platformDispatcher.locales,
+    ),
+  );
   _audioRuntime = AuraAudioRuntime(store);
   await _audioRuntime.initializeService();
   runApp(const SoundLibraryApp());
@@ -185,9 +204,7 @@ class _PlayerShellState extends State<PlayerShell> {
       store: _memory,
       onError: () {
         if (mounted) {
-          _showMessage(
-            'Nu am putut încărca sau salva istoricul și ultima redare.',
-          );
+          _showMessage(context.appStrings.uiCouldNotLoadOrSaveListeningHistory);
         }
       },
     );
@@ -209,9 +226,7 @@ class _PlayerShellState extends State<PlayerShell> {
       store: SavedMusicScope.of(context),
       onError: () {
         if (mounted) {
-          _showMessage(
-            'Nu am putut aplica setările de redare sau temporizatorul.',
-          );
+          _showMessage(context.appStrings.uiCouldNotApplyPlaybackSettingsOrThe);
         }
       },
     );
@@ -292,9 +307,7 @@ class _PlayerShellState extends State<PlayerShell> {
       // Other platforms will provide their own library storage adapter.
     } catch (_) {
       if (mounted) {
-        _showMessage(
-          'Nu am putut încărca biblioteca. Scanează muzica din nou.',
-        );
+        _showMessage(context.appStrings.uiCouldNotLoadTheLibraryScanYour);
       }
     } finally {
       if (mounted) setState(() => _isLoadingLibrary = false);
@@ -315,15 +328,15 @@ class _PlayerShellState extends State<PlayerShell> {
                 leading: const Icon(Icons.folder_open_rounded),
                 title: Text(
                   AudioLibrary.isWindows
-                      ? 'Muzică de pe PC'
-                      : 'Muzică de pe telefon',
+                      ? context.appStrings.uiMusicOnYourPC
+                      : context.appStrings.uiMusicOnYourPhone,
                 ),
                 onTap: () => Navigator.pop(context, 'local'),
               ),
               ListTile(
                 leading: const Icon(Icons.dns_outlined),
-                title: const Text('Server Navidrome'),
-                subtitle: const Text('URL și cont de utilizator'),
+                title: Text(context.appStrings.uiNavidromeServer),
+                subtitle: Text(context.appStrings.uiURLAndUserAccount),
                 onTap: () => Navigator.pop(context, 'server'),
               ),
             ],
@@ -343,7 +356,7 @@ class _PlayerShellState extends State<PlayerShell> {
         await _manageSourceFoldersInner();
       }
     } catch (_) {
-      if (mounted) _showMessage('Nu am putut încărca sursele muzicale.');
+      if (mounted) _showMessage(context.appStrings.uiCouldNotLoadMusicSources);
     } finally {
       _isManagingSources = false;
     }
@@ -359,18 +372,18 @@ class _PlayerShellState extends State<PlayerShell> {
             children: [
               ListTile(
                 leading: const Icon(Icons.create_new_folder_outlined),
-                title: const Text('Adaugă un folder de pe PC'),
+                title: Text(context.appStrings.uiAddAFolderFromYourPC),
                 onTap: () => Navigator.pop(context, 'add'),
               ),
               ListTile(
                 leading: const Icon(Icons.checklist_rounded),
-                title: const Text('Alege folderele vizibile'),
+                title: Text(context.appStrings.uiChooseVisibleFolders),
                 onTap: () => Navigator.pop(context, 'visible'),
               ),
               ListTile(
                 leading: const Icon(Icons.folder_off_outlined),
-                title: const Text('Elimină un folder din bibliotecă'),
-                subtitle: const Text('Fișierele rămân pe PC.'),
+                title: Text(context.appStrings.uiRemoveAFolderFromTheLibrary),
+                subtitle: Text(context.appStrings.uiFilesStayOnYourPC),
                 onTap: () => Navigator.pop(context, 'remove'),
               ),
             ],
@@ -386,13 +399,13 @@ class _PlayerShellState extends State<PlayerShell> {
             [];
         if (!mounted) return;
         if (roots.isEmpty) {
-          _showMessage('Nu ai adăugat încă niciun folder.');
+          _showMessage(context.appStrings.uiYouHaveNotAddedAnyFoldersYet);
           return;
         }
         final folder = await showDialog<String>(
           context: context,
           builder: (context) => SimpleDialog(
-            title: const Text('Elimină din bibliotecă'),
+            title: Text(context.appStrings.uiRemoveFromLibrary),
             children: roots
                 .map(
                   (root) => SimpleDialogOption(
@@ -418,11 +431,11 @@ class _PlayerShellState extends State<PlayerShell> {
                 .toList(),
           );
           _showMessage(
-            'Folder eliminat din bibliotecă. Fișierele au rămas pe PC.',
+            context.appStrings.uiFolderRemovedFromTheLibraryFilesStayed,
           );
         } catch (_) {
           if (mounted) {
-            _showMessage('Nu am putut elimina folderul din bibliotecă.');
+            _showMessage(context.appStrings.uiCouldNotRemoveTheFolderFromThe);
           }
         } finally {
           if (mounted) setState(() => _isScanning = false);
@@ -449,12 +462,10 @@ class _PlayerShellState extends State<PlayerShell> {
             _libraryMode = _LibraryMode.songs;
             _groupFilter = null;
           });
-          _showMessage('${_tracks.length} piese în bibliotecă.');
+          _showMessage(context.appStrings.tracksInLibrary(_tracks.length));
         } catch (_) {
           if (mounted) {
-            _showMessage(
-              'Nu am putut citi folderul. Verifică dacă este disponibil.',
-            );
+            _showMessage(context.appStrings.uiCouldNotReadTheFolderCheckThat);
           }
         } finally {
           if (mounted) setState(() => _isScanning = false);
@@ -489,11 +500,11 @@ class _PlayerShellState extends State<PlayerShell> {
       });
       if (!mounted) return;
       setState(() => _selectedFolders = selection.folders);
-      _showMessage(
-        'Surse salvate. ${_tracks.length} ${_tracks.length == 1 ? 'piesă' : 'piese'} în bibliotecă.',
-      );
+      _showMessage(context.appStrings.sourcesSaved(_tracks.length));
     } catch (_) {
-      if (mounted) _showMessage('Nu am putut salva sursele. Încearcă din nou.');
+      if (mounted) {
+        _showMessage(context.appStrings.uiCouldNotSaveSourcesTryAgain);
+      }
     } finally {
       _isManagingSources = false;
     }
@@ -519,7 +530,7 @@ class _PlayerShellState extends State<PlayerShell> {
     } catch (_) {
       _memoryController.endQueueChange();
       if (!mounted) return;
-      _showMessage('Nu am putut reda piesa. Încearcă să o scanezi din nou.');
+      _showMessage(context.appStrings.uiCouldNotPlayTheTrackTryScanning);
     }
   }
 
@@ -644,24 +655,24 @@ class _PlayerShellState extends State<PlayerShell> {
       });
       _showMessage(
         _tracks.isEmpty
-            ? 'Nu am găsit fișiere muzicale pe dispozitiv.'
-            : '${_tracks.length} ${_tracks.length == 1 ? 'piesă' : 'piese'} în folderele selectate.',
+            ? context.appStrings.uiNoAudioFilesFoundOnTheDevice
+            : context.appStrings.tracksInFolders(_tracks.length),
       );
     } on PlatformException catch (error) {
       if (!mounted) return;
       _showMessage(
         error.code == 'permission_denied'
-            ? 'Permite accesul la muzică pentru a scana biblioteca.'
-            : 'Nu am putut scana muzica. Încearcă din nou.',
+            ? context.appStrings.uiAllowMusicAccessToScanYourLibrary
+            : context.appStrings.uiCouldNotScanYourMusicTryAgain,
       );
     } on MissingPluginException {
       if (!mounted) return;
       _showMessage(
-        'Scanarea bibliotecii este disponibilă momentan pe Android.',
+        context.appStrings.uiLibraryScanningIsCurrentlyAvailableOnAndroid,
       );
     } catch (_) {
       if (!mounted) return;
-      _showMessage('A apărut o problemă la scanarea muzicii.');
+      _showMessage(context.appStrings.uiAProblemOccurredWhileScanningMusic);
     } finally {
       if (mounted) setState(() => _isScanning = false);
     }
@@ -724,8 +735,11 @@ class _PlayerShellState extends State<PlayerShell> {
           onBackup: _openBackup,
           controls: _playbackSettings!,
           sourceSummary: _selectedFolders == null
-              ? 'Toate folderele · ${_tracks.length} piese'
-              : '${_selectedFolders!.length} ${_selectedFolders!.length == 1 ? 'folder selectat' : 'foldere selectate'} · ${_tracks.length} ${_tracks.length == 1 ? 'piesă' : 'piese'}',
+              ? context.appStrings.allFoldersSummary(_tracks.length)
+              : context.appStrings.selectedFoldersSummary(
+                  _selectedFolders!.length,
+                  _tracks.length,
+                ),
           onManageSources: _manageSourceFolders,
           onFilters: _openFilters,
           filtersReady: _memory.ready,
@@ -868,8 +882,8 @@ class _HomeScreen extends StatelessWidget {
               const SizedBox(height: 7),
               Text(
                 trackCount == 0
-                    ? 'Unde se află muzica ta?'
-                    : '$trackCount de piese, în ritmul tău.',
+                    ? context.appStrings.uiWhereIsYourMusic
+                    : context.appStrings.libraryRhythm(trackCount),
                 style: TextStyle(color: context.auraMuted, fontSize: 14),
               ),
               const SizedBox(height: 22),
@@ -881,11 +895,13 @@ class _HomeScreen extends StatelessWidget {
                 const SizedBox(height: 24),
                 Row(
                   children: [
-                    const Expanded(
-                      child: _SectionTitle(title: 'Piese favorite'),
+                    Expanded(
+                      child: _SectionTitle(
+                        title: context.appStrings.uiFavoriteTracks,
+                      ),
                     ),
                     IconButton(
-                      tooltip: 'Toate favoritele',
+                      tooltip: context.appStrings.uiAllFavorites,
                       onPressed: () => onBrowse(_LibraryMode.favorites),
                       icon: const Icon(Icons.chevron_right_rounded),
                     ),
@@ -900,9 +916,8 @@ class _HomeScreen extends StatelessWidget {
               if (trackCount == 0) ...[
                 const SizedBox(height: 30),
                 _SectionTitle(
-                  title: 'Răsfoiește',
-                  trailing:
-                      '$trackCount ${trackCount == 1 ? 'piesă' : 'piese'}',
+                  title: context.appStrings.uiBrowse,
+                  trailing: context.appStrings.groupTracks(trackCount),
                 ),
                 const SizedBox(height: 14),
                 _BrowseGrid(onTap: onBrowse),
@@ -910,12 +925,14 @@ class _HomeScreen extends StatelessWidget {
               const SizedBox(height: 30),
               Row(
                 children: [
-                  const Expanded(
-                    child: _SectionTitle(title: 'Ascultate recent'),
+                  Expanded(
+                    child: _SectionTitle(
+                      title: context.appStrings.uiRecentlyPlayed,
+                    ),
                   ),
                   TextButton(
                     onPressed: onHistory,
-                    child: const Text('Vezi tot'),
+                    child: Text(context.appStrings.uiSeeAll),
                   ),
                 ],
               ),
@@ -969,7 +986,7 @@ class _TopBar extends StatelessWidget {
               ),
               SizedBox(height: 3),
               Text(
-                'Biblioteca ta',
+                context.appStrings.uiYourLibrary,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
@@ -978,7 +995,7 @@ class _TopBar extends StatelessWidget {
           ),
         ),
         IconButton.filledTonal(
-          tooltip: 'Caută',
+          tooltip: context.appStrings.navigationSearch,
           onPressed: onSearch,
           icon: const Icon(Icons.search_rounded),
           style: IconButton.styleFrom(
@@ -1057,7 +1074,7 @@ class _SourceCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Text(
-                        'ÎNCEPE CU O SURSĂ',
+                        context.appStrings.uiSTARTWITHASOURCE,
                         style: TextStyle(
                           color: context.auraAccent,
                           fontSize: 10,
@@ -1067,8 +1084,8 @@ class _SourceCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    const Text(
-                      'Adaugă muzica ta',
+                    Text(
+                      context.appStrings.uiAddYourMusic,
                       style: TextStyle(
                         fontSize: 23,
                         fontWeight: FontWeight.w700,
@@ -1078,8 +1095,8 @@ class _SourceCard extends StatelessWidget {
                     const SizedBox(height: 5),
                     Text(
                       AudioLibrary.isWindows
-                          ? 'PC sau server Navidrome'
-                          : 'Telefon sau server Navidrome',
+                          ? context.appStrings.uiPCOrNavidromeServer
+                          : context.appStrings.uiPhoneOrNavidromeServer,
                       style: TextStyle(color: context.auraMuted, fontSize: 14),
                     ),
                     const SizedBox(height: 15),
@@ -1096,7 +1113,9 @@ class _SourceCard extends StatelessWidget {
                             )
                           : const Icon(Icons.add_rounded, size: 19),
                       label: Text(
-                        isScanning ? 'Se scanează...' : 'Adaugă o sursă',
+                        isScanning
+                            ? context.appStrings.uiScanning
+                            : context.appStrings.uiAddASource,
                       ),
                       style: FilledButton.styleFrom(
                         backgroundColor: context.auraAccent,
@@ -1230,11 +1249,11 @@ class _LibraryOverview extends StatelessWidget {
   Widget build(BuildContext context) => ListView(
     padding: const EdgeInsets.fromLTRB(12, 18, 12, 24),
     children: [
-      const Row(
+      Row(
         children: [
           Icon(Icons.library_music_outlined, size: 22),
           SizedBox(width: 14),
-          Text('Bibliotecă', style: TextStyle(fontSize: 23)),
+          Text(context.appStrings.uiLibrary, style: TextStyle(fontSize: 23)),
         ],
       ),
       const SizedBox(height: 22),
@@ -1245,7 +1264,7 @@ class _LibraryOverview extends StatelessWidget {
       ),
       const SizedBox(height: 18),
       Text(
-        '$trackCount de piese în bibliotecă',
+        context.appStrings.libraryTrackCount(trackCount),
         style: TextStyle(color: context.auraMuted),
       ),
     ],
@@ -1278,7 +1297,10 @@ class _HomeShortcuts extends StatelessWidget {
                     children: [
                       Icon(mode.icon, color: context.auraAccent),
                       const SizedBox(height: 9),
-                      Text(mode.label, style: const TextStyle(fontSize: 12)),
+                      Text(
+                        mode.label(context),
+                        style: const TextStyle(fontSize: 12),
+                      ),
                     ],
                   ),
                 ),
@@ -1310,7 +1332,7 @@ class _EmptyListeningCard extends StatelessWidget {
           SizedBox(width: 13),
           Expanded(
             child: Text(
-              'Istoricul tău de ascultare va apărea aici.',
+              context.appStrings.uiYourListeningHistoryWillAppearHere,
               style: TextStyle(color: context.auraMuted, height: 1.4),
             ),
           ),
@@ -1351,17 +1373,17 @@ class _CollectionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     if (tracks.isEmpty) {
       return _SimplePage(
-        eyebrow: 'COLECȚIA TA',
-        title: 'Biblioteca',
+        eyebrow: context.appStrings.uiYOURCOLLECTION,
+        title: context.appStrings.uiLibrary178,
         message: hasHiddenTracks
-            ? 'Nicio piesă nu corespunde filtrelor selectate.'
-            : 'Alege folderele cu muzică pentru a vedea piesele în bibliotecă.',
+            ? context.appStrings.uiNoTracksMatchTheSelectedFilters
+            : context.appStrings.uiChooseMusicFoldersToSeeTracksIn,
         icon: Icons.library_music_outlined,
         actionLabel: hasHiddenTracks
-            ? 'Modifică filtrele'
+            ? context.appStrings.uiChangeFilters
             : isScanning
-            ? 'Se scanează...'
-            : 'Alege folderele',
+            ? context.appStrings.uiScanning
+            : context.appStrings.uiChooseFolders,
         onAction: hasHiddenTracks
             ? onFilters
             : isScanning
@@ -1409,7 +1431,7 @@ class _CollectionScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'COLECȚIA TA',
+                            context.appStrings.uiYOURCOLLECTION,
                             style: TextStyle(
                               color: context.auraAccent,
                               fontSize: 10,
@@ -1420,8 +1442,8 @@ class _CollectionScreen extends StatelessWidget {
                           SizedBox(height: 5),
                           Text(
                             groupFilter == ''
-                                ? 'Necunoscut'
-                                : groupFilter ?? mode.label,
+                                ? context.appStrings.unknownGroup
+                                : groupFilter ?? mode.label(context),
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.w700,
@@ -1432,12 +1454,14 @@ class _CollectionScreen extends StatelessWidget {
                     ),
                     if (groupFilter != null)
                       IconButton.filledTonal(
-                        tooltip: 'Înapoi la ${mode.label.toLowerCase()}',
+                        tooltip: context.appStrings.backToPage(
+                          mode.label(context).toLowerCase(),
+                        ),
                         onPressed: onBackToGroups,
                         icon: const Icon(Icons.arrow_back_rounded),
                       ),
                     IconButton.filledTonal(
-                      tooltip: 'Scanează din nou',
+                      tooltip: context.appStrings.uiScanAgain,
                       onPressed: isScanning ? null : onAddSource,
                       icon: isScanning
                           ? const SizedBox(
@@ -1448,7 +1472,7 @@ class _CollectionScreen extends StatelessWidget {
                           : const Icon(Icons.refresh_rounded),
                     ),
                     IconButton(
-                      tooltip: 'Alege folderele',
+                      tooltip: context.appStrings.uiChooseFolders,
                       onPressed: isScanning ? null : onManageSources,
                       icon: const Icon(Icons.folder_open_rounded),
                     ),
@@ -1461,8 +1485,8 @@ class _CollectionScreen extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     showGroups
-                        ? '${groups.length} ${groups.length == 1 ? 'element' : 'elemente'}'
-                        : '${filteredTracks.length} ${filteredTracks.length == 1 ? 'piesă găsită' : 'piese găsite'}',
+                        ? context.appStrings.groupCount(groups.length)
+                        : context.appStrings.foundTracks(filteredTracks.length),
                     style: TextStyle(color: context.auraMuted, fontSize: 13),
                   ),
                 ),
@@ -1478,8 +1502,8 @@ class _CollectionScreen extends StatelessWidget {
         ),
       ],
       body: filteredTracks.isEmpty
-          ? const Center(
-              child: Text('Nicio piesă nu corespunde ratingului selectat.'),
+          ? Center(
+              child: Text(context.appStrings.uiNoTracksMatchTheSelectedRating),
             )
           : showGroups
           ? LibraryGroups(
@@ -1531,7 +1555,7 @@ class _AudioTrackTile extends StatelessWidget {
           size: 46,
         ),
         title: Text(
-          track.title,
+          track.displayTitle,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: const TextStyle(fontWeight: FontWeight.w600),
@@ -1540,7 +1564,7 @@ class _AudioTrackTile extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                details.isEmpty ? 'Artist necunoscut' : details,
+                details.isEmpty ? context.appStrings.uiUnknownArtist : details,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(color: context.auraMuted, fontSize: 12),
@@ -1583,9 +1607,9 @@ Future<void> _togglePlayback(BuildContext context, AudioPlayer player) async {
   } catch (_) {
     if (context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text(
-            'Nu am putut relua piesa. Încearcă să o alegi din nou.',
+            context.appStrings.uiCouldNotResumeTheTrackTrySelecting,
           ),
         ),
       );
@@ -1597,7 +1621,7 @@ Future<void> _showTrackDetails(BuildContext context, AudioTrack track) {
   final seconds = track.durationMs ~/ 1000;
   final duration = seconds > 0
       ? '${seconds ~/ 60}:${(seconds % 60).toString().padLeft(2, '0')}'
-      : 'Durată necunoscută';
+      : context.appStrings.uiUnknownDuration;
   return showModalBottomSheet<void>(
     context: context,
     isScrollControlled: true,
@@ -1611,14 +1635,14 @@ Future<void> _showTrackDetails(BuildContext context, AudioTrack track) {
           children: [
             Row(
               children: [
-                const Expanded(
+                Expanded(
                   child: Text(
-                    'Informații piesă',
+                    context.appStrings.uiTrackInformation,
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
                   ),
                 ),
                 IconButton(
-                  tooltip: 'Închide',
+                  tooltip: context.appStrings.uiClose,
                   onPressed: () => Navigator.pop(context),
                   icon: const Icon(Icons.close_rounded),
                 ),
@@ -1626,7 +1650,7 @@ Future<void> _showTrackDetails(BuildContext context, AudioTrack track) {
             ),
             const SizedBox(height: 14),
             Text(
-              track.title,
+              track.displayTitle,
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 12),
@@ -1634,15 +1658,19 @@ Future<void> _showTrackDetails(BuildContext context, AudioTrack track) {
               child: TrackRating(key: ValueKey(track.uri), uri: track.uri),
             ),
             for (final detail in [
+              (context.appStrings.uiArtist, track.displayArtist),
               (
-                'Artist',
-                track.artist.isEmpty ? 'Artist necunoscut' : track.artist,
+                context.appStrings.uiAlbum,
+                track.album.isEmpty
+                    ? context.appStrings.uiUnknownAlbum
+                    : track.album,
               ),
-              ('Album', track.album.isEmpty ? 'Album necunoscut' : track.album),
-              ('Durată', duration),
+              (context.appStrings.uiDuration, duration),
               (
-                'Folder',
-                track.folder.isEmpty ? 'Folder necunoscut' : track.folder,
+                context.appStrings.uiFolder,
+                track.folder.isEmpty
+                    ? context.appStrings.uiUnknownFolder
+                    : track.folder,
               ),
             ])
               Padding(
@@ -1706,16 +1734,14 @@ class _MiniPlayer extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            track.title,
+                            track.displayTitle,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(fontWeight: FontWeight.w600),
                           ),
                           const SizedBox(height: 3),
                           Text(
-                            track.artist.isEmpty
-                                ? 'Artist necunoscut'
-                                : track.artist,
+                            track.displayArtist,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
@@ -1734,7 +1760,9 @@ class _MiniPlayer extends StatelessWidget {
                             snapshot.data?.processingState !=
                                 ProcessingState.completed;
                         return IconButton(
-                          tooltip: isPlaying ? 'Pauză' : 'Redă',
+                          tooltip: isPlaying
+                              ? context.appStrings.uiPause
+                              : context.appStrings.previewButton,
                           onPressed: () => _togglePlayback(context, player),
                           icon: Icon(
                             isPlaying
@@ -1748,7 +1776,7 @@ class _MiniPlayer extends StatelessWidget {
                     ),
                     SavedTrackActions(track: track, showPlaylist: false),
                     IconButton(
-                      tooltip: 'Piesa următoare',
+                      tooltip: context.appStrings.uiNextTrack,
                       onPressed: player.hasNext
                           ? () => _audioRuntime.skip(true)
                           : null,
@@ -1820,9 +1848,9 @@ class _NowPlayingSheet extends StatelessWidget {
             builder: (context, snapshot) {
               final track = audioTrackOf(snapshot.data?.currentSource);
               if (track == null) {
-                return const Padding(
+                return Padding(
                   padding: EdgeInsets.all(24),
-                  child: Text('Coada este goală'),
+                  child: Text(context.appStrings.uiTheQueueIsEmpty),
                 );
               }
               return Column(
@@ -1857,7 +1885,7 @@ class _NowPlayingSheet extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          track.title,
+                          track.displayTitle,
                           textAlign: TextAlign.start,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
@@ -1869,7 +1897,7 @@ class _NowPlayingSheet extends StatelessWidget {
                       ),
                       SavedTrackActions(track: track, showPlaylist: false),
                       IconButton(
-                        tooltip: 'Informații piesă',
+                        tooltip: context.appStrings.uiTrackInformation,
                         onPressed: () => _showTrackDetails(context, track),
                         icon: Icon(
                           Icons.info_outline_rounded,
@@ -1880,7 +1908,7 @@ class _NowPlayingSheet extends StatelessWidget {
                   ),
                   const SizedBox(height: 7),
                   Text(
-                    track.artist.isEmpty ? 'Artist necunoscut' : track.artist,
+                    track.displayArtist,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(color: context.auraMuted, fontSize: 15),
@@ -1965,7 +1993,7 @@ class _NowPlayingSheet extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       IconButton(
-                        tooltip: 'Piesa anterioară',
+                        tooltip: context.appStrings.uiPreviousTrack,
                         onPressed: player.hasPrevious
                             ? () => _audioRuntime.skip(false)
                             : null,
@@ -1980,7 +2008,9 @@ class _NowPlayingSheet extends StatelessWidget {
                               snapshot.data?.processingState !=
                                   ProcessingState.completed;
                           return IconButton.filled(
-                            tooltip: isPlaying ? 'Pauză' : 'Redă',
+                            tooltip: isPlaying
+                                ? context.appStrings.uiPause
+                                : context.appStrings.previewButton,
                             onPressed: () => _togglePlayback(context, player),
                             iconSize: 34,
                             style: IconButton.styleFrom(
@@ -1998,7 +2028,7 @@ class _NowPlayingSheet extends StatelessWidget {
                       ),
                       const SizedBox(width: 20),
                       IconButton(
-                        tooltip: 'Piesa următoare',
+                        tooltip: context.appStrings.uiNextTrack,
                         onPressed: player.hasNext
                             ? () => player.seekToNext()
                             : null,

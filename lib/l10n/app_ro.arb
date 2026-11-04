@@ -96,5 +96,685 @@
         "type": "int"
       }
     }
-  }
+  },
+  "uiTransitions": "Tranziții",
+  "uiEqualizer": "Egalizator",
+  "uiMediaControls": "Comenzi media",
+  "uiHeadsetButtons": "Butoanele căștilor",
+  "uiNotificationButtons": "Butoane notificare",
+  "uiCrossfade": "Crossfade",
+  "uiOff": "Oprit",
+  "uiOverlapsTheEndOfATrackWith": "Suprapune sfârșitul piesei cu începutul următoarei la avansare automată. Piesele foarte scurte și repetarea unei singure piese nu folosesc crossfade.",
+  "uiPlayAndPause": "Pornire și pauză",
+  "uiNoFade": "Fără fade",
+  "uiNotificationAndLockScreen": "Notificare și ecran blocat",
+  "uiSeekButtons10Seconds": "Butoane de salt ±10 secunde",
+  "uiReplacesPreviousnextWithSeekingInTheNotification": "Înlocuiește anterior/următor cu derulare în notificare.",
+  "uiShowStopButton": "Arată butonul Stop",
+  "uiHeadsetAndMediaButtons": "Căști și butoane media",
+  "uiSeek10SecondsFromHeadset": "Salt ±10 secunde din căști",
+  "uiPreviousnextButtonsSeekWithinTheCurrentTrack": "Butoanele anterior/următor derulează în piesa curentă. Butonul central păstrează Redă/Pauză.",
+  "uiKeepPausedWhenChangingTracks": "Păstrează pauza la schimbarea piesei",
+  "uiNotificationAndHeadsetControlsAreAvailableOn": "Comenzile din notificare și căști sunt disponibile pe Android. Unele sisteme rearanjează butoanele notificării.",
+  "uiTheEqualizerIsCurrentlyAvailableOnAndroid": "Egalizatorul este disponibil momentan pe Android.",
+  "uiSelectATrackAndReopenTheEqualizer": "Selectează o piesă și redeschide egalizatorul. Dacă tot nu este disponibil, dispozitivul nu expune efectul audio necesar.",
+  "uiAndroidEqualizer": "Egalizator Android",
+  "uiEnableEqualizer": "Activează egalizatorul",
+  "uiFlat": "Plat",
+  "uiVoice": "Voce",
+  "uiWhenBoostingABandAuraAutomaticallyReduces": "Când amplifici o bandă, Aura reduce automat nivelul general pentru a păstra rezervă de volum și a limita distorsiunea.",
+  "uiAudioPlayback": "Redare audio",
+  "uiPlaybackIsUnavailable": "Redarea nu este disponibilă.",
+  "uiUnknownArtist": "Artist necunoscut",
+  "uiUntitledTrack": "Piesă fără titlu",
+  "uiTheFileIsNotAValidAura": "Fișierul nu este un backup Aura valid sau este deteriorat.",
+  "uiChooseAnAuraBackup": "Alege un backup Aura",
+  "uiSaveAuraBackup": "Salvează backupul Aura",
+  "uiBackupSaved": "Backupul a fost salvat.",
+  "uiCouldNotSaveTheBackupAuraData": "Nu am putut salva backupul. Datele Aura nu au fost schimbate.",
+  "uiTheFileIsNotAValidAura82": "Fișierul nu este un backup Aura valid, este deteriorat sau depășește 4 MB.",
+  "uiRestoreBackup": "Restaurare backup?",
+  "uiYourCurrentFavoritesRatingsPlaylistsAndHistory": "Favoritele, ratingurile, playlisturile și istoricul actuale vor fi înlocuite.",
+  "uiDataWillBeMergedExistingRatingsAnd": "Datele vor fi combinate. Ratingurile și numele playlisturilor existente au prioritate.",
+  "uiSettingsWillAlsoBeImported": "Vor fi importate și setările.",
+  "uiYourCurrentSettingsWillBeKept": "Setările actuale rămân.",
+  "uiCancel": "Renunță",
+  "uiReplaceAndRestore": "Înlocuiește și restaurează",
+  "uiRestore": "Restaurează",
+  "uiBackupRestoredUnavailableTracksAreKeptAs": "Backup restaurat. Piesele indisponibile rămân păstrate ca referințe.",
+  "uiDataRecoveryMustFinishBeforeContinuing": "Recuperarea datelor trebuie încheiată înainte de a continua.",
+  "uiRestoreFailedYourPreviousDataWasKept": "Restaurarea a eșuat. Datele anterioare au fost păstrate.",
+  "uiPreviousDataRecovered": "Datele anterioare au fost recuperate.",
+  "uiCouldNotRecoverTheDataYetTry": "Nu am putut recupera încă datele. Poți încerca din nou sau reporni Aura.",
+  "uiBackupAndRestore": "Backup și restaurare",
+  "uiDataRecoveryIsRequiredBeforeContinuingAura": "Datele trebuie recuperate înainte de a continua. Aura a păstrat starea anterioară într-un jurnal local.",
+  "uiTryRecovery": "Încearcă recuperarea",
+  "uiKeepWhatYouHaveOrganized": "Păstrează ce ai organizat",
+  "uiBackupsIncludeFavoritesRatingsPlaylistsHistoryPlayback": "Backupul include favoritele, ratingurile, playlisturile, istoricul, setările de redare și filtrele bibliotecii. Fișierele audio, sursele și folderele selectate nu sunt incluse; acestea se configurează separat.",
+  "uiExportBackup": "Exportă backup",
+  "uiChooseABackupToRestore": "Alege un backup pentru restaurare",
+  "uiMissingReferencesAreKeptWithoutAssigningRatings": "Referințele lipsă sunt păstrate, fără a lega ratinguri de alte melodii. Poți reimporta backupul după adăugarea surselor potrivite.",
+  "uiReplaceCurrentData": "Înlocuiește datele actuale",
+  "uiOffMergeDataAndKeepExistingRatings": "Oprit: combină datele și păstrează ratingurile existente.",
+  "uiRestoreSettingsToo": "Restabilește și setările",
+  "uiReviewAndRestore": "Verifică și restaurează",
+  "uiHelloNightOwl": "Hello, Night Owl 🦉",
+  "uiGoodMorning": "Bună dimineața 🌅",
+  "uiGoodAfternoon": "Bună ziua ☀️",
+  "uiGoodEvening": "Bună seara 🌆",
+  "uiChooseYourMusicFolder": "Alege folderul cu muzică",
+  "uiAuraCouldNotRecoverAnInterruptedRestore": "Aura nu a putut recupera o restaurare întreruptă. Datele anterioare sunt păstrate în jurnalul local. Închide și redeschide aplicația pentru a încerca din nou.",
+  "uiCouldNotLoadOrSaveListeningHistory": "Nu am putut încărca sau salva istoricul și ultima redare.",
+  "uiCouldNotApplyPlaybackSettingsOrThe": "Nu am putut aplica setările de redare sau temporizatorul.",
+  "uiCouldNotLoadTheLibraryScanYour": "Nu am putut încărca biblioteca. Scanează muzica din nou.",
+  "uiMusicOnYourPC": "Muzică de pe PC",
+  "uiMusicOnYourPhone": "Muzică de pe telefon",
+  "uiNavidromeServer": "Server Navidrome",
+  "uiURLAndUserAccount": "URL și cont de utilizator",
+  "uiCouldNotLoadMusicSources": "Nu am putut încărca sursele muzicale.",
+  "uiAddAFolderFromYourPC": "Adaugă un folder de pe PC",
+  "uiChooseVisibleFolders": "Alege folderele vizibile",
+  "uiRemoveAFolderFromTheLibrary": "Elimină un folder din bibliotecă",
+  "uiFilesStayOnYourPC": "Fișierele rămân pe PC.",
+  "uiYouHaveNotAddedAnyFoldersYet": "Nu ai adăugat încă niciun folder.",
+  "uiRemoveFromLibrary": "Elimină din bibliotecă",
+  "uiFolderRemovedFromTheLibraryFilesStayed": "Folder eliminat din bibliotecă. Fișierele au rămas pe PC.",
+  "uiCouldNotRemoveTheFolderFromThe": "Nu am putut elimina folderul din bibliotecă.",
+  "uiCouldNotReadTheFolderCheckThat": "Nu am putut citi folderul. Verifică dacă este disponibil.",
+  "uiCouldNotSaveSourcesTryAgain": "Nu am putut salva sursele. Încearcă din nou.",
+  "uiCouldNotPlayTheTrackTryScanning": "Nu am putut reda piesa. Încearcă să o scanezi din nou.",
+  "uiNoAudioFilesFoundOnTheDevice": "Nu am găsit fișiere muzicale pe dispozitiv.",
+  "uiAllowMusicAccessToScanYourLibrary": "Permite accesul la muzică pentru a scana biblioteca.",
+  "uiCouldNotScanYourMusicTryAgain": "Nu am putut scana muzica. Încearcă din nou.",
+  "uiLibraryScanningIsCurrentlyAvailableOnAndroid": "Scanarea bibliotecii este disponibilă momentan pe Android.",
+  "uiAProblemOccurredWhileScanningMusic": "A apărut o problemă la scanarea muzicii.",
+  "uiWhereIsYourMusic": "Unde se află muzica ta?",
+  "uiFavoriteTracks": "Piese favorite",
+  "uiAllFavorites": "Toate favoritele",
+  "uiBrowse": "Răsfoiește",
+  "uiRecentlyPlayed": "Ascultate recent",
+  "uiSeeAll": "Vezi tot",
+  "uiYourLibrary": "Biblioteca ta",
+  "uiSTARTWITHASOURCE": "ÎNCEPE CU O SURSĂ",
+  "uiAddYourMusic": "Adaugă muzica ta",
+  "uiPCOrNavidromeServer": "PC sau server Navidrome",
+  "uiPhoneOrNavidromeServer": "Telefon sau server Navidrome",
+  "uiScanning": "Se scanează...",
+  "uiAddASource": "Adaugă o sursă",
+  "uiLibrary": "Bibliotecă",
+  "uiYourListeningHistoryWillAppearHere": "Istoricul tău de ascultare va apărea aici.",
+  "uiYOURCOLLECTION": "COLECȚIA TA",
+  "uiLibrary178": "Biblioteca",
+  "uiNoTracksMatchTheSelectedFilters": "Nicio piesă nu corespunde filtrelor selectate.",
+  "uiChooseMusicFoldersToSeeTracksIn": "Alege folderele cu muzică pentru a vedea piesele în bibliotecă.",
+  "uiChangeFilters": "Modifică filtrele",
+  "uiChooseFolders": "Alege folderele",
+  "uiScanAgain": "Scanează din nou",
+  "uiNoTracksMatchTheSelectedRating": "Nicio piesă nu corespunde ratingului selectat.",
+  "uiCouldNotResumeTheTrackTrySelecting": "Nu am putut relua piesa. Încearcă să o alegi din nou.",
+  "uiUnknownDuration": "Durată necunoscută",
+  "uiTrackInformation": "Informații piesă",
+  "uiClose": "Închide",
+  "uiArtist": "Artist",
+  "uiAlbum": "Album",
+  "uiUnknownAlbum": "Album necunoscut",
+  "uiDuration": "Durată",
+  "uiFolder": "Folder",
+  "uiUnknownFolder": "Folder necunoscut",
+  "uiPause": "Pauză",
+  "uiNextTrack": "Piesa următoare",
+  "uiTheQueueIsEmpty": "Coada este goală",
+  "uiPreviousTrack": "Piesa anterioară",
+  "uiEnterTheHTTPSServerAddressWithoutA": "Introdu adresa HTTPS a serverului, fără utilizator, parolă sau parametri în URL.",
+  "uiEnterTheSourceNameUsernameAndPassword": "Completează numele sursei, utilizatorul și parola.",
+  "uiTheServerDidNotRespondCorrectlyCheck": "Serverul nu a răspuns corect. Verifică adresa și accesul la Navidrome.",
+  "uiTheServerResponseIsTooLarge": "Răspunsul serverului este prea mare.",
+  "uiCouldNotReachTheServerCheckYour": "Nu am putut contacta serverul. Verifică internetul, adresa și certificatul HTTPS.",
+  "uiAuthenticationFailedCheckYourUsernameAndPassword": "Autentificare nereușită. Verifică utilizatorul și parola.",
+  "uiNavidromeRejectedTheRequestCheckTheAccounts": "Navidrome a refuzat cererea. Verifică accesul contului la bibliotecă.",
+  "uiTheAddressDidNotReturnAValid": "Adresa nu a returnat un răspuns Navidrome valid.",
+  "uiTheServerRepeatedAnAlbumPageYour": "Serverul a repetat o pagină de albume. Biblioteca anterioară a fost păstrată.",
+  "uiInvalidServerTrack": "Piesă de server invalidă.",
+  "uiReconnectTheNavidromeSourceToPlayThis": "Reconectează sursa Navidrome pentru a reda această piesă.",
+  "uiCouldNotLoadSavedSourcesTryAgain": "Nu am putut încărca sursele salvate. Încearcă din nou.",
+  "uiCouldNotSaveTheSourceChangeTry": "Nu am putut salva modificarea sursei. Încearcă din nou.",
+  "uiConnectedTheServerLibraryHasBeenLoaded": "Conectat. Biblioteca serverului a fost încărcată.",
+  "uiDisconnectThisSource": "Deconectezi sursa?",
+  "uiCancel228": "Anulează",
+  "uiDisconnect": "Deconectează",
+  "uiSourceDisconnected": "Sursă deconectată.",
+  "uiNavidromeSources": "Surse Navidrome",
+  "uiConnectYourLibraryFromANavidromeServer": "Conectează biblioteca ta de pe un server Navidrome prin HTTPS.",
+  "uiLoadingTheServerLibrary": "Se încarcă biblioteca serverului…",
+  "uiReloadSources": "Reîncarcă sursele",
+  "uiLibraryUpdated": "Bibliotecă actualizată.",
+  "uiRefresh": "Actualizează",
+  "uiReconnect": "Reconectează",
+  "uiAddNavidromeServer": "Adaugă server Navidrome",
+  "uiTracksAppearInLibraryAfterConnectingPlayback": "Piesele apar în Colecție după conectare. Redarea necesită internet. Favoritele, ratingurile și playlisturile Aura rămân locale; nu modificăm biblioteca serverului.",
+  "uiConnectToNavidrome": "Conectare Navidrome",
+  "uiSourceName": "Numele sursei",
+  "uiServerURL": "URL server",
+  "uiUsername": "Utilizator",
+  "uiPassword": "Parolă",
+  "uiCredentialsAreSavedInTheDevicesSecure": "Datele de conectare sunt salvate în stocarea securizată a dispozitivului.",
+  "uiConnect": "Conectează",
+  "uiListeningHistory": "Istoric de ascultare",
+  "uiClearHistory": "Șterge istoricul",
+  "uiClearHistory262": "Ștergi istoricul?",
+  "uiTracksFavoritesAndPlaylistsWillStaySaved": "Piesele, favoritele și playlisturile rămân salvate.",
+  "uiDelete": "Șterge",
+  "uiPlayedTracksWillAppearHere": "Piesele ascultate vor apărea aici.",
+  "uiTracksInYourHistoryAreHiddenBy": "Piesele din istoric sunt ascunse de filtrele curente sau nu mai sunt disponibile.",
+  "uiLibraryFilters": "Filtre bibliotecă",
+  "uiMinimumDuration": "Durata minimă",
+  "uiAllDurations": "Toate duratele",
+  "ui10Seconds": "10 secunde",
+  "ui30Seconds": "30 de secunde",
+  "ui1Minute": "1 minut",
+  "uiTracksWithUnknownDurationStayVisible": "Piesele cu durată necunoscută rămân vizibile.",
+  "uiHideWhatsAppAndTelegram": "Ascunde WhatsApp și Telegram",
+  "uiHidesFilesFromTheseAppsFolders": "Ascunde fișierele din folderele acestor aplicații.",
+  "uiFiltersOnlyChangeWhatAppearsInYour": "Filtrele schimbă doar ce vezi în bibliotecă. Fișierele, playlisturile și coada curentă sunt păstrate.",
+  "uiSaving": "Se salvează...",
+  "uiSaveFilters": "Salvează filtrele",
+  "uiRepeatOff": "Repeat oprit",
+  "uiRepeatEntireQueue": "Repetă toată coada",
+  "uiRepeatCurrentTrack": "Repetă piesa curentă",
+  "uiShuffleOn": "Shuffle activ",
+  "uiShuffleOff": "Shuffle oprit",
+  "uiCloseQueue": "Închide coada",
+  "uiShuffledOrderTurnOffShuffleToReorder": "Ordine amestecată. Oprește shuffle pentru a reordona.",
+  "uiDragTheHandleToChangeTheOrder": "Trage de mâner pentru a schimba ordinea.",
+  "uiCouldNotUpdatePlaybackTryAgain": "Nu am putut actualiza redarea. Încearcă din nou.",
+  "uiAtTheEndOfTheTrack": "La sfârșitul piesei",
+  "uiSleepTimer": "Temporizator de oprire",
+  "uiCloseSleepTimer": "Închide temporizatorul",
+  "uiFinishTheCurrentTrack": "Termină piesa curentă",
+  "uiWhenTheTimerEndsWaitForThe": "La expirare, așteaptă sfârșitul piesei înainte de pauză.",
+  "uiStartSleepTimer": "Pornește temporizatorul",
+  "uiStopAtTheEndOfThisTrack": "Oprește la sfârșitul acestei piese",
+  "uiCancelSleepTimer": "Anulează temporizatorul",
+  "uiPlaybackSettings": "Setări de redare",
+  "uiOutputSettings": "Setări de ieșire",
+  "uiPlayback": "Redare",
+  "uiAutomaticActions": "Acțiuni automate",
+  "uiAudioOutput": "Ieșire audio",
+  "uiOnlyAppliesInAuraSeparatelyFromYour": "Se aplică doar în Aura, separat de volumul telefonului sau al PC-ului.",
+  "uiTimer": "Temporizator",
+  "uiAudioOptions": "Opțiuni audio",
+  "uiCrossfadeAndPlaypauseFades": "Crossfade și fade la pornire/pauză",
+  "uiFrequencyBandsAndPresets": "Benzi de frecvență și preseturi",
+  "uiAvailableOnAndroid": "Disponibil pe Android",
+  "uiNotificationLockScreenAndHeadset": "Notificare, ecran blocat și căști",
+  "uiRestoreDefaultSpeedAndVolume": "Restabilește viteza și volumul implicite",
+  "uiSpeedAndVolumeAreSavedOnThis": "Viteza și volumul sunt salvate pe acest dispozitiv. Temporizatorul se anulează la închiderea completă a aplicației.",
+  "uiSleep": "Somn",
+  "uiUnrated": "Fără rating",
+  "uiSwipeToRate": "Rating prin glisare",
+  "uiGive1Star": "Acordă 1 stea",
+  "uiClearRating": "Șterge ratingul",
+  "uiStarSize": "Dimensiunea stelelor",
+  "uiSmall": "Mici",
+  "uiMedium": "Medii",
+  "uiLarge": "Mari",
+  "uiSwipeAcrossTheStarsToRateIn": "Glisează pe stele pentru rating în pași de jumătate de stea.",
+  "uiFilterByRating": "Filtrează după rating",
+  "uiAllRatings": "Toate ratingurile",
+  "uiOnly5Stars": "Doar 5 stele",
+  "uiSortByRating": "Sortează după rating",
+  "uiDefaultOrder": "Ordine implicită",
+  "uiHighestRatingFirst": "Rating descrescător",
+  "uiLowestRatingFirst": "Rating crescător",
+  "uiCouldNotSaveTheChangeTryAgain": "Nu am putut salva modificarea. Încearcă din nou.",
+  "uiNewPlaylist": "Playlist nou",
+  "uiRenamePlaylist": "Redenumește playlistul",
+  "uiPlaylistName": "Numele playlistului",
+  "uiSave": "Salvează",
+  "uiRemoveFromFavorites": "Elimină din favorite",
+  "uiAddToFavorites": "Adaugă la favorite",
+  "uiAddToPlaylist": "Adaugă în playlist",
+  "uiTrackIsAlreadyInThisPlaylist": "Piesa este deja în playlist",
+  "uiTrackAddedToPlaylist": "Piesă adăugată în playlist.",
+  "uiCouldNotLoadFavoritesAndPlaylists": "Nu am putut încărca favoritele și playlisturile.",
+  "uiTryAgain": "Încearcă din nou",
+  "uiBackToPlaylists": "Înapoi la playlisturi",
+  "uiPlaylistOptions": "Opțiuni playlist",
+  "uiDeletePlaylist": "Ștergi playlistul?",
+  "uiAudioFilesStayOnThePhone": "Fișierele audio rămân pe telefon.",
+  "uiRename": "Redenumește",
+  "uiDeletePlaylist363": "Șterge playlistul",
+  "uiCreateYourFirstPlaylistWithOrFrom": "Creează primul playlist cu + sau din meniul unei piese.",
+  "uiAddTracks": "Adaugă piese",
+  "uiATrackIsOutsideTheSelectedFolders": "O piesă nu este în folderele selectate sau nu mai este disponibilă. Referința ei este păstrată.",
+  "uiPlayAll": "Redă toate",
+  "uiTapATracksHeartToSaveIt": "Apasă inima unei piese pentru a o salva aici.",
+  "uiAddTracksToThisPlaylist": "Adaugă piese în acest playlist.",
+  "uiRemoveFromPlaylist": "Elimină din playlist",
+  "uiSearchForATrack": "Caută o piesă",
+  "uiTitle": "Titlu",
+  "uiSearchYourMusic": "Caută în muzica ta",
+  "uiClearSearch": "Șterge căutarea",
+  "uiFavoritesOnly": "Doar favorite",
+  "uiYOURLIBRARYISEMPTY": "BIBLIOTECA ESTE GOALĂ",
+  "uiAddMusic": "Adaugă muzica",
+  "uiAddASourceToSearchYourCollection": "Adaugă o sursă pentru a căuta în colecție.",
+  "uiRecentSearches": "Căutări recente",
+  "uiSearchForATitleArtistOrAlbum": "Caută un titlu, artist sau album. Căutările confirmate rămân aici în această sesiune.",
+  "uiNoResultsMatchTheSelectedFilters": "Nu am găsit rezultate pentru filtrele alese.",
+  "uiAuraSettings": "Setările Aura",
+  "uiOptionsMarkedComingSoonAreNotAvailable": "Opțiunile marcate „În pregătire” nu sunt încă disponibile. Setările active se salvează pe acest dispozitiv. Conexiunile la servere se gestionează din Surse media.",
+  "uiGotIt": "Am înțeles",
+  "uiHelp": "Ajutor",
+  "uiInterface": "Interfață",
+  "uiInterfaceSettings": "Setări de interfață",
+  "uiApplicationStyle": "Stilul aplicației",
+  "uiGeneral": "General",
+  "uiMediaLists": "Liste media",
+  "uiNowPlayingScreens": "Ecrane de redare",
+  "uiNowPlayingScreen": "Ecran de redare",
+  "uiTrackRatings": "Ratingul pieselor",
+  "uiSwipeAcrossTheStarsToRateIn399": "Glisează pe stele pentru rating în pași de jumătate de stea. Dimensiunea se aplică în player și în informațiile piesei.",
+  "uiPageSettings": "Setări pagini",
+  "uiHomePage": "Pagina Acasă",
+  "uiGenrePage": "Pagina Gen muzical",
+  "uiPlaylistPage": "Pagina Playlist",
+  "uiSearchPage": "Pagina Căutare",
+  "uiAdvanced": "Avansat",
+  "uiAdvancedInterfaceSettings": "Setări avansate de interfață",
+  "uiDecodingAndTranscoding": "Decodare și transcodare",
+  "uiAudioFocus": "Focalizare audio",
+  "uiNotificationAndMediaSessionButtons": "Butoane notificare și sesiune media",
+  "uiAdvancedPlaybackSettings": "Setări avansate de redare",
+  "uiOfflineCacheAndDownloads": "Offline, cache și descărcări",
+  "uiMedia": "Media",
+  "uiOfflineServerPlayback": "Redare offline de pe server",
+  "uiImages": "Imagini",
+  "uiLocalTracksWorkWithoutInternetServerDownloads": "Piesele locale funcționează fără internet. Descărcarea pieselor de pe server și administrarea cache-ului sunt în pregătire.",
+  "uiAdvancedSettings": "Setări avansate",
+  "uiMiscellaneous": "Diverse",
+  "uiMediaSources": "Surse media",
+  "uiSyncManager": "Manager de sincronizare",
+  "uiUpdating": "Se actualizează…",
+  "uiRefreshLibrary": "Actualizează biblioteca",
+  "uiRefreshNavidromeSources": "Actualizează sursele Navidrome",
+  "uiOfflineFiles": "Fișiere offline",
+  "uiGeneratedFiles": "Fișiere generate",
+  "uiLanguages": "Traduceri",
+  "uiAbout": "Despre",
+  "uiRateTheApp": "Evaluează aplicația",
+  "uiContactSupport": "Contactează suportul",
+  "uiWhatsNew": "Noutăți",
+  "uiWhatsNewInAura": "Noutăți Aura",
+  "uiLocalAndNavidromeLibrariesHalfstarRatingsHistory": "Bibliotecă locală și Navidrome • Ratinguri în jumătăți de stea • Istoric, playlisturi și favorite • Crossfade, temporizator și egalizator Android • Ecrane de până la 144 Hz",
+  "uiAboutAura": "Despre Aura",
+  "uiAPlayerForYourLocalMusicAnd": "Player pentru muzica locală și biblioteca ta Navidrome.",
+  "uiComingSoon": "În pregătire",
+  "uiMusicFolders": "Foldere muzicale",
+  "uiChooseMusicFoldersOnlyFoldersWhereThe": "Alege folderele cu muzică. Sunt afișate folderele în care dispozitivul a găsit fișiere audio.",
+  "uiAllFolders": "Toate folderele",
+  "uiAutomaticallyIncludesFoldersFoundInFutureScans": "Include automat și folderele găsite la scanările viitoare.",
+  "uiNoTracksFoundInTheLastScan": "Nicio piesă găsită la ultima scanare",
+  "uiYourLibraryWillStayEmptyUntilYou": "Biblioteca va fi goală până alegi un folder.",
+  "uiSaveSelection": "Salvează selecția",
+  "secondsValue": "{count, plural, one{1 secundă} other{{count} secunde}}",
+  "@secondsValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "secondsShort": "{value} s",
+  "@secondsShort": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "restoreConfirmation": "{change}\n\n{settings}\n\nRedarea va fi pusă pe pauză, iar temporizatorul va fi anulat. Coada curentă se păstrează.",
+  "@restoreConfirmation": {
+    "placeholders": {
+      "change": {
+        "type": "String"
+      },
+      "settings": {
+        "type": "String"
+      }
+    }
+  },
+  "backupCreated": "Creat: {date}",
+  "@backupCreated": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "backupStats": "{favorites} favorite · {ratings} ratinguri\n{playlists} playlisturi · {history} piese în istoric",
+  "@backupStats": {
+    "placeholders": {
+      "favorites": {
+        "type": "int"
+      },
+      "ratings": {
+        "type": "int"
+      },
+      "playlists": {
+        "type": "int"
+      },
+      "history": {
+        "type": "int"
+      }
+    }
+  },
+  "backupMatches": "{matched} referințe recunoscute · {remapped} reasociate\n{unavailable} indisponibile sau ambigue",
+  "@backupMatches": {
+    "placeholders": {
+      "matched": {
+        "type": "int"
+      },
+      "remapped": {
+        "type": "int"
+      },
+      "unavailable": {
+        "type": "int"
+      }
+    }
+  },
+  "tracksInLibrary": "{count, plural, one{1 piesă în bibliotecă.} other{{count} piese în bibliotecă.}}",
+  "@tracksInLibrary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sourcesSaved": "Surse salvate. {count, plural, one{1 piesă în bibliotecă.} other{{count} piese în bibliotecă.}}",
+  "@sourcesSaved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tracksInFolders": "{count, plural, one{1 piesă în folderele selectate.} other{{count} piese în folderele selectate.}}",
+  "@tracksInFolders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "allFoldersSummary": "Toate folderele · {count} piese",
+  "@allFoldersSummary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectedFoldersSummary": "{folders, plural, one{1 folder selectat} other{{folders} foldere selectate}} · {tracks, plural, one{1 piesă} other{{tracks} piese}}",
+  "@selectedFoldersSummary": {
+    "placeholders": {
+      "folders": {
+        "type": "int"
+      },
+      "tracks": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryRhythm": "{count} de piese, în ritmul tău.",
+  "@libraryRhythm": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryTrackCount": "{count} de piese în bibliotecă",
+  "@libraryTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "backToPage": "Înapoi la {page}",
+  "@backToPage": {
+    "placeholders": {
+      "page": {
+        "type": "String"
+      }
+    }
+  },
+  "groupCount": "{count, plural, one{1 element} other{{count} elemente}}",
+  "@groupCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "foundTracks": "{count, plural, one{1 piesă găsită} other{{count} piese găsite}}",
+  "@foundTracks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "disconnectSource": "„{name}” va fi eliminată din Aura. Fișierele de pe server rămân intacte.",
+  "@disconnectSource": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "visibleTracks": "{visible} din {total} piese vor fi afișate.",
+  "@visibleTracks": {
+    "placeholders": {
+      "visible": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "queueCount": "Coada · {count}",
+  "@queueCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playQueueCount": "Coada de redare · {count}",
+  "@playQueueCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "currentTrackArtist": "Piesa curentă · {artist}",
+  "@currentTrackArtist": {
+    "placeholders": {
+      "artist": {
+        "type": "String"
+      }
+    }
+  },
+  "removeFromQueue": "Elimină {title} din coadă",
+  "@removeFromQueue": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "moveTrack": "Mută {title}",
+  "@moveTrack": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "activeTimer": "Activ: {value}",
+  "@activeTimer": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "minutesValue": "{count, plural, one{1 minut} other{{count} minute}}",
+  "@minutesValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "minutesShort": "{count} min",
+  "@minutesShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playerVolume": "Volumul playerului: {value}%",
+  "@playerVolume": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "playbackSpeed": "Viteză: {value}×",
+  "@playbackSpeed": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "yourRating": "Ratingul tău: {rating} din 5",
+  "@yourRating": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "ratingOutOfFive": "{rating} din 5",
+  "@ratingOutOfFive": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "giveStars": "{count, plural, one{Acordă 1 stea} other{Acordă {count} stele}}",
+  "@giveStars": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ratingDescription": "Rating: {rating} din 5",
+  "@ratingDescription": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumStars": "Cel puțin {rating} stele",
+  "@minimumStars": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumRating": "Rating ≥ {rating}",
+  "@minimumRating": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "savedTrackCount": "{count, plural, one{1 piesă salvată} other{{count} piese salvate}}",
+  "@savedTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "availableTrackCount": "{count, plural, one{1 piesă disponibilă} other{{count} piese disponibile}}",
+  "@availableTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "missingTrackCount": "{count} piese nu sunt în folderele selectate sau nu mai sunt disponibile. Referințele lor sunt păstrate.",
+  "@missingTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectedTrackCount": "{count, plural, one{1 piesă selectată} other{{count} piese selectate}}",
+  "@selectedTrackCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "searchResultCount": "{count, plural, one{1 rezultat} other{{count} rezultate}}",
+  "@searchResultCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "removeRecentSearch": "Elimină căutarea {query}",
+  "@removeRecentSearch": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "tracksInSelection": "{count, plural, one{1 piesă în selecție} other{{count} piese în selecție}}",
+  "@tracksInSelection": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "languageTitle": "Limba aplicației",
+  "languageSystem": "După sistem",
+  "languageHelp": "Se aplică imediat. Numele pieselor, artiștilor, folderelor și playlisturilor tale nu se traduc.",
+  "languageSaveError": "Nu am putut salva limba. Alegerea anterioară a fost păstrată.",
+  "uiBass": "Bass",
+  "mediaStop": "Oprește",
+  "mediaSeekBack": "Înapoi 10 secunde",
+  "mediaSeekForward": "Înainte 10 secunde"
 }

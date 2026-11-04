@@ -1,3 +1,4 @@
+import 'app_strings.dart';
 import 'app_theme.dart';
 
 import 'package:flutter/material.dart';
@@ -46,16 +47,16 @@ class _TrackRatingState extends State<TrackRating> {
       children: [
         Text(
           rating == 0
-              ? 'Fără rating'
-              : 'Ratingul tău: ${formatRating(rating)} din 5',
+              ? context.appStrings.uiUnrated
+              : context.appStrings.yourRating(formatRating(rating)),
           style: TextStyle(color: context.auraMuted, fontSize: 12),
         ),
         Wrap(
           alignment: WrapAlignment.center,
           children: [
             Semantics(
-              label: 'Rating prin glisare',
-              value: '${formatRating(rating)} din 5',
+              label: context.appStrings.uiSwipeToRate,
+              value: context.appStrings.ratingOutOfFive(formatRating(rating)),
               increasedValue: formatRating((rating + .5).clamp(0, 5)),
               decreasedValue: formatRating((rating - .5).clamp(0, 5)),
               onIncrease: enabled && rating < 5
@@ -92,8 +93,8 @@ class _TrackRatingState extends State<TrackRating> {
                           child: IconButton(
                             padding: EdgeInsets.zero,
                             tooltip: star == 1
-                                ? 'Acordă 1 stea'
-                                : 'Acordă $star stele',
+                                ? context.appStrings.uiGive1Star
+                                : context.appStrings.giveStars(star),
                             iconSize: iconSize,
                             icon: SizedBox(
                               width: iconSize,
@@ -133,7 +134,7 @@ class _TrackRatingState extends State<TrackRating> {
               ),
             ),
             IconButton(
-              tooltip: 'Șterge ratingul',
+              tooltip: context.appStrings.uiClearRating,
               icon: const Icon(Icons.clear_rounded, size: 18),
               onPressed: enabled && rating != 0 ? () => _save(store, 0) : null,
             ),
@@ -154,7 +155,9 @@ class TrackRatingBadge extends StatelessWidget {
         ? const SizedBox.shrink()
         : Text(
             '★ ${formatRating(rating)}',
-            semanticsLabel: 'Rating: ${formatRating(rating)} din 5',
+            semanticsLabel: context.appStrings.ratingDescription(
+              formatRating(rating),
+            ),
             style: TextStyle(color: context.auraRating, fontSize: 12),
           );
   }
@@ -171,7 +174,7 @@ class RatingSizeSettings extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Dimensiunea stelelor', style: TextStyle(fontSize: 16)),
+            Text(context.appStrings.uiStarSize, style: TextStyle(fontSize: 16)),
             const SizedBox(height: 10),
             Wrap(
               spacing: 8,
@@ -179,9 +182,9 @@ class RatingSizeSettings extends StatelessWidget {
                 for (final size in RatingStarSize.values)
                   ChoiceChip(
                     label: Text(switch (size) {
-                      RatingStarSize.small => 'Mici',
-                      RatingStarSize.medium => 'Medii',
-                      RatingStarSize.large => 'Mari',
+                      RatingStarSize.small => context.appStrings.uiSmall,
+                      RatingStarSize.medium => context.appStrings.uiMedium,
+                      RatingStarSize.large => context.appStrings.uiLarge,
                     }),
                     selected: store.data.starSize == size,
                     onSelected: store.ready
@@ -195,7 +198,7 @@ class RatingSizeSettings extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              'Glisează pe stele pentru rating în pași de jumătate de stea.',
+              context.appStrings.uiSwipeAcrossTheStarsToRateIn,
               style: TextStyle(color: context.auraMuted, fontSize: 12),
             ),
           ],
@@ -211,12 +214,16 @@ Future<void> showTrackRating(BuildContext context, AudioTrack track) =>
       builder: (_) => AlertDialog(
         insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
         contentPadding: const EdgeInsets.all(16),
-        title: Text(track.title, maxLines: 2, overflow: TextOverflow.ellipsis),
+        title: Text(
+          track.displayTitle,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+        ),
         content: TrackRating(key: ValueKey(track.uri), uri: track.uri),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Închide'),
+            child: Text(context.appStrings.uiClose),
           ),
         ],
       ),
@@ -232,7 +239,7 @@ class RatingViewControls extends StatelessWidget {
       children: [
         Expanded(
           child: PopupMenuButton<double>(
-            tooltip: 'Filtrează după rating',
+            tooltip: context.appStrings.uiFilterByRating,
             enabled: store.ready,
             initialValue: data.minimumRating,
             onSelected: (value) => saveMusicAction(
@@ -246,10 +253,12 @@ class RatingViewControls extends StatelessWidget {
                   checked: data.minimumRating == step / 2,
                   child: Text(
                     step == 0
-                        ? 'Toate ratingurile'
+                        ? context.appStrings.uiAllRatings
                         : step == 10
-                        ? 'Doar 5 stele'
-                        : 'Cel puțin ${formatRating(step / 2)} ${step == 2 ? 'stea' : 'stele'}',
+                        ? context.appStrings.uiOnly5Stars
+                        : context.appStrings.minimumStars(
+                            formatRating(step / 2),
+                          ),
                   ),
                 ),
             ],
@@ -262,8 +271,10 @@ class RatingViewControls extends StatelessWidget {
                   Flexible(
                     child: Text(
                       data.minimumRating == 0
-                          ? 'Toate ratingurile'
-                          : 'Rating ≥ ${formatRating(data.minimumRating)}',
+                          ? context.appStrings.uiAllRatings
+                          : context.appStrings.minimumRating(
+                              formatRating(data.minimumRating),
+                            ),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
@@ -274,7 +285,7 @@ class RatingViewControls extends StatelessWidget {
           ),
         ),
         PopupMenuButton<RatingOrder>(
-          tooltip: 'Sortează după rating',
+          tooltip: context.appStrings.uiSortByRating,
           enabled: store.ready,
           initialValue: data.ratingOrder,
           onSelected: (value) =>
@@ -289,17 +300,17 @@ class RatingViewControls extends StatelessWidget {
             CheckedPopupMenuItem(
               value: RatingOrder.original,
               checked: data.ratingOrder == RatingOrder.original,
-              child: const Text('Ordine implicită'),
+              child: Text(context.appStrings.uiDefaultOrder),
             ),
             CheckedPopupMenuItem(
               value: RatingOrder.highest,
               checked: data.ratingOrder == RatingOrder.highest,
-              child: const Text('Rating descrescător'),
+              child: Text(context.appStrings.uiHighestRatingFirst),
             ),
             CheckedPopupMenuItem(
               value: RatingOrder.lowest,
               checked: data.ratingOrder == RatingOrder.lowest,
-              child: const Text('Rating crescător'),
+              child: Text(context.appStrings.uiLowestRatingFirst),
             ),
           ],
         ),
@@ -308,7 +319,8 @@ class RatingViewControls extends StatelessWidget {
   }
 }
 
-String _trackCount(int count) => '$count ${count == 1 ? 'piesă' : 'piese'}';
+String _trackCount(BuildContext context, int count) =>
+    context.appStrings.groupTracks(count);
 
 Future<bool> saveMusicAction(
   BuildContext context,
@@ -320,8 +332,8 @@ Future<bool> saveMusicAction(
   } catch (_) {
     if (context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Nu am putut salva modificarea. Încearcă din nou.'),
+        SnackBar(
+          content: Text(context.appStrings.uiCouldNotSaveTheChangeTryAgain),
         ),
       );
     }
@@ -353,13 +365,15 @@ class _PlaylistNameDialogState extends State<_PlaylistNameDialog> {
   @override
   Widget build(BuildContext context) => AlertDialog(
     title: Text(
-      widget.initial == null ? 'Playlist nou' : 'Redenumește playlistul',
+      widget.initial == null
+          ? context.appStrings.uiNewPlaylist
+          : context.appStrings.uiRenamePlaylist,
     ),
     content: TextField(
       controller: controller,
       autofocus: true,
       maxLength: 80,
-      decoration: const InputDecoration(labelText: 'Numele playlistului'),
+      decoration: InputDecoration(labelText: context.appStrings.uiPlaylistName),
       onSubmitted: (value) {
         if (value.trim().isNotEmpty) Navigator.pop(context, value.trim());
       },
@@ -367,7 +381,7 @@ class _PlaylistNameDialogState extends State<_PlaylistNameDialog> {
     actions: [
       TextButton(
         onPressed: () => Navigator.pop(context),
-        child: const Text('Anulează'),
+        child: Text(context.appStrings.uiCancel228),
       ),
       ValueListenableBuilder<TextEditingValue>(
         valueListenable: controller,
@@ -375,7 +389,7 @@ class _PlaylistNameDialogState extends State<_PlaylistNameDialog> {
           onPressed: value.text.trim().isEmpty
               ? null
               : () => Navigator.pop(context, value.text.trim()),
-          child: const Text('Salvează'),
+          child: Text(context.appStrings.uiSave),
         ),
       ),
     ],
@@ -399,7 +413,9 @@ class SavedTrackActions extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         IconButton(
-          tooltip: favorite ? 'Elimină din favorite' : 'Adaugă la favorite',
+          tooltip: favorite
+              ? context.appStrings.uiRemoveFromFavorites
+              : context.appStrings.uiAddToFavorites,
           icon: Icon(
             favorite ? Icons.favorite_rounded : Icons.favorite_border_rounded,
             color: favorite ? context.auraAccent : context.auraMuted,
@@ -414,7 +430,7 @@ class SavedTrackActions extends StatelessWidget {
         ),
         if (showPlaylist)
           IconButton(
-            tooltip: 'Adaugă în playlist',
+            tooltip: context.appStrings.uiAddToPlaylist,
             icon: const Icon(Icons.playlist_add_rounded, size: 22),
             onPressed: !store.ready
                 ? null
@@ -442,9 +458,9 @@ Future<void> _addToPlaylist(
               padding: const EdgeInsets.all(20),
               child: Row(
                 children: [
-                  const Expanded(
+                  Expanded(
                     child: Text(
-                      'Adaugă în playlist',
+                      context.appStrings.uiAddToPlaylist,
                       style: TextStyle(
                         fontSize: 21,
                         fontWeight: FontWeight.bold,
@@ -452,7 +468,7 @@ Future<void> _addToPlaylist(
                     ),
                   ),
                   IconButton(
-                    tooltip: 'Închide',
+                    tooltip: context.appStrings.uiClose,
                     onPressed: () => Navigator.pop(context),
                     icon: const Icon(Icons.close),
                   ),
@@ -461,7 +477,7 @@ Future<void> _addToPlaylist(
             ),
             ListTile(
               leading: const Icon(Icons.add),
-              title: const Text('Playlist nou'),
+              title: Text(context.appStrings.uiNewPlaylist),
               onTap: () => Navigator.pop(context, 'new'),
             ),
             Expanded(
@@ -473,8 +489,8 @@ Future<void> _addToPlaylist(
                       title: Text(p.name),
                       subtitle: Text(
                         p.tracks.contains(track.uri)
-                            ? 'Piesa este deja în playlist'
-                            : _trackCount(p.tracks.length),
+                            ? context.appStrings.uiTrackIsAlreadyInThisPlaylist
+                            : _trackCount(context, p.tracks.length),
                       ),
                       enabled: !p.tracks.contains(track.uri),
                       onTap: () => Navigator.pop(context, p.id),
@@ -503,7 +519,7 @@ Future<void> _addToPlaylist(
   }
   if (saved && context.mounted) {
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Piesă adăugată în playlist.')),
+      SnackBar(content: Text(context.appStrings.uiTrackAddedToPlaylist)),
     );
   }
 }
@@ -557,12 +573,10 @@ class _SavedMusicScreenState extends State<SavedMusicScreen> {
             ? Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Text(
-                    'Nu am putut încărca favoritele și playlisturile.',
-                  ),
+                  Text(context.appStrings.uiCouldNotLoadFavoritesAndPlaylists),
                   TextButton(
                     onPressed: store.load,
-                    child: const Text('Încearcă din nou'),
+                    child: Text(context.appStrings.uiTryAgain),
                   ),
                 ],
               )
@@ -599,7 +613,7 @@ class _SavedMusicScreenState extends State<SavedMusicScreen> {
               children: [
                 if (detail && !widget.initialFavorites)
                   IconButton(
-                    tooltip: 'Înapoi la playlisturi',
+                    tooltip: context.appStrings.uiBackToPlaylists,
                     onPressed: () => setState(() {
                       _selectedId = null;
                       _favorites = false;
@@ -610,7 +624,10 @@ class _SavedMusicScreenState extends State<SavedMusicScreen> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Text(
-                      _favorites ? 'Favorite' : selected?.name ?? 'Playlisturi',
+                      _favorites
+                          ? context.appStrings.landingFavorites
+                          : selected?.name ??
+                                context.appStrings.landingPlaylists,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
@@ -622,13 +639,13 @@ class _SavedMusicScreenState extends State<SavedMusicScreen> {
                 ),
                 if (!detail)
                   IconButton(
-                    tooltip: 'Playlist nou',
+                    tooltip: context.appStrings.uiNewPlaylist,
                     onPressed: _busy ? null : () => _create(store),
                     icon: const Icon(Icons.add),
                   ),
                 if (selected != null)
                   PopupMenuButton<String>(
-                    tooltip: 'Opțiuni playlist',
+                    tooltip: context.appStrings.uiPlaylistOptions,
                     enabled: !_busy,
                     onSelected: (action) async {
                       if (action == 'rename') {
@@ -645,18 +662,18 @@ class _SavedMusicScreenState extends State<SavedMusicScreen> {
                         final confirmed = await showDialog<bool>(
                           context: context,
                           builder: (context) => AlertDialog(
-                            title: const Text('Ștergi playlistul?'),
-                            content: const Text(
-                              'Fișierele audio rămân pe telefon.',
+                            title: Text(context.appStrings.uiDeletePlaylist),
+                            content: Text(
+                              context.appStrings.uiAudioFilesStayOnThePhone,
                             ),
                             actions: [
                               TextButton(
                                 onPressed: () => Navigator.pop(context, false),
-                                child: const Text('Anulează'),
+                                child: Text(context.appStrings.uiCancel228),
                               ),
                               FilledButton(
                                 onPressed: () => Navigator.pop(context, true),
-                                child: const Text('Șterge'),
+                                child: Text(context.appStrings.uiDelete),
                               ),
                             ],
                           ),
@@ -669,14 +686,14 @@ class _SavedMusicScreenState extends State<SavedMusicScreen> {
                         }
                       }
                     },
-                    itemBuilder: (_) => const [
+                    itemBuilder: (_) => [
                       PopupMenuItem(
                         value: 'rename',
-                        child: Text('Redenumește'),
+                        child: Text(context.appStrings.uiRename),
                       ),
                       PopupMenuItem(
                         value: 'delete',
-                        child: Text('Șterge playlistul'),
+                        child: Text(context.appStrings.uiDeletePlaylist363),
                       ),
                     ],
                   ),
@@ -689,18 +706,20 @@ class _SavedMusicScreenState extends State<SavedMusicScreen> {
                 children: [
                   ListTile(
                     leading: Icon(Icons.favorite, color: context.auraAccent),
-                    title: const Text('Favorite'),
+                    title: Text(context.appStrings.landingFavorites),
                     subtitle: Text(
-                      '${_trackCount(store.data.favorites.length)} ${store.data.favorites.length == 1 ? 'salvată' : 'salvate'}',
+                      context.appStrings.savedTrackCount(
+                        store.data.favorites.length,
+                      ),
                     ),
                     onTap: () => setState(() => _favorites = true),
                   ),
                   const Divider(),
                   if (playlists.isEmpty)
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.all(24),
                       child: Text(
-                        'Creează primul playlist cu + sau din meniul unei piese.',
+                        context.appStrings.uiCreateYourFirstPlaylistWithOrFrom,
                       ),
                     ),
                   for (final p in playlists)
@@ -710,7 +729,7 @@ class _SavedMusicScreenState extends State<SavedMusicScreen> {
                         color: context.auraAccent,
                       ),
                       title: Text(p.name),
-                      subtitle: Text(_trackCount(p.tracks.length)),
+                      subtitle: Text(_trackCount(context, p.tracks.length)),
                       trailing: const Icon(Icons.chevron_right),
                       onTap: () => setState(() => _selectedId = p.id),
                     ),
@@ -724,14 +743,14 @@ class _SavedMusicScreenState extends State<SavedMusicScreen> {
                 children: [
                   Expanded(
                     child: Text(
-                      '${_trackCount(tracks.length)} ${tracks.length == 1 ? 'disponibilă' : 'disponibile'}',
+                      context.appStrings.availableTrackCount(tracks.length),
                       style: TextStyle(color: context.auraMuted),
                     ),
                   ),
                   if (selected != null)
                     TextButton.icon(
                       icon: const Icon(Icons.playlist_add),
-                      label: const Text('Adaugă piese'),
+                      label: Text(context.appStrings.uiAddTracks),
                       onPressed: _busy
                           ? null
                           : () async {
@@ -759,8 +778,8 @@ class _SavedMusicScreenState extends State<SavedMusicScreen> {
                 padding: const EdgeInsets.all(16),
                 child: Text(
                   missing == 1
-                      ? 'O piesă nu este în folderele selectate sau nu mai este disponibilă. Referința ei este păstrată.'
-                      : '$missing piese nu sunt în folderele selectate sau nu mai sunt disponibile. Referințele lor sunt păstrate.',
+                      ? context.appStrings.uiATrackIsOutsideTheSelectedFolders
+                      : context.appStrings.missingTrackCount(missing),
                   style: TextStyle(fontSize: 12, color: context.auraMuted),
                 ),
               ),
@@ -771,7 +790,7 @@ class _SavedMusicScreenState extends State<SavedMusicScreen> {
                   padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
                   child: FilledButton.icon(
                     icon: const Icon(Icons.play_arrow),
-                    label: const Text('Redă toate'),
+                    label: Text(context.appStrings.uiPlayAll),
                     onPressed: () => widget.onPlay(tracks, 0),
                   ),
                 ),
@@ -781,8 +800,8 @@ class _SavedMusicScreenState extends State<SavedMusicScreen> {
                   ? Center(
                       child: Text(
                         _favorites
-                            ? 'Apasă inima unei piese pentru a o salva aici.'
-                            : 'Adaugă piese în acest playlist.',
+                            ? context.appStrings.uiTapATracksHeartToSaveIt
+                            : context.appStrings.uiAddTracksToThisPlaylist,
                       ),
                     )
                   : ListView.builder(
@@ -796,14 +815,12 @@ class _SavedMusicScreenState extends State<SavedMusicScreen> {
                             size: 42,
                           ),
                           title: Text(
-                            track.title,
+                            track.displayTitle,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
                           subtitle: Text(
-                            track.artist.isEmpty
-                                ? 'Artist necunoscut'
-                                : track.artist,
+                            track.displayArtist,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -819,7 +836,9 @@ class _SavedMusicScreenState extends State<SavedMusicScreen> {
                                       showPlaylist: false,
                                     ),
                                     IconButton(
-                                      tooltip: 'Elimină din playlist',
+                                      tooltip: context
+                                          .appStrings
+                                          .uiRemoveFromPlaylist,
                                       icon: const Icon(
                                         Icons.remove_circle_outline,
                                       ),
@@ -867,11 +886,11 @@ class _TrackPickerState extends State<_TrackPicker> {
         .toList();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Adaugă piese'),
+        title: Text(context.appStrings.uiAddTracks),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, _selected),
-            child: const Text('Salvează'),
+            child: Text(context.appStrings.uiSave),
           ),
         ],
       ),
@@ -881,17 +900,15 @@ class _TrackPickerState extends State<_TrackPicker> {
             Padding(
               padding: const EdgeInsets.all(16),
               child: TextField(
-                decoration: const InputDecoration(
-                  labelText: 'Caută o piesă',
+                decoration: InputDecoration(
+                  labelText: context.appStrings.uiSearchForATrack,
                   prefixIcon: Icon(Icons.search),
                 ),
                 onChanged: (query) =>
                     setState(() => _query = query.trim().toLowerCase()),
               ),
             ),
-            Text(
-              '${_trackCount(_selected.length)} ${_selected.length == 1 ? 'selectată' : 'selectate'}',
-            ),
+            Text(context.appStrings.selectedTrackCount(_selected.length)),
             Expanded(
               child: ListView.builder(
                 itemCount: matches.length,
@@ -899,7 +916,7 @@ class _TrackPickerState extends State<_TrackPicker> {
                   final track = matches[index];
                   return CheckboxListTile(
                     title: Text(
-                      track.title,
+                      track.displayTitle,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),

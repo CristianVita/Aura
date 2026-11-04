@@ -1,3 +1,5 @@
+import 'app_language.dart';
+
 import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
@@ -22,8 +24,8 @@ Uri navidromeBaseUrl(String value) {
       uri.userInfo.isNotEmpty ||
       uri.hasQuery ||
       uri.hasFragment) {
-    throw const NavidromeException(
-      'Introdu adresa HTTPS a serverului, fără utilizator, parolă sau parametri în URL.',
+    throw NavidromeException(
+      AppText.current.uiEnterTheHTTPSServerAddressWithoutA,
     );
   }
   var path = uri.path.replaceFirst(RegExp(r'/+$'), '');
@@ -39,8 +41,8 @@ class NavidromeServer {
     required this.name,
   }) : base = navidromeBaseUrl(url) {
     if (username.trim().isEmpty || password.isEmpty || name.trim().isEmpty) {
-      throw const NavidromeException(
-        'Completează numele sursei, utilizatorul și parola.',
+      throw NavidromeException(
+        AppText.current.uiEnterTheSourceNameUsernameAndPassword,
       );
     }
   }
@@ -100,20 +102,20 @@ class NavidromeClient {
           .send(request)
           .timeout(const Duration(seconds: 20));
       if (response.statusCode != 200) {
-        throw const NavidromeException(
-          'Serverul nu a răspuns corect. Verifică adresa și accesul la Navidrome.',
+        throw NavidromeException(
+          AppText.current.uiTheServerDidNotRespondCorrectlyCheck,
         );
       }
       if (response.contentLength != null && response.contentLength! > limit) {
-        throw const NavidromeException('Răspunsul serverului este prea mare.');
+        throw NavidromeException(AppText.current.uiTheServerResponseIsTooLarge);
       }
       final output = BytesBuilder(copy: false);
       await for (final part in response.stream.timeout(
         const Duration(seconds: 20),
       )) {
         if (output.length + part.length > limit) {
-          throw const NavidromeException(
-            'Răspunsul serverului este prea mare.',
+          throw NavidromeException(
+            AppText.current.uiTheServerResponseIsTooLarge,
           );
         }
         output.add(part);
@@ -123,8 +125,8 @@ class NavidromeClient {
       rethrow;
     } catch (_) {
       // Network exceptions can contain an authenticated URL. Never display it.
-      throw const NavidromeException(
-        'Nu am putut contacta serverul. Verifică internetul, adresa și certificatul HTTPS.',
+      throw NavidromeException(
+        AppText.current.uiCouldNotReachTheServerCheckYour,
       );
     }
   }
@@ -143,17 +145,17 @@ class NavidromeClient {
         final code = (response['error'] as Map?)?['code'];
         throw NavidromeException(
           code == 40 || code == 41
-              ? 'Autentificare nereușită. Verifică utilizatorul și parola.'
-              : 'Navidrome a refuzat cererea. Verifică accesul contului la bibliotecă.',
+              ? AppText
+                    .current
+                    .uiAuthenticationFailedCheckYourUsernameAndPassword
+              : AppText.current.uiNavidromeRejectedTheRequestCheckTheAccounts,
         );
       }
       return response;
     } on NavidromeException {
       rethrow;
     } catch (_) {
-      throw const NavidromeException(
-        'Adresa nu a returnat un răspuns Navidrome valid.',
-      );
+      throw NavidromeException(AppText.current.uiTheAddressDidNotReturnAValid);
     }
   }
 
@@ -171,8 +173,8 @@ class NavidromeClient {
       for (final entry in albums) {
         final id = (entry as Map)['id'] as String;
         if (!seenAlbums.add(id)) {
-          throw const NavidromeException(
-            'Serverul a repetat o pagină de albume. Biblioteca anterioară a fost păstrată.',
+          throw NavidromeException(
+            AppText.current.uiTheServerRepeatedAnAlbumPageYour,
           );
         }
         final album = (await request('getAlbum', {'id': id}))['album'] as Map;
@@ -188,7 +190,7 @@ class NavidromeClient {
           songs[songId] = {
             'id': songId,
             'uri': uri,
-            'title': song['title'] as String? ?? 'Piesă fără titlu',
+            'title': song['title'] as String? ?? '',
             'artist': song['artist'] as String? ?? '',
             'album': song['album'] as String? ?? album['name'] as String? ?? '',
             'coverId':
@@ -327,14 +329,14 @@ class NavidromeRepository {
     if (uri.scheme != 'aura' ||
         uri.host != 'navidrome' ||
         uri.pathSegments.length != 2) {
-      throw const NavidromeException('Piesă de server invalidă.');
+      throw NavidromeException(AppText.current.uiInvalidServerTrack);
     }
     final accounts = await servers();
     for (final server in accounts) {
       if (server.id == uri.pathSegments.first) return server;
     }
-    throw const NavidromeException(
-      'Reconectează sursa Navidrome pentru a reda această piesă.',
+    throw NavidromeException(
+      AppText.current.uiReconnectTheNavidromeSourceToPlayThis,
     );
   }
 

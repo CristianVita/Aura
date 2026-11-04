@@ -1,5 +1,6 @@
 import 'audio_features.dart';
 import 'appearance.dart';
+import 'navigation_preferences.dart';
 import 'audio_library.dart';
 
 import 'dart:convert';
@@ -48,7 +49,9 @@ class SavedMusicData {
     this.playbackSpeed = 1,
     this.playbackVolume = 1,
     this.appearance = const AppearancePreferences(),
-  }) : favorites = Set.unmodifiable(favorites),
+    NavigationPreferences? navigation,
+  }) : navigation = navigation ?? NavigationPreferences(),
+       favorites = Set.unmodifiable(favorites),
        playlists = List.unmodifiable(playlists),
        ratings = Map.unmodifiable(
          ratings.map((key, value) => MapEntry(key, value.toDouble())),
@@ -63,6 +66,7 @@ class SavedMusicData {
   final double playbackSpeed;
   final double playbackVolume;
   final AppearancePreferences appearance;
+  final NavigationPreferences navigation;
   double ratingOf(String uri) => ratings[uri] ?? 0;
 
   SavedMusicData copy({
@@ -76,6 +80,7 @@ class SavedMusicData {
     double? playbackSpeed,
     double? playbackVolume,
     AppearancePreferences? appearance,
+    NavigationPreferences? navigation,
   }) => SavedMusicData(
     favorites: favorites ?? this.favorites,
     playlists: playlists ?? this.playlists,
@@ -87,6 +92,7 @@ class SavedMusicData {
     playbackSpeed: playbackSpeed ?? this.playbackSpeed,
     playbackVolume: playbackVolume ?? this.playbackVolume,
     appearance: appearance ?? this.appearance,
+    navigation: navigation ?? this.navigation,
   );
 
   /// Ratings change browsing only; an existing playback queue stays intact.
@@ -122,6 +128,7 @@ class SavedMusicData {
     'playbackSpeed': playbackSpeed,
     'playbackVolume': playbackVolume,
     'appearance': appearance.toJson(),
+    'navigation': navigation.toJson(),
   });
   factory SavedMusicData.decode(String value) {
     final root = jsonDecode(value) as Map<String, dynamic>;
@@ -171,6 +178,9 @@ class SavedMusicData {
       throw const FormatException('Invalid playback preferences');
     }
     return SavedMusicData(
+      navigation: NavigationPreferences.fromJson(
+        root['navigation'] as Map<String, dynamic>? ?? {},
+      ),
       appearance: AppearancePreferences.fromJson(
         root['appearance'] as Map<String, dynamic>? ?? {},
       ),
@@ -289,6 +299,12 @@ class SavedMusicStore extends ChangeNotifier {
       _update((data) {
         final validated = AppearancePreferences.fromJson(preferences.toJson());
         return data.copy(appearance: validated);
+      });
+
+  Future<void> setNavigation(NavigationPreferences preferences) =>
+      _update((data) {
+        final validated = NavigationPreferences.fromJson(preferences.toJson());
+        return data.copy(navigation: validated);
       });
 
   Future<void> setPlaybackPreferences({double? speed, double? volume}) =>

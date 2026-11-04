@@ -34,5 +34,31 @@
         "type": "int"
       }
     }
-  }
+  },
+  "navigationTitle": "Navigare și ecran de pornire",
+  "navigationOrder": "Ordinea filelor",
+  "navigationHelp": "Trage de mâner pentru a schimba ordinea. Colecția și Setările rămân accesibile.",
+  "navigationHome": "Acasă",
+  "navigationLibrary": "Colecție",
+  "navigationSearch": "Caută",
+  "navigationSettings": "Setări",
+  "navigationRequired": "Filă necesară",
+  "navigationLabels": "Etichetele filelor",
+  "labelsAdaptive": "Adaptiv",
+  "labelsHidden": "Doar pictograme",
+  "labelsSelected": "Fila selectată",
+  "labelsAlways": "Toate",
+  "labelsHelp": "Adaptiv: pictograme pe telefon și etichete în bara laterală de pe PC.",
+  "navigationStart": "Ecran la pornire",
+  "navigationStartHelp": "Se aplică la următoarea pornire a aplicației.",
+  "libraryLanding": "La deschiderea colecției",
+  "landingCategories": "Categorii",
+  "landingTracks": "Piese",
+  "landingAlbums": "Albume",
+  "landingArtists": "Artiști",
+  "landingPlaylists": "Playlisturi",
+  "landingFavorites": "Favorite",
+  "resetNavigation": "Restabilește navigarea implicită",
+  "navigationSaveError": "Nu am putut salva navigarea. Preferințele anterioare au fost păstrate.",
+  "navigationPreview": "Previzualizare navigare"
 }

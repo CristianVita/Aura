@@ -2,14 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'appearance.dart';
 import 'app_theme.dart';
-import 'l10n/app_localizations.dart';
+import 'app_strings.dart';
 import 'saved_music.dart';
-
-extension AppearanceLocalization on BuildContext {
-  AppLocalizations get appearanceStrings =>
-      Localizations.of<AppLocalizations>(this, AppLocalizations) ??
-      lookupAppLocalizations(const Locale('ro'));
-}
 
 class AppearanceSettingsScreen extends StatefulWidget {
   const AppearanceSettingsScreen({super.key});
@@ -29,9 +23,7 @@ class _AppearanceSettingsScreenState extends State<AppearanceSettingsScreen> {
     } catch (_) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(context.appearanceStrings.appearanceSaveError),
-          ),
+          SnackBar(content: Text(context.appStrings.appearanceSaveError)),
         );
       }
     } finally {
@@ -49,7 +41,7 @@ class _AppearanceSettingsScreenState extends State<AppearanceSettingsScreen> {
     final store = SavedMusicScope.of(context);
     final appearance = store.data.appearance;
     final enabled = store.ready && !_busy;
-    final strings = context.appearanceStrings;
+    final strings = context.appStrings;
     Widget section(String title, Widget child) => Padding(
       padding: const EdgeInsets.only(bottom: 24),
       child: Column(

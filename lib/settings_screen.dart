@@ -98,7 +98,7 @@ class SettingsScreen extends StatelessWidget {
                   children: [
                     _SettingsRow(
                       icon: Icons.palette_outlined,
-                      title: context.appearanceStrings.appearanceTitle,
+                      title: context.appStrings.appearanceTitle,
                       onTap: () => Navigator.push<void>(
                         context,
                         MaterialPageRoute(
@@ -115,9 +115,13 @@ class SettingsScreen extends StatelessWidget {
                   children: [
                     _SettingsRow(
                       icon: Icons.folder_outlined,
-                      title: 'Navigare și ecran de pornire',
-                      onTap: null,
-                      pending: true,
+                      title: context.appStrings.navigationTitle,
+                      onTap: () => Navigator.push<void>(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const NavigationSettingsScreen(),
+                        ),
+                      ),
                     ),
                     _SettingsRow(
                       icon: Icons.view_list_outlined,

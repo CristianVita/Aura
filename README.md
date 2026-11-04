@@ -96,3 +96,5 @@ Playback position is checkpointed about every three seconds while playing, and o
 Protocol reference: [OpenSubsonic authentication](https://opensubsonic.netlify.app/docs/api-reference/), [album pagination](https://opensubsonic.netlify.app/docs/endpoints/getalbumlist2/) and [album tracks](https://opensubsonic.netlify.app/docs/endpoints/getalbum/).
 
 Audio files stay on the device. Library metadata, folder preferences and cached artwork are stored in the app's private storage. Device libraries, audio files, SDK paths, signing keys and generated builds are not part of this repository.
+
+Navigation order, visible tabs, labels, startup screen and library landing page are configurable under Interface. See [navigation preferences](docs/navigation.md).

@@ -9,6 +9,10 @@ import 'package:just_audio/just_audio.dart';
 
 import 'audio_runtime.dart';
 import 'app_theme.dart';
+import 'app_strings.dart';
+import 'navigation_preferences.dart';
+import 'navigation_settings_screen.dart';
+import 'navigation_ui.dart';
 import 'appearance_app.dart';
 import 'appearance_settings_screen.dart';
 import 'aura_backup.dart';
@@ -168,6 +172,8 @@ class _PlayerShellState extends State<PlayerShell> {
   @override
   void initState() {
     super.initState();
+    _selectedTab = _audioRuntime.store.data.navigation.start.index;
+    _resetLibraryLanding(_audioRuntime.store.data.navigation.libraryLanding);
     _memory.addListener(_memoryChanged);
     _memoryController = PlaybackMemoryController(
       player: _player,
@@ -190,6 +196,9 @@ class _PlayerShellState extends State<PlayerShell> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    _selectedTab = SavedMusicScope.of(context).data.navigation
+        .resolve(AppTab.values[_selectedTab])
+        .index;
     _playbackSettings ??= PlaybackSettingsController(
       player: _player,
       store: SavedMusicScope.of(context),
@@ -543,10 +552,49 @@ class _PlayerShellState extends State<PlayerShell> {
 
   void _selectTab(int index) => setState(() {
     _selectedTab = index;
-    if (index == 1) _libraryOverview = true;
+    if (index == 1) {
+      _resetLibraryLanding(
+        SavedMusicScope.of(context).data.navigation.libraryLanding,
+      );
+    }
   });
 
-  void _openSearch() => setState(() => _selectedTab = 2);
+  void _resetLibraryLanding(LibraryLanding landing) {
+    _libraryOverview = landing == LibraryLanding.categories;
+    _groupFilter = null;
+    _libraryMode = switch (landing) {
+      LibraryLanding.categories || LibraryLanding.tracks => _LibraryMode.songs,
+      LibraryLanding.albums => _LibraryMode.albums,
+      LibraryLanding.artists => _LibraryMode.artists,
+      LibraryLanding.playlists => _LibraryMode.playlists,
+      LibraryLanding.favorites => _LibraryMode.favorites,
+    };
+  }
+
+  void _openSearch() {
+    if (!SavedMusicScope.of(context).data.navigation.hidden
+        .contains(AppTab.search)) {
+      setState(() => _selectedTab = 2);
+      return;
+    }
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (routeContext) => Scaffold(
+          appBar: AppBar(title: Text(routeContext.appStrings.navigationSearch)),
+          body: SearchScreen(
+            tracks: _tracks,
+            recentQueries: _searchQueries,
+            isScanning: _isScanning,
+            onAddSource: () {
+              Navigator.of(routeContext).pop();
+              _manageSourceFolders();
+            },
+            onTrackSelected: _playQueue,
+          ),
+        ),
+      ),
+    );
+  }
 
   void _showMessage(String message) {
     ScaffoldMessenger.of(context)
@@ -685,14 +733,17 @@ class _PlayerShellState extends State<PlayerShell> {
 
   @override
   Widget build(BuildContext context) {
+    final navigation = SavedMusicScope.of(context).data.navigation;
     if (AudioLibrary.isWindows && MediaQuery.sizeOf(context).width >= 900) {
       return Scaffold(
         body: SafeArea(
           child: Row(
             children: [
-              NavigationRail(
-                extended: true,
-                backgroundColor: context.auraSurface,
+              AuraNavigation(
+                preferences: navigation,
+                selected: AppTab.values[_selectedTab],
+                onSelected: (tab) => _selectTab(tab.index),
+                rail: true,
                 leading: Padding(
                   padding: EdgeInsets.symmetric(vertical: 24),
                   child: Text(
@@ -704,26 +755,6 @@ class _PlayerShellState extends State<PlayerShell> {
                     ),
                   ),
                 ),
-                selectedIndex: _selectedTab,
-                onDestinationSelected: _selectTab,
-                destinations: const [
-                  NavigationRailDestination(
-                    icon: Icon(Icons.home_outlined),
-                    label: Text('Acasă'),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.library_music_outlined),
-                    label: Text('Colecție'),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.search_rounded),
-                    label: Text('Caută'),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.tune_rounded),
-                    label: Text('Setări'),
-                  ),
-                ],
               ),
               Expanded(
                 child: Column(
@@ -773,33 +804,10 @@ class _PlayerShellState extends State<PlayerShell> {
               player: _player,
               onTap: _openNowPlaying,
             ),
-          NavigationBar(
-            height: 56,
-            labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-            backgroundColor: context.auraSurface,
-            indicatorColor: context.auraAccent.withValues(alpha: 0.16),
-            selectedIndex: _selectedTab,
-            onDestinationSelected: _selectTab,
-            destinations: const [
-              NavigationDestination(
-                icon: Icon(Icons.home_outlined),
-                selectedIcon: Icon(Icons.home_rounded),
-                label: 'Acasă',
-              ),
-              NavigationDestination(
-                icon: Icon(Icons.library_music_outlined),
-                selectedIcon: Icon(Icons.library_music_rounded),
-                label: 'Colecție',
-              ),
-              NavigationDestination(
-                icon: Icon(Icons.search_rounded),
-                label: 'Caută',
-              ),
-              NavigationDestination(
-                icon: Icon(Icons.tune_rounded),
-                label: 'Setări',
-              ),
-            ],
+          AuraNavigation(
+            preferences: navigation,
+            selected: AppTab.values[_selectedTab],
+            onSelected: (tab) => _selectTab(tab.index),
           ),
         ],
       ),

@@ -34,5 +34,31 @@
         "type": "int"
       }
     }
-  }
+  },
+  "navigationTitle": "Navigation and start screen",
+  "navigationOrder": "Tab order",
+  "navigationHelp": "Drag the handle to reorder tabs. Library and Settings always remain accessible.",
+  "navigationHome": "Home",
+  "navigationLibrary": "Library",
+  "navigationSearch": "Search",
+  "navigationSettings": "Settings",
+  "navigationRequired": "Required tab",
+  "navigationLabels": "Tab labels",
+  "labelsAdaptive": "Adaptive",
+  "labelsHidden": "Icons only",
+  "labelsSelected": "Selected tab",
+  "labelsAlways": "All",
+  "labelsHelp": "Adaptive: icons on a phone and labels in the desktop sidebar.",
+  "navigationStart": "Start screen",
+  "navigationStartHelp": "Applied the next time the app starts.",
+  "libraryLanding": "When opening the library",
+  "landingCategories": "Categories",
+  "landingTracks": "Tracks",
+  "landingAlbums": "Albums",
+  "landingArtists": "Artists",
+  "landingPlaylists": "Playlists",
+  "landingFavorites": "Favorites",
+  "resetNavigation": "Restore default navigation",
+  "navigationSaveError": "Could not save navigation. Your previous preferences were kept.",
+  "navigationPreview": "Navigation preview"
 }

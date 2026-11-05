@@ -862,6 +862,7 @@ class _HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homePreferences = SavedMusicScope.of(context).data.libraryPages;
     final favorites = tracks
         .where(
           (track) =>
@@ -894,7 +895,7 @@ class _HomeScreen extends StatelessWidget {
                 _SourceCard(onTap: onAddSource, isScanning: isScanning)
               else
                 _HomeShortcuts(onBrowse: onBrowse),
-              if (favorites.isNotEmpty) ...[
+              if (homePreferences.homeFavorites && favorites.isNotEmpty) ...[
                 const SizedBox(height: 24),
                 Row(
                   children: [
@@ -925,36 +926,38 @@ class _HomeScreen extends StatelessWidget {
                 const SizedBox(height: 14),
                 _BrowseGrid(onTap: onBrowse),
               ],
-              const SizedBox(height: 30),
-              Row(
-                children: [
-                  Expanded(
-                    child: _SectionTitle(
-                      title: context.appStrings.uiRecentlyPlayed,
+              if (homePreferences.homeRecent) ...[
+                const SizedBox(height: 30),
+                Row(
+                  children: [
+                    Expanded(
+                      child: _SectionTitle(
+                        title: context.appStrings.uiRecentlyPlayed,
+                      ),
                     ),
-                  ),
-                  TextButton(
-                    onPressed: onHistory,
-                    child: Text(context.appStrings.uiSeeAll),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 14),
-              if (recentTracks.isEmpty)
-                const _EmptyListeningCard()
-              else
-                for (
-                  var index = 0;
-                  index < recentTracks.length && index < 5;
-                  index++
-                )
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 6),
-                    child: _AudioTrackTile(
-                      track: recentTracks[index],
-                      onTap: () => onPlay(recentTracks, index),
+                    TextButton(
+                      onPressed: onHistory,
+                      child: Text(context.appStrings.uiSeeAll),
                     ),
-                  ),
+                  ],
+                ),
+                const SizedBox(height: 14),
+                if (recentTracks.isEmpty)
+                  const _EmptyListeningCard()
+                else
+                  for (
+                    var index = 0;
+                    index < recentTracks.length && index < 5;
+                    index++
+                  )
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 6),
+                      child: _AudioTrackTile(
+                        track: recentTracks[index],
+                        onTap: () => onPlay(recentTracks, index),
+                      ),
+                    ),
+              ],
             ],
           ),
         ),

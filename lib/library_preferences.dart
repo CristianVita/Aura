@@ -53,6 +53,8 @@ class LibraryPagePreferences {
     this.columns = 3,
     this.albums = const GroupPagePreferences(),
     this.artists = const GroupPagePreferences(),
+    this.homeFavorites = true,
+    this.homeRecent = true,
   }) : order = List.unmodifiable(order),
        hidden = Set.unmodifiable(hidden) {
     if (this.order.length != LibrarySection.values.length ||
@@ -68,6 +70,8 @@ class LibraryPagePreferences {
   final int columns;
   final GroupPagePreferences albums;
   final GroupPagePreferences artists;
+  final bool homeFavorites;
+  final bool homeRecent;
   List<LibrarySection> get visible => order
       .where((section) => !hidden.contains(section))
       .toList(growable: false);
@@ -77,12 +81,16 @@ class LibraryPagePreferences {
     int? columns,
     GroupPagePreferences? albums,
     GroupPagePreferences? artists,
+    bool? homeFavorites,
+    bool? homeRecent,
   }) => LibraryPagePreferences(
     order: order ?? this.order,
     hidden: hidden ?? this.hidden,
     columns: columns ?? this.columns,
     albums: albums ?? this.albums,
     artists: artists ?? this.artists,
+    homeFavorites: homeFavorites ?? this.homeFavorites,
+    homeRecent: homeRecent ?? this.homeRecent,
   );
   LibraryPagePreferences move(int oldIndex, int newIndex) {
     if (oldIndex < 0 ||
@@ -102,6 +110,8 @@ class LibraryPagePreferences {
     'columns': columns,
     'albums': albums.toJson(),
     'artists': artists.toJson(),
+    'homeFavorites': homeFavorites,
+    'homeRecent': homeRecent,
   };
   factory LibraryPagePreferences.fromJson(Map<String, dynamic> json) {
     try {
@@ -115,6 +125,8 @@ class LibraryPagePreferences {
           (value) => LibrarySection.values.byName(value as String),
         ),
         columns: json['columns'] as int? ?? 3,
+        homeFavorites: json['homeFavorites'] as bool? ?? true,
+        homeRecent: json['homeRecent'] as bool? ?? true,
         albums: GroupPagePreferences.fromJson(
           json['albums'] as Map<String, dynamic>? ?? {},
         ),

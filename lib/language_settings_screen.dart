@@ -51,6 +51,13 @@ Future<bool> confirmAuraLanguage(
   var saved = false;
   try {
     store.previewLanguage(language);
+    await WidgetsBinding.instance.endOfFrame;
+    if (!context.mounted ||
+        WidgetsBinding.instance.lifecycleState == AppLifecycleState.paused ||
+        WidgetsBinding.instance.lifecycleState == AppLifecycleState.hidden ||
+        WidgetsBinding.instance.lifecycleState == AppLifecycleState.detached) {
+      return false;
+    }
     final confirmed = await showDialog<bool>(
       context: context,
       barrierLabel: strings.uiClose,

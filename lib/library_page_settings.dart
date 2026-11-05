@@ -241,3 +241,68 @@ class _LibraryPageSettingsState extends State<LibraryPageSettings> {
     );
   }
 }
+
+class HomePageSettings extends StatefulWidget {
+  const HomePageSettings({super.key});
+  @override
+  State<HomePageSettings> createState() => _HomePageSettingsState();
+}
+
+class _HomePageSettingsState extends State<HomePageSettings> {
+  bool _busy = false;
+  Future<void> _save(LibraryPagePreferences next) async {
+    setState(() => _busy = true);
+    try {
+      await SavedMusicScope.of(context).setLibraryPages(next);
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(context.appStrings.pageSaveError)),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final store = SavedMusicScope.of(context);
+    final prefs = store.data.libraryPages;
+    final enabled = store.ready && !_busy;
+    final strings = context.appStrings;
+    return Scaffold(
+      appBar: AppBar(title: Text(strings.uiHomePage)),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          SwitchListTile(
+            key: const ValueKey('home-favorites'),
+            title: Text(strings.uiFavoriteTracks),
+            value: prefs.homeFavorites,
+            onChanged: enabled
+                ? (value) => _save(prefs.copy(homeFavorites: value))
+                : null,
+          ),
+          SwitchListTile(
+            key: const ValueKey('home-recent'),
+            title: Text(strings.uiRecentlyPlayed),
+            value: prefs.homeRecent,
+            onChanged: enabled
+                ? (value) => _save(prefs.copy(homeRecent: value))
+                : null,
+          ),
+          const SizedBox(height: 24),
+          OutlinedButton.icon(
+            key: const ValueKey('home-reset'),
+            icon: const Icon(Icons.restart_alt),
+            label: Text(strings.pageReset),
+            onPressed: enabled
+                ? () => _save(prefs.copy(homeFavorites: true, homeRecent: true))
+                : null,
+          ),
+        ],
+      ),
+    );
+  }
+}

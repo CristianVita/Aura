@@ -292,6 +292,10 @@ void main() {
       await tester.pump();
       expect(store.effectiveLanguage, AppLanguage.en);
       expect(store.data.language, AppLanguage.ro);
+      expect(find.text('App language'), findsOneWidget);
+      expect(find.byType(AlertDialog), findsNothing);
+      await tester.pump();
+      expect(find.text('Păstrăm această limbă?'), findsOneWidget);
       await store.setRating(track.uri, 3.5);
       final reopened = SavedMusicStore(storage);
       await reopened.load();

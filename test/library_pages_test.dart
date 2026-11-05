@@ -23,6 +23,45 @@ const song = AudioTrack(
 );
 
 void main() {
+  testWidgets('home sections persist and reset independently', (tester) async {
+    final storage = MemorySavedMusicStorage();
+    final store = SavedMusicStore(storage);
+    await store.load();
+    await store.setLibraryPages(LibraryPagePreferences(columns: 4));
+    await tester.pumpWidget(
+      AuraAppearanceApp(store: store, home: const HomePageSettings()),
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('home-favorites')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('home-recent')));
+    await tester.pumpAndSettle();
+    final loaded = SavedMusicData.decode(storage.value!);
+    expect(loaded.libraryPages.homeFavorites, isFalse);
+    expect(loaded.libraryPages.homeRecent, isFalse);
+    expect(loaded.libraryPages.columns, 4);
+    final backup = BackupPlan(
+      AuraBackup.decode(
+        AuraBackup.capture(loaded, PlaybackMemoryData(), [song]).encode(),
+      ),
+      [song],
+    );
+    expect(
+      backup
+          .savedResult(SavedMusicData(), replace: false, settings: true)
+          .libraryPages
+          .homeRecent,
+      isFalse,
+    );
+    await tester.tap(find.byKey(const ValueKey('home-reset')));
+    await tester.pumpAndSettle();
+    expect(store.data.libraryPages.homeFavorites, isTrue);
+    expect(store.data.libraryPages.homeRecent, isTrue);
+    expect(store.data.libraryPages.columns, 4);
+    await tester.pumpWidget(const SizedBox());
+    store.dispose();
+  });
+
   test('legacy preferences, final-index category moves and validation', () {
     final prefs = SavedMusicData.decode(
       '{"version":1,"favorites":[],"playlists":[]}',

@@ -1,7 +1,8 @@
 # Library, album and artist page preferences
 
-Open **Setări → Interfață → Setări pagini**. The Library, Album and Artist entries are available.
+Open **Setări → Interfață → Setări pagini**. The Home, Library, Album and Artist entries are available.
 
+- Home: independently show or hide favorite tracks and recently played. Reset restores both without changing other pages. Core browsing and source shortcuts remain available.
 - Library: reorder six categories, hide/show them, and choose 2–4 phone columns. At least one category stays visible. Hidden categories remain reachable from other shortcuts and hiding does not delete music.
 - Album and Artist: independent list/cover-grid layouts, 2–4 preferred phone columns, name ascending/descending or track-count sorting, and an optional artwork/duration/track-count summary when opening a group.
 - Wider windows add columns automatically. Large text reduces the column count for readability. Group headers scroll with their content on short screens.

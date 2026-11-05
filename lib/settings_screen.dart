@@ -170,8 +170,12 @@ class SettingsScreen extends StatelessWidget {
                     _SettingsRow(
                       icon: Icons.home_outlined,
                       title: context.appStrings.uiHomePage,
-                      onTap: null,
-                      pending: true,
+                      onTap: () => Navigator.push<void>(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const HomePageSettings(),
+                        ),
+                      ),
                     ),
                     _SettingsRow(
                       icon: Icons.library_music_outlined,

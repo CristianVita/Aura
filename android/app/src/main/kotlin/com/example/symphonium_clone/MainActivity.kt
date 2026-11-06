@@ -1,6 +1,10 @@
 package com.example.symphonium_clone
 
 import android.Manifest
+import android.app.Activity
+import android.app.RecoverableSecurityException
+import android.content.ContentValues
+import android.content.Intent
 import android.content.ContentUris
 import android.content.pm.PackageManager
 import android.os.Build
@@ -21,6 +25,12 @@ class MainActivity : AudioServiceActivity() {
     private val queryExecutor = Executors.newSingleThreadExecutor()
     private val artworkExecutor = Executors.newFixedThreadPool(2)
     private var pendingPermissionResult: MethodChannel.Result? = null
+    private val testPermissionCode = 4284
+    private var pendingTestPermission: MethodChannel.Result? = null
+    private val renamePermissionCode = 4282
+    private val renameIntentCode = 4283
+    private var pendingRename: Triple<Uri, String, MethodChannel.Result>? = null
+    private var renameConsentAttempted = false
 
     override fun onResume() {
         super.onResume()
@@ -57,6 +67,42 @@ class MainActivity : AudioServiceActivity() {
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, channelName)
             .setMethodCallHandler { call, result ->
                 when (call.method) {
+                    "requestSyntheticReadPermission" -> {
+                        if (!packageName.endsWith(".integration")) {
+                            result.notImplemented()
+                        } else if (hasAudioAccess()) {
+                            result.success(true)
+                        } else if (pendingTestPermission != null) {
+                            result.error("busy", "Permission request pending", null)
+                        } else {
+                            pendingTestPermission = result
+                            val permission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+                                Manifest.permission.READ_MEDIA_AUDIO else Manifest.permission.READ_EXTERNAL_STORAGE
+                            requestPermissions(arrayOf(permission), testPermissionCode)
+                        }
+                    }
+                    "getAudioFileName" -> {
+                        val uri = call.argument<String>("uri")
+                        queryExecutor.execute {
+                            try {
+                                val name = audioFilename(Uri.parse(uri ?: ""))
+                                runOnUiThread { result.success(name) }
+                            } catch (error: Exception) {
+                                runOnUiThread { result.error("filename_failed", "Cannot read file name", null) }
+                            }
+                        }
+                    }
+                    "renameAudioFile" -> {
+                        val uri = Uri.parse(call.argument<String>("uri") ?: "")
+                        val name = call.argument<String>("name") ?: ""
+                        if (pendingRename != null) {
+                            result.error("rename_busy", "Rename in progress", null)
+                        } else {
+                            pendingRename = Triple(uri, name, result)
+                            renameConsentAttempted = false
+                            beginRename()
+                        }
+                    }
                     "scanAudio" -> requestAudioAccessAndScan(result)
                     "loadLibrary" -> loadLibrary(result)
                     "loadSavedMusic", "loadPlaybackMemory", "loadServerCache", "loadBackupJournal" -> {
@@ -192,6 +238,7 @@ class MainActivity : AudioServiceActivity() {
                             "title" to row.getString("title"),
                             "artist" to row.getString("artist"),
                             "album" to row.getString("album"),
+                            "genre" to row.optString("genre", ""),
                             "durationMs" to row.getLong("durationMs"),
                             "uri" to row.getString("uri"),
                             "folder" to row.getString("folder"),
@@ -237,6 +284,16 @@ class MainActivity : AudioServiceActivity() {
         grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == testPermissionCode) {
+            pendingTestPermission?.success(grantResults.firstOrNull() == PackageManager.PERMISSION_GRANTED)
+            pendingTestPermission = null
+            return
+        }
+        if (requestCode == renamePermissionCode) {
+            if (grantResults.firstOrNull() == PackageManager.PERMISSION_GRANTED) performRename()
+            else finishRename(false, null)
+            return
+        }
         if (requestCode != permissionRequestCode) return
 
         val result = pendingPermissionResult ?: return
@@ -249,6 +306,124 @@ class MainActivity : AudioServiceActivity() {
                 "Audio permission was not granted.",
                 null,
             )
+        }
+    }
+
+    private fun audioFilename(uri: Uri): String {
+        require(hasAudioAccess() && uri.scheme == "content" && uri.authority == "media")
+        require(uri.toString().startsWith("content://media/external/audio/media/"))
+        contentResolver.query(uri, arrayOf(MediaStore.MediaColumns.DISPLAY_NAME), null, null, null)?.use {
+            if (it.moveToFirst()) return it.getString(0) ?: throw IllegalStateException("Missing name")
+        }
+        throw IllegalStateException("Track unavailable")
+    }
+
+    private fun finishRename(success: Boolean, error: String?) {
+        val result = pendingRename?.third ?: return
+        pendingRename = null
+        if (error == null) result.success(success) else result.error("rename_failed", error, null)
+    }
+
+    private fun beginRename() {
+        val request = pendingRename ?: return
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q &&
+            checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), renamePermissionCode)
+            return
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            try {
+                // Verify the URI before opening the system write dialog.
+                audioFilename(request.first)
+                val action = MediaStore.createWriteRequest(contentResolver, listOf(request.first))
+                startIntentSenderForResult(action.intentSender, renameIntentCode, null, 0, 0, 0)
+            } catch (error: Exception) {
+                finishRename(false, "Cannot request write access")
+            }
+        } else performRename()
+    }
+
+    @Deprecated("Activity result required by Flutter's activity")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == renameIntentCode) {
+            if (resultCode == Activity.RESULT_OK) performRename() else finishRename(false, null)
+        }
+    }
+
+    private fun updateRenamedCache(uri: Uri) {
+        val root = try {
+            JSONObject(libraryFile().openRead().bufferedReader().use { it.readText() })
+        } catch (_: java.io.FileNotFoundException) { return }
+        val rows = root.getJSONArray("tracks")
+        val title = contentResolver.query(uri, arrayOf(MediaStore.Audio.Media.TITLE), null, null, null)?.use {
+            if (it.moveToFirst()) it.getString(0) else null
+        }
+        for (index in 0 until rows.length()) {
+            val row = rows.getJSONObject(index)
+            if (row.optString("uri") == uri.toString()) {
+                if (!title.isNullOrEmpty()) row.put("title", title)
+                break
+            }
+        }
+        val output = libraryFile().startWrite()
+        try {
+            output.write(root.toString().toByteArray(Charsets.UTF_8))
+            libraryFile().finishWrite(output)
+        } catch (error: Exception) {
+            libraryFile().failWrite(output)
+            throw error
+        }
+    }
+
+    private fun performRename() {
+        val request = pendingRename ?: return
+        queryExecutor.execute {
+            try {
+                val (uri, stem, _) = request
+                val current = audioFilename(uri)
+                val dot = current.lastIndexOf('.')
+                require(dot > 0 && stem.isNotBlank() && stem.length <= 240 &&
+                    !stem.endsWith(".") && !stem.endsWith(" ") &&
+                    !stem.any { it.code < 32 || it in "\\/<>:\"|?*" })
+                val newName = stem + current.substring(dot)
+                require(!newName.equals(current, ignoreCase = true))
+                val folderColumn = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                    MediaStore.MediaColumns.RELATIVE_PATH else MediaStore.MediaColumns.DATA
+                val folder = contentResolver.query(uri, arrayOf(folderColumn), null, null, null)?.use {
+                    if (!it.moveToFirst()) throw IllegalStateException("Track unavailable")
+                    val value = it.getString(0).orEmpty()
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) value else File(value).parent.orEmpty()
+                } ?: throw IllegalStateException("Track unavailable")
+                val candidateSelection = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                    "${MediaStore.MediaColumns.DISPLAY_NAME} = ? COLLATE NOCASE AND $folderColumn = ? COLLATE NOCASE"
+                else "$folderColumn = ? COLLATE NOCASE"
+                val candidateArgs = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                    arrayOf(newName, folder) else arrayOf(File(folder, newName).path)
+                contentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                    arrayOf(MediaStore.Audio.Media._ID), candidateSelection, candidateArgs, null)?.use { cursor ->
+                    while (cursor.moveToNext()) {
+                        if (cursor.getLong(0).toString() != uri.lastPathSegment)
+                            throw IllegalStateException("File already exists")
+                    }
+                } ?: throw IllegalStateException("Cannot check collisions")
+                val updated = contentResolver.update(uri,
+                    ContentValues().apply { put(MediaStore.MediaColumns.DISPLAY_NAME, newName) }, null, null)
+                check(updated == 1)
+                // The URI remains stable; update only this cached row.
+                try { updateRenamedCache(uri) } catch (_: Exception) { /* The rename already succeeded. */ }
+                runOnUiThread { finishRename(true, null) }
+            } catch (error: SecurityException) {
+                if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q && error is RecoverableSecurityException && !renameConsentAttempted) {
+                    renameConsentAttempted = true
+                    runOnUiThread {
+                        try { startIntentSenderForResult(error.userAction.actionIntent.intentSender, renameIntentCode, null, 0, 0, 0) }
+                        catch (_: Exception) { finishRename(false, "Cannot request write access") }
+                    }
+                } else runOnUiThread { finishRename(false, "Access denied") }
+            } catch (error: Exception) {
+                runOnUiThread { finishRename(false, "Could not rename file") }
+            }
         }
     }
 
@@ -268,7 +443,7 @@ class MainActivity : AudioServiceActivity() {
 
     private fun readAudioTracks(): List<Map<String, Any>> {
         val collection = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
-        val projection = arrayOf(
+        val projection = mutableListOf(
             MediaStore.Audio.Media._ID,
             MediaStore.Audio.Media.TITLE,
             MediaStore.Audio.Media.ARTIST,
@@ -277,7 +452,9 @@ class MainActivity : AudioServiceActivity() {
             MediaStore.MediaColumns.DATE_MODIFIED,
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
                 MediaStore.MediaColumns.RELATIVE_PATH else MediaStore.MediaColumns.DATA,
-        )
+        ).apply {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) add(MediaStore.Audio.AudioColumns.GENRE)
+        }.toTypedArray()
         val selection = "${MediaStore.Audio.Media.IS_MUSIC} != 0"
         val sortOrder = "${MediaStore.Audio.Media.TITLE} COLLATE NOCASE ASC"
         val tracks = mutableListOf<Map<String, Any>>()
@@ -289,7 +466,10 @@ class MainActivity : AudioServiceActivity() {
             val albumColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM)
             val durationColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION)
             val modifiedColumn = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATE_MODIFIED)
-            val folderColumn = cursor.getColumnIndexOrThrow(projection.last())
+            val folderColumn = cursor.getColumnIndexOrThrow(
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) MediaStore.MediaColumns.RELATIVE_PATH else MediaStore.MediaColumns.DATA
+            )
+            val genreColumn = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) cursor.getColumnIndex(MediaStore.Audio.AudioColumns.GENRE) else -1
 
             while (cursor.moveToNext()) {
                 val id = cursor.getLong(idColumn)
@@ -318,6 +498,7 @@ class MainActivity : AudioServiceActivity() {
                     "title" to title,
                     "artist" to artist,
                     "album" to album,
+                    "genre" to if (genreColumn >= 0) cursor.getString(genreColumn).orEmpty() else "",
                     "durationMs" to duration,
                     "uri" to contentUri,
                     "folder" to folder,

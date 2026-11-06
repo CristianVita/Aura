@@ -41,6 +41,10 @@ import 'playback_settings_controller.dart';
 import 'sleep_timer.dart';
 import 'source_folders.dart';
 import 'track_artwork.dart';
+import 'rename_filename.dart';
+import 'rename_file_dialog.dart';
+
+import 'package:path/path.dart' as p;
 
 part 'search_screen.dart';
 part 'settings_screen.dart';
@@ -49,13 +53,14 @@ part 'audio_features_ui.dart';
 
 const _audioLibraryChannel = AudioLibrary();
 
-enum _LibraryMode { songs, albums, artists, playlists, favorites }
+enum _LibraryMode { songs, albums, artists, playlists, favorites, genres }
 
 extension on _LibraryMode {
   String label(BuildContext context) => switch (this) {
     _LibraryMode.songs => context.appStrings.landingTracks,
     _LibraryMode.albums => context.appStrings.landingAlbums,
     _LibraryMode.artists => context.appStrings.landingArtists,
+    _LibraryMode.genres => context.appStrings.libraryGenres,
     _LibraryMode.playlists => context.appStrings.landingPlaylists,
     _LibraryMode.favorites => context.appStrings.landingFavorites,
   };
@@ -64,6 +69,7 @@ extension on _LibraryMode {
     _LibraryMode.songs => Icons.music_note_rounded,
     _LibraryMode.albums => Icons.album_rounded,
     _LibraryMode.artists => Icons.person_rounded,
+    _LibraryMode.genres => Icons.style_rounded,
     _LibraryMode.playlists => Icons.queue_music_rounded,
     _LibraryMode.favorites => Icons.favorite_rounded,
   };
@@ -87,6 +93,9 @@ Future<void> main() async {
   try {
     if (AudioLibrary.isWindows ||
         (!kIsWeb && defaultTargetPlatform == TargetPlatform.android)) {
+      if (AudioLibrary.isWindows) {
+        await const AudioLibrary().invokeMethod<bool>('recoverRename');
+      }
       await BackupRestoreService.recover(
         journal: DeviceBackupJournal(),
         saved: DeviceSavedMusicStorage(),
@@ -171,6 +180,8 @@ class _PlayerShellState extends State<PlayerShell> {
   List<AudioTrack> _allTracks = const [];
   Set<String>? _selectedFolders;
   bool _isManagingSources = false;
+  bool _renaming = false;
+  bool _renameRecoveryRequired = false;
   List<AudioTrack> get _folderTracks => _selectedFolders == null
       ? _allTracks
       : _allTracks
@@ -681,6 +692,103 @@ class _PlayerShellState extends State<PlayerShell> {
     }
   }
 
+  Future<void> _renameTrack(AudioTrack track) async {
+    if (_renaming || _isScanning || _isLoadingLibrary || _isManagingSources) {
+      return;
+    }
+    final store = SavedMusicScope.of(context);
+    if (!store.ready || !_memory.ready) return;
+    final strings = context.appStrings;
+    if (AudioLibrary.isWindows &&
+        _player.sequence.any(
+          (source) => audioTrackOf(source)?.uri == track.uri,
+        )) {
+      _showMessage(strings.renameFileQueueError);
+      return;
+    }
+    String filename;
+    try {
+      filename = (await _audioLibraryChannel.invokeMethod<String>(
+        'getAudioFileName',
+        {'uri': track.uri},
+      ))!;
+    } catch (_) {
+      if (mounted) _showMessage(strings.renameFileError);
+      return;
+    }
+    if (!mounted) return;
+    final extension = p.extension(filename);
+    if (extension.isEmpty) {
+      _showMessage(strings.renameFileError);
+      return;
+    }
+    final name = await showDialog<String>(
+      context: context,
+      builder: (_) => RenameAudioDialog(filename: filename),
+    );
+    if (name == null || !mounted) return;
+    if (renamedAudioFilename(filename, name).toLowerCase() ==
+        filename.toLowerCase()) {
+      return;
+    }
+    _renaming = true;
+    var locked = false;
+    var recoveryFailed = false;
+    final navigator = Navigator.of(context, rootNavigator: true);
+    unawaited(
+      showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => const PopScope(
+          canPop: false,
+          child: Center(child: CircularProgressIndicator()),
+        ),
+      ),
+    );
+    try {
+      if (AudioLibrary.isWindows) {
+        await _memoryController.flush();
+        _memoryController.beginQueueChange();
+        locked = true;
+        await store.flush();
+        await _memory.flush();
+      }
+      final renamed =
+          await _audioLibraryChannel.invokeMethod<bool>('renameAudioFile', {
+            'uri': track.uri,
+            'name': name,
+          }) ??
+          false;
+      if (AudioLibrary.isWindows) {
+        await store.load();
+        await _memory.load();
+        if (!store.ready || !_memory.ready) throw StateError('Reload failed');
+      }
+      await _loadLibrary(restorePlayback: false);
+      if (mounted && renamed) _showMessage(strings.renameFileSuccess);
+    } catch (_) {
+      if (AudioLibrary.isWindows && locked) {
+        try {
+          await _audioLibraryChannel.invokeMethod<bool>('recoverRename');
+          await store.load();
+          await _memory.load();
+          if (!store.ready || !_memory.ready) {
+            throw StateError('Recovery failed');
+          }
+          await _loadLibrary(restorePlayback: false);
+        } catch (_) {
+          recoveryFailed = true;
+          if (mounted) setState(() => _renameRecoveryRequired = true);
+        }
+      }
+      if (mounted && !recoveryFailed) _showMessage(strings.renameFileError);
+    } finally {
+      if (locked && !recoveryFailed) _memoryController.endQueueChange();
+      _renaming = false;
+      if (navigator.mounted) navigator.pop();
+    }
+  }
+
   Widget _page() {
     switch (_selectedTab) {
       case 0:
@@ -754,7 +862,20 @@ class _PlayerShellState extends State<PlayerShell> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) =>
+      _RenameScope(onRename: _renameTrack, child: _buildShell(context));
+
+  Widget _buildShell(BuildContext context) {
+    if (_renameRecoveryRequired) {
+      return Scaffold(
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Text(context.appStrings.renameFileRecovery),
+          ),
+        ),
+      );
+    }
     final navigation = SavedMusicScope.of(context).data.navigation;
     if (AudioLibrary.isWindows && MediaQuery.sizeOf(context).width >= 900) {
       return Scaffold(
@@ -1207,6 +1328,7 @@ class _BrowseGrid extends StatelessWidget {
             LibrarySection.playlists => _LibraryMode.playlists,
             LibrarySection.favorites => _LibraryMode.favorites,
             LibrarySection.sources => null,
+            LibrarySection.genres => _LibraryMode.genres,
           };
           return Material(
             color: context.auraSurface,
@@ -1399,17 +1521,22 @@ class _CollectionScreen extends StatelessWidget {
     }
 
     final saved = SavedMusicScope.of(context).data;
-    final pagePreferences = mode == _LibraryMode.artists
-        ? saved.libraryPages.artists
-        : saved.libraryPages.albums;
+    final pagePreferences = switch (mode) {
+      _LibraryMode.artists => saved.libraryPages.artists,
+      _LibraryMode.genres => saved.libraryPages.genres,
+      _ => saved.libraryPages.albums,
+    };
+    String groupOf(AudioTrack track) => switch (mode) {
+      _LibraryMode.artists => track.artist,
+      _LibraryMode.genres => track.genre.trim(),
+      _ => track.album,
+    };
     final ratedTracks = saved.ratedTracks(tracks);
     final filteredTracks = groupFilter == null
         ? ratedTracks
         : ratedTracks
               .where((track) {
-                final value = mode == _LibraryMode.artists
-                    ? track.artist
-                    : track.album;
+                final value = groupOf(track);
                 return value == groupFilter;
               })
               .toList(growable: false);
@@ -1417,7 +1544,7 @@ class _CollectionScreen extends StatelessWidget {
     final groups = <String, List<AudioTrack>>{};
     if (showGroups) {
       for (final track in ratedTracks) {
-        final value = mode == _LibraryMode.artists ? track.artist : track.album;
+        final value = groupOf(track);
         groups.putIfAbsent(value, () => []).add(track);
       }
     }
@@ -1623,7 +1750,17 @@ Future<void> _togglePlayback(BuildContext context, AudioPlayer player) async {
   }
 }
 
+class _RenameScope extends InheritedWidget {
+  const _RenameScope({required this.onRename, required super.child});
+  final Future<void> Function(AudioTrack) onRename;
+  static _RenameScope? maybeOf(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<_RenameScope>();
+  @override
+  bool updateShouldNotify(_RenameScope oldWidget) => false;
+}
+
 Future<void> _showTrackDetails(BuildContext context, AudioTrack track) {
+  final rename = _RenameScope.maybeOf(context);
   final seconds = track.durationMs ~/ 1000;
   final duration = seconds > 0
       ? '${seconds ~/ 60}:${(seconds % 60).toString().padLeft(2, '0')}'
@@ -1660,6 +1797,21 @@ Future<void> _showTrackDetails(BuildContext context, AudioTrack track) {
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 12),
+            if (rename != null &&
+                ((AudioLibrary.isWindows &&
+                        Uri.tryParse(track.uri)?.scheme == 'file') ||
+                    (!kIsWeb &&
+                        defaultTargetPlatform == TargetPlatform.android &&
+                        Uri.tryParse(track.uri)?.scheme == 'content')))
+              TextButton.icon(
+                key: const ValueKey('rename-audio-file'),
+                icon: const Icon(Icons.drive_file_rename_outline),
+                label: Text(context.appStrings.renameFileTitle),
+                onPressed: () {
+                  Navigator.pop(context);
+                  unawaited(rename.onRename(track));
+                },
+              ),
             Center(
               child: TrackRating(key: ValueKey(track.uri), uri: track.uri),
             ),

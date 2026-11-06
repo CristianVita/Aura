@@ -216,20 +216,34 @@ class SettingsScreen extends StatelessWidget {
                     _SettingsRow(
                       icon: Icons.style_outlined,
                       title: context.appStrings.uiGenrePage,
-                      onTap: null,
-                      pending: true,
+                      onTap: () => Navigator.push<void>(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const LibraryPageSettings(
+                            page: LibraryPageKind.genres,
+                          ),
+                        ),
+                      ),
                     ),
                     _SettingsRow(
                       icon: Icons.queue_music,
                       title: context.appStrings.uiPlaylistPage,
-                      onTap: null,
-                      pending: true,
+                      onTap: () => Navigator.push<void>(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const PlaylistPageSettings(),
+                        ),
+                      ),
                     ),
                     _SettingsRow(
                       icon: Icons.search,
                       title: context.appStrings.uiSearchPage,
-                      onTap: null,
-                      pending: true,
+                      onTap: () => Navigator.push<void>(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const SearchPageSettings(),
+                        ),
+                      ),
                     ),
                   ],
                 ),

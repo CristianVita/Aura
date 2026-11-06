@@ -23,6 +23,130 @@ const song = AudioTrack(
 );
 
 void main() {
+  testWidgets('genre page settings are independent and persist', (
+    tester,
+  ) async {
+    final storage = MemorySavedMusicStorage();
+    final store = SavedMusicStore(storage);
+    await store.load();
+    await store.setLibraryPages(
+      LibraryPagePreferences(albums: const GroupPagePreferences(columns: 4)),
+    );
+    await tester.pumpWidget(
+      AuraAppearanceApp(
+        store: store,
+        home: const LibraryPageSettings(page: LibraryPageKind.genres),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('layout-grid')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('columns-3')));
+    await tester.pumpAndSettle();
+    final saved = SavedMusicData.decode(storage.value!).libraryPages;
+    expect(saved.genres.layout, GroupLayout.grid);
+    expect(saved.genres.columns, 3);
+    expect(saved.albums.columns, 4);
+    await tester.pumpWidget(const SizedBox());
+    store.dispose();
+  });
+
+  testWidgets(
+    'playlist settings persist, survive backup, and reset independently',
+    (tester) async {
+      final storage = MemorySavedMusicStorage();
+      final store = SavedMusicStore(storage);
+      await store.load();
+      await store.setLibraryPages(LibraryPagePreferences(columns: 4));
+      await tester.pumpWidget(
+        AuraAppearanceApp(store: store, home: const PlaylistPageSettings()),
+      );
+      await tester.pumpAndSettle();
+      tester
+          .widget<DropdownButton<PlaylistSort>>(
+            find.byKey(const ValueKey('playlist-sort')),
+          )
+          .onChanged!(PlaylistSort.nameDescending);
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const ValueKey('playlist-count')));
+      await tester.pumpAndSettle();
+      final loaded = SavedMusicData.decode(storage.value!);
+      expect(loaded.libraryPages.playlistSort, PlaylistSort.nameDescending);
+      expect(loaded.libraryPages.playlistShowCount, isFalse);
+      final plan = BackupPlan(
+        AuraBackup.decode(
+          AuraBackup.capture(loaded, PlaybackMemoryData(), [song]).encode(),
+        ),
+        [song],
+      );
+      expect(
+        plan
+            .savedResult(SavedMusicData(), replace: false, settings: true)
+            .libraryPages
+            .playlistSort,
+        PlaylistSort.nameDescending,
+      );
+      await tester.tap(find.byKey(const ValueKey('playlist-reset')));
+      await tester.pumpAndSettle();
+      expect(store.data.libraryPages.playlistSort, PlaylistSort.original);
+      expect(store.data.libraryPages.playlistShowCount, isTrue);
+      expect(store.data.libraryPages.columns, 4);
+      await tester.pumpWidget(const SizedBox());
+      store.dispose();
+    },
+  );
+
+  testWidgets(
+    'search defaults persist, enforce a field and reset independently',
+    (tester) async {
+      final storage = MemorySavedMusicStorage();
+      final store = SavedMusicStore(storage);
+      await store.load();
+      await store.setLibraryPages(LibraryPagePreferences(columns: 4));
+      await tester.pumpWidget(
+        AuraAppearanceApp(store: store, home: const SearchPageSettings()),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const ValueKey('search-default-title')));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const ValueKey('search-default-album')));
+      await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<SwitchListTile>(
+              find.byKey(const ValueKey('search-default-artist')),
+            )
+            .onChanged,
+        isNull,
+      );
+      await tester.tap(find.byKey(const ValueKey('search-default-favorites')));
+      await tester.pumpAndSettle();
+      final loaded = SavedMusicData.decode(storage.value!);
+      expect(loaded.libraryPages.searchFields, {SearchField.artist});
+      expect(loaded.libraryPages.searchFavoritesOnly, isTrue);
+      final plan = BackupPlan(
+        AuraBackup.decode(
+          AuraBackup.capture(loaded, PlaybackMemoryData(), [song]).encode(),
+        ),
+        [song],
+      );
+      expect(
+        plan
+            .savedResult(SavedMusicData(), replace: false, settings: true)
+            .libraryPages
+            .searchFields,
+        {SearchField.artist},
+      );
+      await tester.tap(find.byKey(const ValueKey('search-reset')));
+      await tester.pumpAndSettle();
+      expect(store.data.libraryPages.searchFields, SearchField.values.toSet());
+      expect(store.data.libraryPages.searchFavoritesOnly, isFalse);
+      expect(store.data.libraryPages.columns, 4);
+      await tester.pumpWidget(const SizedBox());
+      store.dispose();
+    },
+  );
+
   testWidgets('home sections persist and reset independently', (tester) async {
     final storage = MemorySavedMusicStorage();
     final store = SavedMusicStore(storage);
@@ -68,14 +192,35 @@ void main() {
     ).libraryPages;
     expect(prefs.visible, LibrarySection.values);
     expect(prefs.move(5, 0).order.first, LibrarySection.sources);
-    expect(prefs.move(0, 5).order.last, LibrarySection.albums);
-    expect(() => prefs.move(0, 6), throwsRangeError);
+    expect(prefs.move(0, 6).order.last, LibrarySection.albums);
+    expect(() => prefs.move(0, 7), throwsRangeError);
+    final legacy = LibraryPagePreferences.fromJson({
+      'order': [
+        'sources',
+        'tracks',
+        'albums',
+        'artists',
+        'playlists',
+        'favorites',
+      ],
+      'hidden': ['sources'],
+    });
+    expect(legacy.order.first, LibrarySection.sources);
+    expect(legacy.order.last, LibrarySection.genres);
+    expect(legacy.hidden, {LibrarySection.sources});
     for (final json in [
       {'hidden': LibrarySection.values.map((value) => value.name).toList()},
       {
         'order': ['albums'],
       },
       {'columns': 0},
+      {'searchFields': <String>[]},
+      {
+        'searchFields': ['unknown'],
+      },
+      {'searchFavoritesOnly': 'yes'},
+      {'playlistSort': 'unknown'},
+      {'playlistShowCount': 'yes'},
       {
         'albums': {'columns': 5},
       },

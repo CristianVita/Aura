@@ -7,7 +7,8 @@ plugins {
 // Integration tests are installed and automatically uninstalled by Flutter.
 // Never allow that lifecycle to target the user's normal Aura installation.
 val auraTarget = (project.findProperty("target") as? String).orEmpty().replace('\\', '/')
-val auraIntegrationBuild = auraTarget.contains("integration_test/")
+val auraIntegrationBuild = auraTarget.contains("integration_test/") ||
+    Regex("(^|/)flutter_test_listener\\.[^/]+/listener\\.dart$").containsMatchIn(auraTarget)
 
 android {
     namespace = "com.example.symphonium_clone"

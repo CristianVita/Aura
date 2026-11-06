@@ -1,5 +1,6 @@
 import 'package:aura/audio_track.dart';
 import 'package:aura/main.dart';
+import 'package:aura/library_preferences.dart';
 import 'package:aura/saved_music.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -35,6 +36,45 @@ void main() {
   tearDown(
     () => TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(channel, null),
+  );
+
+  testWidgets(
+    'saved search defaults filter results and can be changed temporarily',
+    (tester) async {
+      final store = SavedMusicStore(MemorySavedMusicStorage());
+      await store.load();
+      await store.toggleFavorite('two');
+      await store.setLibraryPages(
+        store.data.libraryPages.copy(
+          searchFields: [SearchField.artist],
+          searchFavoritesOnly: true,
+        ),
+      );
+      await tester.pumpWidget(
+        SavedMusicScope(
+          store: store,
+          child: MaterialApp(
+            home: Scaffold(
+              body: SearchScreen(
+                tracks: tracks,
+                isScanning: false,
+                onAddSource: () {},
+                onTrackSelected: (_, _) async {},
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.enterText(find.byType(TextField), 'Ocean');
+      await tester.pumpAndSettle();
+      expect(find.text('1 rezultat'), findsOneWidget);
+      expect(find.text('Mountain'), findsOneWidget);
+      await tester.tap(find.byType(Switch));
+      await tester.pumpAndSettle();
+      expect(store.data.libraryPages.searchFavoritesOnly, isTrue);
+      await tester.pumpWidget(const SizedBox());
+      store.dispose();
+    },
   );
 
   testWidgets(

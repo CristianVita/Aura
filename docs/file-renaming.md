@@ -1,0 +1,9 @@
+# Rename audio files
+
+Long-press a track in the Home, Search or Library track lists, then choose **Rename audio file**. Enter the name without the extension; Aura retains the original extension and does not edit embedded tags. Navidrome/server tracks cannot be renamed here.
+
+On Android, the system may request permission for the individual audio file. Refusing cancels the operation. The MediaStore URI remains the reference used by Aura; the cached row is refreshed after a successful rename. On Windows, the file must be removed from the active playback queue before renaming. Aura uses a no-replace Windows move, migrates favorites, ratings, playlists, listening history and saved session references, and preserves the queue permutation and position. A conflicting destination is rejected. Only local files already in Aura's library can be renamed.
+
+Windows changes are journaled outside the music folders. Before startup, an interrupted rename is rolled back and saved data restored. Recovery checks the file's SHA-256 and refuses ambiguous or changed files rather than overwriting them. If recovery cannot finish, Aura blocks normal use and asks for a restart. Android cancellation leaves the file unchanged; a completed MediaStore rename is not a Windows-style multi-file transaction because the content URI remains unchanged.
+
+Validation: desktop tests use synthetic WAV files and cover preserved bytes and references, destination collisions, and interrupted recovery. The dialog validates names and extension handling. A manual Android test was run under the separately verified `com.example.symphonium_clone.integration` ID with a uniquely named synthetic WAV: the file name changed and the SHA-256 remained unchanged. A generated Flutter test listener is also mapped to the integration ID by the Gradle guard. Never run an Android test unless the actual built APK ID has been verified.

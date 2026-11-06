@@ -70,6 +70,7 @@ http.Client libraryClient({bool fail = false, List<Uri>? requests}) =>
                 'id': 'song/${query['id']}',
                 'title': query['id'],
                 'artist': 'Artist',
+                'genre': 'Metal',
                 'duration': 123.5,
               },
               {'id': 'video', 'isVideo': true},
@@ -112,6 +113,7 @@ void main() {
     expect(rows, hasLength(2));
     expect(rows.first['durationMs'], 123500);
     expect(rows.first['coverId'], 'cover-id');
+    expect(rows.first['genre'], 'Metal');
     expect(
       Uri.parse(rows.first['uri'] as String).pathSegments.last,
       'song/album-0',

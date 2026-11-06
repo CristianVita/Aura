@@ -14,6 +14,7 @@ class AudioTrack {
     this.folder = '',
     this.modifiedSeconds = 0,
     this.coverId = '',
+    this.genre = '',
   });
 
   final String id;
@@ -25,6 +26,7 @@ class AudioTrack {
   final String folder;
   final int modifiedSeconds;
   final String coverId;
+  final String genre;
   String get displayTitle =>
       title.trim().isEmpty ? AppText.current.uiUntitledTrack : title;
   String get displayArtist =>
@@ -58,6 +60,7 @@ class AudioTrack {
       'folder': folder,
       'modifiedSeconds': modifiedSeconds,
       'coverId': coverId,
+      'genre': genre,
     },
   );
 
@@ -72,6 +75,7 @@ class AudioTrack {
       folder: map['folder']?.toString() ?? '',
       modifiedSeconds: (map['modifiedSeconds'] as num?)?.toInt() ?? 0,
       coverId: map['coverId'] as String? ?? '',
+      genre: map['genre'] as String? ?? '',
     );
   }
 }
@@ -91,5 +95,6 @@ AudioTrack? audioTrackOf(IndexedAudioSource? source) {
     folder: item.extras?['folder']?.toString() ?? '',
     modifiedSeconds: (item.extras?['modifiedSeconds'] as num?)?.toInt() ?? 0,
     coverId: item.extras?['coverId'] as String? ?? '',
+    genre: item.extras?['genre'] as String? ?? '',
   );
 }

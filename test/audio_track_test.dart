@@ -14,6 +14,7 @@ void main() {
         durationMs: 12000,
         uri: 'aura://navidrome/server/song',
         coverId: 'cover-v2',
+        genre: 'Metal',
       );
       final source = AudioSource.uri(
         Uri.parse('https://music.example/rest/stream.view?t=temporary-token'),
@@ -22,6 +23,9 @@ void main() {
       final restored = audioTrackOf(source as IndexedAudioSource)!;
       expect(restored.uri, track.uri);
       expect(restored.coverId, 'cover-v2');
+      expect(restored.genre, 'Metal');
+      expect(AudioTrack.fromMap({'genre': 'Jazz'}).genre, 'Jazz');
+      expect(AudioTrack.fromMap({}).genre, isEmpty);
       expect(restored.artworkUri.pathSegments, ['server', 'cover-v2']);
       expect(restored.artworkKey, contains('cover-v2'));
       expect(restored.toMediaItem().id, isNot(contains('temporary-token')));

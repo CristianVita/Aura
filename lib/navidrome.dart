@@ -193,6 +193,7 @@ class NavidromeClient {
             'title': song['title'] as String? ?? '',
             'artist': song['artist'] as String? ?? '',
             'album': song['album'] as String? ?? album['name'] as String? ?? '',
+            'genre': song['genre'] as String? ?? '',
             'coverId':
                 song['coverArt'] as String? ??
                 album['coverArt'] as String? ??

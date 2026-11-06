@@ -5,7 +5,7 @@ import 'app_theme.dart';
 import 'library_preferences.dart';
 import 'saved_music.dart';
 
-enum LibraryPageKind { library, albums, artists }
+enum LibraryPageKind { library, albums, artists, genres }
 
 String librarySectionLabel(BuildContext context, LibrarySection section) =>
     switch (section) {
@@ -15,6 +15,7 @@ String librarySectionLabel(BuildContext context, LibrarySection section) =>
       LibrarySection.playlists => context.appStrings.landingPlaylists,
       LibrarySection.favorites => context.appStrings.landingFavorites,
       LibrarySection.sources => context.appStrings.librarySources,
+      LibrarySection.genres => context.appStrings.libraryGenres,
     };
 
 class LibraryPageSettings extends StatefulWidget {
@@ -48,14 +49,16 @@ class _LibraryPageSettingsState extends State<LibraryPageSettings> {
     final strings = context.appStrings;
     final enabled = store.ready && !_busy;
     final library = widget.page == LibraryPageKind.library;
-    final group = widget.page == LibraryPageKind.artists
-        ? prefs.artists
-        : prefs.albums;
-    void saveGroup(GroupPagePreferences value) => _save(
-      widget.page == LibraryPageKind.artists
-          ? prefs.copy(artists: value)
-          : prefs.copy(albums: value),
-    );
+    final group = switch (widget.page) {
+      LibraryPageKind.artists => prefs.artists,
+      LibraryPageKind.genres => prefs.genres,
+      _ => prefs.albums,
+    };
+    void saveGroup(GroupPagePreferences value) => _save(switch (widget.page) {
+      LibraryPageKind.artists => prefs.copy(artists: value),
+      LibraryPageKind.genres => prefs.copy(genres: value),
+      _ => prefs.copy(albums: value),
+    });
     Widget heading(String title) => Padding(
       padding: const EdgeInsets.fromLTRB(8, 20, 8, 12),
       child: Text(
@@ -69,6 +72,7 @@ class _LibraryPageSettingsState extends State<LibraryPageSettings> {
           LibraryPageKind.library => strings.libraryPageTitle,
           LibraryPageKind.albums => strings.albumPageTitle,
           LibraryPageKind.artists => strings.artistPageTitle,
+          LibraryPageKind.genres => strings.uiGenrePage,
         }),
       ),
       body: ListView(
@@ -299,6 +303,177 @@ class _HomePageSettingsState extends State<HomePageSettings> {
             label: Text(strings.pageReset),
             onPressed: enabled
                 ? () => _save(prefs.copy(homeFavorites: true, homeRecent: true))
+                : null,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SearchPageSettings extends StatefulWidget {
+  const SearchPageSettings({super.key});
+  @override
+  State<SearchPageSettings> createState() => _SearchPageSettingsState();
+}
+
+class _SearchPageSettingsState extends State<SearchPageSettings> {
+  bool _busy = false;
+  Future<void> _save(LibraryPagePreferences next) async {
+    setState(() => _busy = true);
+    try {
+      await SavedMusicScope.of(context).setLibraryPages(next);
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(context.appStrings.pageSaveError)),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final store = SavedMusicScope.of(context);
+    final prefs = store.data.libraryPages;
+    final enabled = store.ready && !_busy;
+    final strings = context.appStrings;
+    return Scaffold(
+      appBar: AppBar(title: Text(strings.uiSearchPage)),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          for (final field in SearchField.values)
+            SwitchListTile(
+              key: ValueKey('search-default-${field.name}'),
+              title: Text(switch (field) {
+                SearchField.title => strings.uiTitle,
+                SearchField.artist => strings.uiArtist,
+                SearchField.album => strings.uiAlbum,
+              }),
+              value: prefs.searchFields.contains(field),
+              onChanged:
+                  enabled &&
+                      (!prefs.searchFields.contains(field) ||
+                          prefs.searchFields.length > 1)
+                  ? (value) {
+                      final fields = prefs.searchFields.toSet();
+                      if (value) {
+                        fields.add(field);
+                      } else {
+                        fields.remove(field);
+                      }
+                      _save(prefs.copy(searchFields: fields));
+                    }
+                  : null,
+            ),
+          SwitchListTile(
+            key: const ValueKey('search-default-favorites'),
+            title: Text(strings.uiFavoritesOnly),
+            value: prefs.searchFavoritesOnly,
+            onChanged: enabled
+                ? (value) => _save(prefs.copy(searchFavoritesOnly: value))
+                : null,
+          ),
+          const SizedBox(height: 24),
+          OutlinedButton.icon(
+            key: const ValueKey('search-reset'),
+            icon: const Icon(Icons.restart_alt),
+            label: Text(strings.pageReset),
+            onPressed: enabled
+                ? () => _save(
+                    prefs.copy(
+                      searchFields: SearchField.values,
+                      searchFavoritesOnly: false,
+                    ),
+                  )
+                : null,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class PlaylistPageSettings extends StatefulWidget {
+  const PlaylistPageSettings({super.key});
+  @override
+  State<PlaylistPageSettings> createState() => _PlaylistPageSettingsState();
+}
+
+class _PlaylistPageSettingsState extends State<PlaylistPageSettings> {
+  bool _busy = false;
+  Future<void> _save(LibraryPagePreferences next) async {
+    setState(() => _busy = true);
+    try {
+      await SavedMusicScope.of(context).setLibraryPages(next);
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(context.appStrings.pageSaveError)),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final store = SavedMusicScope.of(context);
+    final prefs = store.data.libraryPages;
+    final enabled = store.ready && !_busy;
+    final strings = context.appStrings;
+    return Scaffold(
+      appBar: AppBar(title: Text(strings.uiPlaylistPage)),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          Text(strings.pageSort),
+          DropdownButton<PlaylistSort>(
+            key: const ValueKey('playlist-sort'),
+            isExpanded: true,
+            value: prefs.playlistSort,
+            items: [
+              for (final sort in PlaylistSort.values)
+                DropdownMenuItem(
+                  value: sort,
+                  child: Text(switch (sort) {
+                    PlaylistSort.original => strings.uiDefaultOrder,
+                    PlaylistSort.name => strings.sortName,
+                    PlaylistSort.nameDescending => strings.sortNameDescending,
+                    PlaylistSort.trackCount => strings.sortTrackCount,
+                  }),
+                ),
+            ],
+            onChanged: enabled
+                ? (sort) {
+                    if (sort != null) _save(prefs.copy(playlistSort: sort));
+                  }
+                : null,
+          ),
+          SwitchListTile(
+            key: const ValueKey('playlist-count'),
+            title: Text(strings.sortTrackCount),
+            value: prefs.playlistShowCount,
+            onChanged: enabled
+                ? (value) => _save(prefs.copy(playlistShowCount: value))
+                : null,
+          ),
+          const SizedBox(height: 24),
+          OutlinedButton.icon(
+            key: const ValueKey('playlist-reset'),
+            icon: const Icon(Icons.restart_alt),
+            label: Text(strings.pageReset),
+            onPressed: enabled
+                ? () => _save(
+                    prefs.copy(
+                      playlistSort: PlaylistSort.original,
+                      playlistShowCount: true,
+                    ),
+                  )
                 : null,
           ),
         ],

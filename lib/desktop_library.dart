@@ -2,6 +2,15 @@ import 'app_language.dart';
 
 import 'dart:convert';
 import 'dart:io';
+import 'dart:ffi';
+
+import 'package:ffi/ffi.dart';
+import 'package:crypto/crypto.dart';
+
+import 'playback_memory.dart';
+import 'saved_music.dart';
+import 'rename_filename.dart';
+import 'rename_references.dart';
 
 import 'package:audio_metadata_reader/audio_metadata_reader.dart';
 import 'package:file_picker/file_picker.dart';
@@ -92,9 +101,141 @@ class DesktopLibrary {
     return rows;
   }
 
+  Future<String> _digest(String path) async =>
+      (await sha256.bind(File(path).openRead()).first).toString();
+
+  void _moveExclusive(String from, String to) {
+    if (!Platform.isWindows) throw UnsupportedError('Windows only');
+    final move = DynamicLibrary.open('kernel32.dll')
+        .lookupFunction<
+          Int32 Function(Pointer<Utf16>, Pointer<Utf16>),
+          int Function(Pointer<Utf16>, Pointer<Utf16>)
+        >('MoveFileW');
+    final source = from.toNativeUtf16();
+    final target = to.toNativeUtf16();
+    try {
+      if (move(source, target) == 0) {
+        throw FileSystemException('Move failed', from);
+      }
+    } finally {
+      calloc.free(source);
+      calloc.free(target);
+    }
+  }
+
+  Future<bool> _recoverRename() async {
+    final journal = await _read('rename_journal.json') as Map<String, dynamic>?;
+    if (journal == null || journal['state'] == 'complete') return false;
+    if (journal['version'] != 1 || journal['state'] != 'pending') {
+      throw const FormatException('Invalid rename journal');
+    }
+    final oldPath = journal['oldPath'] as String;
+    final newPath = journal['newPath'] as String;
+    final oldExists = await File(oldPath).exists();
+    final newExists = await File(newPath).exists();
+    if (oldExists == newExists) throw StateError('Ambiguous rename recovery');
+    final candidate = oldExists ? oldPath : newPath;
+    if (await _digest(candidate) != journal['digest']) {
+      throw StateError('Changed file requires manual recovery');
+    }
+    if (newExists) _moveExclusive(newPath, oldPath);
+    await _write('saved_music.json', journal['savedBefore']);
+    await _write('playback_memory.json', journal['memoryBefore']);
+    await _write('audio_library.json', journal['libraryBefore']);
+    _rows = null;
+    await _write('rename_journal.json', {'version': 1, 'state': 'complete'});
+    return true;
+  }
+
+  Future<void> _renameAudio(String uri, String stem) async {
+    if (!Platform.isWindows || Uri.tryParse(uri)?.scheme != 'file') {
+      throw UnsupportedError('Only local Windows files');
+    }
+    await _recoverRename();
+    final rows = await _loadLibrary();
+    final index = rows.indexWhere((row) => row['uri'] == uri);
+    if (index < 0) throw StateError('Track is not in library');
+    final source = File.fromUri(Uri.parse(uri));
+    final oldPath = source.absolute.path;
+    final filename = renamedAudioFilename(p.basename(oldPath), stem);
+    final newPath = p.join(p.dirname(oldPath), filename);
+    if (oldPath.toLowerCase() == newPath.toLowerCase()) {
+      throw StateError('Same name');
+    }
+    final newUri = File(newPath).absolute.uri.toString();
+    if (await FileSystemEntity.type(newPath, followLinks: false) !=
+        FileSystemEntityType.notFound) {
+      throw StateError('Destination already exists');
+    }
+    final beforeSaved =
+        await _read('saved_music.json') as Map<String, dynamic>? ??
+        jsonDecode(SavedMusicData().encode()) as Map<String, dynamic>;
+    final beforeMemory =
+        await _read('playback_memory.json') as Map<String, dynamic>? ??
+        jsonDecode(PlaybackMemoryData().encode()) as Map<String, dynamic>;
+    final beforeLibrary = {'version': 1, 'tracks': rows};
+    final migrated = remapRenamedTrack(
+      saved: SavedMusicData.decode(jsonEncode(beforeSaved)),
+      memory: PlaybackMemoryData.decode(jsonEncode(beforeMemory)),
+      oldUri: uri,
+      newUri: newUri,
+    );
+    final nextRows = [
+      for (var i = 0; i < rows.length; i++)
+        if (i == index) {...rows[i], 'id': newUri, 'uri': newUri} else rows[i],
+    ];
+    await _write('rename_journal.json', {
+      'version': 1,
+      'state': 'pending',
+      'oldPath': oldPath,
+      'newPath': newPath,
+      'digest': await _digest(oldPath),
+      'savedBefore': beforeSaved,
+      'memoryBefore': beforeMemory,
+      'libraryBefore': beforeLibrary,
+    });
+    var moved = false;
+    try {
+      _moveExclusive(oldPath, newPath);
+      moved = true;
+      await _write('saved_music.json', jsonDecode(migrated.saved.encode()));
+      await _write(
+        'playback_memory.json',
+        jsonDecode(migrated.memory.encode()),
+      );
+      await _write('audio_library.json', {'version': 1, 'tracks': nextRows});
+      await _write('rename_journal.json', {'version': 1, 'state': 'complete'});
+      _rows = nextRows;
+    } catch (_) {
+      if (moved) {
+        await _recoverRename();
+      } else {
+        await _write('rename_journal.json', {
+          'version': 1,
+          'state': 'complete',
+        });
+      }
+      rethrow;
+    }
+  }
+
   Future<Object?> invoke(String method, Object? arguments) async {
     final args = arguments as Map<Object?, Object?>?;
     switch (method) {
+      case 'recoverRename':
+        return _recoverRename();
+      case 'getAudioFileName':
+        final uri = Uri.parse(args!['uri'] as String);
+        if (uri.scheme != 'file') throw UnsupportedError('Not a local file');
+        if (!(await _loadLibrary()).any(
+          (row) => row['uri'] == uri.toString(),
+        )) {
+          throw StateError('Track not in library');
+        }
+        return p.basename(File.fromUri(uri).path);
+      case 'renameAudioFile':
+        await _renameAudio(args!['uri'] as String, args['name'] as String);
+        return true;
       case 'loadLibrary':
         return _loadLibrary();
       case 'loadAudioRoots':
@@ -272,6 +413,7 @@ List<Map<String, Object?>> scanDesktopFolders(List<String> roots) {
           'title': p.basenameWithoutExtension(child.path),
           'artist': '',
           'album': '',
+          'genre': '',
           'folder': p.normalize(child.parent.absolute.path),
           'modifiedSeconds': stat.modified.millisecondsSinceEpoch ~/ 1000,
           'durationMs': 0,
@@ -283,6 +425,7 @@ List<Map<String, Object?>> scanDesktopFolders(List<String> roots) {
           }
           row['artist'] = metadata.artist ?? '';
           row['album'] = metadata.album ?? '';
+          row['genre'] = metadata.genres.firstOrNull ?? '';
           row['durationMs'] = metadata.duration?.inMilliseconds ?? 0;
         } catch (_) {
           /* Preserve filename-based playback for missing tags. */

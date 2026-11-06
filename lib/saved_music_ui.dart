@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'audio_track.dart';
 import 'saved_music.dart';
+import 'library_preferences.dart';
 import 'track_artwork.dart';
 
 class TrackRating extends StatefulWidget {
@@ -583,7 +584,23 @@ class _SavedMusicScreenState extends State<SavedMusicScreen> {
             : const CircularProgressIndicator(),
       );
     }
-    final playlists = store.data.playlists;
+    final preferences = store.data.libraryPages;
+    final indexed = store.data.playlists.indexed.toList();
+    if (preferences.playlistSort != PlaylistSort.original) {
+      indexed.sort((a, b) {
+        final name = a.$2.name.toLowerCase().compareTo(b.$2.name.toLowerCase());
+        final comparison = switch (preferences.playlistSort) {
+          PlaylistSort.original => 0,
+          PlaylistSort.name => name,
+          PlaylistSort.nameDescending => -name,
+          PlaylistSort.trackCount => b.$2.tracks.length.compareTo(
+            a.$2.tracks.length,
+          ),
+        };
+        return comparison != 0 ? comparison : a.$1.compareTo(b.$1);
+      });
+    }
+    final playlists = indexed.map((entry) => entry.$2).toList(growable: false);
     final selected = playlists.where((p) => p.id == _selectedId).firstOrNull;
     final detail = _favorites || selected != null;
     final uris = _favorites
@@ -707,11 +724,13 @@ class _SavedMusicScreenState extends State<SavedMusicScreen> {
                   ListTile(
                     leading: Icon(Icons.favorite, color: context.auraAccent),
                     title: Text(context.appStrings.landingFavorites),
-                    subtitle: Text(
-                      context.appStrings.savedTrackCount(
-                        store.data.favorites.length,
-                      ),
-                    ),
+                    subtitle: preferences.playlistShowCount
+                        ? Text(
+                            context.appStrings.savedTrackCount(
+                              store.data.favorites.length,
+                            ),
+                          )
+                        : null,
                     onTap: () => setState(() => _favorites = true),
                   ),
                   const Divider(),
@@ -729,7 +748,9 @@ class _SavedMusicScreenState extends State<SavedMusicScreen> {
                         color: context.auraAccent,
                       ),
                       title: Text(p.name),
-                      subtitle: Text(_trackCount(context, p.tracks.length)),
+                      subtitle: preferences.playlistShowCount
+                          ? Text(_trackCount(context, p.tracks.length))
+                          : null,
                       trailing: const Icon(Icons.chevron_right),
                       onTap: () => setState(() => _selectedId = p.id),
                     ),

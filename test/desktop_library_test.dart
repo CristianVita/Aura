@@ -3,6 +3,10 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:aura/desktop_library.dart';
+import 'package:aura/saved_music.dart';
+import 'package:aura/playback_memory.dart';
+import 'package:crypto/crypto.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path/path.dart' as p;
 
@@ -39,6 +43,115 @@ void main() {
         .writeAsBytes(bytes.buffer.asUint8List());
   });
   tearDown(() async => temporary.delete(recursive: true));
+
+  test('rename preserves audio bytes, references, queue and rejects existing names', () async {
+    final library = DesktopLibrary(
+      storageDirectory: storage,
+      chooseDirectory: () async => music.path,
+    );
+    await library.invoke('chooseAudioFolder', null);
+    final original = File(p.join(music.path, 'Sample.wav'));
+    final oldUri = original.absolute.uri.toString();
+    final content = await original.readAsBytes();
+    final saved = SavedMusicData(
+      favorites: [oldUri],
+      ratings: {oldUri: 4.5},
+      playlists: [
+        MusicPlaylist(id: 'p', name: 'P', tracks: [oldUri]),
+      ],
+    );
+    final memory = PlaybackMemoryData(
+      history: [ListeningEntry(uri: oldUri, lastPlayedMs: 10, playCount: 2)],
+      session: PlaybackSession(
+        uris: [oldUri, oldUri],
+        index: 1,
+        positionMs: 1234,
+        shuffle: true,
+        order: [1, 0],
+        loop: LoopMode.all,
+      ),
+    );
+    await library.invoke('saveSavedMusic', {'json': saved.encode()});
+    await library.invoke('savePlaybackMemory', {'json': memory.encode()});
+    final occupied = File(p.join(music.path, 'Taken.wav'));
+    await occupied.writeAsBytes([1, 2, 3]);
+    await expectLater(
+      library.invoke('renameAudioFile', {'uri': oldUri, 'name': 'Taken'}),
+      throwsStateError,
+    );
+    expect(await occupied.readAsBytes(), [1, 2, 3]);
+    expect(await original.readAsBytes(), content);
+    expect(
+      await library.invoke('renameAudioFile', {
+        'uri': oldUri,
+        'name': 'Renamed',
+      }),
+      true,
+    );
+    final renamed = File(p.join(music.path, 'Renamed.wav'));
+    final newUri = renamed.absolute.uri.toString();
+    expect(await original.exists(), isFalse);
+    expect(await renamed.readAsBytes(), content);
+    final reopened = DesktopLibrary(storageDirectory: storage);
+    final loadedSaved = SavedMusicData.decode(
+      await reopened.invoke('loadSavedMusic', null) as String,
+    );
+    final loadedMemory = PlaybackMemoryData.decode(
+      await reopened.invoke('loadPlaybackMemory', null) as String,
+    );
+    expect(loadedSaved.favorites, {newUri});
+    expect(loadedSaved.ratings[newUri], 4.5);
+    expect(loadedSaved.playlists.single.tracks, [newUri]);
+    expect(loadedMemory.history.single.uri, newUri);
+    expect(loadedMemory.session!.uris, [newUri, newUri]);
+    expect(loadedMemory.session!.positionMs, 1234);
+    expect(
+      (await reopened.invoke('loadLibrary', null) as List).single['uri'],
+      newUri,
+    );
+  }, skip: !Platform.isWindows);
+
+  test(
+    'interrupted rename recovers the original file and saved references',
+    () async {
+      final library = DesktopLibrary(
+        storageDirectory: storage,
+        chooseDirectory: () async => music.path,
+      );
+      final rows = await library.invoke('chooseAudioFolder', null) as List;
+      final oldFile = File(p.join(music.path, 'Sample.wav'));
+      final newFile = File(p.join(music.path, 'New.wav'));
+      final oldUri = oldFile.absolute.uri.toString();
+      final saved = SavedMusicData(favorites: [oldUri]);
+      final memory = PlaybackMemoryData();
+      final digest = sha256.convert(await oldFile.readAsBytes()).toString();
+      await oldFile.rename(newFile.path);
+      await storage.create(recursive: true);
+      await File(p.join(storage.path, 'rename_journal.json')).writeAsString(
+        jsonEncode({
+          'version': 1,
+          'state': 'pending',
+          'oldPath': oldFile.path,
+          'newPath': newFile.path,
+          'digest': digest,
+          'savedBefore': jsonDecode(saved.encode()),
+          'memoryBefore': jsonDecode(memory.encode()),
+          'libraryBefore': {'version': 1, 'tracks': rows},
+        }),
+      );
+      expect(await library.invoke('recoverRename', null), true);
+      expect(await oldFile.exists(), isTrue);
+      expect(await newFile.exists(), isFalse);
+      expect(
+        SavedMusicData.decode(
+          await library.invoke('loadSavedMusic', null) as String,
+        ).favorites,
+        {oldUri},
+      );
+      expect(await library.invoke('recoverRename', null), false);
+    },
+    skip: !Platform.isWindows,
+  );
 
   test('restore journal persists separately from normal saved music', () async {
     final library = DesktopLibrary(storageDirectory: storage);
@@ -88,6 +201,24 @@ void main() {
       rows.single['uri'],
       File(p.join(music.path, 'Sample.wav')).absolute.uri.toString(),
     );
+  });
+
+  test('scan reads a genre from WAV INFO metadata', () async {
+    final file = File(p.join(music.path, 'Sample.wav'));
+    final original = await file.readAsBytes();
+    final tag = ascii.encode(
+      'LIST'
+      '\x00\x00\x00'
+      'INFO'
+      'IGNR'
+      '\x00\x00\x00'
+      'Rock',
+    );
+    final bytes = Uint8List.fromList([...original, ...tag]);
+    ByteData.sublistView(bytes).setUint32(4, bytes.length - 8, Endian.little);
+    await file.writeAsBytes(bytes);
+    final rows = scanDesktopFolders([music.path]);
+    expect(rows.single['genre'], 'Rock');
   });
 
   test(

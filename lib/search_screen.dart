@@ -21,8 +21,22 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   final _controller = TextEditingController();
   final _localRecent = <String>[];
-  final _fields = <String>{'title', 'artist', 'album'};
+  Set<SearchField> _fields = SearchField.values.toSet();
   bool _favoritesOnly = false;
+  bool _initialized = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final store = SavedMusicScope.of(context);
+    if (!_initialized && store.ready) {
+      final prefs = store.data.libraryPages;
+      _fields = prefs.searchFields.toSet();
+      _favoritesOnly = prefs.searchFavoritesOnly;
+      _initialized = true;
+    }
+  }
+
   List<String> get _recent => widget.recentQueries ?? _localRecent;
   @override
   void dispose() {
@@ -51,9 +65,9 @@ class _SearchScreenState extends State<SearchScreen> {
             return false;
           }
           return [
-            if (_fields.contains('title')) track.displayTitle,
-            if (_fields.contains('artist')) track.artist,
-            if (_fields.contains('album')) track.album,
+            if (_fields.contains(SearchField.title)) track.displayTitle,
+            if (_fields.contains(SearchField.artist)) track.artist,
+            if (_fields.contains(SearchField.album)) track.album,
           ].any((value) => value.toLowerCase().contains(query));
         })
         .toList(growable: false);
@@ -97,17 +111,17 @@ class _SearchScreenState extends State<SearchScreen> {
                   label: Text(context.appStrings.labelsAlways),
                   selected: _fields.length == 3,
                   onSelected: (_) => setState(() {
-                    _fields.addAll(['title', 'artist', 'album']);
+                    _fields.addAll(SearchField.values);
                   }),
                 ),
               ),
-              for (final field in ['title', 'artist', 'album'])
+              for (final field in SearchField.values)
                 Padding(
                   padding: const EdgeInsets.only(right: 6),
                   child: FilterChip(
                     label: Text(switch (field) {
-                      'title' => context.appStrings.uiTitle,
-                      'artist' => context.appStrings.uiArtist,
+                      SearchField.title => context.appStrings.uiTitle,
+                      SearchField.artist => context.appStrings.uiArtist,
                       _ => context.appStrings.uiAlbum,
                     }),
                     selected: _fields.contains(field),

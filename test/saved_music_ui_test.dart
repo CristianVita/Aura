@@ -1,4 +1,5 @@
 import 'package:aura/audio_track.dart';
+import 'package:aura/library_preferences.dart';
 import 'package:aura/saved_music.dart';
 import 'package:aura/saved_music_ui.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +38,51 @@ void main() {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(channel, null);
   });
+
+  testWidgets(
+    'playlist sorting changes only the list, not stored tracks or playback queue',
+    (tester) async {
+      final store = SavedMusicStore(MemorySavedMusicStorage());
+      await store.load();
+      await store.createPlaylist('Zulu', tracks: ['b', 'a']);
+      await store.createPlaylist('Alpha', tracks: ['a']);
+      await store.setLibraryPages(
+        store.data.libraryPages.copy(
+          playlistSort: PlaylistSort.name,
+          playlistShowCount: false,
+        ),
+      );
+      List<AudioTrack>? played;
+      await tester.pumpWidget(
+        SavedMusicScope(
+          store: store,
+          child: MaterialApp(
+            home: Scaffold(
+              body: SavedMusicScreen(
+                tracks: tracks,
+                onPlay: (queue, _) async => played = queue,
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(
+        tester.getTopLeft(find.text('Alpha')).dy,
+        lessThan(tester.getTopLeft(find.text('Zulu')).dy),
+      );
+      expect(find.text('2 piese'), findsNothing);
+      expect(store.data.playlists.first.name, 'Zulu');
+      expect(store.data.playlists.first.tracks, ['b', 'a']);
+      await tester.tap(find.text('Zulu'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Redă toate'));
+      await tester.pump();
+      expect(played!.map((track) => track.uri).toList(), ['b', 'a']);
+      await tester.pumpWidget(const SizedBox());
+      store.dispose();
+    },
+  );
 
   testWidgets(
     'track picker keeps unavailable references and selections hidden by search',

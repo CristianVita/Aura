@@ -61,3 +61,6 @@ key.properties
 # Nested Android build output
 /android/build/
 /android/.kotlin/
+
+# Local project context
+/context.md

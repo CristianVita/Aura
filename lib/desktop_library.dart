@@ -8,6 +8,7 @@ import 'package:ffi/ffi.dart';
 import 'package:crypto/crypto.dart';
 
 import 'playback_memory.dart';
+import 'audio_track.dart';
 import 'saved_music.dart';
 import 'rename_filename.dart';
 import 'rename_references.dart';
@@ -198,7 +199,10 @@ class DesktopLibrary {
     try {
       _moveExclusive(oldPath, newPath);
       moved = true;
-      await _write('saved_music.json', jsonDecode(migrated.saved.encode()));
+      final renamedSaved = migrated.saved.copy(
+        trackTitles: {...migrated.saved.trackTitles, newUri: stem.trim()},
+      );
+      await _write('saved_music.json', jsonDecode(renamedSaved.encode()));
       await _write(
         'playback_memory.json',
         jsonDecode(migrated.memory.encode()),
@@ -414,6 +418,7 @@ List<Map<String, Object?>> scanDesktopFolders(List<String> roots) {
           'artist': '',
           'album': '',
           'genre': '',
+          'year': 0,
           'folder': p.normalize(child.parent.absolute.path),
           'modifiedSeconds': stat.modified.millisecondsSinceEpoch ~/ 1000,
           'durationMs': 0,
@@ -426,6 +431,7 @@ List<Map<String, Object?>> scanDesktopFolders(List<String> roots) {
           row['artist'] = metadata.artist ?? '';
           row['album'] = metadata.album ?? '';
           row['genre'] = metadata.genres.firstOrNull ?? '';
+          row['year'] = metadataYear(metadata.year?.year);
           row['durationMs'] = metadata.duration?.inMilliseconds ?? 0;
         } catch (_) {
           /* Preserve filename-based playback for missing tags. */

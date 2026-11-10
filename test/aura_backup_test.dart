@@ -267,6 +267,32 @@ void main() {
     expect(missing.unavailable, 1);
   });
 
+  test('title-only backup matches the original metadata and preserves current titles on merge', () {
+    final backup = AuraBackup.capture(
+      SavedMusicData(trackTitles: {'old': 'Chosen title'}),
+      PlaybackMemoryData(),
+      [track('old', 'Original tag')],
+    );
+    final plan = BackupPlan(backup, [track('new', 'Original tag')]);
+    expect(plan.mapping['old'], 'new');
+    expect(
+      plan
+          .savedResult(SavedMusicData(), replace: true, settings: false)
+          .trackTitles['new'],
+      'Chosen title',
+    );
+    expect(
+      plan
+          .savedResult(
+            SavedMusicData(trackTitles: {'new': 'Current'}),
+            replace: false,
+            settings: false,
+          )
+          .trackTitles['new'],
+      'Current',
+    );
+  });
+
   test('merge is idempotent, keeps current ratings and playlist names; settings are opt-in', () {
     final plan = BackupPlan(sampleBackup(), [track('new')]);
     final current = SavedMusicData(

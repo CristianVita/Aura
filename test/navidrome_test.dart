@@ -64,6 +64,7 @@ http.Client libraryClient({bool fail = false, List<Uri>? requests}) =>
         return response({
           'album': {
             'name': 'Album',
+            'year': 1998,
             'coverArt': 'cover-id',
             'song': [
               {
@@ -71,6 +72,7 @@ http.Client libraryClient({bool fail = false, List<Uri>? requests}) =>
                 'title': query['id'],
                 'artist': 'Artist',
                 'genre': 'Metal',
+                'year': query['id'] == 'album-0' ? 2004 : 0,
                 'duration': 123.5,
               },
               {'id': 'video', 'isVideo': true},
@@ -85,6 +87,36 @@ http.Client libraryClient({bool fail = false, List<Uri>? requests}) =>
     });
 
 void main() {
+  test('offline download uses authenticated request without redirects and closes its client', () async {
+    var requests = 0;
+    final mock = MockClient((request) async {
+      requests++;
+      expect(request.followRedirects, isFalse);
+      expect(request.url.path, '/test/rest/stream.view');
+      expect(request.url.queryParameters['id'], 'song');
+      expect(request.url.queryParameters['format'], 'raw');
+      expect(request.url.queryParameters['p'], isNull);
+      expect(request.url.queryParameters['t'], isNotEmpty);
+      return http.Response.bytes(
+        [1, 2, 3],
+        200,
+        headers: {'content-type': 'audio/mpeg'},
+      );
+    });
+    final secrets = MemorySecrets()..value = jsonEncode([server.toJson()]);
+    final repository = NavidromeRepository(
+      readCache: () async => null,
+      writeCache: (_) async {},
+      secrets: secrets,
+      clientFactory: (value) => NavidromeClient(value, client: mock),
+    );
+    final uri = Uri.parse('aura://navidrome/${server.id}/song');
+    final download = await repository.openDownload(uri);
+    expect(await download.response.stream.toBytes(), [1, 2, 3]);
+    download.close();
+    expect(requests, 1);
+  });
+
   test('URL validation preserves reverse proxy paths and rejects embedded credentials and insecure URLs', () {
     expect(
       navidromeBaseUrl(' https://music.example/test/rest/ ').toString(),
@@ -114,6 +146,15 @@ void main() {
     expect(rows.first['durationMs'], 123500);
     expect(rows.first['coverId'], 'cover-id');
     expect(rows.first['genre'], 'Metal');
+    expect(rows.first['year'], 2004);
+    expect(rows.last['year'], 1998);
+    expect(
+      requests.every(
+        (uri) =>
+            uri.path.contains('/rest/get') || uri.path.endsWith('/ping.view'),
+      ),
+      isTrue,
+    );
     expect(
       Uri.parse(rows.first['uri'] as String).pathSegments.last,
       'song/album-0',

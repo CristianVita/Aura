@@ -41,8 +41,22 @@ import 'playback_settings_controller.dart';
 import 'sleep_timer.dart';
 import 'source_folders.dart';
 import 'track_artwork.dart';
+import 'artwork_cache_settings.dart';
+import 'track_sort_control.dart';
+import 'metadata_lookup_screen.dart';
+import 'album_cover_ui.dart';
+import 'album_artwork.dart';
+import 'personal_albums.dart';
+import 'offline_ui.dart';
+import 'generated_files_screen.dart';
+import 'diagnostic_journal.dart';
+import 'offline_media_settings.dart';
+import 'playback_cache.dart';
+import 'download_network_settings.dart';
+import 'offline_album_ui.dart';
 import 'rename_filename.dart';
 import 'rename_file_dialog.dart';
+import 'rename_title_recovery.dart';
 
 import 'package:path/path.dart' as p;
 
@@ -100,6 +114,7 @@ Future<void> main() async {
         journal: DeviceBackupJournal(),
         saved: DeviceSavedMusicStorage(),
         memory: DevicePlaybackMemoryStorage(),
+        covers: albumArtwork,
       );
     }
   } catch (_) {
@@ -127,6 +142,18 @@ Future<void> main() async {
   }
   final store = SavedMusicStore(DeviceSavedMusicStorage());
   await store.load();
+  if (!kIsWeb &&
+      defaultTargetPlatform == TargetPlatform.android &&
+      store.ready) {
+    try {
+      await RenameTitleRecovery(
+        journal: const DeviceRenameTitleJournal(),
+        saved: store,
+      ).recover();
+    } catch (_) {
+      // Keep the journal for the next recovery attempt.
+    }
+  }
   AppText.useLocale(
     resolveAuraLocale(
       store.data.language,
@@ -182,15 +209,19 @@ class _PlayerShellState extends State<PlayerShell> {
   bool _isManagingSources = false;
   bool _renaming = false;
   bool _renameRecoveryRequired = false;
-  List<AudioTrack> get _folderTracks => _selectedFolders == null
-      ? _allTracks
-      : _allTracks
-            .where(
-              (track) =>
-                  track.uri.startsWith('aura://navidrome/') ||
-                  _selectedFolders!.contains(track.folder),
-            )
-            .toList(growable: false);
+  List<AudioTrack> get _folderTracks {
+    final saved = _audioRuntime.store.data;
+    return _allTracks
+        .where(
+          (track) =>
+              _selectedFolders == null ||
+              track.uri.startsWith('aura://navidrome/') ||
+              _selectedFolders!.contains(track.folder),
+        )
+        .map(saved.displayTrack)
+        .toList(growable: false);
+  }
+
   List<AudioTrack> get _tracks => _folderTracks
       .where(_memory.data.filters.includes)
       .toList(growable: false);
@@ -205,6 +236,7 @@ class _PlayerShellState extends State<PlayerShell> {
   _LibraryMode _libraryMode = _LibraryMode.songs;
   bool _libraryOverview = true;
   final _searchQueries = <String>[];
+  final _albumSearch = TextEditingController();
   String? _groupFilter;
 
   @override
@@ -217,6 +249,7 @@ class _PlayerShellState extends State<PlayerShell> {
       player: _player,
       store: _memory,
       onError: () {
+        diagnosticJournal.record(DiagnosticEventCode.playbackMemoryError);
         if (mounted) {
           _showMessage(context.appStrings.uiCouldNotLoadOrSaveListeningHistory);
         }
@@ -239,6 +272,7 @@ class _PlayerShellState extends State<PlayerShell> {
       player: _player,
       store: SavedMusicScope.of(context),
       onError: () {
+        diagnosticJournal.record(DiagnosticEventCode.playbackSettingsError);
         if (mounted) {
           _showMessage(context.appStrings.uiCouldNotApplyPlaybackSettingsOrThe);
         }
@@ -258,6 +292,7 @@ class _PlayerShellState extends State<PlayerShell> {
       saved: saved,
       memory: _memory,
       journal: DeviceBackupJournal(),
+      covers: albumArtwork,
       beforeRestore: () async {
         await _audioRuntime.pause();
         _playbackSettings?.sleep.cancel();
@@ -290,6 +325,43 @@ class _PlayerShellState extends State<PlayerShell> {
     ),
   );
 
+  Widget _routePlayerBar() => StreamBuilder<SequenceState>(
+    stream: _player.sequenceStateStream,
+    initialData: _player.sequenceState,
+    builder: (context, snapshot) {
+      final raw = audioTrackOf(snapshot.data?.currentSource);
+      if (raw == null) return const SizedBox.shrink();
+      final track = SavedMusicScope.of(context).data.displayTrack(raw);
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _MiniPlayer(track: track, player: _player, onTap: _openNowPlaying),
+          OfflineSeekBar(
+            positions: _player.positionStream,
+            durations: _player.durationStream,
+            initialPosition: _player.position,
+            fallbackDuration: Duration(milliseconds: track.durationMs),
+            onSeek: (position) => _player.seek(position),
+          ),
+        ],
+      );
+    },
+  );
+
+  Future<void> _openOfflineFiles() async {
+    await Navigator.of(context).push<void>(
+      MaterialPageRoute(
+        builder: (_) => OfflineDownloadsScreen(
+          store: AudioLibrary.offline,
+          onPlay: _playOfflineTrack,
+          canRemove: _canRemoveOffline,
+          playerBar: _routePlayerBar(),
+        ),
+      ),
+    );
+    if (mounted) await _loadLibrary(restorePlayback: false);
+  }
+
   Future<void> _openHistory() => Navigator.of(context).push<void>(
     MaterialPageRoute(
       builder: (_) => ListeningHistoryScreen(
@@ -302,6 +374,18 @@ class _PlayerShellState extends State<PlayerShell> {
 
   Future<void> _loadLibrary({bool restorePlayback = true}) async {
     try {
+      if (!kIsWeb &&
+          defaultTargetPlatform == TargetPlatform.android &&
+          _audioRuntime.store.ready) {
+        try {
+          await RenameTitleRecovery(
+            journal: const DeviceRenameTitleJournal(),
+            saved: _audioRuntime.store,
+          ).recover();
+        } catch (_) {
+          if (mounted) _showMessage(context.appStrings.renameFileDisplayError);
+        }
+      }
       final rows = await _audioLibraryChannel.invokeListMethod<Object?>(
         'loadLibrary',
       );
@@ -524,8 +608,10 @@ class _PlayerShellState extends State<PlayerShell> {
     }
   }
 
-  AudioTrack? get _currentTrack =>
-      audioTrackOf(_player.sequenceState.currentSource);
+  AudioTrack? get _currentTrack {
+    final track = audioTrackOf(_player.sequenceState.currentSource);
+    return track == null ? null : _audioRuntime.store.data.displayTrack(track);
+  }
 
   Future<void> _playQueue(List<AudioTrack> queue, int index) async {
     if (queue.isEmpty || index < 0 || index >= queue.length) return;
@@ -548,6 +634,26 @@ class _PlayerShellState extends State<PlayerShell> {
     }
   }
 
+  bool _canRemoveOffline(String uri) =>
+      !_player.sequence.any((source) => audioTrackOf(source)?.uri == uri);
+
+  Future<void> _playOfflineTrack(AudioTrack track, Uri local) async {
+    FocusManager.instance.primaryFocus?.unfocus();
+    _memoryController.beginQueueChange();
+    try {
+      await _player.pause();
+      await _player.setAudioSource(
+        AudioSource.uri(local, tag: track.toMediaItem()),
+      );
+      _memoryController.endQueueChange();
+      await _memoryController.flush();
+      await _audioRuntime.play();
+    } catch (_) {
+      _memoryController.endQueueChange();
+      if (mounted) _showMessage(context.appStrings.offlineError);
+    }
+  }
+
   Future<void> _openNowPlaying() async {
     if (_currentTrack == null) return;
     FocusManager.instance.primaryFocus?.unfocus();
@@ -562,6 +668,7 @@ class _PlayerShellState extends State<PlayerShell> {
 
   @override
   void dispose() {
+    _albumSearch.dispose();
     _playbackSettings?.dispose();
     _memoryController.dispose();
     _memory.removeListener(_memoryChanged);
@@ -727,13 +834,31 @@ class _PlayerShellState extends State<PlayerShell> {
       builder: (_) => RenameAudioDialog(filename: filename),
     );
     if (name == null || !mounted) return;
-    if (renamedAudioFilename(filename, name).toLowerCase() ==
-        filename.toLowerCase()) {
+    final sameFilename =
+        renamedAudioFilename(filename, name).toLowerCase() ==
+        filename.toLowerCase();
+    if (sameFilename) {
+      try {
+        await store.setTrackTitle(track.uri, name);
+        if (mounted) _showMessage(strings.renameFileSuccess);
+      } catch (_) {
+        if (mounted) _showMessage(strings.renameFileError);
+      }
       return;
     }
     _renaming = true;
     var locked = false;
     var recoveryFailed = false;
+    var prepared = false;
+    var fileRenamed = false;
+    String? message;
+    final titleRecovery =
+        !kIsWeb && defaultTargetPlatform == TargetPlatform.android
+        ? RenameTitleRecovery(
+            journal: const DeviceRenameTitleJournal(),
+            saved: store,
+          )
+        : null;
     final navigator = Navigator.of(context, rootNavigator: true);
     unawaited(
       showDialog<void>(
@@ -746,6 +871,14 @@ class _PlayerShellState extends State<PlayerShell> {
       ),
     );
     try {
+      if (titleRecovery != null) {
+        await titleRecovery.prepare(
+          uri: track.uri,
+          original: filename,
+          title: name,
+        );
+        prepared = true;
+      }
       if (AudioLibrary.isWindows) {
         await _memoryController.flush();
         _memoryController.beginQueueChange();
@@ -753,20 +886,50 @@ class _PlayerShellState extends State<PlayerShell> {
         await store.flush();
         await _memory.flush();
       }
-      final renamed =
+      fileRenamed =
           await _audioLibraryChannel.invokeMethod<bool>('renameAudioFile', {
             'uri': track.uri,
             'name': name,
           }) ??
           false;
+      if (titleRecovery != null) {
+        if (fileRenamed) {
+          final result = await titleRecovery.recover();
+          if (result != RenameTitleRecoveryResult.applied) {
+            throw StateError('Could not confirm renamed file');
+          }
+        } else {
+          await titleRecovery.complete();
+        }
+        prepared = false;
+      }
       if (AudioLibrary.isWindows) {
         await store.load();
         await _memory.load();
         if (!store.ready || !_memory.ready) throw StateError('Reload failed');
       }
       await _loadLibrary(restorePlayback: false);
-      if (mounted && renamed) _showMessage(strings.renameFileSuccess);
+      message = fileRenamed
+          ? strings.renameFileSuccess
+          : strings.renameFileCancelled;
     } catch (_) {
+      if (titleRecovery != null && prepared) {
+        try {
+          final result = await titleRecovery.recover();
+          if (result == RenameTitleRecoveryResult.applied) {
+            fileRenamed = true;
+            message = strings.renameFileSuccess;
+          } else if (result == RenameTitleRecoveryResult.deferred) {
+            message = fileRenamed
+                ? strings.renameFileDisplayError
+                : strings.renameFileError;
+          }
+        } catch (_) {
+          message = fileRenamed
+              ? strings.renameFileDisplayError
+              : strings.renameFileError;
+        }
+      }
       if (AudioLibrary.isWindows && locked) {
         try {
           await _audioLibraryChannel.invokeMethod<bool>('recoverRename');
@@ -781,11 +944,12 @@ class _PlayerShellState extends State<PlayerShell> {
           if (mounted) setState(() => _renameRecoveryRequired = true);
         }
       }
-      if (mounted && !recoveryFailed) _showMessage(strings.renameFileError);
+      message ??= strings.renameFileError;
     } finally {
       if (locked && !recoveryFailed) _memoryController.endQueueChange();
       _renaming = false;
       if (navigator.mounted) navigator.pop();
+      if (mounted && !recoveryFailed && message != null) _showMessage(message);
     }
   }
 
@@ -821,6 +985,9 @@ class _PlayerShellState extends State<PlayerShell> {
           );
         }
         return _CollectionScreen(
+          albumSearch: _albumSearch,
+          albumTracks: _folderTracks,
+          playerBar: _routePlayerBar,
           tracks: _tracks,
           hasHiddenTracks: _folderTracks.isNotEmpty,
           onFilters: _openFilters,
@@ -844,6 +1011,18 @@ class _PlayerShellState extends State<PlayerShell> {
       default:
         return SettingsScreen(
           onBackup: _openBackup,
+          onGenerated: () => Navigator.of(context).push<void>(
+            MaterialPageRoute(
+              builder: (_) => GeneratedFilesScreen(
+                saved: SavedMusicScope.of(context),
+                memory: _memory,
+                tracks: _allTracks,
+                covers: albumArtwork,
+                onBackup: _openBackup,
+              ),
+            ),
+          ),
+          onOfflineFiles: _openOfflineFiles,
           controls: _playbackSettings!,
           sourceSummary: _selectedFolders == null
               ? context.appStrings.allFoldersSummary(_tracks.length)
@@ -862,8 +1041,12 @@ class _PlayerShellState extends State<PlayerShell> {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      _RenameScope(onRename: _renameTrack, child: _buildShell(context));
+  Widget build(BuildContext context) => _RenameScope(
+    onRename: _renameTrack,
+    onOfflineChanged: () => unawaited(_loadLibrary(restorePlayback: false)),
+    canRemoveOffline: _canRemoveOffline,
+    child: _buildShell(context),
+  );
 
   Widget _buildShell(BuildContext context) {
     if (_renameRecoveryRequired) {
@@ -1472,6 +1655,9 @@ class _EmptyListeningCard extends StatelessWidget {
 
 class _CollectionScreen extends StatelessWidget {
   const _CollectionScreen({
+    required this.albumSearch,
+    required this.albumTracks,
+    required this.playerBar,
     required this.tracks,
     required this.isScanning,
     required this.onAddSource,
@@ -1486,6 +1672,9 @@ class _CollectionScreen extends StatelessWidget {
   });
 
   final List<AudioTrack> tracks;
+  final TextEditingController albumSearch;
+  final List<AudioTrack> albumTracks;
+  final Widget Function() playerBar;
   final bool isScanning;
   final VoidCallback onAddSource;
   final VoidCallback onManageSources;
@@ -1499,7 +1688,7 @@ class _CollectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (tracks.isEmpty) {
+    if (tracks.isEmpty && mode != _LibraryMode.albums) {
       return _SimplePage(
         eyebrow: context.appStrings.uiYOURCOLLECTION,
         title: context.appStrings.uiLibrary178,
@@ -1520,7 +1709,32 @@ class _CollectionScreen extends StatelessWidget {
       );
     }
 
-    final saved = SavedMusicScope.of(context).data;
+    final store = SavedMusicScope.of(context);
+    final saved = store.data;
+    void openAlbum(String id) {
+      Navigator.of(context).push<void>(
+        MaterialPageRoute(
+          builder: (_) => PersonalAlbumScreen(
+            albumId: id,
+            store: store,
+            tracks: albumTracks,
+            onPlay: onTrackSelected,
+            playerBar: playerBar(),
+          ),
+        ),
+      );
+    }
+
+    Future<void> createAlbum() async {
+      final id = await Navigator.of(context).push<String>(
+        MaterialPageRoute(
+          builder: (_) =>
+              PersonalAlbumEditor(store: store, tracks: albumTracks),
+        ),
+      );
+      if (id != null && context.mounted) openAlbum(id);
+    }
+
     final pagePreferences = switch (mode) {
       _LibraryMode.artists => saved.libraryPages.artists,
       _LibraryMode.genres => saved.libraryPages.genres,
@@ -1532,7 +1746,7 @@ class _CollectionScreen extends StatelessWidget {
       _ => track.album,
     };
     final ratedTracks = saved.ratedTracks(tracks);
-    final filteredTracks = groupFilter == null
+    final unsortedTracks = groupFilter == null
         ? ratedTracks
         : ratedTracks
               .where((track) {
@@ -1540,6 +1754,22 @@ class _CollectionScreen extends StatelessWidget {
                 return value == groupFilter;
               })
               .toList(growable: false);
+    int compareRatings(AudioTrack a, AudioTrack b) {
+      final left = saved.ratingOf(a.uri), right = saved.ratingOf(b.uri);
+      if (left == 0 && right != 0) return 1;
+      if (right == 0 && left != 0) return -1;
+      return saved.ratingOrder == RatingOrder.highest
+          ? right.compareTo(left)
+          : left.compareTo(right);
+    }
+
+    final filteredTracks = sortLibraryTracks(
+      unsortedTracks,
+      saved.libraryPages.trackSort,
+      primary: saved.ratingOrder == RatingOrder.original
+          ? null
+          : compareRatings,
+    );
     final showGroups = mode != _LibraryMode.songs && groupFilter == null;
     final groups = <String, List<AudioTrack>>{};
     if (showGroups) {
@@ -1585,6 +1815,10 @@ class _CollectionScreen extends StatelessWidget {
                         ],
                       ),
                     ),
+                    if (mode == _LibraryMode.albums &&
+                        groupFilter != null &&
+                        groupFilter!.trim().isNotEmpty)
+                      AlbumCoverButton(album: groupFilter!),
                     if (groupFilter != null)
                       IconButton.filledTonal(
                         tooltip: context.appStrings.backToPage(
@@ -1618,33 +1852,75 @@ class _CollectionScreen extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     showGroups
-                        ? context.appStrings.groupCount(groups.length)
+                        ? context.appStrings.groupCount(
+                            groups.length +
+                                (mode == _LibraryMode.albums
+                                    ? saved.albums.length
+                                    : 0),
+                          )
                         : context.appStrings.foundTracks(filteredTracks.length),
                     style: TextStyle(color: context.auraMuted, fontSize: 13),
                   ),
                 ),
               ),
+              if ((mode == _LibraryMode.albums ||
+                      mode == _LibraryMode.artists ||
+                      mode == _LibraryMode.genres) &&
+                  groupFilter != null)
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(22, 0, 22, 12),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: OfflineAlbumAction(
+                      store: AudioLibrary.offline,
+                      tracks: albumTracks
+                          .where((track) => groupOf(track) == groupFilter)
+                          .toList(),
+                      group: switch (mode) {
+                        _LibraryMode.artists => OfflineDownloadGroup.artist,
+                        _LibraryMode.genres => OfflineDownloadGroup.genre,
+                        _ => OfflineDownloadGroup.album,
+                      },
+                    ),
+                  ),
+                ),
               if (groupFilter != null && pagePreferences.showSummary)
                 LibraryGroupSummary(tracks: filteredTracks, icon: mode.icon),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 22),
                 child: RatingViewControls(),
               ),
+              if (!showGroups)
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(22, 8, 22, 14),
+                  child: TrackSortControl(store: store),
+                ),
             ],
           ),
         ),
       ],
-      body: filteredTracks.isEmpty
+      body: filteredTracks.isEmpty && !showGroups
           ? Center(
               child: Text(context.appStrings.uiNoTracksMatchTheSelectedRating),
             )
           : showGroups
-          ? LibraryGroups(
-              groups: groups,
-              preferences: pagePreferences,
-              icon: mode.icon,
-              onOpen: onOpenGroup,
-            )
+          ? mode == _LibraryMode.albums
+                ? AlbumSearchGroups(
+                    groups: groups,
+                    preferences: pagePreferences,
+                    controller: albumSearch,
+                    onOpen: onOpenGroup,
+                    albums: saved.albums,
+                    tracks: albumTracks,
+                    onCreateAlbum: createAlbum,
+                    onOpenAlbum: (album) => openAlbum(album.id),
+                  )
+                : LibraryGroups(
+                    groups: groups,
+                    preferences: pagePreferences,
+                    icon: mode.icon,
+                    onOpen: onOpenGroup,
+                  )
           : ListView.separated(
               padding: const EdgeInsets.fromLTRB(12, 0, 12, 18),
               itemCount: filteredTracks.length,
@@ -1685,6 +1961,7 @@ class _AudioTrackTile extends StatelessWidget {
         leading: TrackArtwork(
           uri: track.artworkUri.toString(),
           cacheKey: track.artworkKey,
+          album: track.artworkAlbum,
           size: 46,
         ),
         title: Text(
@@ -1751,8 +2028,15 @@ Future<void> _togglePlayback(BuildContext context, AudioPlayer player) async {
 }
 
 class _RenameScope extends InheritedWidget {
-  const _RenameScope({required this.onRename, required super.child});
+  const _RenameScope({
+    required this.onRename,
+    required this.onOfflineChanged,
+    required this.canRemoveOffline,
+    required super.child,
+  });
   final Future<void> Function(AudioTrack) onRename;
+  final VoidCallback onOfflineChanged;
+  final bool Function(String) canRemoveOffline;
   static _RenameScope? maybeOf(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<_RenameScope>();
   @override
@@ -1797,6 +2081,20 @@ Future<void> _showTrackDetails(BuildContext context, AudioTrack track) {
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 12),
+            TextButton.icon(
+              key: const ValueKey('online-metadata-action'),
+              icon: const Icon(Icons.travel_explore_rounded),
+              label: Text(context.appStrings.metadataOnlineTitle),
+              onPressed: () {
+                final navigator = Navigator.of(context);
+                navigator.pop();
+                navigator.push<void>(
+                  MaterialPageRoute(
+                    builder: (_) => MetadataLookupScreen(track: track),
+                  ),
+                );
+              },
+            ),
             if (rename != null &&
                 ((AudioLibrary.isWindows &&
                         Uri.tryParse(track.uri)?.scheme == 'file') ||
@@ -1811,6 +2109,13 @@ Future<void> _showTrackDetails(BuildContext context, AudioTrack track) {
                   Navigator.pop(context);
                   unawaited(rename.onRename(track));
                 },
+              ),
+            if (Uri.tryParse(track.uri)?.scheme == 'aura')
+              OfflineTrackAction(
+                store: AudioLibrary.offline,
+                track: track,
+                onChanged: rename?.onOfflineChanged,
+                canRemove: rename?.canRemoveOffline,
               ),
             Center(
               child: TrackRating(key: ValueKey(track.uri), uri: track.uri),
@@ -1883,6 +2188,7 @@ class _MiniPlayer extends StatelessWidget {
                     TrackArtwork(
                       uri: track.artworkUri.toString(),
                       cacheKey: track.artworkKey,
+                      album: track.artworkAlbum,
                       size: 42,
                       radius: 6,
                     ),
@@ -2004,7 +2310,10 @@ class _NowPlayingSheet extends StatelessWidget {
             stream: player.sequenceStateStream,
             initialData: player.sequenceState,
             builder: (context, snapshot) {
-              final track = audioTrackOf(snapshot.data?.currentSource);
+              final original = audioTrackOf(snapshot.data?.currentSource);
+              final track = original == null
+                  ? null
+                  : SavedMusicScope.of(context).data.displayTrack(original);
               if (track == null) {
                 return Padding(
                   padding: EdgeInsets.all(24),
@@ -2030,6 +2339,7 @@ class _NowPlayingSheet extends StatelessWidget {
                     child: TrackArtwork(
                       uri: track.artworkUri.toString(),
                       cacheKey: track.artworkKey,
+                      album: track.artworkAlbum,
                       size: (MediaQuery.sizeOf(context).width - 48).clamp(
                         180.0,
                         380.0,

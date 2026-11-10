@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 
 import 'audio_track.dart';
+import 'saved_music.dart';
 import 'track_artwork.dart';
 
 class PlaybackOptions extends StatefulWidget {
@@ -216,7 +217,8 @@ class _PlaybackQueueSheetState extends State<PlaybackQueueSheet> {
                           },
                           itemBuilder: (context, index) {
                             final source = sources[index];
-                            final track = audioTrackOf(source)!;
+                            final track = SavedMusicScope.of(context).data
+                                .displayTrack(audioTrackOf(source)!);
                             final current = identical(
                               source,
                               state.currentSource,
@@ -234,6 +236,7 @@ class _PlaybackQueueSheetState extends State<PlaybackQueueSheet> {
                               leading: TrackArtwork(
                                 uri: track.artworkUri.toString(),
                                 cacheKey: track.artworkKey,
+                                album: track.artworkAlbum,
                                 size: 42,
                               ),
                               title: Text(

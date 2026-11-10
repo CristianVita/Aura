@@ -14,7 +14,9 @@ import 'package:aura/saved_music.dart';
   final occupied =
       saved.favorites.contains(newUri) ||
       saved.ratings.containsKey(newUri) ||
+      saved.trackTitles.containsKey(newUri) ||
       saved.playlists.any((playlist) => playlist.tracks.contains(newUri)) ||
+      saved.albums.any((album) => album.tracks.contains(newUri)) ||
       memory.history.any((entry) => entry.uri == newUri) ||
       (memory.session?.uris.contains(newUri) ?? false);
   if (occupied) throw StateError('Destination already referenced');
@@ -26,9 +28,17 @@ import 'package:aura/saved_music.dart';
       ratings: {
         for (final entry in saved.ratings.entries) map(entry.key): entry.value,
       },
+      trackTitles: {
+        for (final entry in saved.trackTitles.entries)
+          map(entry.key): entry.value,
+      },
       playlists: [
         for (final playlist in saved.playlists)
           playlist.copy(tracks: playlist.tracks.map(map)),
+      ],
+      albums: [
+        for (final album in saved.albums)
+          album.copy(tracks: album.tracks.map(map)),
       ],
     ),
     memory: PlaybackMemoryData(

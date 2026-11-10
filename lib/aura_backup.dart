@@ -7,10 +7,11 @@ import 'package:crypto/crypto.dart';
 
 import 'audio_library.dart';
 import 'audio_track.dart';
+import 'cover_backup_storage.dart';
 import 'playback_memory.dart';
 import 'saved_music.dart';
 
-const maxBackupBytes = 4 * 1024 * 1024;
+const maxBackupBytes = 40 * 1024 * 1024;
 
 class AuraBackup {
   AuraBackup({
@@ -18,11 +19,14 @@ class AuraBackup {
     required this.saved,
     required this.memory,
     required this.catalog,
+    this.covers,
   });
   final DateTime createdAt;
   final SavedMusicData saved;
   final PlaybackMemoryData memory;
   final Map<String, String> catalog;
+  // Null denotes a legacy backup that contains no cover snapshot.
+  final Map<String, Uint8List>? covers;
   static String identity(AudioTrack track) => jsonEncode([
     track.title.trim().toLowerCase(),
     track.artist.trim().toLowerCase(),
@@ -32,7 +36,9 @@ class AuraBackup {
   Set<String> get references => {
     ...saved.favorites,
     ...saved.ratings.keys,
+    ...saved.trackTitles.keys,
     for (final playlist in saved.playlists) ...playlist.tracks,
+    for (final album in saved.albums) ...album.tracks,
     for (final entry in memory.history) entry.uri,
   };
   factory AuraBackup.capture(
@@ -40,6 +46,7 @@ class AuraBackup {
     PlaybackMemoryData memory,
     List<AudioTrack> library, {
     DateTime? now,
+    Map<String, Uint8List>? covers,
   }) {
     final backup = AuraBackup(
       createdAt: (now ?? DateTime.now()).toUtc(),
@@ -49,6 +56,12 @@ class AuraBackup {
         filters: memory.filters,
       ),
       catalog: {},
+      covers: covers == null
+          ? null
+          : {
+              for (final entry in covers.entries)
+                entry.key: Uint8List.fromList(entry.value),
+            },
     );
     final references = backup.references;
     for (final track in library) {
@@ -59,11 +72,17 @@ class AuraBackup {
     return backup;
   }
   Uint8List encode() {
+    if (covers != null) validateCoverBackupShape(covers!);
     final payload = {
       'createdAt': createdAt.toUtc().toIso8601String(),
       'savedMusic': jsonDecode(saved.encode()),
       'playback': jsonDecode(memory.encode()),
       'catalog': catalog,
+      if (covers != null)
+        'covers': {
+          for (final entry in covers!.entries)
+            entry.key: base64Encode(entry.value),
+        },
     };
     final checksum = sha256
         .convert(utf8.encode(jsonEncode(payload)))
@@ -72,7 +91,7 @@ class AuraBackup {
       utf8.encode(
         const JsonEncoder.withIndent('  ').convert({
           'format': 'aura.backup',
-          'version': 1,
+          'version': covers == null ? 1 : 2,
           'payload': payload,
           'checksum': checksum,
         }),
@@ -90,7 +109,8 @@ class AuraBackup {
     }
     try {
       final root = jsonDecode(utf8.decode(bytes)) as Map<String, dynamic>;
-      if (root['format'] != 'aura.backup' || root['version'] != 1) {
+      if (root['format'] != 'aura.backup' ||
+          (root['version'] != 1 && root['version'] != 2)) {
         throw const FormatException();
       }
       final payload = root['payload'] as Map<String, dynamic>;
@@ -102,7 +122,9 @@ class AuraBackup {
       final memory = PlaybackMemoryData.decode(jsonEncode(payload['playback']));
       if (memory.session != null ||
           saved.playlists.length > 1000 ||
+          saved.albums.length > 1000 ||
           saved.ratings.length > 50000 ||
+          saved.trackTitles.length > 50000 ||
           saved.favorites.length > 50000 ||
           memory.history.length > 100) {
         throw const FormatException();
@@ -123,11 +145,33 @@ class AuraBackup {
       final catalog = (payload['catalog'] as Map<String, dynamic>).map(
         (uri, fingerprint) => MapEntry(uri, fingerprint as String),
       );
+      Map<String, Uint8List>? covers;
+      if (root['version'] == 2) {
+        final rawCovers = payload['covers'] as Map<String, dynamic>;
+        if (rawCovers.length > maxCoverBackupCount) {
+          throw const FormatException();
+        }
+        covers = {};
+        var total = 0;
+        for (final entry in rawCovers.entries) {
+          if (entry.value is! String ||
+              (entry.value as String).length >
+                  ((10 * 1024 * 1024 + 2) ~/ 3) * 4) {
+            throw const FormatException();
+          }
+          final bytes = base64Decode(entry.value as String);
+          total += bytes.length;
+          if (total > maxCoverBackupBytes) throw const FormatException();
+          covers[entry.key] = bytes;
+        }
+        validateCoverBackupShape(covers);
+      }
       final backup = AuraBackup(
         createdAt: DateTime.parse(payload['createdAt'] as String).toUtc(),
         saved: saved,
         memory: memory,
         catalog: catalog,
+        covers: covers,
       );
       if (backup.references.any((uri) => uri.isEmpty || uri.length > 8192) ||
           catalog.length > 50000 ||
@@ -215,6 +259,21 @@ class BackupPlan {
           ? p
           : existing.copy(tracks: [...existing.tracks, ...p.tracks]);
     }
+    final albums = <String, MusicAlbum>{
+      if (!replace)
+        for (final album in current.albums) album.id: album,
+    };
+    for (final album in source.saved.albums) {
+      final mapped = MusicAlbum(
+        id: album.id,
+        name: album.name,
+        tracks: album.tracks.map(_uri),
+      );
+      final existing = albums[album.id];
+      albums[album.id] = existing == null
+          ? mapped
+          : existing.copy(tracks: [...existing.tracks, ...mapped.tracks]);
+    }
     final ratings = <String, num>{
       for (final entry in source.saved.ratings.entries)
         _uri(entry.key): entry.value,
@@ -227,7 +286,13 @@ class BackupPlan {
         ...source.saved.favorites.map(_uri),
       },
       playlists: playlists.values,
+      albums: albums.values,
       ratings: ratings,
+      trackTitles: {
+        for (final entry in source.saved.trackTitles.entries)
+          _uri(entry.key): entry.value,
+        if (!replace) ...current.trackTitles,
+      },
     );
   }
 
@@ -285,10 +350,12 @@ class BackupRestoreService {
     this.beforeRestore,
     this.afterRestore,
     this.applyPreferences,
+    this.covers,
   });
   final SavedMusicStore saved;
   final PlaybackMemoryStore memory;
   final BackupJournal journal;
+  final CoverBackupStorage? covers;
   final Future<void> Function()? beforeRestore, applyPreferences;
   final void Function()? afterRestore;
   bool _busy = false;
@@ -299,6 +366,7 @@ class BackupRestoreService {
     required BackupJournal journal,
     required SavedMusicStorage saved,
     required PlaybackMemoryStorage memory,
+    CoverBackupStorage? covers,
   }) async {
     final raw = await journal.read();
     if (raw == null) return false;
@@ -315,6 +383,31 @@ class BackupRestoreService {
     final memoryBefore = PlaybackMemoryData.decode(
       state['memoryBefore'] as String,
     ).encode();
+    final rawCovers = state['coversBefore'];
+    if (rawCovers != null) {
+      if (covers == null ||
+          rawCovers is! Map<String, dynamic> ||
+          rawCovers.length > maxCoverBackupCount) {
+        throw const FormatException('Cover recovery unavailable');
+      }
+      final previous = <String, Uint8List>{};
+      var total = 0;
+      for (final entry in rawCovers.entries) {
+        if (entry.value is! String ||
+            (entry.value as String).length >
+                ((10 * 1024 * 1024 + 2) ~/ 3) * 4) {
+          throw const FormatException('Invalid cover journal');
+        }
+        final bytes = base64Decode(entry.value as String);
+        total += bytes.length;
+        if (total > maxCoverBackupBytes) {
+          throw const FormatException('Invalid cover journal');
+        }
+        previous[entry.key] = bytes;
+      }
+      validateCoverBackupShape(previous);
+      await covers.replaceSnapshot(previous);
+    }
     await saved.write(savedBefore);
     await memory.write(memoryBefore);
     await journal.write(_complete);
@@ -330,16 +423,28 @@ class BackupRestoreService {
       throw StateError('Restore unavailable');
     }
     _busy = true;
-    bool locked = false, pending = false;
+    bool locked = false, pending = false, coversTouched = false;
     SavedMusicData? previousSaved;
     PlaybackMemoryData? previousMemory;
+    Map<String, Uint8List>? previousCovers;
+    Map<String, Uint8List>? nextCovers;
     try {
+      final importedCovers = plan.source.covers;
+      if (importedCovers != null) {
+        if (covers == null) throw StateError('Cover restore unavailable');
+        await covers!.validateSnapshot(importedCovers);
+      }
       await beforeRestore?.call();
       locked = true;
       await saved.flush();
       await memory.flush();
       previousSaved = saved.data;
       previousMemory = memory.data;
+      if (importedCovers != null) {
+        previousCovers = await covers!.snapshot();
+        nextCovers = {...importedCovers, if (!replace) ...previousCovers};
+        validateCoverBackupShape(nextCovers);
+      }
       final nextSaved = plan.savedResult(
         previousSaved,
         replace: replace,
@@ -356,18 +461,30 @@ class BackupRestoreService {
           'state': 'pending',
           'savedBefore': previousSaved.encode(),
           'memoryBefore': previousMemory.encode(),
+          if (previousCovers != null)
+            'coversBefore': {
+              for (final entry in previousCovers.entries)
+                entry.key: base64Encode(entry.value),
+            },
         }),
       );
       pending = true;
       await saved.replaceData(nextSaved);
       await memory.replaceLibraryData(nextMemory);
       await applyPreferences?.call();
+      if (nextCovers != null) {
+        coversTouched = true;
+        await covers!.replaceSnapshot(nextCovers);
+      }
       await journal.write(_complete);
     } catch (_) {
       if (pending && previousSaved != null && previousMemory != null) {
         try {
           await saved.replaceData(previousSaved);
           await memory.replaceLibraryData(previousMemory);
+          if (coversTouched && previousCovers != null) {
+            await covers!.replaceSnapshot(previousCovers);
+          }
           await applyPreferences?.call();
           await journal.write(_complete);
         } catch (_) {
@@ -390,6 +507,7 @@ class BackupRestoreService {
         journal: journal,
         saved: saved.storage,
         memory: memory.storage,
+        covers: covers,
       );
       await saved.load();
       await memory.load();

@@ -1,6 +1,53 @@
 import 'audio_track.dart';
 import 'library_preferences.dart';
 
+/// Returns a new browse order. Missing values sort last; ties keep input order.
+List<AudioTrack> sortLibraryTracks(
+  Iterable<AudioTrack> tracks,
+  TrackSort sort, {
+  int Function(AudioTrack, AudioTrack)? primary,
+}) {
+  final indexed = tracks.indexed.toList();
+  if (sort == TrackSort.original) {
+    return indexed.map((entry) => entry.$2).toList();
+  }
+  String text(AudioTrack track) => switch (sort) {
+    TrackSort.title => track.displayTitle,
+    TrackSort.artist => track.artist,
+    TrackSort.album => track.album,
+    TrackSort.genre => track.genre,
+    _ => '',
+  };
+  int number(AudioTrack track) => switch (sort) {
+    TrackSort.year => metadataYear(track.year),
+    TrackSort.duration => track.durationMs > 0 ? track.durationMs : 0,
+    _ => 0,
+  };
+  indexed.sort((a, b) {
+    final priority = primary?.call(a.$2, b.$2) ?? 0;
+    if (priority != 0) return priority;
+    int comparison;
+    if (sort == TrackSort.year || sort == TrackSort.duration) {
+      final left = number(a.$2), right = number(b.$2);
+      comparison = left == 0 && right != 0
+          ? 1
+          : right == 0 && left != 0
+          ? -1
+          : left.compareTo(right);
+    } else {
+      final left = text(a.$2).trim().toLowerCase(),
+          right = text(b.$2).trim().toLowerCase();
+      comparison = left.isEmpty && right.isNotEmpty
+          ? 1
+          : right.isEmpty && left.isNotEmpty
+          ? -1
+          : left.compareTo(right);
+    }
+    return comparison != 0 ? comparison : a.$1.compareTo(b.$1);
+  });
+  return indexed.map((entry) => entry.$2).toList();
+}
+
 List<MapEntry<String, List<AudioTrack>>> orderedLibraryGroups(
   Map<String, List<AudioTrack>> groups,
   GroupSort sort,

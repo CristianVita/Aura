@@ -43,12 +43,14 @@ class _BackupScreenState extends State<BackupScreen> {
     try {
       await widget.saved.flush();
       await widget.memory.flush();
+      final covers = await widget.service.covers?.snapshot();
       final now = DateTime.now();
       final bytes = AuraBackup.capture(
         widget.saved.data,
         widget.memory.data,
         widget.tracks,
         now: now,
+        covers: covers,
       ).encode();
       final stamp =
           '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}_${now.hour.toString().padLeft(2, '0')}${now.minute.toString().padLeft(2, '0')}';
@@ -95,14 +97,7 @@ class _BackupScreenState extends State<BackupScreen> {
         title: Text(strings.uiRestoreBackup),
         content: SingleChildScrollView(
           child: Text(
-            strings.restoreConfirmation(
-              _replace
-                  ? strings.uiYourCurrentFavoritesRatingsPlaylistsAndHistory
-                  : strings.uiDataWillBeMergedExistingRatingsAnd,
-              _settings
-                  ? strings.uiSettingsWillAlsoBeImported
-                  : strings.uiYourCurrentSettingsWillBeKept,
-            ),
+            '${strings.restoreConfirmation(_replace ? strings.uiYourCurrentFavoritesRatingsPlaylistsAndHistory : strings.uiDataWillBeMergedExistingRatingsAnd, _settings ? strings.uiSettingsWillAlsoBeImported : strings.uiYourCurrentSettingsWillBeKept)}${plan.source.covers == null ? '' : '\n\n${_replace ? strings.backupCoversReplace : strings.backupCoversMerge}'}',
           ),
         ),
         actions: [
@@ -188,6 +183,11 @@ class _BackupScreenState extends State<BackupScreen> {
                     context.appStrings.uiKeepWhatYouHaveOrganized,
                     style: TextStyle(fontSize: 23, fontWeight: FontWeight.w600),
                   ),
+                  if (widget.service.covers != null) ...[
+                    const SizedBox(height: 8),
+                    Text(context.appStrings.backupCoversIncluded),
+                    Text(context.appStrings.backupCoversLimit),
+                  ],
                   const SizedBox(height: 10),
                   Text(
                     context
@@ -242,6 +242,12 @@ class _BackupScreenState extends State<BackupScreen> {
                                 plan.source.memory.history.length,
                               ),
                             ),
+                            if (plan.source.covers != null) ...[
+                              const SizedBox(height: 8),
+                              Text(
+                                '${context.appStrings.backupCoversLabel}: ${context.number(plan.source.covers!.length)}',
+                              ),
+                            ],
                             const SizedBox(height: 12),
                             Text(
                               context.appStrings.backupMatches(

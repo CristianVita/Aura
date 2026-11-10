@@ -494,17 +494,19 @@ class AuraMediaHandler extends BaseAudioHandler {
     final tracks = player.sequence
         .map(audioTrackOf)
         .whereType<AudioTrack>()
-        .map((t) => t.toMediaItem())
+        .map((t) => runtime.store.data.displayTrack(t).toMediaItem())
         .toList();
     if (queue.value.length != tracks.length ||
         !listEquals(
-          queue.value.map((t) => t.id).toList(),
-          tracks.map((t) => t.id).toList(),
+          queue.value.map((t) => (t.id, t.title)).toList(),
+          tracks.map((t) => (t.id, t.title)).toList(),
         )) {
       queue.add(tracks);
     }
-    final current = audioTrackOf(player.sequenceState.currentSource)
-        ?.toMediaItem();
+    final currentTrack = audioTrackOf(player.sequenceState.currentSource);
+    final current = currentTrack == null
+        ? null
+        : runtime.store.data.displayTrack(currentTrack).toMediaItem();
     if (current != null) {
       mediaItem.add(
         current.copyWith(duration: player.duration ?? current.duration),

@@ -105,8 +105,8 @@ class MainActivity : AudioServiceActivity() {
                     }
                     "scanAudio" -> requestAudioAccessAndScan(result)
                     "loadLibrary" -> loadLibrary(result)
-                    "loadSavedMusic", "loadPlaybackMemory", "loadServerCache", "loadBackupJournal" -> {
-                        val fileName = if (call.method == "loadBackupJournal") "backup_restore_journal.json" else if (call.method == "loadServerCache") "server_library.json" else if (call.method == "loadSavedMusic") "saved_music.json" else "playback_memory.json"
+                    "loadSavedMusic", "loadPlaybackMemory", "loadServerCache", "loadBackupJournal", "loadRenameTitleJournal" -> {
+                        val fileName = if (call.method == "loadRenameTitleJournal") "rename_title_journal.json" else if (call.method == "loadBackupJournal") "backup_restore_journal.json" else if (call.method == "loadServerCache") "server_library.json" else if (call.method == "loadSavedMusic") "saved_music.json" else "playback_memory.json"
                         queryExecutor.execute {
                             try {
                                 val file = AtomicFile(File(filesDir, fileName))
@@ -119,8 +119,8 @@ class MainActivity : AudioServiceActivity() {
                             }
                         }
                     }
-                    "saveSavedMusic", "savePlaybackMemory", "saveServerCache", "saveBackupJournal" -> {
-                        val fileName = if (call.method == "saveBackupJournal") "backup_restore_journal.json" else if (call.method == "saveServerCache") "server_library.json" else if (call.method == "saveSavedMusic") "saved_music.json" else "playback_memory.json"
+                    "saveSavedMusic", "savePlaybackMemory", "saveServerCache", "saveBackupJournal", "saveRenameTitleJournal" -> {
+                        val fileName = if (call.method == "saveRenameTitleJournal") "rename_title_journal.json" else if (call.method == "saveBackupJournal") "backup_restore_journal.json" else if (call.method == "saveServerCache") "server_library.json" else if (call.method == "saveSavedMusic") "saved_music.json" else "playback_memory.json"
                         val json = call.argument<String>("json")
                         if (json == null) {
                             result.error("invalid_data", "Missing saved music", null)
@@ -239,6 +239,7 @@ class MainActivity : AudioServiceActivity() {
                             "artist" to row.getString("artist"),
                             "album" to row.getString("album"),
                             "genre" to row.optString("genre", ""),
+                            "year" to row.optInt("year", 0).takeIf { it in 1..9999 }.let { it ?: 0 },
                             "durationMs" to row.getLong("durationMs"),
                             "uri" to row.getString("uri"),
                             "folder" to row.getString("folder"),
@@ -448,6 +449,7 @@ class MainActivity : AudioServiceActivity() {
             MediaStore.Audio.Media.TITLE,
             MediaStore.Audio.Media.ARTIST,
             MediaStore.Audio.Media.ALBUM,
+            MediaStore.Audio.AudioColumns.YEAR,
             MediaStore.Audio.Media.DURATION,
             MediaStore.MediaColumns.DATE_MODIFIED,
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
@@ -464,6 +466,7 @@ class MainActivity : AudioServiceActivity() {
             val titleColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE)
             val artistColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST)
             val albumColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM)
+            val yearColumn = cursor.getColumnIndex(MediaStore.Audio.AudioColumns.YEAR)
             val durationColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION)
             val modifiedColumn = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATE_MODIFIED)
             val folderColumn = cursor.getColumnIndexOrThrow(
@@ -499,6 +502,7 @@ class MainActivity : AudioServiceActivity() {
                     "artist" to artist,
                     "album" to album,
                     "genre" to if (genreColumn >= 0) cursor.getString(genreColumn).orEmpty() else "",
+                    "year" to if (yearColumn >= 0) cursor.getInt(yearColumn).takeIf { it in 1..9999 }.let { it ?: 0 } else 0,
                     "durationMs" to duration,
                     "uri" to contentUri,
                     "folder" to folder,

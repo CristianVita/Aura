@@ -16,6 +16,8 @@ enum SearchField { title, artist, album }
 
 enum PlaylistSort { original, name, nameDescending, trackCount }
 
+enum TrackSort { original, title, year, artist, album, genre, duration }
+
 class GroupPagePreferences {
   const GroupPagePreferences({
     this.layout = GroupLayout.list,
@@ -72,6 +74,7 @@ class LibraryPagePreferences {
     this.searchFavoritesOnly = false,
     this.playlistSort = PlaylistSort.original,
     this.playlistShowCount = true,
+    this.trackSort = TrackSort.original,
   }) : order = List.unmodifiable(order),
        hidden = Set.unmodifiable(hidden),
        searchFields = Set.unmodifiable(searchFields) {
@@ -96,6 +99,7 @@ class LibraryPagePreferences {
   final bool searchFavoritesOnly;
   final PlaylistSort playlistSort;
   final bool playlistShowCount;
+  final TrackSort trackSort;
   List<LibrarySection> get visible => order
       .where((section) => !hidden.contains(section))
       .toList(growable: false);
@@ -112,6 +116,7 @@ class LibraryPagePreferences {
     bool? searchFavoritesOnly,
     PlaylistSort? playlistSort,
     bool? playlistShowCount,
+    TrackSort? trackSort,
   }) => LibraryPagePreferences(
     order: order ?? this.order,
     hidden: hidden ?? this.hidden,
@@ -125,6 +130,7 @@ class LibraryPagePreferences {
     searchFavoritesOnly: searchFavoritesOnly ?? this.searchFavoritesOnly,
     playlistSort: playlistSort ?? this.playlistSort,
     playlistShowCount: playlistShowCount ?? this.playlistShowCount,
+    trackSort: trackSort ?? this.trackSort,
   );
   LibraryPagePreferences move(int oldIndex, int newIndex) {
     if (oldIndex < 0 ||
@@ -151,6 +157,7 @@ class LibraryPagePreferences {
     'searchFavoritesOnly': searchFavoritesOnly,
     'playlistSort': playlistSort.name,
     'playlistShowCount': playlistShowCount,
+    'trackSort': trackSort.name,
   };
   factory LibraryPagePreferences.fromJson(Map<String, dynamic> json) {
     try {
@@ -182,6 +189,9 @@ class LibraryPagePreferences {
           json['playlistSort'] as String? ?? 'original',
         ),
         playlistShowCount: json['playlistShowCount'] as bool? ?? true,
+        trackSort: TrackSort.values.byName(
+          json['trackSort'] as String? ?? 'original',
+        ),
         albums: GroupPagePreferences.fromJson(
           json['albums'] as Map<String, dynamic>? ?? {},
         ),

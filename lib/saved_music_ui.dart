@@ -4,6 +4,8 @@ import 'app_theme.dart';
 import 'package:flutter/material.dart';
 
 import 'audio_track.dart';
+import 'audio_library.dart';
+import 'offline_album_ui.dart';
 import 'saved_music.dart';
 import 'library_preferences.dart';
 import 'track_artwork.dart';
@@ -794,6 +796,21 @@ class _SavedMusicScreenState extends State<SavedMusicScreen> {
                 ],
               ),
             ),
+            if (selected != null)
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 8,
+                ),
+                child: Align(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: OfflineAlbumAction(
+                    store: AudioLibrary.offline,
+                    tracks: tracks,
+                    group: OfflineDownloadGroup.playlist,
+                  ),
+                ),
+              ),
             if (missing > 0)
               Padding(
                 padding: const EdgeInsets.all(16),
@@ -833,6 +850,7 @@ class _SavedMusicScreenState extends State<SavedMusicScreen> {
                           leading: TrackArtwork(
                             uri: track.artworkUri.toString(),
                             cacheKey: track.artworkKey,
+                            album: track.artworkAlbum,
                             size: 42,
                           ),
                           title: Text(

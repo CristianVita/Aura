@@ -60,6 +60,29 @@ void main() {
     },
   );
 
+  test(
+    'Display title survives queue metadata without altering original title',
+    () {
+      const track = AudioTrack(
+        id: '1',
+        title: 'Original',
+        artist: '',
+        album: '',
+        durationMs: 0,
+        uri: 'content://media/external/audio/media/1',
+      );
+      final renamed = track.withDisplayTitle('Chosen name');
+      final source = AudioSource.uri(
+        Uri.parse(track.uri),
+        tag: renamed.toMediaItem(),
+      );
+      final restored = audioTrackOf(source as IndexedAudioSource)!;
+      expect(restored.title, 'Original');
+      expect(restored.displayTitle, 'Chosen name');
+      expect(restored.toMediaItem().title, 'Chosen name');
+    },
+  );
+
   test('An empty queue has no current track', () {
     expect(audioTrackOf(null), isNull);
   });

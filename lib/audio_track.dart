@@ -3,6 +3,11 @@ import 'app_language.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:audio_service/audio_service.dart';
 
+int metadataYear(Object? value) {
+  final year = value is int ? value : int.tryParse(value?.toString() ?? '');
+  return year != null && year > 0 && year <= 9999 ? year : 0;
+}
+
 class AudioTrack {
   const AudioTrack({
     required this.id,
@@ -15,6 +20,9 @@ class AudioTrack {
     this.modifiedSeconds = 0,
     this.coverId = '',
     this.genre = '',
+    this.year = 0,
+    this.displayTitleOverride,
+    this.artworkAlbumOverride,
   });
 
   final String id;
@@ -27,8 +35,46 @@ class AudioTrack {
   final int modifiedSeconds;
   final String coverId;
   final String genre;
-  String get displayTitle =>
-      title.trim().isEmpty ? AppText.current.uiUntitledTrack : title;
+  final int year;
+  final String? displayTitleOverride;
+  final String? artworkAlbumOverride;
+  String get artworkAlbum => artworkAlbumOverride ?? album;
+  String get displayTitle => displayTitleOverride?.trim().isNotEmpty == true
+      ? displayTitleOverride!
+      : title.trim().isEmpty
+      ? AppText.current.uiUntitledTrack
+      : title;
+
+  AudioTrack withDisplayTitle(String? value) => AudioTrack(
+    id: id,
+    title: title,
+    artist: artist,
+    album: album,
+    durationMs: durationMs,
+    uri: uri,
+    folder: folder,
+    modifiedSeconds: modifiedSeconds,
+    coverId: coverId,
+    genre: genre,
+    year: year,
+    displayTitleOverride: value,
+    artworkAlbumOverride: artworkAlbumOverride,
+  );
+  AudioTrack withArtworkAlbum(String? value) => AudioTrack(
+    id: id,
+    title: title,
+    artist: artist,
+    album: album,
+    durationMs: durationMs,
+    uri: uri,
+    folder: folder,
+    modifiedSeconds: modifiedSeconds,
+    coverId: coverId,
+    genre: genre,
+    year: year,
+    displayTitleOverride: displayTitleOverride,
+    artworkAlbumOverride: value,
+  );
   String get displayArtist =>
       artist.trim().isEmpty ? AppText.current.uiUnknownArtist : artist;
   String get artworkKey =>
@@ -56,11 +102,14 @@ class AudioTrack {
     extras: {
       'trackId': id,
       'originalTitle': title,
+      'displayTitleOverride': displayTitleOverride,
+      'artworkAlbumOverride': artworkAlbumOverride,
       'originalArtist': artist,
       'folder': folder,
       'modifiedSeconds': modifiedSeconds,
       'coverId': coverId,
       'genre': genre,
+      'year': year,
     },
   );
 
@@ -76,6 +125,7 @@ class AudioTrack {
       modifiedSeconds: (map['modifiedSeconds'] as num?)?.toInt() ?? 0,
       coverId: map['coverId'] as String? ?? '',
       genre: map['genre'] as String? ?? '',
+      year: metadataYear(map['year']),
     );
   }
 }
@@ -96,5 +146,8 @@ AudioTrack? audioTrackOf(IndexedAudioSource? source) {
     modifiedSeconds: (item.extras?['modifiedSeconds'] as num?)?.toInt() ?? 0,
     coverId: item.extras?['coverId'] as String? ?? '',
     genre: item.extras?['genre'] as String? ?? '',
+    year: metadataYear(item.extras?['year']),
+    displayTitleOverride: item.extras?['displayTitleOverride'] as String?,
+    artworkAlbumOverride: item.extras?['artworkAlbumOverride'] as String?,
   );
 }

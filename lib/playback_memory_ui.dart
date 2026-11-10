@@ -90,6 +90,7 @@ class ListeningHistoryScreen extends StatelessWidget {
                       leading: TrackArtwork(
                         uri: track.artworkUri.toString(),
                         cacheKey: track.artworkKey,
+                        album: track.artworkAlbum,
                         size: 46,
                       ),
                       title: Text(

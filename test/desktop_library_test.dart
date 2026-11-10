@@ -44,6 +44,34 @@ void main() {
   });
   tearDown(() async => temporary.delete(recursive: true));
 
+  test('desktop scanner reads year tags without modifying the file', () async {
+    final file = File(p.join(music.path, 'Sample.wav'));
+    final original = await file.readAsBytes();
+    final info = ByteData(30);
+    void text(int offset, String value) {
+      for (var i = 0; i < value.length; i++) {
+        info.setUint8(offset + i, value.codeUnitAt(i));
+      }
+    }
+
+    text(0, 'LIST');
+    info.setUint32(4, 22, Endian.little);
+    text(8, 'INFO');
+    text(12, 'ICRD');
+    info.setUint32(16, 10, Endian.little);
+    text(20, '2001-01-01');
+    final updated = Uint8List.fromList([
+      ...original,
+      ...info.buffer.asUint8List(),
+    ]);
+    ByteData.sublistView(updated)
+        .setUint32(4, updated.length - 8, Endian.little);
+    await file.writeAsBytes(updated);
+    final rows = scanDesktopFolders([music.path]);
+    expect(rows.single['year'], 2001);
+    expect(await file.readAsBytes(), updated);
+  });
+
   test('rename preserves audio bytes, references, queue and rejects existing names', () async {
     final library = DesktopLibrary(
       storageDirectory: storage,
@@ -101,6 +129,7 @@ void main() {
     );
     expect(loadedSaved.favorites, {newUri});
     expect(loadedSaved.ratings[newUri], 4.5);
+    expect(loadedSaved.trackTitles[newUri], 'Renamed');
     expect(loadedSaved.playlists.single.tracks, [newUri]);
     expect(loadedMemory.history.single.uri, newUri);
     expect(loadedMemory.session!.uris, [newUri, newUri]);

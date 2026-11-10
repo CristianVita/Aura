@@ -51,6 +51,8 @@ class SettingsScreen extends StatelessWidget {
     required this.filtersReady,
     required this.onHistory,
     this.onBackup,
+    this.onGenerated,
+    this.onOfflineFiles,
     required this.onManageSources,
     required this.onScan,
     required this.isScanning,
@@ -58,7 +60,7 @@ class SettingsScreen extends StatelessWidget {
   final String sourceSummary;
   final PlaybackSettingsController controls;
   final VoidCallback onFilters, onHistory, onManageSources, onScan;
-  final VoidCallback? onBackup;
+  final VoidCallback? onBackup, onOfflineFiles, onGenerated;
   final bool filtersReady, isScanning;
   @override
   Widget build(BuildContext context) => ListView(
@@ -388,34 +390,51 @@ class SettingsScreen extends StatelessWidget {
                     _SettingsRow(
                       icon: Icons.download_outlined,
                       title: context.appStrings.uiGeneral,
-                      onTap: null,
-                      pending: true,
+                      onTap: () => Navigator.push<void>(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => DownloadNetworkSettings(
+                            policy: AudioLibrary.downloadNetwork,
+                          ),
+                        ),
+                      ),
                     ),
                     _SettingsRow(
                       icon: Icons.music_note_outlined,
                       title: context.appStrings.uiMedia,
-                      onTap: null,
-                      pending: true,
+                      onTap: () => Navigator.push<void>(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => OfflineMediaSettings(
+                            store: AudioLibrary.offline,
+                            cache: playbackCache,
+                            onOpenDownloads: onOfflineFiles,
+                          ),
+                        ),
+                      ),
                     ),
                     _SettingsRow(
                       icon: Icons.play_arrow_outlined,
                       title: context.appStrings.uiOfflineServerPlayback,
-                      onTap: null,
-                      pending: true,
+                      onTap: onOfflineFiles,
+                      pending: onOfflineFiles == null,
                     ),
                     _SettingsRow(
                       icon: Icons.image_outlined,
                       title: context.appStrings.uiImages,
-                      onTap: null,
-                      pending: true,
+                      onTap: () => Navigator.push<void>(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) =>
+                              ArtworkCacheSettings(cache: artworkMemoryCache),
+                        ),
+                      ),
                     ),
                   ],
                 ),
                 const SizedBox(height: 24),
                 Text(
-                  context
-                      .appStrings
-                      .uiLocalTracksWorkWithoutInternetServerDownloads,
+                  context.appStrings.offlineSettingsHelp,
                   style: TextStyle(color: context.auraMuted, height: 1.5),
                 ),
               ],
@@ -491,14 +510,14 @@ class SettingsScreen extends StatelessWidget {
           _SettingsRow(
             icon: Icons.download_done_outlined,
             title: context.appStrings.uiOfflineFiles,
-            onTap: null,
-            pending: true,
+            onTap: onOfflineFiles,
+            pending: onOfflineFiles == null,
           ),
           _SettingsRow(
             icon: Icons.folder_copy_outlined,
             title: context.appStrings.uiGeneratedFiles,
-            onTap: null,
-            pending: true,
+            onTap: onGenerated,
+            pending: onGenerated == null,
           ),
           _SettingsRow(
             icon: Icons.settings_backup_restore,

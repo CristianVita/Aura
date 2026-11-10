@@ -1,4 +1,5 @@
 import 'app_language.dart';
+import 'audio_track.dart';
 
 import 'dart:async';
 import 'dart:convert';
@@ -194,6 +195,9 @@ class NavidromeClient {
             'artist': song['artist'] as String? ?? '',
             'album': song['album'] as String? ?? album['name'] as String? ?? '',
             'genre': song['genre'] as String? ?? '',
+            'year': metadataYear(song['year']) != 0
+                ? metadataYear(song['year'])
+                : metadataYear(album['year']),
             'coverId':
                 song['coverArt'] as String? ??
                 album['coverArt'] as String? ??
@@ -347,6 +351,25 @@ class NavidromeRepository {
       return client.stream(uri.pathSegments.last);
     } finally {
       client.close();
+    }
+  }
+
+  Future<({http.StreamedResponse response, void Function() close})>
+  openDownload(Uri uri) async {
+    final client = clientFactory(await _server(uri));
+    try {
+      final request = http.Request('GET', client.stream(uri.pathSegments.last))
+        ..followRedirects = false;
+      final response = await client._client
+          .send(request)
+          .timeout(const Duration(seconds: 20));
+      if (response.statusCode != 200) {
+        throw const NavidromeException('Download failed');
+      }
+      return (response: response, close: client.close);
+    } catch (_) {
+      client.close();
+      throw const NavidromeException('Download failed');
     }
   }
 

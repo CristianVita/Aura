@@ -41,11 +41,26 @@ class MusicPlaylist {
   Map<String, Object> toJson() => {'id': id, 'name': name, 'tracks': tracks};
 }
 
+class MusicAlbum extends MusicPlaylist {
+  MusicAlbum({required super.id, required super.name, super.tracks});
+
+  @override
+  MusicAlbum copy({String? name, Iterable<String>? tracks}) => MusicAlbum(
+    id: id,
+    name: name ?? this.name,
+    tracks: tracks ?? this.tracks,
+  );
+
+  String get coverKey => 'aura:custom-album:$id';
+}
+
 class SavedMusicData {
   SavedMusicData({
     Iterable<String> favorites = const [],
     Iterable<MusicPlaylist> playlists = const [],
+    Iterable<MusicAlbum> albums = const [],
     Map<String, num> ratings = const {},
+    Map<String, String> trackTitles = const {},
     this.minimumRating = 0,
     this.ratingOrder = RatingOrder.original,
     this.starSize = RatingStarSize.medium,
@@ -59,14 +74,18 @@ class SavedMusicData {
     LibraryPagePreferences? libraryPages,
   }) : libraryPages = libraryPages ?? LibraryPagePreferences(),
        navigation = navigation ?? NavigationPreferences(),
+       trackTitles = Map.unmodifiable(trackTitles),
        favorites = Set.unmodifiable(favorites),
        playlists = List.unmodifiable(playlists),
+       albums = List.unmodifiable(albums),
        ratings = Map.unmodifiable(
          ratings.map((key, value) => MapEntry(key, value.toDouble())),
        );
   final Set<String> favorites;
   final List<MusicPlaylist> playlists;
+  final List<MusicAlbum> albums;
   final Map<String, double> ratings;
+  final Map<String, String> trackTitles;
   final double minimumRating;
   final RatingOrder ratingOrder;
   final RatingStarSize starSize;
@@ -80,11 +99,15 @@ class SavedMusicData {
   final NavigationPreferences navigation;
   final LibraryPagePreferences libraryPages;
   double ratingOf(String uri) => ratings[uri] ?? 0;
+  AudioTrack displayTrack(AudioTrack track) =>
+      track.withDisplayTitle(trackTitles[track.uri]);
 
   SavedMusicData copy({
     Iterable<String>? favorites,
     Iterable<MusicPlaylist>? playlists,
+    Iterable<MusicAlbum>? albums,
     Map<String, num>? ratings,
+    Map<String, String>? trackTitles,
     double? minimumRating,
     RatingOrder? ratingOrder,
     RatingStarSize? starSize,
@@ -99,7 +122,9 @@ class SavedMusicData {
   }) => SavedMusicData(
     favorites: favorites ?? this.favorites,
     playlists: playlists ?? this.playlists,
+    albums: albums ?? this.albums,
     ratings: ratings ?? this.ratings,
+    trackTitles: trackTitles ?? this.trackTitles,
     minimumRating: minimumRating ?? this.minimumRating,
     ratingOrder: ratingOrder ?? this.ratingOrder,
     starSize: starSize ?? this.starSize,
@@ -138,7 +163,9 @@ class SavedMusicData {
     'version': 1,
     'favorites': favorites.toList(),
     'playlists': playlists.map((p) => p.toJson()).toList(),
+    'albums': albums.map((p) => p.toJson()).toList(),
     'ratings': ratings,
+    'trackTitles': trackTitles,
     'minimumRating': minimumRating,
     'ratingOrder': ratingOrder.name,
     'starSize': starSize.name,
@@ -173,6 +200,25 @@ class SavedMusicData {
     if (playlists.map((p) => p.id).toSet().length != playlists.length) {
       throw const FormatException('Duplicate playlist IDs');
     }
+    final albums = (root['albums'] as List? ?? []).map((row) {
+      final p = row as Map<String, dynamic>;
+      final name = p['name'] as String;
+      final id = p['id'] as String;
+      final tracks = (p['tracks'] as List).cast<String>();
+      if (name.trim().isEmpty ||
+          name.length > 80 ||
+          id.isEmpty ||
+          id.length > 200 ||
+          tracks.length > 10000 ||
+          tracks.any((uri) => uri.isEmpty || uri.length > 8192)) {
+        throw const FormatException('Invalid album');
+      }
+      return MusicAlbum(id: id, name: name, tracks: tracks);
+    }).toList();
+    if (albums.length > 1000 ||
+        albums.map((p) => p.id).toSet().length != albums.length) {
+      throw const FormatException('Invalid album IDs');
+    }
     final ratings = (root['ratings'] as Map<String, dynamic>? ?? {}).map((
       uri,
       value,
@@ -182,6 +228,20 @@ class SavedMusicData {
       }
       return MapEntry(uri, value.toDouble());
     });
+    final trackTitles = (root['trackTitles'] as Map<String, dynamic>? ?? {})
+        .map((uri, value) {
+          if (uri.isEmpty ||
+              uri.length > 8192 ||
+              value is! String ||
+              value.trim().isEmpty ||
+              value.length > 255) {
+            throw const FormatException('Invalid track title');
+          }
+          return MapEntry(uri, value);
+        });
+    if (trackTitles.length > 50000) {
+      throw const FormatException('Too many track titles');
+    }
     final minimum = root['minimumRating'] ?? 0;
     if (minimum is! num || !_validRating(minimum)) {
       throw const FormatException('Invalid rating filter');
@@ -220,7 +280,9 @@ class SavedMusicData {
       playbackVolume: volume.toDouble(),
       favorites: favorites,
       playlists: playlists,
+      albums: albums,
       ratings: ratings,
+      trackTitles: trackTitles,
       minimumRating: minimum.toDouble(),
       ratingOrder: RatingOrder.values.byName(
         root['ratingOrder'] as String? ?? 'original',
@@ -302,6 +364,16 @@ class SavedMusicStore extends ChangeNotifier {
       _update((_) => SavedMusicData.decode(next.encode()));
 
   Future<void> flush() => _pending;
+
+  Future<void> setTrackTitle(String uri, String title) => _update((data) {
+    if (uri.isEmpty ||
+        uri.length > 8192 ||
+        title.trim().isEmpty ||
+        title.length > 255) {
+      throw ArgumentError('Invalid track title');
+    }
+    return data.copy(trackTitles: {...data.trackTitles, uri: title.trim()});
+  });
 
   Future<void> toggleFavorite(String uri) => _update((data) {
     final favorites = {...data.favorites};
@@ -385,6 +457,56 @@ class SavedMusicStore extends ChangeNotifier {
     }
     return trimmed;
   }
+
+  List<String> _validAlbumTracks(Iterable<String> tracks) {
+    final result = tracks.toSet().toList();
+    if (result.length > 10000 ||
+        result.any((uri) => uri.isEmpty || uri.length > 8192)) {
+      throw ArgumentError('Invalid album tracks');
+    }
+    return result;
+  }
+
+  Future<String> createAlbum(
+    String name, {
+    Iterable<String> tracks = const [],
+  }) async {
+    final clean = _validName(name);
+    final uris = _validAlbumTracks(tracks);
+    final id = '${DateTime.now().microsecondsSinceEpoch}-${_counter++}';
+    await _update((data) {
+      if (data.albums.length >= 1000) throw StateError('Too many albums');
+      return data.copy(
+        albums: [
+          ...data.albums,
+          MusicAlbum(id: id, name: clean, tracks: uris),
+        ],
+      );
+    });
+    return id;
+  }
+
+  Future<void> updateAlbum(
+    String id, {
+    String? name,
+    Iterable<String>? tracks,
+  }) => _update((data) {
+    final clean = name == null ? null : _validName(name);
+    final uris = tracks == null ? null : _validAlbumTracks(tracks);
+    if (!data.albums.any((album) => album.id == id)) {
+      throw StateError('Album removed');
+    }
+    return data.copy(
+      albums: data.albums.map(
+        (album) =>
+            album.id == id ? album.copy(name: clean, tracks: uris) : album,
+      ),
+    );
+  });
+
+  Future<void> deleteAlbum(String id) => _update(
+    (data) => data.copy(albums: data.albums.where((album) => album.id != id)),
+  );
 
   Future<String> createPlaylist(
     String name, {

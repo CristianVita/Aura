@@ -6,6 +6,7 @@ enum _AudioFeaturePage {
   commands,
   headset,
   notification,
+  focus,
 }
 
 class _AudioFeatureSettings extends StatefulWidget {
@@ -50,11 +51,34 @@ class _AudioFeatureSettingsState extends State<_AudioFeatureSettings> {
           _AudioFeaturePage.headset => context.appStrings.uiHeadsetButtons,
           _AudioFeaturePage.notification =>
             context.appStrings.uiNotificationButtons,
+          _AudioFeaturePage.focus => context.appStrings.uiAudioFocus,
         }),
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
+          if (widget.page == _AudioFeaturePage.focus)
+            _SettingsGroup(
+              title: context.appStrings.uiAudioFocus,
+              children: [
+                SwitchListTile(
+                  title: Text(context.appStrings.focusPauseForInterruption),
+                  subtitle: Text(context.appStrings.focusPauseDescription),
+                  value: features.pauseWhenDucked,
+                  onChanged:
+                      enabled &&
+                          !kIsWeb &&
+                          defaultTargetPlatform == TargetPlatform.android
+                      ? (value) => _save(features.copy(pauseWhenDucked: value))
+                      : null,
+                ),
+                if (kIsWeb || defaultTargetPlatform != TargetPlatform.android)
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Text(context.appStrings.focusAndroidOnly),
+                  ),
+              ],
+            ),
           if (widget.page == _AudioFeaturePage.transitions) ...[
             _SettingsGroup(
               title: context.appStrings.uiCrossfade,

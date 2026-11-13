@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 import 'app_strings.dart';
 import 'audio_track.dart';
 import 'offline_storage.dart';
 import 'download_network_policy.dart';
+import 'audio_library.dart';
+import 'background_downloads_ui.dart';
 
 enum OfflineDownloadGroup { album, playlist, artist, genre }
 
@@ -58,6 +61,17 @@ class OfflineAlbumAction extends StatelessWidget {
           store: store,
           tracks: unique.values.toList(),
           group: group,
+          onBackground:
+              !kIsWeb &&
+                  defaultTargetPlatform == TargetPlatform.android &&
+                  identical(store, AudioLibrary.offline)
+              ? () {
+                  Navigator.of(context).pop();
+                  if (context.mounted) {
+                    openBackgroundDownloads(context, unique.values.toList());
+                  }
+                }
+              : null,
         ),
       ),
     );
@@ -69,10 +83,12 @@ class _AlbumDownloadDialog extends StatefulWidget {
     required this.store,
     required this.tracks,
     required this.group,
+    this.onBackground,
   });
   final OfflineStorage store;
   final List<AudioTrack> tracks;
   final OfflineDownloadGroup group;
+  final VoidCallback? onBackground;
   @override
   State<_AlbumDownloadDialog> createState() => _AlbumDownloadDialogState();
 }
@@ -118,6 +134,10 @@ class _AlbumDownloadDialogState extends State<_AlbumDownloadDialog> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(_downloadNotice(context, widget.group)),
+              if (widget.onBackground != null) ...[
+                const SizedBox(height: 12),
+                Text(s.backgroundNotice),
+              ],
               const SizedBox(height: 12),
               Text('${s.offlineAlbumTracks}: ${widget.tracks.length}'),
               if (started) ...[
@@ -150,6 +170,12 @@ class _AlbumDownloadDialogState extends State<_AlbumDownloadDialog> {
                 : () => Navigator.pop(context),
             child: Text(running ? s.uiCancel : s.uiClose),
           ),
+          if (!started && widget.onBackground != null)
+            TextButton(
+              key: const ValueKey('offline-background-action'),
+              onPressed: widget.onBackground,
+              child: Text(s.backgroundButton),
+            ),
           if (!started)
             FilledButton(
               key: const ValueKey('offline-album-confirm'),

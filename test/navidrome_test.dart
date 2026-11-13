@@ -87,6 +87,47 @@ http.Client libraryClient({bool fail = false, List<Uri>? requests}) =>
     });
 
 void main() {
+  test(
+    'stream quality requests preserve original defaults and validate limits',
+    () {
+      final client = NavidromeClient(
+        server,
+        client: MockClient((_) async => http.Response('', 200)),
+      );
+      try {
+        final original = client.stream('track/id').queryParameters;
+        expect(original['id'], 'track/id');
+        expect(original['format'], 'raw');
+        expect(original.containsKey('maxBitRate'), isFalse);
+
+        final explicitOriginal = client
+            .stream(
+              'track/id',
+              quality: const NavidromeStreamQuality.original(),
+            )
+            .queryParameters;
+        expect(explicitOriginal['format'], 'raw');
+        expect(explicitOriginal.containsKey('maxBitRate'), isFalse);
+
+        final limited = client
+            .stream('track/id', quality: NavidromeStreamQuality.limited(128))
+            .queryParameters;
+        expect(limited['id'], 'track/id');
+        expect(limited['maxBitRate'], '128');
+        expect(limited.containsKey('format'), isFalse);
+        expect(limited.containsKey('estimateContentLength'), isFalse);
+        expect(limited['p'], isNull);
+        expect(limited['t'], isNotEmpty);
+        expect(limited['s'], isNotEmpty);
+
+        expect(() => NavidromeStreamQuality.limited(0), throwsArgumentError);
+        expect(() => NavidromeStreamQuality.limited(-1), throwsArgumentError);
+      } finally {
+        client.close();
+      }
+    },
+  );
+
   test('offline download uses authenticated request without redirects and closes its client', () async {
     var requests = 0;
     final mock = MockClient((request) async {
@@ -95,6 +136,7 @@ void main() {
       expect(request.url.path, '/test/rest/stream.view');
       expect(request.url.queryParameters['id'], 'song');
       expect(request.url.queryParameters['format'], 'raw');
+      expect(request.url.queryParameters.containsKey('maxBitRate'), isFalse);
       expect(request.url.queryParameters['p'], isNull);
       expect(request.url.queryParameters['t'], isNotEmpty);
       return http.Response.bytes(

@@ -63,6 +63,7 @@ class MainActivity : AudioServiceActivity() {
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+        BackgroundDownloadBridge.attach(this, flutterEngine)
 
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, channelName)
             .setMethodCallHandler { call, result ->
@@ -285,6 +286,10 @@ class MainActivity : AudioServiceActivity() {
         grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == BackgroundDownloadBridge.PERMISSION) {
+            BackgroundDownloadBridge.permissionResult(grantResults.firstOrNull() == PackageManager.PERMISSION_GRANTED)
+            return
+        }
         if (requestCode == testPermissionCode) {
             pendingTestPermission?.success(grantResults.firstOrNull() == PackageManager.PERMISSION_GRANTED)
             pendingTestPermission = null

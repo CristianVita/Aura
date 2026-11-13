@@ -13,6 +13,16 @@ import 'audio_sources.dart';
 import 'audio_track.dart';
 import 'saved_music.dart';
 
+AudioSessionConfiguration musicSessionConfiguration({
+  required bool isAndroid,
+  required bool pauseWhenDucked,
+}) {
+  const music = AudioSessionConfiguration.music();
+  return isAndroid && pauseWhenDucked
+      ? music.copyWith(androidWillPauseWhenDucked: true)
+      : music;
+}
+
 MediaControl localizedMediaControl(MediaControl control) {
   final strings = AppText.current;
   return control.copyWith(
@@ -121,7 +131,12 @@ class AuraAudioRuntime {
         ),
       );
       final session = await AudioSession.instance;
-      await session.configure(const AudioSessionConfiguration.music());
+      await session.configure(
+        musicSessionConfiguration(
+          isAndroid: isAndroid,
+          pauseWhenDucked: features.pauseWhenDucked,
+        ),
+      );
     }
   }
 

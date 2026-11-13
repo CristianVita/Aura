@@ -6,6 +6,9 @@ import 'package:aura/offline_store.dart';
 import 'package:crypto/crypto.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
+import 'package:path/path.dart' show join;
+
+String pJoin(String a, String b) => join(a, b);
 
 const track = AudioTrack(
   id: 'song',
@@ -179,4 +182,37 @@ void main() {
     );
     store.dispose();
   });
+  test(
+    'retry removes only abandoned temporary files for the selected track',
+    () async {
+      final key = sha256.convert(utf8.encode(track.uri)).toString();
+      final oldPart = File(pJoin(dir.path, '${key}_0123456789abcdef.mp3.part'));
+      final oldManifest = File(
+        pJoin(dir.path, '${key}_0123456789abcdef.json.part'),
+      );
+      final unrelated = File(pJoin(dir.path, 'unrelated.mp3.part'));
+      await oldPart.writeAsBytes([1]);
+      await oldManifest.writeAsBytes([1]);
+      await unrelated.writeAsBytes([7]);
+      final store = OfflineStore(
+        directory: () async => dir,
+        cleanupInterrupted: true,
+        open: (_) async => (
+          response: http.StreamedResponse(
+            Stream.value([1, 2, 3]),
+            200,
+            headers: {'content-type': 'audio/mpeg'},
+            contentLength: 3,
+          ),
+          close: () {},
+        ),
+      );
+      await store.download(track);
+      expect(await oldPart.exists(), false);
+      expect(await oldManifest.exists(), false);
+      expect(await unrelated.readAsBytes(), [7]);
+      expect(await store.localUri(track.uri), isNotNull);
+      store.dispose();
+    },
+  );
 }

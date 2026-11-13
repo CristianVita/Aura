@@ -1,4 +1,6 @@
 import 'package:aura/audio_features.dart';
+import 'package:aura/audio_runtime.dart';
+import 'package:audio_session/audio_session.dart';
 import 'package:aura/saved_music.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -15,6 +17,7 @@ void main() {
       expect(saved.audioFeatures.equalizerEnabled, isFalse);
       expect(saved.audioFeatures.keepPausedOnSkip, isTrue);
       expect(saved.audioFeatures.seekButtons, isFalse);
+      expect(saved.audioFeatures.pauseWhenDucked, isFalse);
     },
   );
   test('audio features survive concurrent rating and favorite edits', () async {
@@ -30,6 +33,7 @@ void main() {
           seekButtons: true,
           headsetSeek: true,
           showStop: false,
+          pauseWhenDucked: true,
         ),
       ),
       store.toggleFavorite('song'),
@@ -41,9 +45,35 @@ void main() {
     expect(saved.audioFeatures.bandGains, [4, 2, 0, -1, 0]);
     expect(saved.audioFeatures.headsetSeek, isTrue);
     expect(saved.audioFeatures.showStop, isFalse);
+    expect(saved.audioFeatures.pauseWhenDucked, isTrue);
     expect(saved.favorites, ['song']);
     expect(saved.ratingOf('song'), 4.5);
     store.dispose();
+  });
+  test('audio focus keeps defaults except for the opted-in Android flag', () {
+    const defaults = AudioSessionConfiguration.music();
+    expect(
+      musicSessionConfiguration(
+        isAndroid: true,
+        pauseWhenDucked: false,
+      ).toJson(),
+      defaults.toJson(),
+    );
+    expect(
+      musicSessionConfiguration(
+        isAndroid: false,
+        pauseWhenDucked: true,
+      ).toJson(),
+      defaults.toJson(),
+    );
+    final expected = defaults.toJson()..['androidWillPauseWhenDucked'] = true;
+    expect(
+      musicSessionConfiguration(
+        isAndroid: true,
+        pauseWhenDucked: true,
+      ).toJson(),
+      expected,
+    );
   });
   test(
     'invalid transition durations and equalizer values cannot be saved',

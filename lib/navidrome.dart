@@ -68,6 +68,21 @@ class NavidromeServer {
       );
 }
 
+/// A requested stream quality; the server may not honor the bitrate limit.
+class NavidromeStreamQuality {
+  const NavidromeStreamQuality.original() : maxBitRateKbps = null;
+
+  factory NavidromeStreamQuality.limited(int maxBitRateKbps) {
+    if (maxBitRateKbps <= 0) {
+      throw ArgumentError.value(maxBitRateKbps, 'maxBitRateKbps');
+    }
+    return NavidromeStreamQuality._(maxBitRateKbps);
+  }
+
+  const NavidromeStreamQuality._(this.maxBitRateKbps);
+  final int? maxBitRateKbps;
+}
+
 /// Implements the read-only Subsonic endpoints supported by Navidrome.
 class NavidromeClient {
   NavidromeClient(this.server, {http.Client? client, this.pageSize = 500})
@@ -217,7 +232,16 @@ class NavidromeClient {
     );
   }
 
-  Uri stream(String id) => endpoint('stream', {'id': id, 'format': 'raw'});
+  Uri stream(
+    String id, {
+    NavidromeStreamQuality quality = const NavidromeStreamQuality.original(),
+  }) => endpoint('stream', {
+    'id': id,
+    if (quality.maxBitRateKbps == null)
+      'format': 'raw'
+    else
+      'maxBitRate': '${quality.maxBitRateKbps}',
+  });
   Future<Uint8List> artwork(String id) => _bytes(
     endpoint('getCoverArt', {'id': id, 'size': '512'}),
     5 * 1024 * 1024,
@@ -345,10 +369,13 @@ class NavidromeRepository {
     );
   }
 
-  Future<Uri> resolve(Uri uri) async {
+  Future<Uri> resolve(
+    Uri uri, {
+    NavidromeStreamQuality quality = const NavidromeStreamQuality.original(),
+  }) async {
     final client = clientFactory(await _server(uri));
     try {
-      return client.stream(uri.pathSegments.last);
+      return client.stream(uri.pathSegments.last, quality: quality);
     } finally {
       client.close();
     }

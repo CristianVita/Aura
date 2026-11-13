@@ -336,8 +336,14 @@ class SettingsScreen extends StatelessWidget {
                     _SettingsRow(
                       icon: Icons.info_outline,
                       title: context.appStrings.uiAudioFocus,
-                      onTap: null,
-                      pending: true,
+                      onTap: () => Navigator.push<void>(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const _AudioFeatureSettings(
+                            page: _AudioFeaturePage.focus,
+                          ),
+                        ),
+                      ),
                     ),
                     _SettingsRow(
                       icon: Icons.headphones_outlined,
@@ -399,6 +405,18 @@ class SettingsScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+                    if (!kIsWeb &&
+                        defaultTargetPlatform == TargetPlatform.android)
+                      _SettingsRow(
+                        icon: Icons.downloading,
+                        title: context.appStrings.backgroundTitle,
+                        onTap: () => Navigator.push<void>(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const BackgroundDownloadsScreen(),
+                          ),
+                        ),
+                      ),
                     _SettingsRow(
                       icon: Icons.music_note_outlined,
                       title: context.appStrings.uiMedia,

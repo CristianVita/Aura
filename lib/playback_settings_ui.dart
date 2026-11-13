@@ -369,63 +369,39 @@ class _PlaybackQuickSettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ListenableBuilder(
     listenable: controls.sleep,
-    builder: (_, child) => Row(
-      children: [
-        Expanded(
-          child: TextButton.icon(
-            icon: Icon(
-              Icons.bedtime_outlined,
-              color: controls.sleep.active
-                  ? context.auraAccent
-                  : context.auraMuted,
-            ),
-            label: Text(
-              controls.sleep.active
-                  ? _sleepLabel(context, controls.sleep)
-                  : context.appStrings.uiSleep,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            onPressed: () => _showSleepTimer(context, controls),
+    builder: (_, child) {
+      final sleepLabel = controls.sleep.active
+          ? _sleepLabel(context, controls.sleep)
+          : context.appStrings.uiSleep;
+      final speed = context.number(
+        SavedMusicScope.of(context).data.playbackSpeed,
+        digits: 2,
+      );
+      void openSettings() => Navigator.push(
+        context,
+        MaterialPageRoute<void>(
+          builder: (_) => PlaybackSettingsScreen(controls: controls),
+        ),
+      );
+      return PlayerQuickActions(
+        sleepLabel: sleepLabel,
+        sleepTooltip: '${context.appStrings.uiSleepTimer}: $sleepLabel',
+        sleepActive: controls.sleep.active,
+        speedLabel: '$speed×',
+        speedTooltip: context.appStrings.playbackSpeed(speed),
+        equalizerTooltip: context.appStrings.uiEqualizer,
+        settingsTooltip: context.appStrings.uiPlaybackSettings,
+        onSleep: () => _showSleepTimer(context, controls),
+        onSpeed: openSettings,
+        onEqualizer: () => Navigator.push(
+          context,
+          MaterialPageRoute<void>(
+            builder: (_) =>
+                const _AudioFeatureSettings(page: _AudioFeaturePage.equalizer),
           ),
         ),
-        Expanded(
-          child: TextButton.icon(
-            icon: const Icon(Icons.speed_rounded),
-            label: Text(
-              '${SavedMusicScope.of(context).data.playbackSpeed.toStringAsFixed(2)}×',
-            ),
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute<void>(
-                builder: (_) => PlaybackSettingsScreen(controls: controls),
-              ),
-            ),
-          ),
-        ),
-        IconButton(
-          tooltip: context.appStrings.uiEqualizer,
-          icon: const Icon(Icons.equalizer_rounded),
-          onPressed: () => Navigator.push(
-            context,
-            MaterialPageRoute<void>(
-              builder: (_) => const _AudioFeatureSettings(
-                page: _AudioFeaturePage.equalizer,
-              ),
-            ),
-          ),
-        ),
-        IconButton(
-          tooltip: context.appStrings.uiPlaybackSettings,
-          icon: const Icon(Icons.tune_rounded),
-          onPressed: () => Navigator.push(
-            context,
-            MaterialPageRoute<void>(
-              builder: (_) => PlaybackSettingsScreen(controls: controls),
-            ),
-          ),
-        ),
-      ],
-    ),
+        onSettings: openSettings,
+      );
+    },
   );
 }

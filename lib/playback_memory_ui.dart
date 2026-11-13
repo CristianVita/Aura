@@ -125,6 +125,21 @@ class _LibraryFiltersScreenState extends State<LibraryFiltersScreen> {
   late int _minimum = widget.store.data.filters.minimumSeconds;
   late bool _hideMessaging = widget.store.data.filters.hideMessaging;
   bool _saving = false;
+
+  Future<void> _save(LibraryFilters filters) async {
+    setState(() => _saving = true);
+    final saved = await saveMusicAction(
+      context,
+      () => widget.store.setFilters(filters),
+    );
+    if (!mounted) return;
+    if (saved) {
+      Navigator.pop(context);
+    } else {
+      setState(() => _saving = false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final filters = LibraryFilters(
@@ -194,24 +209,21 @@ class _LibraryFiltersScreenState extends State<LibraryFiltersScreen> {
             FilledButton(
               onPressed: _saving || !widget.store.ready
                   ? null
-                  : () async {
-                      setState(() => _saving = true);
-                      final saved = await saveMusicAction(
-                        context,
-                        () => widget.store.setFilters(filters),
-                      );
-                      if (!context.mounted) return;
-                      if (saved) {
-                        Navigator.pop(context);
-                      } else {
-                        setState(() => _saving = false);
-                      }
-                    },
+                  : () => _save(filters),
               child: Text(
                 _saving
                     ? context.appStrings.uiSaving
                     : context.appStrings.uiSaveFilters,
               ),
+            ),
+            const SizedBox(height: 8),
+            OutlinedButton.icon(
+              key: const ValueKey('reset-library-filters'),
+              onPressed: _saving || !widget.store.ready
+                  ? null
+                  : () => _save(const LibraryFilters()),
+              icon: const Icon(Icons.restart_alt_rounded),
+              label: Text(context.appStrings.pageReset),
             ),
           ],
         ),

@@ -93,6 +93,52 @@ void main() {
   );
 
   testWidgets(
+    'resetting library filters saves defaults without changing history',
+    (tester) async {
+      final store = PlaybackMemoryStore(_Storage());
+      await store.load();
+      await store.record('a', DateTime(2026));
+      await store.setFilters(
+        const LibraryFilters(minimumSeconds: 30, hideMessaging: true),
+      );
+      await tester.pumpWidget(
+        MaterialApp(
+          locale: const Locale('ro'),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: Builder(
+            builder: (context) => Scaffold(
+              body: TextButton(
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) =>
+                        LibraryFiltersScreen(store: store, tracks: _tracks),
+                  ),
+                ),
+                child: const Text('Open'),
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.tap(find.text('Open'));
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(
+        find.byKey(const ValueKey('reset-library-filters')),
+      );
+      await tester.tap(find.byKey(const ValueKey('reset-library-filters')));
+      await tester.pumpAndSettle();
+      expect(store.data.filters.minimumSeconds, 0);
+      expect(store.data.filters.hideMessaging, isFalse);
+      expect(store.data.history.single.uri, 'a');
+      expect(find.text('Open'), findsOneWidget);
+      await tester.pumpWidget(const SizedBox());
+      store.dispose();
+    },
+  );
+
+  testWidgets(
     'history plays available tracks in recency order and clears after confirmation',
     (tester) async {
       final store = PlaybackMemoryStore(_Storage());

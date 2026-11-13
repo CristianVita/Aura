@@ -80,7 +80,10 @@ AuraBackup sampleBackup() => AuraBackup.capture(
     ],
     starSize: RatingStarSize.large,
     playbackSpeed: 1.5,
-    audioFeatures: const AudioFeatures(crossfadeSeconds: 3),
+    audioFeatures: const AudioFeatures(
+      crossfadeSeconds: 3,
+      pauseWhenDucked: true,
+    ),
   ),
   PlaybackMemoryData(
     history: const [
@@ -173,6 +176,7 @@ void main() {
     final restored = AuraBackup.decode(backup.encode());
     expect(restored.saved.ratings['old'], 4.5);
     expect(restored.saved.audioFeatures.crossfadeSeconds, 3);
+    expect(restored.saved.audioFeatures.pauseWhenDucked, isTrue);
     expect(restored.saved.starSize, RatingStarSize.large);
     expect(restored.memory.history.single.playCount, 3);
     expect(restored.memory.session, isNull);
@@ -309,6 +313,7 @@ void main() {
     expect(merged.playlists.single.tracks, ['kept', 'new']);
     expect(merged.starSize, RatingStarSize.medium);
     expect(merged.playbackSpeed, 1);
+    expect(merged.audioFeatures.pauseWhenDucked, isFalse);
     expect(
       plan.savedResult(merged, replace: false, settings: false).encode(),
       merged.encode(),
@@ -319,6 +324,7 @@ void main() {
     expect(replaced.playlists.single.name, 'Imported');
     expect(replaced.starSize, RatingStarSize.large);
     expect(replaced.playbackSpeed, 1.5);
+    expect(replaced.audioFeatures.pauseWhenDucked, isTrue);
   });
 
   test('history merge keeps latest timestamp/max count and preserves the current queue', () {

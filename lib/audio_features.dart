@@ -8,13 +8,15 @@ class AudioFeatures {
     this.headsetSeek = false,
     this.showStop = true,
     this.keepPausedOnSkip = true,
+    this.pauseWhenDucked = false,
   });
   final int crossfadeSeconds, fadeMilliseconds;
   final bool equalizerEnabled,
       seekButtons,
       headsetSeek,
       showStop,
-      keepPausedOnSkip;
+      keepPausedOnSkip,
+      pauseWhenDucked;
   final List<double> bandGains;
   AudioFeatures copy({
     int? crossfadeSeconds,
@@ -25,6 +27,7 @@ class AudioFeatures {
     bool? headsetSeek,
     bool? showStop,
     bool? keepPausedOnSkip,
+    bool? pauseWhenDucked,
   }) => AudioFeatures(
     crossfadeSeconds: crossfadeSeconds ?? this.crossfadeSeconds,
     fadeMilliseconds: fadeMilliseconds ?? this.fadeMilliseconds,
@@ -34,6 +37,7 @@ class AudioFeatures {
     headsetSeek: headsetSeek ?? this.headsetSeek,
     showStop: showStop ?? this.showStop,
     keepPausedOnSkip: keepPausedOnSkip ?? this.keepPausedOnSkip,
+    pauseWhenDucked: pauseWhenDucked ?? this.pauseWhenDucked,
   );
   Map<String, Object> toJson() => {
     'crossfadeSeconds': crossfadeSeconds,
@@ -44,6 +48,7 @@ class AudioFeatures {
     'headsetSeek': headsetSeek,
     'showStop': showStop,
     'keepPausedOnSkip': keepPausedOnSkip,
+    'pauseWhenDucked': pauseWhenDucked,
   };
   factory AudioFeatures.fromJson(Map<String, dynamic> value) {
     final seconds = value['crossfadeSeconds'] ?? 0,
@@ -70,6 +75,7 @@ class AudioFeatures {
       headsetSeek: value['headsetSeek'] as bool? ?? false,
       showStop: value['showStop'] as bool? ?? true,
       keepPausedOnSkip: value['keepPausedOnSkip'] as bool? ?? true,
+      pauseWhenDucked: value['pauseWhenDucked'] as bool? ?? false,
     );
   }
 }

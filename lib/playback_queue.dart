@@ -47,8 +47,9 @@ class _PlaybackOptionsState extends State<PlaybackOptions> {
           LoopMode.one => context.appStrings.uiRepeatCurrentTrack,
         };
         return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            IconButton(
+            IconButton.filledTonal(
               tooltip: state.shuffleModeEnabled
                   ? context.appStrings.uiShuffleOn
                   : context.appStrings.uiShuffleOff,
@@ -66,21 +67,25 @@ class _PlaybackOptionsState extends State<PlaybackOptions> {
                       await player.setShuffleModeEnabled(enabled);
                     }),
             ),
-            Expanded(
-              child: TextButton.icon(
-                icon: const Icon(Icons.queue_music_rounded),
-                label: Text(
-                  context.appStrings.queueCount(state.sequence.length),
-                ),
-                onPressed: () => showModalBottomSheet<void>(
-                  context: context,
-                  isScrollControlled: true,
-                  backgroundColor: context.auraSurface,
-                  builder: (_) => PlaybackQueueSheet(player: player),
-                ),
+            const SizedBox(width: 16),
+            IconButton.filledTonal(
+              tooltip: context.appStrings.queueCount(state.sequence.length),
+              icon: Badge.count(
+                count: state.sequence.length,
+                maxCount: 99,
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                textColor: Theme.of(context).colorScheme.onPrimary,
+                child: const Icon(Icons.queue_music_rounded),
+              ),
+              onPressed: () => showModalBottomSheet<void>(
+                context: context,
+                isScrollControlled: true,
+                backgroundColor: context.auraSurface,
+                builder: (_) => PlaybackQueueSheet(player: player),
               ),
             ),
-            IconButton(
+            const SizedBox(width: 16),
+            IconButton.filledTonal(
               tooltip: repeatLabel,
               icon: Icon(
                 state.loopMode == LoopMode.one

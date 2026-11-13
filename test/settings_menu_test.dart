@@ -94,6 +94,16 @@ void main() {
       expect(find.text('Volumul playerului: 100%'), findsNothing);
       await tester.pageBack();
       await tester.pumpAndSettle();
+      await tester.ensureVisible(find.text('Focalizare audio'));
+      await tester.tap(find.text('Focalizare audio'));
+      await tester.pumpAndSettle();
+      expect(find.text('Pauză pentru întreruperi scurte'), findsOneWidget);
+      expect(
+        tester.widget<SwitchListTile>(find.byType(SwitchListTile)).value,
+        isFalse,
+      );
+      await tester.pageBack();
+      await tester.pumpAndSettle();
       await tester.pageBack();
       await tester.pumpAndSettle();
       await tester.ensureVisible(find.text('Surse media'));

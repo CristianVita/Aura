@@ -37,6 +37,8 @@ import 'playback_memory_ui.dart';
 import 'saved_music.dart';
 import 'saved_music_ui.dart';
 import 'playback_queue.dart';
+import 'player_skip_button.dart';
+import 'player_quick_actions.dart';
 import 'playback_settings_controller.dart';
 import 'sleep_timer.dart';
 import 'source_folders.dart';
@@ -48,6 +50,7 @@ import 'album_cover_ui.dart';
 import 'album_artwork.dart';
 import 'personal_albums.dart';
 import 'offline_ui.dart';
+import 'background_downloads_ui.dart';
 import 'generated_files_screen.dart';
 import 'diagnostic_journal.dart';
 import 'offline_media_settings.dart';
@@ -2239,15 +2242,11 @@ class _MiniPlayer extends StatelessWidget {
                       },
                     ),
                     SavedTrackActions(track: track, showPlaylist: false),
-                    IconButton(
-                      tooltip: context.appStrings.uiNextTrack,
-                      onPressed: player.hasNext
-                          ? () => _audioRuntime.skip(true)
-                          : null,
-                      icon: Icon(
-                        Icons.skip_next_rounded,
-                        color: context.auraMuted,
-                      ),
+                    PlayerSkipButton(
+                      next: true,
+                      enabled: player.hasNext,
+                      onSkip: _audioRuntime.skip,
+                      color: context.auraMuted,
                     ),
                   ],
                 ),
@@ -2460,12 +2459,11 @@ class _NowPlayingSheet extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      IconButton(
-                        tooltip: context.appStrings.uiPreviousTrack,
-                        onPressed: player.hasPrevious
-                            ? () => _audioRuntime.skip(false)
-                            : null,
-                        icon: const Icon(Icons.skip_previous_rounded, size: 36),
+                      PlayerSkipButton(
+                        next: false,
+                        enabled: player.hasPrevious,
+                        onSkip: _audioRuntime.skip,
+                        iconSize: 36,
                       ),
                       const SizedBox(width: 20),
                       StreamBuilder<PlayerState>(
@@ -2495,12 +2493,11 @@ class _NowPlayingSheet extends StatelessWidget {
                         },
                       ),
                       const SizedBox(width: 20),
-                      IconButton(
-                        tooltip: context.appStrings.uiNextTrack,
-                        onPressed: player.hasNext
-                            ? () => player.seekToNext()
-                            : null,
-                        icon: const Icon(Icons.skip_next_rounded, size: 36),
+                      PlayerSkipButton(
+                        next: true,
+                        enabled: player.hasNext,
+                        onSkip: _audioRuntime.skip,
+                        iconSize: 36,
                       ),
                     ],
                   ),

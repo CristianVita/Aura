@@ -170,4 +170,100 @@ void main() {
       saved.dispose();
     },
   );
+  testWidgets('offline deletion can be undone before the file is removed', (
+    tester,
+  ) async {
+    final saved = SavedMusicStore(MemorySavedMusicStorage());
+    await saved.load();
+    final offline = FakeDownloads()..exists = true;
+    await tester.pumpWidget(
+      AuraAppearanceApp(
+        store: saved,
+        home: OfflineDownloadsScreen(
+          store: offline,
+          canRemove: (_) => true,
+          onPlay: (_, _) async {},
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('offline-track-action')));
+    await tester.pumpAndSettle();
+    expect(find.text('Synthetic track'), findsNothing);
+    expect(offline.exists, isTrue);
+    expect(offline.removes, 0);
+    await tester.tap(find.byKey(const ValueKey('offline-undo')));
+    await tester.pumpAndSettle();
+    expect(find.text('Synthetic track'), findsOneWidget);
+    expect(offline.removes, 0);
+    await tester.pumpWidget(const SizedBox());
+    offline.dispose();
+    saved.dispose();
+  });
+
+  testWidgets('offline deletion commits on timeout and leaving cancels it', (
+    tester,
+  ) async {
+    final saved = SavedMusicStore(MemorySavedMusicStorage());
+    await saved.load();
+    final offline = FakeDownloads()..exists = true;
+    Widget screen() => AuraAppearanceApp(
+      store: saved,
+      home: OfflineDownloadsScreen(
+        store: offline,
+        canRemove: (_) => true,
+        onPlay: (_, _) async {},
+      ),
+    );
+    await tester.pumpWidget(screen());
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('offline-track-action')));
+    await tester.pumpAndSettle();
+    await tester.pumpWidget(const SizedBox());
+    await tester.pump(const Duration(seconds: 10));
+    expect(offline.exists, isTrue);
+    expect(offline.removes, 0);
+    await tester.pumpWidget(screen());
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('offline-track-action')));
+    await tester.pumpAndSettle();
+    await tester.pump(const Duration(seconds: 9));
+    await tester.pumpAndSettle();
+    expect(offline.exists, isFalse);
+    expect(offline.removes, 1);
+    await tester.pumpWidget(const SizedBox());
+    offline.dispose();
+    saved.dispose();
+  });
+  testWidgets(
+    'queued track is protected if playback starts during undo window',
+    (tester) async {
+      final saved = SavedMusicStore(MemorySavedMusicStorage());
+      await saved.load();
+      final offline = FakeDownloads()..exists = true;
+      var removable = true;
+      await tester.pumpWidget(
+        AuraAppearanceApp(
+          store: saved,
+          home: OfflineDownloadsScreen(
+            store: offline,
+            canRemove: (_) => removable,
+            onPlay: (_, _) async {},
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const ValueKey('offline-track-action')));
+      await tester.pumpAndSettle();
+      removable = false;
+      await tester.pump(const Duration(seconds: 9));
+      await tester.pumpAndSettle();
+      expect(offline.exists, isTrue);
+      expect(offline.removes, 0);
+      expect(find.text('Synthetic track'), findsOneWidget);
+      await tester.pumpWidget(const SizedBox());
+      offline.dispose();
+      saved.dispose();
+    },
+  );
 }

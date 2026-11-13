@@ -23,11 +23,14 @@ class OfflineStore extends OfflineStorage {
     Future<Directory> Function()? directory,
     this.maxBytes = 512 * 1024 * 1024,
     this.networkGuard,
-  }) : _directory = directory ?? _defaultDirectory;
+    bool? cleanupInterrupted,
+  }) : _directory = directory ?? _defaultDirectory,
+       cleanupInterrupted = cleanupInterrupted ?? Platform.isAndroid;
   final OpenOfflineDownload open;
   final Future<Directory> Function() _directory;
   final int maxBytes;
   final DownloadNetworkGuard? networkGuard;
+  final bool cleanupInterrupted;
   final Set<String> _busy = {};
   final Map<String, Future<void>> _operations = {};
   static Future<Directory> _defaultDirectory() async => Directory(
@@ -214,6 +217,21 @@ class OfflineStore extends OfflineStorage {
     }
   }
 
+  Future<void> _cleanInterruptedParts(String uri, Directory root) async {
+    final prefix = _key(uri);
+    final pattern = RegExp(
+      '^$prefix'
+      r'_[a-f0-9]{16}\.(?:mp3|m4a|ogg|flac|wav|audio|json)\.part$',
+    );
+    await for (final entry in root.list(followLinks: false)) {
+      if (entry is File && pattern.hasMatch(p.basename(entry.path))) {
+        try {
+          await entry.delete();
+        } on FileSystemException catch (_) {}
+      }
+    }
+  }
+
   Future<void> _download(AudioTrack track) async {
     _busy.add(track.uri);
     notifyListeners();
@@ -233,8 +251,9 @@ class OfflineStore extends OfflineStorage {
     }
 
     try {
-      if (await localUri(track.uri) != null) return;
       final root = await _root();
+      if (cleanupInterrupted) await _cleanInterruptedParts(track.uri, root);
+      if (await localUri(track.uri) != null) return;
       final previous = await _read(track.uri, root);
       if (networkGuard != null) {
         networkSubscription = networkGuard!.changes.listen(

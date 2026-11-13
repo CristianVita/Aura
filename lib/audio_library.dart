@@ -48,7 +48,10 @@ class AudioLibrary {
           if (local == null) throw StateError('Offline copy unavailable');
           return local.toString() as T;
         }
-        return (await servers.resolve(uri)).toString() as T;
+        final quality =
+            (arguments['quality'] as NavidromeStreamQuality?) ??
+            const NavidromeStreamQuality.original();
+        return (await servers.resolve(uri, quality: quality)).toString() as T;
       }
       return uri.toString() as T;
     }
